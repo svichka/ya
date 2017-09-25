@@ -1,0 +1,56 @@
+{# form_div_layout.html.twig #}
+
+{% block form_widget_simple %}
+    {% set type = type|default('text') %}
+    <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+{% endblock form_widget_simple %}
+
+{%- block form_row -%}
+    {% if block_prefixes.1 == 'recaptcha' %}
+    <div>
+        {{- form_errors(form) -}}
+        <script src='https://www.google.com/recaptcha/api.js'></script>
+        <div class="g-recaptcha" data-sitekey="{{ form.vars.value }}"></div>
+    </div>
+    {% elseif block_prefixes.1 == 'checkbox' %}
+    <div class="checkbox">
+    <label>
+        {{- form_errors(form) -}}
+        {{- form_widget(form) -}}
+        {{- form_label(form) -}}
+    </label>
+    </div>
+    
+    {% elseif block_prefixes.1 == 'choice' and expanded == true %}
+    <div>
+        {{- form_label(form) -}}
+        {{- form_errors(form) -}}
+        {{- form_widget(form) -}}
+    </div>
+    
+    {% else %}
+
+    <div class="form-group">
+    {% set classes = 'form-control' %}
+    {% if form.vars.attr['class'] is defined %}
+        {% set classes = form.vars.attr['class'] ~ ' ' ~ classes %}
+    {% endif %}
+	{{- form_label(form) -}}
+        {{- form_errors(form) -}}
+        {{- form_widget(form, { 'attr': {'class': classes} }) -}}
+    </div>
+    {% endif %}
+{%- endblock form_row -%}
+
+{%- block choice_widget_expanded -%}
+    <div {{ block('widget_container_attributes') }}>
+    {%- for child in form %}
+        <div class="radio">
+            <label>
+                {{- form_widget(child) -}}
+                {{- form_label(child, null, {translation_domain: choice_translation_domain}) -}}
+            </label>
+        </div>
+    {% endfor -%}
+    </div>
+{%- endblock choice_widget_expanded -%}

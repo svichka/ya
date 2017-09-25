@@ -1,0 +1,9 @@
+# auth.en.yml
+Auth Title: Authorization
+Auth Login Label: E-mail
+Auth Password Label: Password
+Auth Submit Value: Auth
+Auth Login And Password Error: Login or password is incorrect
+Auth Unknown Error: Unknown error
+Auth Success Message: you are successfully log in
+Auth Logout: Logout

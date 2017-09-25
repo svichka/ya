@@ -1,0 +1,13 @@
+host=dev8.dnet
+server=blank.8.dev.dalee.ru
+shared=/home/deploy/_shared/pepsico-blankproject/site
+
+strategy=plain-apache
+apache-version=apache-php5
+apache-docroot=web
+allowoverride=All
+
+[users]
+dushankov=/home/dushankov/web/pepsico/blankproject
+smospan=/home/smospan/web/pepsico/blankproject
+psemenyuk=/home/psemenyuk/web/pepsico/blankproject

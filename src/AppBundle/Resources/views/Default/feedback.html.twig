@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% trans_default_domain "feedback" %}
+
+{% block title %}
+  Обратная связь
+{% endblock %}
+
+{% block body %}
+  <main class="cabinet-block main-content">
+
+
+    {% if app.request.get('success') == 'y' %}
+      Мы вернёмся с ответом в течении 24 часов часов
+    {% else %}
+      {% for error in errors %}
+        <p class="bg-danger" style="margin-bottom: 15px; padding: 15px;">{{ error|trans }}</p>
+      {% endfor %}
+    {% endif %}
+
+
+    {% if form is defined %}
+      {% form_theme form 'AppBundle:Forms:form_div_layout.html.twig' %}
+      {{ form_start(form) }}
+      <div class="feedback-group">
+        <label for="authorized_user_form_email">Е-mail, указанный при регистрации* </label>
+        {{ form_widget(form.email) }}
+        {{ form_errors(form.email) }}
+      </div>
+      <div class="feedback-group">
+        <label for="authorized_user_form_mobile_phone">Твой номер телефона</label>
+        {{ form_widget(form.mobile_phone) }}
+        {{ form_errors(form.mobile_phone) }}
+      </div>
+      <div class="feedback-group">
+        <label for="authorized_user_form_theme_id">Тема сообщения* </label>
+        {{ form_widget(form.theme_id) }}
+      </div>
+      <div class="feedback-group">
+        <label for="authorized_user_form_message">Текст сообщения</label>
+        {{ form_widget(form.message) }}
+        {{ form_errors(form.message) }}
+      </div>
+      <div class="feedback-group">
+        Вложение должно быть в формате jpg до 5 МБ.
+      </div>
+      <div class="text-file-upload js-file-wrapper">
+        <span class='up'>Прикрепить файл</span>
+        {{ form_widget(form.file, {'attr': {'class': 'js-file'}}) }}
+        {{ form_errors(form.file) }}
+      </div>
+      {% if(form.recaptcha is defined) %}
+        <div class="recapcha-feedback">
+          <script src='https://www.google.com/recaptcha/api.js'></script>
+          <div class="g-recaptcha" data-sitekey="{{ recaptcha_key }}"></div>
+        </div>
+      {% endif %}
+      <div class="feedback-text-md no-margin">
+        *обязательно для заполнения
+      </div>
+      <button type='submit' class='btn-ylw'>Отправить сообщение</button>
+      {{ form_end(form) }}
+    {% endif %}
+  </main>
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  <script>
+    $(function () {
+
+      $('#not_authorized_user_form_mobile_phone').mask('+7(999) 999-99-99')
+      $('#authorized_user_form_mobile_phone').mask('+7(999) 999-99-99')
+
+    });
+  </script>
+{% endblock %}

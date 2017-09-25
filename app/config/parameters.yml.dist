@@ -1,0 +1,34 @@
+# This file is a "template" of what your parameters.yml file should look like
+# Set parameters here that may be different on each deployment target of the app, e.g. development, staging, production.
+# http://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
+parameters:
+  database_host: 127.0.0.1
+  database_port: ~
+  database_name: symfony
+  database_user: root
+  database_password: ~
+  # You should uncomment this if you want to use pdo_sqlite
+  #database_path: "%kernel.root_dir%/data.db3"
+
+  mailer_transport: smtp
+  mailer_host: 127.0.0.1
+  mailer_user: ~
+  mailer_password: ~
+
+  # A secret key that's used to generate certain security-related tokens
+  secret: ThisTokenIsNotSoSecretChangeIt
+
+  dalee_pepuws_client.url: 'http://api.example.com'
+  dalee_pepuws_client.basic_auth_enabled: false
+  dalee_pepuws_client.basic_auth_username: null
+  dalee_pepuws_client.basic_auth_password: null
+  dalee_pepuws_client.security_token: 'ApiSecurityToken'
+  dalee_pepuws_client.client_timeout: 60
+  recaptcha.public_key: 6LfaATIUAAAAABzJ3la39y6LCkmOAYOdMeh0DLGK
+  recaptcha.secret_key: 6LfaATIUAAAAAIzkglCBH9kyZDFSXKvLtViSUzfw
+
+  apm.key: null
+  apm_url: null
+
+  start_date: '2017-10-19 00:00:00'
+  end_date: '2017-11-15 23:59:59'

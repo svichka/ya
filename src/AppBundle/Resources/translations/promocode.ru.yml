@@ -1,0 +1,23 @@
+# promocode.ru.yml
+Promocode title: Ввод промокода
+Promocode list title: Активированные промокоды
+Promocode: Промокод
+Register promocode: Зарегистрировать
+
+Incorrect promocode data: Введен некорректный промокод
+Promocode has already been used: Промокод уже был введен
+This promocode is not registered in any promotion: Промокод не зарегистрирован ни в одной промоакции
+Promocode is not exist: Промокод не существует
+
+You have entered promocode: Вы ввели промокод
+Please, choose promotion: Пожалуйста, выберите промоакцию
+Please, choose prize in promotion: Пожалуйста, выберите приз в акции
+You has won: Вы выиграли
+You has not won: Вы не выиграли
+
+REDEEMED: Уже использован
+INVALID: Некорректный
+VALID: Введен
+PRIZE_ISSUED: Выдан приз
+NOT_WON: Без выигрыша
+Continue with promocode: Продолжить оформление промокода

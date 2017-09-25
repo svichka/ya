@@ -1,0 +1,127 @@
+.header-menu li a.active.n-bg-link:before {
+	background-image: url(../images/n-top-active.png);
+}
+.header-menu li a.active.n-bg-link:after {
+	background-image: url(../images/n-bottom-active.png);
+}
+.hit-container {
+	height: 100%;
+	padding: 50px 150px 0;
+}
+.video-wrap {
+	position: relative;
+	height: 0;
+	padding-bottom: 56%;
+}
+.video-wrap iframe {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+}
+.hit-text {
+	font-family: 'IntroBook' , sans-serif;
+	font-size: 23px;
+	padding-left: 45px;
+	line-height: 30px;
+}
+.video-title {
+	text-align: center;
+	margin-top: 16px;
+	font-size: 18px;
+}
+.hit-title {
+	font-size: 40px;
+	line-height: 45px;
+	margin-top: 10px;
+}
+.hit-bg-wrap {
+	height: 100%;
+	padding-top: 312px;
+	margin-top: -288px;
+}
+.hit-bg {
+	background-image: url(../images/person9.jpg);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+	height: 100%;
+	min-height: 300px;
+	margin-bottom: 10px;
+}
+@media (max-width: 1670px) {
+	.hit-container {
+		padding: 50px 100px 0;
+	}
+}
+@media (max-width: 1550px) {
+	.hit-text {
+		font-size: 22px;
+	}
+	.hit-container {
+		padding: 50px 70px 0;
+	}
+}
+@media (max-width: 1460px) {
+	.hit-title {
+		font-size: 35px;
+		line-height: 38px;
+		margin-top: 5px;
+	}
+	.hit-text {
+		font-size: 20px;
+		line-height: 24px;
+	}
+	.hit-bg-wrap {
+		padding-top: 303px;
+		margin-top: -279px;
+	}
+}
+@media (max-width: 1400px) {
+	.hit-bg-wrap {
+		padding-top: 295px;
+		margin-top: -268px;
+	}
+}
+@media (max-width: 1300px) {
+	.hit-bg-wrap {
+		padding-top: 280px;
+		margin-top: -245px;
+	}
+}
+@media (max-width: 1200px){
+	.hit-text {
+		font-size: 18px;
+		line-height: 22px;
+	}
+	.hit-title {
+		font-size: 30px;
+		line-height: 31px;
+	}
+}
+@media (max-width: 992px) {
+	.hit-container {
+		padding-top: 10px;
+		padding-bottom: 20px;
+		height: auto;
+	}
+	.hit-text {
+		padding: 0;
+		text-align: center;
+	}
+	.hit-text br {
+		line-height: 30px;
+	}
+}
+@media (max-width: 767px){
+	.hit-text {
+		font-size: 16px;
+	}
+	.hit-title {
+		font-size: 22px;
+	}
+	.hit-container {
+		padding: 10px 25px 20px;
+	}
+}

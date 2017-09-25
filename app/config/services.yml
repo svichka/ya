@@ -1,0 +1,34 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/service_container.html
+parameters:
+    #parameter_name: value
+
+services:
+    app.webservice_user_provider:
+        class: AppBundle\Security\User\WebserviceUserProvider
+        arguments: [@monolog.logger]
+    app.recaptcha:
+        class: AppBundle\Service\RecaptchaService
+        arguments: ['@service_container']
+    app.users.banned_listener:
+        class: AppBundle\EventListener\BannedListener
+        arguments: [@monolog.logger, @doctrine]
+        tags:
+            - { name: kernel.event_listener, event: kernel.controller, method: onKernelController }
+    app.users.tools:
+        class: AppBundle\EventListener\ToolsListener
+        arguments: [@monolog.logger, '%start_date%']
+    app.command.update_curse:
+        class: AppBundle\Command\UpdateCurseCommand
+        arguments: ["update-curse"]
+        tags:
+            - { name: console.command }
+    app.command.update_fias:
+        class: AppBundle\Command\UpdateFiasCommand
+        arguments: ["update-fias"]
+        tags:
+            - { name: console.command }
+
+    #service_name:
+    #    class: AppBundle\Directory\ClassName
+    #    arguments: ['@another_service_name', 'plain_value', '%parameter_name%']

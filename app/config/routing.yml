@@ -1,0 +1,10 @@
+# pepsi_client:
+#     resource: "@PepsiClientBundle/Controller/"
+#     type:     annotation
+#     prefix:   /
+
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
+    schemes:  [https, http]
+

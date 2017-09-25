@@ -1,0 +1,124 @@
+# personal.ru.yml
+Registration title: Регистрация
+Registration auth title: Вы уже зарегистрированы
+
+Email: Эл. почта
+Mobilephone: Мобильный телефон
+Lastname: Фамилия
+Firstname: Имя
+Secname: Отчество
+Ismale: Пол
+male: мужской
+female: женский
+Birthdate: Дата рождения
+Pasport: Паспорт
+Inn: ИНН
+Password: Пароль
+Confirm password: Введите пароль еще раз
+Countrycode: Страна
+Regionguid: Регион
+Region: Регион
+Cityguid: Город
+City: Город
+Isrulesagreed: Принимаю правила
+Ispdagreed: Даю согласие на обработку персональных данных
+Ismailingagreed: Хочу получать информационные рассылки
+Registration submit: Зарегистрироваться
+Update submit: Обновить
+Success registration: Вы успешно зарегистрировались!
+Not correct recaptcha: Вы не прошли проверку recaptcha
+Not correct status empty: "Не заполнено поле:"
+Not correct status invalid: "Некорректно заполнено поле:"
+
+Activation code: Код активации
+Activate submit: Активировать
+Success activate: Пользователь успешно активирован
+Activation update submit: Выслать повторно
+Success activation update: Код активации был выслан повторно
+
+Drop password submit: Сбросить пароль
+Success drop: Пароль успешно сброшен!
+
+Personal title: Личный кабинет
+Success update: Информация успешно обновлена
+
+Incorrect registration data: Некорректная регистрационная информация
+Participant with this email/phone/social account is already registered: Участник с такими данными уже зарегистрирован
+Unknown API error: Неизвестная ошибка
+
+Oldpassword: Старый пароль
+Newpassword: Новый пароль
+Change submit: Изменить
+
+Login: Эл. почта
+Recover password submit: Восстановить пароль
+Success recover: Письмо с информацией для восстановления пароля успешно выслано
+User not found: Пользователь с указанным адресом электронной почты не найден
+
+REJECTED: ОТКЛОНЕН
+APPROVED: ПРИНЯТ
+WAITING: ОБРАБОТКА
+#
+#DUPLICATE: Дубликат
+#MODIFICATION: Модифицирован
+#NOTARECEIPT: Не чек
+#UNREADABLE: Нечитаем
+#NOTALLPARTS: Обрезан
+#INCORRECTSTORE: Некорректный
+#NOT_QUANTITY_PRODUCT: Некорректный
+#FEWRECEIPTS: Некорректный
+#EXPIRED: Просрочен
+#BRANDS: Нет товаров
+#INCORRECTCITY: Другой город
+#TOTAL_PRODUCTS_COUNT_MIN: Мало товаров
+#OUTSIDE_INTERVAL: Не участвует
+#FUTURE: Чек из будущего
+#DUPLICATE_PHOTO: Дубль
+#PRODUCTS_PRICE_MIN: Некорректный
+#PRODUCTS_PRICE_MAX: Некорректный
+#NOT_ALLOWED_RECEIPT_TYPE: Недопустимый
+#BLOCKED_USER: Заблокирован
+DUPLICATE: Дубликат
+DUPLICATE_F: Этот чек уже есть в базе
+MODIFICATION: Отредактирован
+MODIFICATION_F: Есть признаки искусственного изменения содержания чека.
+NOTARECEIPT: Отсутствие чека
+NOTARECEIPT_F: На фото нет изображения  чека
+UNREADABLE: Нечитабельно
+UNREADABLE_F: Информация не читаема (плохое качество изображения)
+NOTALLPARTS: Фото обрезано
+NOTALLPARTS_F: Чек сфотографирован не полностью
+INCORRECTSTORE: Неверн. магазин
+INCORRECTSTORE_F: Некорректный магазин (указанная торговая точка не участвует в Акции)
+NOT_QUANTITY_PRODUCT: Нет продукта
+NOT_QUANTITY_PRODUCT_F: Несоответствие продукта в чеке условиям Акции.
+FEWRECEIPTS: Превышение
+FEWRECEIPTS_F: На фото более одного чека
+EXPIRED: Просрочен
+EXPIRED_F: Дата  чека не соответствует условиям Акции
+BRANDS: Нет товара
+BRANDS_F: В чеке нет нужного продукта
+INCORRECTCITY: Неверн. Город
+INCORRECTCITY_F: Указанный город не участвует в Акции
+TOTAL_PRODUCTS_COUNT_MIN: Мало товара
+TOTAL_PRODUCTS_COUNT_MIN_F: Недостаточное суммарное количество товаров в чеке
+PRODUCTS_PRICE_MAX: Превышение суммы чека
+PRODUCTS_PRICE_MAX_F: Сумма продуктов превышает максимально допустимую.
+OUTSIDE_INTERVAL: Неверная дата
+OUTSIDE_INTERVAL_F: Дата  чека не соответствует условиям Акции
+FUTURE: Чек из будущего
+FUTURE_F: Дата  чека не соответствует условиям Акции
+DUPLICATE_PHOTO: Дубликат
+DUPLICATE_PHOTO_F: Этот чек уже есть в базе
+PRODUCTS_PRICE_MIN: Недостаток
+PRODUCTS_PRICE_MIN_F: Недостаточная цена единицы товара в чеке
+PRODUCTS_PRICE_MAX: Превышение
+PRODUCTS_PRICE_MAX_F: Цена единицы товара в чеке превышает допустимую
+NOT_ALLOWED_RECEIPT_TYPE: Неверный формат
+NOT_ALLOWED_RECEIPT_TYPE_F: В чеке присутствуют не все необходимые данные (Дата, Время покупки, Итоговая сумма, ФН, ФД, ФПД, QR-код)
+BLOCKED_USER: Блокировка
+BLOCKED_USER_F: Пользователь заблокирован или больше не может отправлять чеки
+BALANCE_LIMIT: Блокировка
+BALANCE_LIMIT_F: Достигнут лимит на одного участника 100 долек в неделю
+DOLKA_LIMIT: Блокировка
+DOLKA_LIMIT_F: Достигнут лимит 33333 дольки в неделю.

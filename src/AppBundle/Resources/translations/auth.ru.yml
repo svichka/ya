@@ -1,0 +1,9 @@
+# auth.ru.yml
+Auth Title: Авторизация
+Auth Login Label: Электронная почта
+Auth Password Label: Пароль
+Auth Submit Value: Авторизоваться
+Auth Login And Password Error: Неверный логин или пароль
+Auth Unknown Error: Неизвестная ошибка
+Auth Success Message: вы успешно авторизовались
+Auth Logout: Выйти

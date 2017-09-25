@@ -1,0 +1,16 @@
+# feedback.ru.yml
+Feedback title: Обратная связь
+Theme id: Тема обращения
+Select theme of feedback: Выберите тему обращения
+Fio: Имя
+Email: Эл. почта
+Mobile phone: Телефон
+Message: Сообщение
+Send: Отправить
+
+Success feedback: "Спасибо за ваше обращение!"
+Success feedback with number: "Спасибо! Идентификатор вашего сообщения: %ticket_number%"
+
+Form is not found: Форма не найдена
+Themes are not found: Темы не найдены
+Not correct recaptcha: Вы не прошли проверку recaptcha
