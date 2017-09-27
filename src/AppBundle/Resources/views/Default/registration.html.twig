@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% trans_default_domain "personal" %}
+
+{% block title %}
+  {% if app.user %}
+    {% trans %}Registration auth title{% endtrans %}
+  {% else %}
+    {% trans %}Registration title{% endtrans %}
+  {% endif %}
+{% endblock %}
+
+{% block body %}
+  <div class="wrapper">
+    <div class="container">
+      {% if app.user %}
+        <p>{{ app.user.firstname }}, {% trans %}Registration auth title{% endtrans %}!</p>
+      {% else %}
+        {% if app.request.get('success') == 'y' %}
+          <p class="bg-success" style="margin-bottom: 15px; padding: 15px;">{% trans %}Success registration{% endtrans %}</p>
+        {% endif %}
+        {% for error in errors %}
+          <p class="bg-danger" style="margin-bottom: 15px; padding: 15px;">{{ error|trans }}</p>
+        {% endfor %}
+        {% form_theme form 'AppBundle:Forms:form_div_layout.html.twig' %}
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}
+{% block javascripts %}
+  <script type="text/javascript">
+    var formPrefix = 'registration_form';
+  </script>
+  <script type="text/javascript" src="{{ asset('js/geo_fields.js') }}"></script>
+{% endblock %}

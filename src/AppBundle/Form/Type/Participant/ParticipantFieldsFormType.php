@@ -17,7 +17,23 @@
 
   abstract class ParticipantFieldsFormType extends AbstractType
   {
+    protected $booleanToYNFormatCallbackTransformer;
+    public function configureOptions(OptionsResolver $resolver)
+    {
+      $resolver->setDefaults([
+        'translation_domain' => 'personal'
+      ]);
     
+      $this->geoApi = new GeoApiController();
+      $this->booleanToYNFormatCallbackTransformer = new CallbackTransformer(
+        function ($value) {
+          return ($value == 'Y') ? true : false;
+        },
+        function ($value) {
+          return ($value) ? 'Y' : 'N';
+        }
+      );
+    }
     
     public function callbackGeoFields(FormEvent $event)
     {
