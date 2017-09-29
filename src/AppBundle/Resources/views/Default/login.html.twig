@@ -1,5 +1,4 @@
-{% extends 'base.html.twig' %}
-
+{% extends 'AppBundle:Default:base.html.twig' %}
 {% trans_default_domain "auth" %}
 
 {% block title %}{% trans %}Auth Title{% endtrans %}{% endblock %}
@@ -11,7 +10,7 @@
         <div class="bg-danger" style="margin-bottom: 15px; padding: 15px;">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
       {% endif %}
       <form action="{{ path('login') }}" method="post">
-        <input type="hidden" name="_csrf_token" value="{{ csrf_token('form') }}">
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
         <div class="form-group">
           <label for="username">{% trans %}Auth Login Label{% endtrans %}</label>
           <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}">
@@ -23,8 +22,9 @@
         {#
           If you want to control the URL the user
           is redirected to on success (more details below)
-          <input type="hidden" name="_target_path" value="/account" />
         #}
+        <input type="hidden" name="_target_path" value="{{ path('personal_page') }}" />
+
         <button type="submit">{% trans %}Auth Submit Value{% endtrans %}</button>
       </form>
       {#

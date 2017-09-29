@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'AppBundle:Default:base.html.twig' %}
 
 {% trans_default_domain "personal" %}
 
@@ -187,11 +187,18 @@ Creation Date: 08/24/2017
                   class='c-static-text up'>{% if(key == current) %} Текущая неделя {% else %}{{ key }} неделя{% endif %}</div>
               <div class='c-table-block'>
                 <div class='c-table-header coffee-bg up'>
-                  <div
-                      class='open-icon {% if(key == current) %} opened-icon {% endif %} js-open-week'>{% if(key == current) %}-{% else %}+{% endif %}</div>
-                  {{ ((sum+opening_balance)/100)|round(0, 'floor') }} <img src='{{ asset('images/d-icon.png') }}'
-                                                                           alt=''>
-                  <sub>{{ banned_listener.plural(((sum+opening_balance)/100)|round(0, 'floor')) }}</sub>
+                  <div class='open-icon {% if(key == current) %} opened-icon {% endif %} js-open-week'>
+                    {% if(key == current) %}-{% else %}+{% endif %}
+                  </div>
+                  {% if(key == current and weeks[current-1].enabled == 1) %}
+                    0
+                    <img src='{{ asset('images/d-icon.png') }}' alt=''>
+                    <sub>Долек</sub>
+                  {% else %}
+                    {{ ((sum+opening_balance)/100)|round(0, 'floor') }}
+                    <img src='{{ asset('images/d-icon.png') }}' alt=''>
+                    <sub>{{ banned_listener.plural(((sum+opening_balance)/100)|round(0, 'floor')) }}</sub>
+                  {% endif %}
                   x {{ juicy_rub2|number_format(0, '', '')|raw }} <sub>р</sub>
                 </div>
                 <div class='js-hide' style='display: {% if(key == current) %} block{% else %}none{% endif %};'>
@@ -220,7 +227,17 @@ Creation Date: 08/24/2017
                               <td>{% if value.promo_goods_sum != null %}{{ value.promo_goods_sum }}{% else %}0{% endif %}
                                 р
                               </td>
-                              <td>{% if value.promo_goods_sum != null %}{{ (value.promo_goods_sum/100)|round(2, 'floor') }}{% else %}0{% endif %}</td>
+                              <td>
+                                {% if value.status =='REJECTED' %}
+                                  0
+                                {% else %}
+                                  {% if value.promo_goods_sum != null %}
+                                    {{ (value.promo_goods_sum/100)|round(2, 'floor') }}
+                                  {% else %}
+                                    0
+                                  {% endif %}
+                                {% endif %}
+                              </td>
                               <td>
                                 {% if( value.photos|length > 1) %}
                                   <span class="receipt_image" style="cursor: pointer" data-toggle="popover"
@@ -302,7 +319,7 @@ Creation Date: 08/24/2017
     $(document).ready(function () {
       $('.js-datepicker').datetimepicker({
         timepicker: false,
-        format: 'd.m.Y'
+        format: 'd.m.Y',
       });
     });
   </script>
@@ -316,7 +333,7 @@ Creation Date: 08/24/2017
             'eventCategory': 'Profile',
             'eventAction': 'ExpandList',
             'eventLabel': 'WeeklyStatistics',
-            'eventContext': ''
+            'eventContext': '',
           });
         }
       });

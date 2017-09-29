@@ -1,0 +1,164 @@
+{#{% minifyhtml %}#}
+<!DOCTYPE html>
+{% set show = app.request.query.get("show") %}
+{% set action =  banned_listener.getAction() %}
+<html>
+<head>
+  <meta charset="UTF-8"/>
+  <title>{% block title %}Возьми свою дольку!{% endblock %}</title>
+  <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+
+  <meta name="viewport" content="width=device-width">
+  {% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/owl.carousel.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/jquery.datetimepicker.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/intro.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/index.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/cabinet.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/hit.css') }}">
+    <style>
+      .header-slide-item {
+        overflow: hidden;
+      }
+
+      .revizor__x-line.revizor__x-line_right.revizor__x-btn-line-style::before {
+        content: "x";
+        color: #FFF;
+      }
+    </style>
+  {% endblock %}
+</head>
+<body>
+<div class="full-screen container-mp">
+  <header class="page_header row">
+
+    <div class="col-xs-20 col-sm-10 col-sm-pull-10 col-lg-pull-0 col-lg-5">
+
+    </div>
+    <div class="col-xs-4 col-lg-14">
+      <div class="hidden-lg">
+        <div class="mobile-toggler js-mobile-toggler">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+      <ul class='header-menu visible-lg js-mobile-menu vm'>
+        {% set route = app.request.attributes.get('_route') %}
+        <li>
+          <a href="{{ path('index_page') }}" class='{{ route == 'index_page' ? 'active' }}'>
+            Главная
+          </a>
+        </li>
+        <li>
+          <a href="{{ path('about_page') }}" class='{{ route == 'about_page' ? 'active' }}'>
+            Об акции
+          </a>
+        </li>
+        <li>
+          <a href="{{ path('faq_page') }}" class='{{ route == 'faq_page' ? 'active' }}'>
+            Вопрос - ответ
+          </a>
+        </li>
+        <li>
+          <a href="{{ path('feedback_page') }}" class='{{ route == 'feedback_page' ? 'active' }}'>
+            Обратная связь
+          </a>
+        </li>
+        <li>
+          <a href="{{ path('product_page') }}" class='{{ route == 'product_page' ? 'active' }}'>
+            Продукты
+          </a>
+        </li>
+        <li class="auth-block-link">
+          {% if(is_granted('ROLE_USER')) %}
+            <a href="{{ path('personal_page') }}">
+              Личный кабинет
+            </a>
+            <a href="{{ path('logout') }}">
+              Выход
+            </a>
+          {% else %}
+            <a href="{{ path('login') }}" class='{{ route == 'login' ? 'active' }}'>
+              Вход
+            </a>
+            <a href="{{ path('registration_page') }}" class='{{ route == 'registration_page' ? 'active' }}'>
+              Регистрация
+            </a>
+          {% endif %}
+        </li>
+      </ul>
+    </div>
+  </header>
+  {% block body %}{% endblock %}
+</div>
+<footer class='page_footer text-center'>
+  <ul class='footer-menu'>
+    <li>
+      <a href="{{ asset('files/Правила акции.pdf') }}" target="_blank"
+         onclick="dataLayer.push({'event': 'GAEvent','eventCategory': 'InteractionDoc','eventAction': 'Rules','eventLabel': '','eventContext': ''});">
+        Полные правила акции / </a>
+    </li>
+    <li>
+      <a href="{{ asset('files/Пользовательское соглашение.pdf') }}" target="_blank"
+         onclick="dataLayer.push({'event': 'GAEvent','eventCategory': 'InteractionDoc','eventAction': 'Privacy','eventLabel': '','eventContext': ''});">
+        Пользовательское соглашение
+      </a>
+    </li>
+  </ul>
+  <div class="copyright">
+    © 2017 ВСЕ ПРАВА ЗАЩИЩЕНЫ.
+  </div>
+  <div class="text-sm">
+
+  </div>
+</footer>
+
+{% block javascripts %}
+  <script type="text/javascript" src="{{ asset('js/jquery-2.0.2.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/owl.carousel.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/jquery.datetimepicker.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/jquery.maskedinput.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/jquery.form.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/moment-with-locales.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/index.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/ww.js') }}"></script>
+
+{% endblock %}
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript"> (function (d, w, c) {
+    (w[ c ] = w[ c ] || []).push(function () {
+      try {
+        w.yaCounter46104132 = new Ya.Metrika({
+          id: 46104132,
+          clickmap: true,
+          trackLinks: true,
+          accurateTrackBounce: true,
+          webvisor: true,
+          trackHash: true,
+        });
+      } catch (e) {
+      }
+    });
+    var n = d.getElementsByTagName("script")[ 0 ], s = d.createElement("script"), f = function () {
+      n.parentNode.insertBefore(s, n);
+    };
+    s.type = "text/javascript";
+    s.async = true;
+    s.src = "https://mc.yandex.ru/metrika/watch.js";
+    if (w.opera == "[object Opera]") {
+      d.addEventListener("DOMContentLoaded", f, false);
+    } else {
+      f();
+    }
+  })(document, window, "yandex_metrika_callbacks"); </script>
+<noscript>
+  <div><img src="https://mc.yandex.ru/watch/46104132" style="position:absolute; left:-9999px;" alt=""/></div>
+</noscript> <!-- /Yandex.Metrika counter -->
+</body>
+</html>
+{#{% endminifyhtml %}#}

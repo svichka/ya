@@ -1,13 +1,120 @@
-{% extends 'base.html.twig' %}
+{% extends 'AppBundle:Default:base.html.twig' %}
 
 {% block title %}
-  Яшка + алко
+  Возьми свою дольку
+  {#
+  ------------------------------------------------------
+          DON'T FORGET ABOUT ME
+  ------------------------------------------------------
+   #}
 {% endblock %}
 
 
 
 {% block body %}
   <main class="cabinet-block main-content">
-Шлавная
+    <div class="mp-steps-row brown hidden-xs hidden-sm">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 col-lg-6">
+            <div class="main-step-wrap" style="background-image : url({{ asset('images/1.png') }})">
+              <div class="main-step-title up">
+                Больше сока!
+              </div>
+              <div class="main-step-body">
+                Покупай соки и нектары <br> Фруктовый Сад, J7, Я, Любимый
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12 col-lg-6">
+            <div class="main-step-wrap" style="background-image : url({{ asset('images/2.png') }})">
+              <div class="main-step-title up">
+                Больше чеков!
+              </div>
+              <div class="main-step-body">
+                Регистрируй чеки - <br> собирай дольки
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12 col-lg-6">
+            <div class="main-step-wrap" style="background-image : url({{ asset('images/3.png') }})">
+              <div class="main-step-title up">
+                Больше денег!
+              </div>
+              <div class="main-step-body main-step-body-xs">
+                В конце недели делим 1 миллион <br> поровну между всеми дольками.<br> 10 миллионов за 10 недель
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12 col-lg-6">
+            <a href="" class="button-orng" data-toggle="modal" data-target="{{ action }}" data-curse="AfterCheck">
+              <span class="button-orng-pre trs"></span>
+              <span class="button-orng-post">Загрузить чек</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mp-wall container-fluid">
+      <div class="mp-persons">
+        <div class="row">
+          <div class="col-md-7 hidden-sm hidden-xs">
+            <div class="mp-person mp-person-block-1"
+                 style='background-image: url({{ asset('images/person2.jpg') }});'></div>
+          </div>
+          <div class="col-md-10 text-center">
+            <div class="mp-person mp-person-block-2" style='background-image: url({{ asset('images/person3.jpg') }});'>
+              <img src="{{ asset('images/person3.jpg') }}" class='img-responsive visible-xs visible-sm' alt="">
+            </div>
+            <div class="logo-wrapper logo-wrapper-mp hidden-sm hidden-xs">
+              <img src="{{ asset('images/logo1.png') }}" class='vm' alt="">
+              <img src="{{ asset('images/logo2.png') }}" class='vm' alt="">
+              <img src="{{ asset('images/logo3.png') }}" class='vm' alt="">
+              <img src="{{ asset('images/logo4.png') }}" class='vm' alt="">
+            </div>
+          </div>
+          <div class="col-md-7 hidden-sm hidden-xs">
+            <div class="mp-person mp-person-block-3" style='background-image: url({{ asset('images/person4.jpg') }});'>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mp-steps-row brown visible-xs visible-sm">
+      <div class="row">
+        <a href="" class="button-orng" data-toggle="modal" data-target="{{ action }}" data-curse="AfterCheck">
+          <span class="button-orng-pre trs"></span>
+          <span class="button-orng-post">Загрузить чек</span>
+        </a>
+        <div class="main-step-wrap" style="background-image : url({{ asset('images/1.png') }})">
+          <div class="main-step-title up">
+            Больше сока!
+          </div>
+          <div class="main-step-body">
+            Покупай соки и нектары <br> Фруктовый Сад, J7, Я, Любимый
+          </div>
+        </div>
+        <div class="main-step-wrap" style="background-image : url({{ asset('images/2.png') }})">
+          <div class="main-step-title up">
+            Больше чеков!
+          </div>
+          <div class="main-step-body">
+            Регистрируй чеки - <br> собирай дольки
+          </div>
+        </div>
+        <div class="main-step-wrap" style="background-image : url({{ asset('images/3.png') }})">
+          <div class="main-step-title up">
+            Больше денег!
+          </div>
+          <div class="main-step-body">
+            В конце недели делим 1 миллион 
+            поровну между всеми дольками. 10 миллионов за 10 недель
+          </div>
+        </div>
+        <div class="text-center hidden">
+          <img src="{{ asset('images/f-logo.jpg') }}" alt="">
+        </div>
+      </div>
+    </div>
   </main>
 {% endblock %}

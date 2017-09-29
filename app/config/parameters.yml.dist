@@ -24,11 +24,9 @@ parameters:
   dalee_pepuws_client.basic_auth_password: null
   dalee_pepuws_client.security_token: 'ApiSecurityToken'
   dalee_pepuws_client.client_timeout: 60
-  recaptcha.public_key: 6LfaATIUAAAAABzJ3la39y6LCkmOAYOdMeh0DLGK
-  recaptcha.secret_key: 6LfaATIUAAAAAIzkglCBH9kyZDFSXKvLtViSUzfw
+  recaptcha.public_key: null
+  recaptcha.secret_key: null
 
   apm.key: null
   apm_url: null
-
-  start_date: '2017-10-19 00:00:00'
-  end_date: '2017-11-15 23:59:59'
+  start_date: null

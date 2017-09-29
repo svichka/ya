@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'AppBundle:Default:base.html.twig' %}
 
 {% trans_default_domain "feedback" %}
 
@@ -7,61 +7,65 @@
 {% endblock %}
 
 {% block body %}
-  <main class="cabinet-block main-content">
 
 
     {% if app.request.get('success') == 'y' %}
-      Мы вернёмся с ответом в течении 24 часов часов
+      Мы вернёмся с ответом
     {% else %}
       {% for error in errors %}
         <p class="bg-danger" style="margin-bottom: 15px; padding: 15px;">{{ error|trans }}</p>
       {% endfor %}
     {% endif %}
 
-
-    {% if form is defined %}
-      {% form_theme form 'AppBundle:Forms:form_div_layout.html.twig' %}
-      {{ form_start(form) }}
-      <div class="feedback-group">
-        <label for="authorized_user_form_email">Е-mail, указанный при регистрации* </label>
-        {{ form_widget(form.email) }}
-        {{ form_errors(form.email) }}
+  {% if form is defined %}
+    {% form_theme form 'AppBundle:Forms:form_div_layout.html.twig' %}
+    {{ form_start(form) }}
+    <div class="feedback-group">
+      <label for="authorized_user_form_email">Е-mail, указанный при регистрации* </label>
+      {{ form_widget(form.email) }}
+      {{ form_errors(form.email) }}
+    </div>
+    <div class="feedback-group">
+      <label for="authorized_user_form_mobile_phone">Твой номер телефона</label>
+      {{ form_widget(form.mobile_phone) }}
+      {{ form_errors(form.mobile_phone) }}
+    </div>
+    <div class="feedback-group">
+      <label for="authorized_user_form_theme_id">Тема сообщения* </label>
+      {{ form_widget(form.theme_id) }}
+    </div>
+    <div class="feedback-group">
+      <label for="authorized_user_form_message">Текст сообщения</label>
+      {{ form_widget(form.message) }}
+      {{ form_errors(form.message) }}
+    </div>
+    <div class="feedback-group">
+      Вложение должно быть в формате jpg до 5 МБ.
+    </div>
+    <div class="text-file-upload js-file-wrapper">
+      <span class='up'>Прикрепить файл</span>
+      {{ form_widget(form.file, {'attr': {'class': 'js-file'}}) }}
+      {{ form_errors(form.file) }}
+      {#<input type="file" class='js-file'>#}
+    </div>
+    {% if(form.recaptcha is defined) %}
+      <div class="recapcha-feedback">
+        {#<script src='https://www.google.com/recaptcha/api.js'></script>#}
+        {#<div class="g-recaptcha" data-sitekey="{{ recaptcha_key }}"></div>#}
+        {{ form_widget(form.recaptcha) }}
+        {{ form_errors(form.recaptcha) }}
       </div>
-      <div class="feedback-group">
-        <label for="authorized_user_form_mobile_phone">Твой номер телефона</label>
-        {{ form_widget(form.mobile_phone) }}
-        {{ form_errors(form.mobile_phone) }}
-      </div>
-      <div class="feedback-group">
-        <label for="authorized_user_form_theme_id">Тема сообщения* </label>
-        {{ form_widget(form.theme_id) }}
-      </div>
-      <div class="feedback-group">
-        <label for="authorized_user_form_message">Текст сообщения</label>
-        {{ form_widget(form.message) }}
-        {{ form_errors(form.message) }}
-      </div>
-      <div class="feedback-group">
-        Вложение должно быть в формате jpg до 5 МБ.
-      </div>
-      <div class="text-file-upload js-file-wrapper">
-        <span class='up'>Прикрепить файл</span>
-        {{ form_widget(form.file, {'attr': {'class': 'js-file'}}) }}
-        {{ form_errors(form.file) }}
-      </div>
-      {% if(form.recaptcha is defined) %}
-        <div class="recapcha-feedback">
-          <script src='https://www.google.com/recaptcha/api.js'></script>
-          <div class="g-recaptcha" data-sitekey="{{ recaptcha_key }}"></div>
-        </div>
-      {% endif %}
-      <div class="feedback-text-md no-margin">
-        *обязательно для заполнения
-      </div>
-      <button type='submit' class='btn-ylw'>Отправить сообщение</button>
-      {{ form_end(form) }}
     {% endif %}
-  </main>
+    <div class="feedback-text-md no-margin">
+      *обязательно для заполнения
+    </div>
+    <button type='submit' class='btn-ylw'>Отправить сообщение</button>
+    {#<div class="visible-xs visible-sm">#}
+    {#<a href="" class='feedback-history brown up'>История обратной связи</a>#}
+    {#</div>#}
+    {{ form_end(form) }}
+  {% endif %}
+
 {% endblock %}
 
 {% block javascripts %}
@@ -74,4 +78,44 @@
 
     });
   </script>
+  {% if app.request.get('success') == 'y' %}
+    <script>
+      $(function () {
+        dataLayer.push({
+          'event': 'GAEvent',
+          'eventCategory': 'Feedback',
+          'eventAction': 'SentForm',
+          'eventLabel': 'Success_Feedback',
+          'eventContext': '{{ app.request.get('theme') }}',
+        });
+        var axel = Math.random() + "";
+        var a = axel * 10000000000000;
+        $('body').prepend('<iframe src="https://8149586.fls.doubleclick.net/activityi;src=8149586;type=moyad0;cat=bfkzi0;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;ord=' + a + '?" width="1" height="1" frameborder="0" style="display:none"></iframe>');
+        $('#questionModal').modal('show');
+        setTimeout(function () {
+          window.location = '{{ path('feedback_page') }}';
+        }, 2000);
+        $(window).on('hidden.bs.modal', function (e) {
+          window.location = '{{ path('feedback_page') }}';
+        });
+      })
+    </script>
+  {% endif %}
+{% endblock %}
+
+{% block modals %}
+  {{ parent() }}
+  <div class="modal fade" id="questionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+              aria-hidden="true">&times;</span></button>
+        <div class="modal-body  text-center">
+          <div class="modal-static-text">
+            Спасибо, мы получили <br> твой вопрос и вернемся <br> с ответом в течение 24 часов.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}

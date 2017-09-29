@@ -18,11 +18,6 @@ services:
     app.users.tools:
         class: AppBundle\EventListener\ToolsListener
         arguments: [@monolog.logger, '%start_date%']
-    app.command.update_curse:
-        class: AppBundle\Command\UpdateCurseCommand
-        arguments: ["update-curse"]
-        tags:
-            - { name: console.command }
     app.command.update_fias:
         class: AppBundle\Command\UpdateFiasCommand
         arguments: ["update-fias"]
