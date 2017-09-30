@@ -68,3 +68,15 @@
     </div>
   </div>
 {% endblock %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  <style>
+    .bg-danger {
+      font-family: "Bliss Pro";
+      font-size: 16px;
+      color: #fff;
+      max-width: 250px;
+    }
+  </style>
+{% endblock %}

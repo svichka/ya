@@ -124,7 +124,8 @@
      */
     public function registrationAction(Request $request)
     {
-      $form = $this->createForm(RegistrationFormType::class, new Participant());
+      $em = $this->getDoctrine()->getManager();
+      $form = $this->createForm(RegistrationFormType::class, new Participant(), ['em' => $em]);
       
       $form->handleRequest($request);
       if ($form->isSubmitted() && $form->isValid())
@@ -153,7 +154,8 @@
           $participantApi->add($formData, $form->get('password')->getData());
           
           return $this->redirectToRoute('registration_page', ['success' => 'y']);
-        } catch (NotCorrectDataException $e)
+        }
+        catch (NotCorrectDataException $e)
         {
           $this->errors[] = $e->getMessage();
           $fields = $e->getFields();
@@ -246,7 +248,8 @@
           $participantApi->add($formData, $registration_form['password']);
           
           return new JsonResponse(["status" => 200]);
-        } catch (NotCorrectDataException $e)
+        }
+        catch (NotCorrectDataException $e)
         {
           $this->errors[] = $e->getMessage();
           
@@ -255,7 +258,8 @@
           {
             $this->makeErrorsFromFields($fields);
           }
-        } catch (ApiFailedException $e2)
+        }
+        catch (ApiFailedException $e2)
         {
           $this->get('logger')->error('reg error ' . print_r($registration_form, true));
           
@@ -328,10 +332,12 @@
         {
           $data = ['status' => 400];
         }
-      } catch (NotCorrectDataException $e)
+      }
+      catch (NotCorrectDataException $e)
       {
         $data = ['status' => 500];
-      } catch (ApiFailedException $e2)
+      }
+      catch (ApiFailedException $e2)
       {
         $this->get('logger')->error('check email error ' . print_r($email, true));
         $data = ['status' => 500];
@@ -422,7 +428,8 @@
           $this->get('security.context')->setToken($token);
           $this->get('session')->set('_security_main', serialize($token));
           $this->messages[] = 'Success update';
-        } catch (NotCorrectDataException $e)
+        }
+        catch (NotCorrectDataException $e)
         {
           $this->errors[] = $e->getMessage();
         }
@@ -463,7 +470,8 @@
 //          $participantApi->recoverPassword($formData['login']);
           $participantApi->dropPassword($formData['login']);
           $this->messages[] = 'Success recover';
-        } catch (NotCorrectDataException $e)
+        }
+        catch (NotCorrectDataException $e)
         {
           $error = ['messageKey' => $e->getMessage()];
           
@@ -513,7 +521,8 @@
         {
           $participant = $participantApi->dropPassword($formData['login']);
           $this->messages[] = 'Success drop';
-        } catch (NotCorrectDataException $e)
+        }
+        catch (NotCorrectDataException $e)
         {
           $this->errors[] = $e->getMessage();
         }
@@ -563,10 +572,12 @@
         
         return $this->redirectToRoute('index_page', ['show' => 'done']);
         
-      } catch (NotCorrectDataException $e)
+      }
+      catch (NotCorrectDataException $e)
       {
         $this->errors[] = $e->getMessage();
-      } catch (ApiFailedException $e2)
+      }
+      catch (ApiFailedException $e2)
       {
         $this->get('logger')->error('activate error ' . print_r($formData, true));
         $this->errors[] = $e2->getMessage();
@@ -644,7 +655,8 @@
         {
           $participant = $participantApi->activationUpdate($formData['login']);
           $this->messages[] = 'Success activation update';
-        } catch (NotCorrectDataException $e)
+        }
+        catch (NotCorrectDataException $e)
         {
           $this->errors[] = $e->getMessage();
         }
@@ -675,7 +687,8 @@
           $participantApi->activationUpdate($login);
           
           return $this->redirectToRoute('index_page', ['show' => 'activationSended']);
-        } catch (NotCorrectDataException $e)
+        }
+        catch (NotCorrectDataException $e)
         {
           return $this->redirectToRoute('index_page', ['show' => 'activationSendError', 'error' => $e->getMessage()]);
         }
@@ -707,9 +720,8 @@
     {
       return true;
     }
-  
-  
-  
+    
+    
     /**
      * @Route("/metro_redirect", name="metro_redirect")
      */
@@ -718,6 +730,6 @@
     {
       return $this->redirect("https://www.metro-cc.ru/");
     }
-  
-  
+    
+    
   }
