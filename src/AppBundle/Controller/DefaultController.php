@@ -707,4 +707,17 @@
     {
       return true;
     }
+  
+  
+  
+    /**
+     * @Route("/metro_redirect", name="metro_redirect")
+     */
+    public
+    function metroRedirectAction($login)
+    {
+      return $this->redirect("https://www.metro-cc.ru/");
+    }
+  
+  
   }

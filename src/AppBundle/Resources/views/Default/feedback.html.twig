@@ -7,115 +7,243 @@
 {% endblock %}
 
 {% block body %}
-
-
-    {% if app.request.get('success') == 'y' %}
-      Мы вернёмся с ответом
-    {% else %}
-      {% for error in errors %}
-        <p class="bg-danger" style="margin-bottom: 15px; padding: 15px;">{{ error|trans }}</p>
-      {% endfor %}
-    {% endif %}
-
-  {% if form is defined %}
-    {% form_theme form 'AppBundle:Forms:form_div_layout.html.twig' %}
-    {{ form_start(form) }}
-    <div class="feedback-group">
-      <label for="authorized_user_form_email">Е-mail, указанный при регистрации* </label>
-      {{ form_widget(form.email) }}
-      {{ form_errors(form.email) }}
-    </div>
-    <div class="feedback-group">
-      <label for="authorized_user_form_mobile_phone">Твой номер телефона</label>
-      {{ form_widget(form.mobile_phone) }}
-      {{ form_errors(form.mobile_phone) }}
-    </div>
-    <div class="feedback-group">
-      <label for="authorized_user_form_theme_id">Тема сообщения* </label>
-      {{ form_widget(form.theme_id) }}
-    </div>
-    <div class="feedback-group">
-      <label for="authorized_user_form_message">Текст сообщения</label>
-      {{ form_widget(form.message) }}
-      {{ form_errors(form.message) }}
-    </div>
-    <div class="feedback-group">
-      Вложение должно быть в формате jpg до 5 МБ.
-    </div>
-    <div class="text-file-upload js-file-wrapper">
-      <span class='up'>Прикрепить файл</span>
-      {{ form_widget(form.file, {'attr': {'class': 'js-file'}}) }}
-      {{ form_errors(form.file) }}
-      {#<input type="file" class='js-file'>#}
-    </div>
-    {% if(form.recaptcha is defined) %}
-      <div class="recapcha-feedback">
-        {#<script src='https://www.google.com/recaptcha/api.js'></script>#}
-        {#<div class="g-recaptcha" data-sitekey="{{ recaptcha_key }}"></div>#}
-        {{ form_widget(form.recaptcha) }}
-        {{ form_errors(form.recaptcha) }}
+  <main class="main" id="main">
+    <div class="main__content main__content_dis_flex">
+      <div class="main__left">
+        <h1 class="title title_align_left">Обратная связь</h1>
+        <form class="form" action="#">
+          <div class="form__wrapper">
+            <div class="form__row">
+              <div class="form__box">
+                <label class="form__label" for="email">Ваш e-mail</label>
+                <input class="form__input form__input_height_high" type="email" id="email">
+              </div>
+            </div>
+            <div class="form__row">
+              <div class="form__box">
+                <label class="form__label" for="theme">Тема сообщения</label>
+                <input class="form__input form__input_height_high" type="text" id="theme">
+              </div>
+            </div>
+            <div class="form__row">
+              <div class="form__box">
+                <label class="form__label" for="theme">ТЕКСТ СООБЩЕНИЯ</label>
+                <textarea class="form__textarea" type="text" id="theme"></textarea>
+              </div>
+            </div>
+            <div class="form__row">
+              <div class="form__box">
+                <label class="form__label form__label_type_file" for="file">
+                  <input class="form__input form__input_type_file" type="file" id="file"><span
+                      class="form__load-file-title">Прикрепите файл</span>
+                </label>
+              </div>
+            </div>
+            <div class="form__row">
+              <div class="form__box form__box_width_half form__box_margin_min">
+                <div class="g-recaptcha g-recaptcha__small"
+                     data-sitekey="6Lf-RS4UAAAAABK77fQwn0jagRJ_QXBNqy7FTHjb"></div>
+              </div>
+              <div class="form__box form__box_width_half">
+                <div class="form__checkbox__container">
+                  <input class="form__checkbox" type="checkbox" id="check1">
+                  <label class="form__checkbox-text" for="check1">Я согласен на обработку моих данных </label>
+                </div>
+              </div>
+            </div>
+            <div class="form__row">
+              <div class="form__box form__box_button-faq">
+                <button class="button" type="submit"><span
+                      class="button__text">Отправить                                        </span></button>
+              </div>
+            </div>
+          </div>
+        </form>
       </div>
-    {% endif %}
-    <div class="feedback-text-md no-margin">
-      *обязательно для заполнения
-    </div>
-    <button type='submit' class='btn-ylw'>Отправить сообщение</button>
-    {#<div class="visible-xs visible-sm">#}
-    {#<a href="" class='feedback-history brown up'>История обратной связи</a>#}
-    {#</div>#}
-    {{ form_end(form) }}
-  {% endif %}
-
-{% endblock %}
-
-{% block javascripts %}
-  {{ parent() }}
-  <script>
-    $(function () {
-
-      $('#not_authorized_user_form_mobile_phone').mask('+7(999) 999-99-99')
-      $('#authorized_user_form_mobile_phone').mask('+7(999) 999-99-99')
-
-    });
-  </script>
-  {% if app.request.get('success') == 'y' %}
-    <script>
-      $(function () {
-        dataLayer.push({
-          'event': 'GAEvent',
-          'eventCategory': 'Feedback',
-          'eventAction': 'SentForm',
-          'eventLabel': 'Success_Feedback',
-          'eventContext': '{{ app.request.get('theme') }}',
-        });
-        var axel = Math.random() + "";
-        var a = axel * 10000000000000;
-        $('body').prepend('<iframe src="https://8149586.fls.doubleclick.net/activityi;src=8149586;type=moyad0;cat=bfkzi0;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;ord=' + a + '?" width="1" height="1" frameborder="0" style="display:none"></iframe>');
-        $('#questionModal').modal('show');
-        setTimeout(function () {
-          window.location = '{{ path('feedback_page') }}';
-        }, 2000);
-        $(window).on('hidden.bs.modal', function (e) {
-          window.location = '{{ path('feedback_page') }}';
-        });
-      })
-    </script>
-  {% endif %}
-{% endblock %}
-
-{% block modals %}
-  {{ parent() }}
-  <div class="modal fade" id="questionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-              aria-hidden="true">&times;</span></button>
-        <div class="modal-body  text-center">
-          <div class="modal-static-text">
-            Спасибо, мы получили <br> твой вопрос и вернемся <br> с ответом в течение 24 часов.
+      <div class="main__right">
+        <h1 class="title title_align_left">Часто задаваемые вопросы</h1>
+        <div class="faq">
+          <div class="faq__content">
+            <ul class="faq__list">
+              <li class="faq__item">
+                <div class="faq__question jsOpenContent">Нужно ли мне сохранять чеки?</div>
+                <div class="faq__answer jsContent">
+                  <div class="faq__answer-text">
+                    Да, чеки хранить нужно, так как наличие чека является обязательным условием участия
+                    в акции и получения приза. Участнику акции необходимо зарегистрировать чек на сайте
+                    <a class="faq__link" href="#!">www.moyadolka.ru</a>
+                  </div>
+                </div>
+              </li>
+              <li class="faq__item">
+                <div class="faq__question jsOpenContent">Кто является организатором акции?</div>
+                <div class="faq__answer jsContent">
+                  <div class="faq__answer-text">Организатором Акции является ООО «ПепсиКо Холдингс» Оператором Акции
+                    является агентство ООО «Севен»
+                  </div>
+                </div>
+              </li>
+              <li class="faq__item">
+                <div class="faq__question jsOpenContent">Каковы сроки проведения Акции?</div>
+                <div class="faq__answer jsContent">
+                  <div class="faq__answer-text">
+                    Общий период проведения Акции, включая период отправки призов Победителям: с «28» августа 2017 года
+                    по «15» декабря 2017 года (включительно).<br>
+                    Период совершения покупки и регистрации чеков с «28» августа 2017 года по «05» ноября 2017 г.
+                    (включительно)<br>
+                    Период определения победителей:<br>
+                    1 неделя - 04.09.2017 - 23:59<br>
+                    2 неделя - 11.09.2017 - 23:59<br>
+                    3 неделя - 18.09.2017 - 23:59<br>
+                    4 неделя - 25.09.2017 - 23:59<br>
+                    5 неделя - 02.10.2017 - 23:59<br>
+                    6 неделя - 09.10.2017 - 23:59<br>
+                    7 неделя - 16.10.2017 - 23:59<br>
+                    8 неделя - 23.10.2017 - 23:59<br>
+                    9 неделя - 30.10.2017 - 23:59<br>
+                    10 неделя - 06.11.2017 - 23:59<br>
+                  </div>
+                </div>
+              </li>
+              <li class="faq__item">
+                <div class="faq__question jsOpenContent">Когда я могу зарегистрировать чек? Когда я могу подать заявку
+                  на участие в Акции?
+                </div>
+                <div class="faq__answer jsContent">
+                  <div class="faq__answer-text">Подать заявку и зарегистрировать чек можно ежедневно с 00 ч. 00 м. 01 с.
+                    «28» августа 2017 года по 23 ч. 59 м. 59 с. «05» ноября 2017 г. (включительно) на сайте
+                    www.moyadolka.ru
+                  </div>
+                </div>
+              </li>
+              <li class="faq__item">
+                <div class="faq__question jsOpenContent">Что мне нужно сделать, чтобы принять участие в акции?</div>
+                <div class="faq__answer jsContent">
+                  <div class="faq__answer-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium
+                    dolor harum assumenda labore, animi cupiditate reprehenderit ex officiis id in explicabo nam iusto,
+                    voluptatibus neque? Tempora sed accusamus ratione excepturi?A sed iusto corporis. Vitae deserunt ad
+                    magni, dolor esse aperiam? Hic dolores aperiam ipsum. Id voluptatem enim quod, odit aliquam fuga
+                    earum eos laborum voluptates ratione aperiam illo reiciendis?Ea adipisci beatae in at corrupti,
+                    quisquam aspernatur pariatur est cupiditate officia magni doloribus aut architecto odio temporibus
+                    quasi debitis? Ut unde enim praesentium quaerat quibusdam dignissimos neque, tenetur
+                    atque!Repellendus, recusandae. Perferendis veniam, culpa facilis nulla mollitia vero iure aliquam,
+                    qui nemo eius maiores perspiciatis dolor laboriosam. Illum quasi sit cumque itaque delectus a nobis.
+                    Nostrum numquam explicabo totam?
+                  </div>
+                </div>
+              </li>
+              <li class="faq__item">
+                <div class="faq__question jsOpenContent">Кто может принимать участие в акции?</div>
+                <div class="faq__answer jsContent">
+                  <div class="faq__answer-text">Участниками Акции могут быть граждане РФ, достигшие 18 летнего возраста
+                    и постоянно проживающие на территории Российской Федерации.
+                  </div>
+                </div>
+              </li>
+              <li class="faq__item">
+                <div class="faq__question jsOpenContent">Какие есть требования к чекам?</div>
+                <div class="faq__answer jsContent">
+                  <div class="faq__answer-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</div>
+                </div>
+              </li>
+              <li class="faq__item">
+                <div class="faq__question jsOpenContent">Как выглядит чек нового образца?</div>
+                <div class="faq__answer jsContent">
+                  <div class="faq__answer-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</div>
+                </div>
+              </li>
+              <li class="faq__item">
+                <div class="faq__question jsOpenContent">Почему не приняли мой чек?</div>
+                <div class="faq__answer jsContent">
+                  <div class="faq__answer-text">Причины отклонения чека отражаются в личном кабинете, в графе «статус
+                    чека». Более детальные пояснения, в случае полного соответствия чека пункту 2.6. правил Акции, можно
+                    получить обратившись в форму Обратной Связи.
+                  </div>
+                </div>
+              </li>
+              <li class="faq__item">
+                <div class="faq__question jsOpenContent">Почему принимаются только чеки нового образца?</div>
+                <div class="faq__answer jsContent">
+                  <div class="faq__answer-text">Согласно положению Федерального закона "О применении контрольно-кассовой
+                    техники при осуществлении наличных денежных расчетов и (или) расчетов с использованием платежных
+                    карт" от 22.05.2003 N 54-ФЗ с 01 июля 2017 года, все чеки должны выдаваться нового образца.
+                  </div>
+                </div>
+              </li>
+              <li class="faq__item">
+                <div class="faq__question jsOpenContent">Как я узнаю, что стал участником акции?</div>
+                <div class="faq__answer jsContent">
+                  <div class="faq__answer-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</div>
+                </div>
+              </li>
+              <li class="faq__item">
+                <div class="faq__question jsOpenContent">Сколько чеков я могу зарегистрировать?</div>
+                <div class="faq__answer jsContent">
+                  <div class="faq__answer-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</div>
+                </div>
+              </li>
+              <li class="faq__item">
+                <div class="faq__question jsOpenContent">Сколько долек я могу зарегистрировать?</div>
+                <div class="faq__answer jsContent">
+                  <div class="faq__answer-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</div>
+                </div>
+              </li>
+              <li class="faq__item">
+                <div class="faq__question jsOpenContent">Почему меня заблокировали и на сколько?</div>
+                <div class="faq__answer jsContent">
+                  <div class="faq__answer-text">
+                    Вас могли заблокировать, если вы загрузили подряд 5 чеков/картинок, которые не прошли модерацию. В
+                    таком случае, возможность загружать чеки ограничена в первый раз на 6 часов, во второй раз на 12
+                    часов, в третий раз на 24 часа.<br>
+                    Если подобный инцидент повторится 3 раза, организатор на четвертый раз вправе заблокировать такого
+                    пользователя на весь период акции<br>
+                    В случае возникновения дополнительных вопросов, пожалуйста, воспользуйтесь формой обратной
+                    связи.<br>
+                  </div>
+                </div>
+              </li>
+              <li class="faq__item">
+                <div class="faq__question jsOpenContent">Какие документы я должен(на) предоставить, чтобы получить
+                  Призы?
+                </div>
+                <div class="faq__answer jsContent">
+                  <div class="faq__answer-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</div>
+                </div>
+              </li>
+              <li class="faq__item">
+                <div class="faq__question jsOpenContent">Когда и как я могу получить приз?</div>
+                <div class="faq__answer jsContent">
+                  <div class="faq__answer-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</div>
+                </div>
+              </li>
+              <li class="faq__item">
+                <div class="faq__question jsOpenContent">Могу ли я получить приз на свою банковскую карту или
+                  наличные?
+                </div>
+                <div class="faq__answer jsContent">
+                  <div class="faq__answer-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</div>
+                </div>
+              </li>
+              <li class="faq__item">
+                <div class="faq__question jsOpenContent">Как посмотреть статус по зарегистрированным чекам и количество
+                  по долькам?
+                </div>
+                <div class="faq__answer jsContent">
+                  <div class="faq__answer-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</div>
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </main>
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+{% endblock %}
+
+{% block modals %}
+  {{ parent() }}
 {% endblock %}

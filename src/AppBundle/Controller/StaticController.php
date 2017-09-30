@@ -86,15 +86,14 @@
       return $this->render('AppBundle:Static:product.html.twig', [
       ]);
     }
-    
+  
     /**
-     * @Route("/hit", name="hit_page")
+     * @Route("/prizes", name="prizes_page")
      */
-    public function hitAction()
+    public
+    function prizesAction()
     {
-      return $this->render('AppBundle:Static:hit.html.twig', [
+      return $this->render('AppBundle:Static:prizes.html.twig', [
       ]);
     }
-    
-    
   }
