@@ -1,0 +1,45 @@
+{% extends 'AppBundle:Default:base.html.twig' %}
+
+{% block body %}
+  <main class="main" id="main">
+    <div class="prizes" id="resizeBlock">
+      <div class="prizes__content">
+        <div class="prizes__list">
+          <div class="prizes__item">
+            <div class="prizes__title">Гарантировано</div>
+            <div class="prizes__img-wrap"><img class="prizes__img" src="{{ asset('images/prizes__img-1.png') }}" alt="">
+            </div>
+            <div class="prizes__title prizes__title_secondary">Ежедневно первым 50 участникам</div>
+          </div>
+          <div class="prizes__item">
+            <div class="prizes__title">ЕЖЕНЕДЕЛЬНО</div>
+            <div class="prizes__img-wrap"><img class="prizes__img" src="{{ asset('images/prizes__img-2.png') }}" alt="">
+            </div>
+            <div class="prizes__title prizes__title_secondary">10 сертификатов METRO</div>
+          </div>
+          <div class="prizes__item">
+            <div class="prizes__title">ГЛАВНЫЙ ПРИЗ</div>
+            <div class="prizes__img-wrap"><img class="prizes__img" src="{{ asset('images/prizes__img-3.png') }}" alt="">
+            </div>
+            <div class="prizes__title prizes__title_secondary">Коктейльный тур в Испанию!</div>
+          </div>
+        </div>
+      </div>
+      <div class="prizes__button-wrap">
+        <button class="button button_big-rem"><span class="button__text">Зарегистрировать чек</span></button>
+      </div>
+    </div>
+  </main>
+{% endblock %}
+
+{% block title %}
+  Призы
+{% endblock %}
+
+{% block stylesheets %}
+  {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+{% endblock %}
