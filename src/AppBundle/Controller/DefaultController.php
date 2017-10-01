@@ -124,8 +124,7 @@
      */
     public function registrationAction(Request $request)
     {
-      $em = $this->getDoctrine()->getManager();
-      $form = $this->createForm(RegistrationFormType::class, new Participant(), ['em' => $em]);
+      $form = $this->createForm(RegistrationFormType::class, new Participant(),['attr'=>['class'=>'form']]);
       
       $form->handleRequest($request);
       if ($form->isSubmitted() && $form->isValid())
@@ -726,9 +725,9 @@
      * @Route("/metro_redirect", name="metro_redirect")
      */
     public
-    function metroRedirectAction($login)
+    function metroRedirectAction()
     {
-      return $this->redirect("https://www.metro-cc.ru/");
+      return $this->redirect("https://msk.metro-cc.ru/virtual/regulyarniy-katalog-2/napitki/");
     }
     
     

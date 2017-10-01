@@ -22,7 +22,7 @@
         <div class="main-menu-wrap clearfix">
           <div class="mobile-menu-btn" id="menuButton"><span></span></div>
           <ul class="main-menu" id="mainMenu">
-            <li class="main-menu__item {{ route == 'about_page' ? 'active' }}"><a class="main-menu__link" href="{{ path('about_page') }}">Об акции</a>
+            <li class="main-menu__item {{ route == 'index_page' ? 'active' }}"><a class="main-menu__link" href="{{ path('index_page') }}">Об акции</a>
             </li>
             <li class="main-menu__item {{ route == 'prizes_page' ? 'active' }}"><a class="main-menu__link" href="{{ path('prizes_page') }}">Призы</a>
             </li>
@@ -67,6 +67,7 @@
   <script src="{{ asset('js/jquery.min.js') }}"></script>
   <script src="{{ asset('js/jquery.arcticmodal-0.3.min.js') }}"></script>
   <script src="{{ asset('js/jquery.datetimepicker.js') }}"></script>
+  <script src="{{ asset('js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
   <script src="{{ asset('js/main.js') }}"></script>
   <script src="{{ asset('js/jquery.mask.js') }}"></script>
 {% endblock %}

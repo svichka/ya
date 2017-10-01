@@ -60,7 +60,7 @@
       $user = $this->getUser();
       if (!$this->get('security.context')->isGranted('ROLE_USER'))
       {
-        return $this->redirectToRoute('index_page', ['show' => 'auth']);
+        return $this->redirectToRoute('login', ['reason' => 'access_denied']);
       }
       $participant = $user->getParticipant();
       

@@ -10,6 +10,8 @@
   
   use AppBundle\Controller\PersonalController;
   use AppBundle\Controller\StaticController;
+  use AppBundle\Form\Type\Participant\ParticipantFieldsFormType;
+  use AppBundle\Form\Type\Participant\RegistrationFormType;
   use Dalee\PEPUWSClientBundle\Controller\GeoApiController;
   use Dalee\PEPUWSClientBundle\Controller\ParticipantApiController;
   use Dalee\PEPUWSClientBundle\Controller\PromoLotteryApiController;
@@ -60,6 +62,9 @@
       {
         return;
       }
+  
+      $em = $this->getDoctrine()->getManager();
+      ParticipantFieldsFormType::$em = $em;
       
       if ($controller[0] instanceof DefaultController || $controller[0] instanceof StaticController || $controller[0] instanceof PersonalController)
       {

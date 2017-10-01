@@ -4,69 +4,68 @@
 {% block title %}{% trans %}Auth Title{% endtrans %}{% endblock %}
 
 {% block body %}
-  <div class="wrapper">
-    <h1 class="title title_align_center">Вход</h1>
-    <div class="auth-form-wrap">
+  <main class="main" id="main">
+    <div class="main__content">
+      <h1 class="title title_align_center">Авторизация</h1>
+
       {% if error %}
         <div class="bg-danger"
              style="margin-bottom: 15px; padding: 15px;">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
       {% endif %}
-      <form action="{{ path('login') }}" method="post">
+
+      <form class="form" action="{{ path('login') }}" method="post">
         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-        <div class="form__row">
-          <label class="form__label" for="username">E-mail</label>
-          <div class="form__col">
-            <div class="form__box form__box_width_full">
-              <input class="form__input" type="email" id="username" name="_username" value="{{ last_username }}"
-                     placeholder="Введите e-mail">
+        <div class="form__wrapper form__wrapper_align_center">
+          <div class="form__row">
+            <div class="form__box">
+              <label class="form__label" for="email">E-mail *</label>
+              <input class="form__input form__input_height_high form__input_align_center" name="_username" type="email"
+                     id="email" value="{{ last_username }}" placeholder="mail@mail.com">
             </div>
           </div>
-        </div>
-        <div class="form__row">
-          <label class="form__label" for="password">Пароль</label>
-          <div class="form__col">
-            <div class="form__box form__box_width_full">
-              <input id="password" class="form__input" type="password" name="_password" placeholder="Введите пароль">
+          <div class="form__row">
+            <div class="form__box">
+              <label class="form__label" for="password">Пароль</label>
+              <input class="form__input form__input_height_high form__input_align_center" type="password" id="password"
+                     name="_password" placeholder="Пароль">
+              <a class="form__link password-reminder" href="#">Забыли пароль?</a>
             </div>
           </div>
-        </div>
-        <div class="form__row form__row_label_absent">
-          <div class="form__col form__col_align_center">
-            <div class="form__box form__box_width_full form__box_align_center">
-              <button class="button button_width_max" type="submit"><span class="button__text">Войти</span></button>
+          <div class="form__row">
+            <div class="form__box form__box_button form__box_mt_none">
+              <button class="button" type="submit"><span class="button__text">Войти</span></button>
             </div>
           </div>
-        </div>
-        <div class="form__row form__row_label_absent">
-          <div class="form__col">
-            <div class="form__box"><a class="link" href="{{ path('registration_page') }}">Регистрация</a></div>
-            <div class="form__box"><a class="link link_fake password-reminder" href="#!">Забыли пароль?</a></div>
+          <div class="form__row">
+            <div class="form__box"><a class="form__link form__link_big" href="{{ path('registration_page') }}">Регистрация</a>
+            </div>
           </div>
         </div>
       </form>
     </div>
-  </div>
-  <div class="hidden">
-    <div class="popup" id="passwordReminder">
-      <div class="popup__close arcticmodal-close"></div>
-      <h2 class="popup__title">Восстановление пароля</h2>
-      <div class="popup__wrap">
-        <p class="popup__text">Мы вышлем ваш новый пароль Вам на e-mail</p>
-        <div class="popup__form-wrap">
-          <form class="form" action="#">
-            <div class="form__row">
-              <div class="form__col">
-                <div class="form__box form__box_width_full">
-                  <input class="form__input" type="email" id="email"
-                         placeholder="Введите e-mail указанный при регистрации">
+
+    <div class="hidden">
+      <div class="popup" id="passwordReminder">
+        <div class="popup__close arcticmodal-close"></div>
+        <h2 class="popup__title">Восстановление пароля</h2>
+        <div class="popup__wrap">
+          <p class="popup__text">Мы вышлем ваш новый пароль Вам на e-mail</p>
+          <div class="popup__form-wrap">
+            <form class="form" action="#">
+              <div class="form__row">
+                <div class="form__col">
+                  <div class="form__box form__box_width_full">
+                    <input class="form__input" type="email" id="email"
+                           placeholder="Введите e-mail указанный при регистрации">
+                  </div>
                 </div>
               </div>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </main>
 {% endblock %}
 
 {% block stylesheets %}

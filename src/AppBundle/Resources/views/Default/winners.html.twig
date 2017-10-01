@@ -1,80 +1,467 @@
 {% extends 'AppBundle:Default:base.html.twig' %}
 
 {% block title %}
-Победители
+  Победители
 {% endblock %}
 
 {% block body %}
-  <div class="wrapper">
-    <h1 class="title">Победители</h1>
-    <div class="winners">
-      <div class="form">
-        <input class="form__input form__input_type_date form__input_bg_red" type="text" placeholder="Выберите дату">
+  <main class="main" id="main">
+    <div class="main__content main__content_with_full">
+      <form class="form" action="#">
+        <div class="form__wrapper form__wrapper_backslash">
+          <div class="form__row">
+            <div class="form__box form__box_inline">
+              <label class="form__label" for="fiosearch">Поик по ФИО</label>
+            </div>
+            <div class="form__box form__box_inline form__box_grow_true">
+              <input class="form__input form__input_height_high form__input_with_icon" type="text" id="fiosearch"><a
+                  class="form__link form__link_icon form__link_icon_search" href="#!"> <span class="form__link-text">Найти</span></a>
+            </div>
+          </div>
+        </div>
+      </form>
+      <div class="table">
+        <div class="table__content table__content_winners" id="jsScrollContent">
+          <div class="table__list">
+            <div class="table__item">
+              <div class="table__item-content">
+                <div class="table__box">
+                  <div class="table__name">Иванов Иван Иванович</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_1.png') }}" alt="">
+                  </div>
+                </div>
+                <div class="table__box">
+                  <div class="table__date">12.09.2017</div>
+                </div>
+              </div>
+            </div>
+            <div class="table__item">
+              <div class="table__item-content">
+                <div class="table__box">
+                  <div class="table__name">Петрова Анна Ивановна</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_1.png') }}" alt="">
+                  </div>
+                </div>
+                <div class="table__box">
+                  <div class="table__date">12.09.2017</div>
+                </div>
+              </div>
+            </div>
+            <div class="table__item">
+              <div class="table__item-content">
+                <div class="table__box">
+                  <div class="table__name">Петрова Анна Ивановна</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_2.png') }}" alt="">
+                  </div>
+                </div>
+                <div class="table__box">
+                  <div class="table__date">12.09.2017</div>
+                </div>
+              </div>
+            </div>
+            <div class="table__item">
+              <div class="table__item-content">
+                <div class="table__box">
+                  <div class="table__name">Сидоров Василий Петрович</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_3.png') }}" alt="">
+                  </div>
+                </div>
+                <div class="table__box">
+                  <div class="table__date">12.09.2017</div>
+                </div>
+              </div>
+            </div>
+            <div class="table__item">
+              <div class="table__item-content">
+                <div class="table__box">
+                  <div class="table__name">Иванов Иван Иванович</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_1.png') }}" alt="">
+                  </div>
+                </div>
+                <div class="table__box">
+                  <div class="table__date">12.09.2017</div>
+                </div>
+              </div>
+            </div>
+            <div class="table__item">
+              <div class="table__item-content">
+                <div class="table__box">
+                  <div class="table__name">Петрова Анна Ивановна</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_3.png') }}" alt="">
+                  </div>
+                </div>
+                <div class="table__box">
+                  <div class="table__date">12.09.2017</div>
+                </div>
+              </div>
+            </div>
+            <div class="table__item">
+              <div class="table__item-content">
+                <div class="table__box">
+                  <div class="table__name">Сидоров Василий Петрович</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_1.png') }}" alt="">
+                  </div>
+                </div>
+                <div class="table__box">
+                  <div class="table__date">12.09.2017</div>
+                </div>
+              </div>
+            </div>
+            <div class="table__item">
+              <div class="table__item-content">
+                <div class="table__box">
+                  <div class="table__name">Сидоров Василий Петрович</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_3.png') }}" alt="">
+                  </div>
+                </div>
+                <div class="table__box">
+                  <div class="table__date">12.09.2017</div>
+                </div>
+              </div>
+            </div>
+            <div class="table__item">
+              <div class="table__item-content">
+                <div class="table__box">
+                  <div class="table__name">Сидоров Василий Петрович</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_1.png') }}" alt="">
+                  </div>
+                </div>
+                <div class="table__box">
+                  <div class="table__date">12.09.2017</div>
+                </div>
+              </div>
+            </div>
+            <div class="table__item">
+              <div class="table__item-content">
+                <div class="table__box">
+                  <div class="table__name">Сидоров Василий Петрович</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_1.png') }}" alt="">
+                  </div>
+                </div>
+                <div class="table__box">
+                  <div class="table__date">12.09.2017</div>
+                </div>
+              </div>
+            </div>
+            <div class="table__item">
+              <div class="table__item-content">
+                <div class="table__box">
+                  <div class="table__name">Сидоров Василий Петрович</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_3.png') }}" alt="">
+                  </div>
+                </div>
+                <div class="table__box">
+                  <div class="table__date">12.09.2017</div>
+                </div>
+              </div>
+            </div>
+            <div class="table__item">
+              <div class="table__item-content">
+                <div class="table__box">
+                  <div class="table__name">Иванов Иван Иванович</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_1.png') }}" alt="">
+                  </div>
+                </div>
+                <div class="table__box">
+                  <div class="table__date">12.09.2017</div>
+                </div>
+              </div>
+            </div>
+            <div class="table__item">
+              <div class="table__item-content">
+                <div class="table__box">
+                  <div class="table__name">Петрова Анна Ивановна</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_3.png') }}" alt="">
+                  </div>
+                </div>
+                <div class="table__box">
+                  <div class="table__date">12.09.2017</div>
+                </div>
+              </div>
+            </div>
+            <div class="table__item">
+              <div class="table__item-content">
+                <div class="table__box">
+                  <div class="table__name">Сидоров Василий Петрович</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_1.png') }}" alt="">
+                  </div>
+                </div>
+                <div class="table__box">
+                  <div class="table__date">12.09.2017</div>
+                </div>
+              </div>
+            </div>
+            <div class="table__item">
+              <div class="table__item-content">
+                <div class="table__box">
+                  <div class="table__name">Сидоров Василий Петрович</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_3.png') }}" alt="">
+                  </div>
+                </div>
+                <div class="table__box">
+                  <div class="table__date">12.09.2017</div>
+                </div>
+              </div>
+            </div>
+            <div class="table__item">
+              <div class="table__item-content">
+                <div class="table__box">
+                  <div class="table__name">Сидоров Василий Петрович</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_1.png') }}" alt="">
+                  </div>
+                </div>
+                <div class="table__box">
+                  <div class="table__date">12.09.2017</div>
+                </div>
+              </div>
+            </div>
+            <div class="table__item">
+              <div class="table__item-content">
+                <div class="table__box">
+                  <div class="table__name">Сидоров Василий Петрович</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_1.png') }}" alt="">
+                  </div>
+                </div>
+                <div class="table__box">
+                  <div class="table__date">12.09.2017</div>
+                </div>
+              </div>
+            </div>
+            <div class="table__item">
+              <div class="table__item-content">
+                <div class="table__box">
+                  <div class="table__name">Иванов Иван Иванович</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_1.png') }}" alt="">
+                  </div>
+                </div>
+                <div class="table__box">
+                  <div class="table__date">12.09.2017</div>
+                </div>
+              </div>
+            </div>
+            <div class="table__item">
+              <div class="table__item-content">
+                <div class="table__box">
+                  <div class="table__name">Петрова Анна Ивановна</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_1.png') }}" alt="">
+                  </div>
+                </div>
+                <div class="table__box">
+                  <div class="table__date">12.09.2017</div>
+                </div>
+              </div>
+            </div>
+            <div class="table__item">
+              <div class="table__item-content">
+                <div class="table__box">
+                  <div class="table__name">Петрова Анна Ивановна</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_2.png') }}" alt="">
+                  </div>
+                </div>
+                <div class="table__box">
+                  <div class="table__date">12.09.2017</div>
+                </div>
+              </div>
+            </div>
+            <div class="table__item">
+              <div class="table__item-content">
+                <div class="table__box">
+                  <div class="table__name">Сидоров Василий Петрович</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_3.png') }}" alt="">
+                  </div>
+                </div>
+                <div class="table__box">
+                  <div class="table__date">12.09.2017</div>
+                </div>
+              </div>
+            </div>
+            <div class="table__item">
+              <div class="table__item-content">
+                <div class="table__box">
+                  <div class="table__name">Иванов Иван Иванович</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_1.png') }}" alt="">
+                  </div>
+                </div>
+                <div class="table__box">
+                  <div class="table__date">12.09.2017</div>
+                </div>
+              </div>
+            </div>
+            <div class="table__item">
+              <div class="table__item-content">
+                <div class="table__box">
+                  <div class="table__name">Петрова Анна Ивановна</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_3.png') }}" alt="">
+                  </div>
+                </div>
+                <div class="table__box">
+                  <div class="table__date">12.09.2017</div>
+                </div>
+              </div>
+            </div>
+            <div class="table__item">
+              <div class="table__item-content">
+                <div class="table__box">
+                  <div class="table__name">Сидоров Василий Петрович</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_1.png') }}" alt="">
+                  </div>
+                </div>
+                <div class="table__box">
+                  <div class="table__date">12.09.2017</div>
+                </div>
+              </div>
+            </div>
+            <div class="table__item">
+              <div class="table__item-content">
+                <div class="table__box">
+                  <div class="table__name">Сидоров Василий Петрович</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_3.png') }}" alt="">
+                  </div>
+                </div>
+                <div class="table__box">
+                  <div class="table__date">12.09.2017</div>
+                </div>
+              </div>
+            </div>
+            <div class="table__item">
+              <div class="table__item-content">
+                <div class="table__box">
+                  <div class="table__name">Сидоров Василий Петрович</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_1.png') }}" alt="">
+                  </div>
+                </div>
+                <div class="table__box">
+                  <div class="table__date">12.09.2017</div>
+                </div>
+              </div>
+            </div>
+            <div class="table__item">
+              <div class="table__item-content">
+                <div class="table__box">
+                  <div class="table__name">Сидоров Василий Петрович</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_1.png') }}" alt="">
+                  </div>
+                </div>
+                <div class="table__box">
+                  <div class="table__date">12.09.2017</div>
+                </div>
+              </div>
+            </div>
+            <div class="table__item">
+              <div class="table__item-content">
+                <div class="table__box">
+                  <div class="table__name">Сидоров Василий Петрович</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_3.png') }}" alt="">
+                  </div>
+                </div>
+                <div class="table__box">
+                  <div class="table__date">12.09.2017</div>
+                </div>
+              </div>
+            </div>
+            <div class="table__item">
+              <div class="table__item-content">
+                <div class="table__box">
+                  <div class="table__name">Иванов Иван Иванович</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_1.png') }}" alt="">
+                  </div>
+                </div>
+                <div class="table__box">
+                  <div class="table__date">12.09.2017</div>
+                </div>
+              </div>
+            </div>
+            <div class="table__item">
+              <div class="table__item-content">
+                <div class="table__box">
+                  <div class="table__name">Петрова Анна Ивановна</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_3.png') }}" alt="">
+                  </div>
+                </div>
+                <div class="table__box">
+                  <div class="table__date">12.09.2017</div>
+                </div>
+              </div>
+            </div>
+            <div class="table__item">
+              <div class="table__item-content">
+                <div class="table__box">
+                  <div class="table__name">Сидоров Василий Петрович</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_1.png') }}" alt="">
+                  </div>
+                </div>
+                <div class="table__box">
+                  <div class="table__date">12.09.2017</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="winners__table-wrap">
-        <table class="table">
-          <thead class="table__head">
-          <tr class="table__row">
-            <td class="table__item table__item_head">ФИО</td>
-            <td class="table__item table__item_head">Номер телефона</td>
-            <td class="table__item table__item_head">Дата регистрации</td>
-            <td class="table__item table__item_head">Приз</td>
-          </tr>
-          </thead>
-          <tbody class="table__body">
-          <tr class="table__row">
-            <td class="table__item">Иванов Иван Иванович</td>
-            <td class="table__item">+7(960)521-XX-X9</td>
-            <td class="table__item">11.05.2017</td>
-            <td class="table__item table__item_win"><img class="table__win-image" src="images/table-phone.png" alt=""></td>
-          </tr>
-          <tr class="table__row">
-            <td class="table__item">Константинов Константин Константинович</td>
-            <td class="table__item">+7(921)535-XX-X5</td>
-            <td class="table__item">09.05.2017</td>
-            <td class="table__item table__item_win"><img class="table__win-image" src="images/table-syfon.png" alt=""></td>
-          </tr>
-          <tr class="table__row">
-            <td class="table__item">Рогачев Александр Александрович</td>
-            <td class="table__item">+7(921)535-XX-X5</td>
-            <td class="table__item">09.05.2017</td>
-            <td class="table__item table__item_win"><img class="table__win-image" src="images/table-syfon.png" alt=""></td>
-          </tr>
-          <tr class="table__row">
-            <td class="table__item">Васильев Василий Васильевич</td>
-            <td class="table__item">+7(921)535-XX-X5</td>
-            <td class="table__item">09.05.2017</td>
-            <td class="table__item table__item_win"><img class="table__win-image" src="images/table-syfon.png" alt=""></td>
-          </tr>
-          <tr class="table__row">
-            <td class="table__item">Васильев Василий Васильевич</td>
-            <td class="table__item">+7(921)535-XX-X5</td>
-            <td class="table__item">09.05.2017</td>
-            <td class="table__item table__item_win"><img class="table__win-image" src="images/table-syfon.png" alt=""></td>
-          </tr>
-          <tr class="table__row">
-            <td class="table__item">Васильев Василий Васильевич</td>
-            <td class="table__item">+7(921)535-XX-X5</td>
-            <td class="table__item">09.05.2017</td>
-            <td class="table__item table__item_win"><img class="table__win-image" src="images/table-syfon.png" alt=""></td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
-      <ul class="pages">
-        <li class="pages__item"><a class="pages__link pages__link_action_prev" href="#">«</a></li>
-        <li class="pages__item"><a class="pages__link" href="#">1</a></li>
-        <li class="pages__item"><a class="pages__link" href="#">2</a></li>
-        <li class="pages__item"><a class="pages__link" href="#">3</a></li>
-        <li class="pages__item"><a class="pages__link pages__link_active" href="#">4	</a></li>
-        <li class="pages__item"><a class="pages__link" href="#">5</a></li>
-        <li class="pages__item"><a class="pages__link" href="#">6</a></li>
-        <li class="pages__item"><a class="pages__link" href="#">7</a></li>
-        <li class="pages__item"><a class="pages__link pages__link_action_more" href="#">...</a></li>
-        <li class="pages__item"><a class="pages__link pages__link_action_next" href="#">»</a></li>
-      </ul>
     </div>
-  </div>
+  </main>
 {% endblock %}
 
 {% block stylesheets %}
@@ -83,4 +470,5 @@
 
 {% block javascripts %}
   {{ parent() }}
+
 {% endblock %}

@@ -19,11 +19,12 @@ class RegistrationFormType extends ParticipantFieldsFormType
   public function buildForm(FormBuilderInterface $builder, array $options)
 	{
 		$builder
-			->add('email', EmailType::class)
-      ->add('firstname', TextType::class)
-      ->add('lastname', TextType::class)
-      ->add('mobilephone', TextType::class)
-      ->add('birthdate', TextType::class)
+			->add('email', EmailType::class,['attr'=>['class'=>'form__input']])
+      ->add('firstname', TextType::class,['attr'=>['class'=>'form__input',"placeholder"=>"Имя"]])
+      ->add('lastname', TextType::class,['attr'=>['class'=>'form__input',"placeholder"=>"Фамилия"]])
+      ->add('secname', TextType::class,['attr'=>['class'=>'form__input',"placeholder"=>"Отчество"]])
+      ->add('mobilephone', TextType::class,['attr'=>['class'=>'form__input']])
+      ->add('birthdate', TextType::class,['attr'=>['class'=>'form__input form__input_type_date',"placeholder"=>"01.01.1990"]])
 			->add('password', PasswordType::class, ['mapped' => false])
 		 	->add('confirm_password', PasswordType::class, ['mapped' => false])
       ->add('countrycode', ChoiceType::class)
