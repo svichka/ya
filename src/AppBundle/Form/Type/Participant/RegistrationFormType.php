@@ -19,31 +19,31 @@ class RegistrationFormType extends ParticipantFieldsFormType
   public function buildForm(FormBuilderInterface $builder, array $options)
 	{
 		$builder
-			->add('email', EmailType::class,['attr'=>['class'=>'form__input']])
-      ->add('firstname', TextType::class,['attr'=>['class'=>'form__input',"placeholder"=>"Имя"]])
-      ->add('lastname', TextType::class,['attr'=>['class'=>'form__input',"placeholder"=>"Фамилия"]])
-      ->add('secname', TextType::class,['attr'=>['class'=>'form__input',"placeholder"=>"Отчество"]])
-      ->add('mobilephone', TextType::class,['attr'=>['class'=>'form__input']])
-      ->add('birthdate', TextType::class,['attr'=>['class'=>'form__input form__input_type_date',"placeholder"=>"01.01.1990"]])
-			->add('password', PasswordType::class, ['mapped' => false])
-		 	->add('confirm_password', PasswordType::class, ['mapped' => false])
-      ->add('countrycode', ChoiceType::class)
-      ->add('regionguid', ChoiceType::class)
-      ->add('cityguid', ChoiceType::class)
+			->add('email', EmailType::class,['label'=>"Email*",'attr'=>["placeholder"=>"email@email.com"]])
+      ->add('firstname', TextType::class,['label'=>"Имя*",'attr'=>["placeholder"=>"Имя"]])
+      ->add('lastname', TextType::class,['label'=>"Фамилия*",'attr'=>["placeholder"=>"Фамилия"]])
+      ->add('secname', TextType::class,['label'=>"Отчество", 'attr'=>["placeholder"=>"Отчество"]])
+//      ->add('mobilephone', TextType::class,['attr'=>[]])
+      ->add('birthdate', TextType::class,['label'=>'Дата рождения*', 'attr'=>['class'=>'form__input_type_date',"placeholder"=>"01.01.1990"]])
+			->add('password', PasswordType::class, ['label'=>'Пароль', 'mapped' => false, 'attr'=>['plaseholder'=>'Пароль']])
+		 	->add('confirm_password', PasswordType::class, ['label'=>'Повторите пароль', 'mapped' => false, 'attr'=>['plaseholder'=>'Повторите пароль']])
+      ->add('countrycode', ChoiceType::class,['label'=>'Страна'])
+      ->add('regionguid', ChoiceType::class,['label'=>'РЕГИОН*'])
+      ->add('cityguid', ChoiceType::class,['label'=>'ГОРОД*'])
       ->add('ismale', ChoiceType::class, [
         'expanded' => true,
         'multiple' => false,
         'placeholder'=> 'Пол',
         'label'    => 'Пол',
         'choices'  => [
-          "Женский" => 'N',
-          "Мужской" => 'Y',
+          "Ж" => 'N',
+          "М" => 'Y',
         ],
       ])
       
-			->add('isrulesagreed', CheckboxType::class, ['value' => 'Y'])
-			->add('ispdagreed', CheckboxType::class, ['value' => 'Y'])
-			->add('ismailingagreed', CheckboxType::class, ['value' => 'Y', 'required' => false]);
+			->add('isageagreed', CheckboxType::class, ['value' => 'Y', 'label'=>'Я подтверждаю, что мне исполнилось 18 лет на момент участия в Акции','attr'=>['class'=>'form__checkbox']])
+			->add('ispdagreed', CheckboxType::class, ['value' => 'Y', 'label'=>'Я согласен с правилами акции иa поьзовательским соглашением, а так же на обработку моих данных','attr'=>['class'=>'form__checkbox']])
+			;
     
     $builder->addEventListener(FormEvents::PRE_SET_DATA, [$this, 'callbackGeoFields']);
     $builder->addEventListener(FormEvents::PRE_SUBMIT, [$this, 'callbackGeoFields']);
@@ -53,11 +53,11 @@ class RegistrationFormType extends ParticipantFieldsFormType
 		if ($recaptchaService && $recaptchaService->isActive()) {
 			$builder->add('recaptcha', RecaptchaType::class, ['mapped' => false, 'value' => $recaptchaService->getPublicKey()]);
 		}
-		$builder->add('save', SubmitType::class, ['label' => 'Registration submit']);
+//		$builder->add('save', SubmitType::class, ['label' => 'Registration submit']);
 		
-		$builder->get('isrulesagreed')->addModelTransformer($this->booleanToYNFormatCallbackTransformer);
+//		$builder->get('isrulesagreed')->addModelTransformer($this->booleanToYNFormatCallbackTransformer);
 		$builder->get('ispdagreed')->addModelTransformer($this->booleanToYNFormatCallbackTransformer);
-		$builder->get('ismailingagreed')->addModelTransformer($this->booleanToYNFormatCallbackTransformer);
+//		$builder->get('ismailingagreed')->addModelTransformer($this->booleanToYNFormatCallbackTransformer);
 		$builder->get('ismale')->addModelTransformer($this->booleanToYNFormatCallbackTransformer);
 	}
 }

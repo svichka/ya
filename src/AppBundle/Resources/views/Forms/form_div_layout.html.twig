@@ -7,50 +7,58 @@
 
 {%- block form_row -%}
   {% if block_prefixes.1 == 'recaptcha' %}
-    <div>
-      {{- form_errors(form) -}}
+    <div class="form__box form__box_width_half">
       <script src='https://www.google.com/recaptcha/api.js'></script>
       <div class="g-recaptcha" data-sitekey="{{ form.vars.value }}"></div>
+      {{- form_errors(form) -}}
     </div>
   {% elseif block_prefixes.1 == 'checkbox' %}
-    <div class="checkbox">
-      <label>
-        {{- form_errors(form) -}}
-        {{- form_widget(form) -}}
-        {{- form_label(form) -}}
-      </label>
-    </div>
-
-  {% elseif block_prefixes.1 == 'choice' and expanded == true %}
-    <div>
-      {{- form_label(form) -}}
+    <div class="form__checkbox__container">
+      <input class="form__checkbox" type="checkbox" id="{{ form.vars.id }}" checked>
+      <label class="form__checkbox-text" for="{{ form.vars.id }}">{{ form.vars.label }}</label>
       {{- form_errors(form) -}}
+    </div>
+  {% elseif block_prefixes.1 == 'choice' and expanded == true %}
+    {#<div>#}
+      {#{{- form_label(form) -}}#}
       {{- form_widget(form) -}}
+    {#</div>#}
+  {% elseif block_prefixes.1 == 'submit' %}
+    {#<div>#}
+    {#{{- form_label(form) -}}#}
+    <div class="form__box form__box_button">
+      {{- form_widget(form) -}}
+      <button class="button" type="submit"><span class="button__text">Зарегистрировать</span></button>
     </div>
 
+    {#</div>#}
   {% else %}
-
-    <div class="form-group">
-      {% set classes = 'form-control' %}
+    <div class="form__box form__box_width_half">
+      {% set classes = 'form__input' %}
       {% if form.vars.attr['class'] is defined %}
         {% set classes = form.vars.attr['class'] ~ ' ' ~ classes %}
       {% endif %}
-      {{- form_label(form) -}}
-      {{- form_errors(form) -}}
+      <label class="form__label" for="{{  form.vars.id }}">{{ form.vars.label }}</label>
       {{- form_widget(form, { 'attr': {'class': classes} }) -}}
+      <div class="form__text-error">
+        {{- form_errors(form) -}}
+      </div>
     </div>
   {% endif %}
 {%- endblock form_row -%}
 
 {%- block choice_widget_expanded -%}
-  <div {{ block('widget_container_attributes') }}>
+  <div class="form__box form__box_width_half">
+    <label class="form__label" for="email">{{ form.vars.label }}</label>
     {%- for child in form %}
-      <div class="radio">
-        <label>
-          {{- form_widget(child) -}}
-          {{- form_label(child, null, {translation_domain: choice_translation_domain}) -}}
-        </label>
+      <div class="form__checkbox__container form__checkbox__container_dib">
+        <input class="form__checkbox" type="radio" value="{{ child.vars.value }}" name="{{ child.vars.name }}" id="{{  child.vars.id }}">
+        <label class="form__checkbox-text form__checkbox-text_type_male"
+               for="{{  child.vars.id }}">{{ child.vars.label }}</label>
       </div>
+          {#{{- form_widget(child) -}}#}
+          {#{{- form_label(child, null, {translation_domain: choice_translation_domain}) -}}#}
     {% endfor -%}
+    {{- form_errors(form) -}}
   </div>
 {%- endblock choice_widget_expanded -%}

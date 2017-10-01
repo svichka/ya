@@ -20,97 +20,84 @@
       {% form_theme form 'AppBundle:Forms:form_div_layout.html.twig' %}
       {{ form_start(form) }}
 
-        <div class="form__wrapper">
-          <div class="form__row">
-            <div class="form__box form__box_width_half">
-              <label class="form__label" for="surname">Фамилия*</label>
-              {{ form_widget(form.lastname) }}
-              {#<input class="form__input" type="text" id="surname" placeholder="Фамилия">#}
+      <div class="form__wrapper">
+        <div class="form__row">
+          {{ form_row(form.lastname) }}
+          {{ form_row(form.firstname) }}
+        </div>
+        <div class="form__row">
+          {{ form_row(form.secname) }}
+          {{ form_row(form.birthdate) }}
+        </div>
+        <div class="form__row">
+          {{ form_row(form.email) }}
+          {{ form_row(form.ismale) }}
+
+          {#<div class="form__box form__box_width_half">#}
+            {#<label class="form__label" for="email">Пол*</label>#}
+            {#<div class="form__checkbox__container form__checkbox__container_dib">#}
+              {#<input class="form__checkbox" type="radio" value="male" name="male" id="male">#}
+              {#<label class="form__checkbox-text form__checkbox-text_type_male form__checkbox-text_error"#}
+                     {#for="male">М</label>#}
+            {#</div>#}
+            {#<div class="form__checkbox__container form__checkbox__container_dib">#}
+              {#<input class="form__checkbox" type="radio" value="female" name="male" id="female">#}
+              {#<label class="form__checkbox-text form__checkbox-text_type_male form__checkbox-text_error"#}
+                     {#for="female">Ж </label>#}
+            {#</div>#}
+          {#</div>#}
+        </div>
+        <div class="form__row">
+          {{ form_row(form.regionguid) }}
+          {{ form_row(form.cityguid) }}
+          {#<div class="form__box form__box_width_half">#}
+            {#<label class="form__label" for="email">Регион*</label>#}
+            {#<select class="form__select">#}
+              {#<option>Московский</option>#}
+              {#<option>Ленинградский</option>#}
+              {#<option>Калужский</option>#}
+            {#</select>#}
+          {#</div>#}
+          {#<div class="form__box form__box_width_half">#}
+            {#<label class="form__label" for="email">Город*</label>#}
+            {#<select class="form__select">#}
+              {#<option>Москва</option>#}
+              {#<option>Балашиха</option>#}
+              {#<option>Город</option>#}
+            {#</select>#}
+          {#</div>#}
+        </div>
+        <div class="form__row">
+          {{ form_row(form.password) }}
+          {{ form_row(form.confirm_password) }}
+        </div>
+        <div class="form__row">
+          <div class="form__box form__box_width_half">
+            <div class="form__checkbox__container">
+              {{ form_widget(form.isageagreed) }}
+              {#<input class="form__checkbox" type="checkbox" id="check1">#}
+              <label class="form__checkbox-text" for="registration_form_isageagreed">Я подтверждаю, что мне
+                исполнилось 18 лет на момент участия в Акции</label>
             </div>
-            <div class="form__box form__box_width_half">
-              <label class="form__label" for="name">Имя*</label>
-              {{ form_widget(form.firstname) }}
-              {#<input class="form__input" type="text" id="name" placeholder="Имя">#}
-            </div>
-          </div>
-          <div class="form__row">
-            <div class="form__box form__box_width_half">
-              <label class="form__label" for="patronymic">Отчество</label>
-              {{ form_widget(form.secname) }}
-              {#<input class="form__input" type="text" id="patronymic" placeholder="Отчество">#}
-            </div>
-            <div class="form__box form__box_width_half">
-              <label class="form__label" for="patronymic">Дата рождения*</label>
-              {{ form_widget(form.birthdate) }}
-              {#<input class="form__input form__input_type_date" type="text" placeholder="01.01.1990">#}
-            </div>
-          </div>
-          <div class="form__row">
-            <div class="form__box form__box_width_half">
-              <label class="form__label" for="email">Email*</label>
-              <input class="form__input form__input_error" value="mail.mail@ru" type="email" id="email" placeholder="email@email.com">
-              <div class="form__text-error">Неверный формат</div>
-            </div>
-            <div class="form__box form__box_width_half">
-              <label class="form__label" for="email">Пол*</label>
-              <div class="form__checkbox__container form__checkbox__container_dib">
-                <input class="form__checkbox" type="radio" value="male" name="male" id="male">
-                <label class="form__checkbox-text form__checkbox-text_type_male form__checkbox-text_error" for="male">М</label>
-              </div>
-              <div class="form__checkbox__container form__checkbox__container_dib">
-                <input class="form__checkbox" type="radio" value="female" name="male" id="female">
-                <label class="form__checkbox-text form__checkbox-text_type_male form__checkbox-text_error" for="female">Ж										</label>
-              </div>
-            </div>
-          </div>
-          <div class="form__row">
-            <div class="form__box form__box_width_half">
-              <label class="form__label" for="email">Регион*</label>
-              <select class="form__select">
-                <option>Московский</option>
-                <option>Ленинградский</option>
-                <option>Калужский</option>
-              </select>
-            </div>
-            <div class="form__box form__box_width_half">
-              <label class="form__label" for="email">Город*</label>
-              <select class="form__select">
-                <option>Москва</option>
-                <option>Балашиха</option>
-                <option>Город						</option>
-              </select>
-            </div>
-          </div>
-          <div class="form__row">
-            <div class="form__box form__box_width_half">
-              <label class="form__label" for="password">Пароль</label>
-              <input class="form__input" type="password" id="password" placeholder="Пароль">
-            </div>
-            <div class="form__box form__box_width_half">
-              <label class="form__label" for="repassword">Повторите пароль</label>
-              <input class="form__input" type="password" id="repassword" placeholder="Повторите пароль">
+            <div class="form__checkbox__container">
+              {{ form_widget(form.ispdagreed) }}
+              {#<input class="form__checkbox" type="checkbox" id="check2" checked>#}
+              <label class="form__checkbox-text" for="registration_form_ispdagreed">Я согласен с правилами акции иa поьзовательским
+                соглашением, а так же на обработку моих данных</label>
             </div>
           </div>
-          <div class="form__row">
-            <div class="form__box form__box_width_half">
-              <div class="form__checkbox__container">
-                <input class="form__checkbox" type="checkbox" id="check1">
-                <label class="form__checkbox-text form__checkbox-text_error" for="check1">Я подтверждаю, что мне исполнилось 18 лет на момент участия в Акции</label>
-              </div>
-              <div class="form__checkbox__container">
-                <input class="form__checkbox" type="checkbox" id="check2" checked>
-                <label class="form__checkbox-text" for="check2">Я согласен с правилами акции иa поьзовательским соглашением, а так же на обработку моих данных</label>
-              </div>
-            </div>
-            <div class="form__box form__box_width_half"><div class="g-recaptcha" data-sitekey="6Lf-RS4UAAAAABK77fQwn0jagRJ_QXBNqy7FTHjb"></div></div>
-          </div>
-          <div class="form__row">
-            <div class="form__box form__box_button">
-              <button class="button" type="submit"><span class="button__text">Зарегистрировать</span></button>
-            </div>
+          <div class="form__box form__box_width_half">
+            <div class="g-recaptcha" data-sitekey="6LfaATIUAAAAABzJ3la39y6LCkmOAYOdMeh0DLGK"></div>
           </div>
         </div>
-        {{ form_end(form) }}
+        <div class="form__row">
+          {#{{ form_row(form.save) }}#}
+          <div class="form__box form__box_button">
+            <button class="button" type="submit"><span class="button__text">Зарегистрировать</span></button>
+          </div>
+        </div>
+      </div>
+      {{ form_end(form) }}
     </div>
   </main>
 
