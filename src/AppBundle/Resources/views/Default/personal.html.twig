@@ -2,52 +2,12 @@
 
 {% trans_default_domain "personal" %}
 
-{% block title %}{% trans %}Personal title{% endtrans %}{% endblock %}
-{% block stylesheets %}
-  {{ parent() }}
-  <link rel="stylesheet" href="{{ asset('css/cabinet.css') }}">
-{% endblock %}
+{% block title %}{% trans %}Личный кабинет{% endtrans %}{% endblock %}
+
 {% set user = app.user.participant %}
-{% if weeks|length >= 1 %}
-  {% if weeks[current-1].enabled == 0 %}
-    {% set ob = weeks[current].opening_balance %}
-  {% else %}
-    {% set ob = 0 %}
-  {% endif %}
-  {% set current_week_dolek  = ((weeks[current].sum + ob)/100)|round(0, 'floor') %}
-  {% set minimal_prise  = ((weeks[current].sum + ob)/100)|round(0, 'floor')*30 %}
-  {% set current_prise  = banned_listener.course2()*((weeks[current].sum + ob)/100)|round(0, 'floor') %}
-{% else %}
-  {% set current_week_dolek  = 0 %}
-  {% set minimal_prise  = 0 %}
-  {% set current_prise  = 0 %}
-{% endif %}
-
-{% set current_curse  = banned_listener.course2()|number_format(0, '', '')|raw %}
-
-
 
 {% block body %}
-  <!--
-Start of DoubleClick Floodlight Tag: Please do not remove
-Activity name of this tag: Переход на страницу ЛК
-URL of the webpage where the tag is expected to be placed: https://moyadolka.ru/
-This tag must be placed between the <body> and </body> tags, as close as possible to the opening tag.
-Creation Date: 08/24/2017
--->
-  <script type="text/javascript">
-    var axel = Math.random() + "";
-    var a = axel * 10000000000000;
-    document.write('<iframe src="https://8149586.fls.doubleclick.net/activityi;src=8149586;type=moyad0;cat=5vizq0;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;ord=' + a + '?" width="1" height="1" frameborder="0" style="display:none"></iframe>');
-  </script>
-  <noscript>
-    <iframe
-        src="https://8149586.fls.doubleclick.net/activityi;src=8149586;type=moyad0;cat=5vizq0;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;ord=1?"
-        width="1" height="1" frameborder="0" style="display:none"></iframe>
-  </noscript>
-  <!-- End of DoubleClick Floodlight Tag: Please do not remove -->
   <main class="cabinet-block">
-    {{ include('@App/Default/xs-logo-wrapper.html.twig') }}
     <div class="cabinet-wrapper brown">
       <div class="custom-container row">
         <div class='visible-sm visible-xs'>
@@ -62,7 +22,7 @@ Creation Date: 08/24/2017
                     У тебя
                   </div>
                   <div class="c-header-lg">
-                    {{ current_week_dolek }} <sub class='c-header-md'>долек</sub>
+
                   </div>
                 </div>
                 <div class="">
@@ -70,7 +30,7 @@ Creation Date: 08/24/2017
                     1 долька стоит
                   </div>
                   <div class="c-header-lg">
-                    {{ current_curse|raw }}&nbsp;<sub class='c-header-md'>р</sub>
+
                   </div>
                 </div>
               </div>
@@ -81,7 +41,7 @@ Creation Date: 08/24/2017
                   Твой приз*
                 </div>
                 <div class="c-header-lg">
-                  {{ current_prise }}&nbsp;<sub class='c-header-md'>р</sub>
+
                 </div>
               </div>
             </div>
@@ -148,7 +108,7 @@ Creation Date: 08/24/2017
                       У тебя
                     </div>
                     <div class="c-header-lg">
-                      {{ current_week_dolek }} <sub class='c-header-md'>долек</sub>
+                      <sub class='c-header-md'>долек</sub>
                     </div>
                   </div>
                   <div class="">
@@ -156,7 +116,7 @@ Creation Date: 08/24/2017
                       1 долька стоит
                     </div>
                     <div class="c-header-lg">
-                      {{ current_curse|raw }}&nbsp;<sub class='c-header-md'>р</sub>
+                      &nbsp;<sub class='c-header-md'>р</sub>
                     </div>
                   </div>
                 </div>
@@ -174,33 +134,9 @@ Creation Date: 08/24/2017
             </div>
           </div>
           {% for i,value in weeks|reverse %}
-            {% set sum = value.sum %}
-            {% set opening_balance = value.opening_balance %}
-            {% set juicy_rub2 = value.juicy_rub2 %}
-            {% set receipts  = value.receipts %}
-            {% set key  = value.i %}
-            {% if(key == current) %}
-
-            {% endif %}
             <div class='c-table-wrap'>
-              <div
-                  class='c-static-text up'>{% if(key == current) %} Текущая неделя {% else %}{{ key }} неделя{% endif %}</div>
+              <div class='c-static-text up'> неделя</div>
               <div class='c-table-block'>
-                <div class='c-table-header coffee-bg up'>
-                  <div class='open-icon {% if(key == current) %} opened-icon {% endif %} js-open-week'>
-                    {% if(key == current) %}-{% else %}+{% endif %}
-                  </div>
-                  {% if(key == current and weeks[current-1].enabled == 1) %}
-                    0
-                    <img src='{{ asset('images/d-icon.png') }}' alt=''>
-                    <sub>Долек</sub>
-                  {% else %}
-                    {{ ((sum+opening_balance)/100)|round(0, 'floor') }}
-                    <img src='{{ asset('images/d-icon.png') }}' alt=''>
-                    <sub>{{ banned_listener.plural(((sum+opening_balance)/100)|round(0, 'floor')) }}</sub>
-                  {% endif %}
-                  x {{ juicy_rub2|number_format(0, '', '')|raw }} <sub>р</sub>
-                </div>
                 <div class='js-hide' style='display: {% if(key == current) %} block{% else %}none{% endif %};'>
                   <div class='c-table coffee-bg'>
                     <div class='table-responsive'>
@@ -216,87 +152,16 @@ Creation Date: 08/24/2017
                         </tr>
                         </thead>
                         <tbody>
-                        {% if receipts is defined %}
-                          {% for key,value in receipts %}
-                            <tr>
-                              <td>
-                                {{ value.id }}
-                              </td>
-                              {% set t_num = t_num - 1 %}
-                              <td>{{ value.registration_time|date("d.m.y") }}</td>
-                              <td>{% if value.promo_goods_sum != null %}{{ value.promo_goods_sum }}{% else %}0{% endif %}
-                                р
-                              </td>
-                              <td>
-                                {% if value.status =='REJECTED' %}
-                                  0
-                                {% else %}
-                                  {% if value.promo_goods_sum != null %}
-                                    {{ (value.promo_goods_sum/100)|round(2, 'floor') }}
-                                  {% else %}
-                                    0
-                                  {% endif %}
-                                {% endif %}
-                              </td>
-                              <td>
-                                {% if( value.photos|length > 1) %}
-                                  <span class="receipt_image" style="cursor: pointer" data-toggle="popover"
-                                        title="Изображения чека"
-                                        data-content="{% for link in value.photos %}<a href='{{ link }}' target='_blank' class='receipt_image'><img src='{{ asset('images/photo-b.png') }}'></a>{% endfor %}">
-                                  <img src='{{ asset('images/photo-b.png') }}'>
-                                </span>
-                                {% else %}
-                                  <a href='{{ value.photos[0] }}' target="_blank" class="receipt_image">
-                                    <img src='{{ asset('images/photo-b.png') }}'>
-                                  </a>
-                                {% endif %}
-                              </td>
-                              <td {% if(value.rejection_reason_comment!='') %} data-toggle="tooltip" title="{{ (value.rejection_reason~'_F')|trans }}" {% endif %}>
-                                {{ value.status|trans }}
-                                {% if value.status =='REJECTED' %}
-                                  <b>{{ value.rejection_reason|trans }}</b>
-                                {% endif %}
-                              </td>
-                            </tr>
-                          {% endfor %}
-                        {% endif %}
+asdasd
                         </tbody>
                       </table>
                     </div>
                     <div class='week-total'>
                       <div class='row'>
-                        {% if(key>1) %}
-                          {% if(key == current) %}
-                            {% if weeks[current-1].enabled == 0 %}
-                              <div class='col-xs-12'>Остаток с недели {{ key-1 }}</div>
-                              <div class='col-xs-12'>{{ opening_balance }} р</div>
-                            {% else %}
-                              <div class='col-xs-12'>&nbsp;</div>
-                              <div class='col-xs-12'>&nbsp;</div>
-                            {% endif %}
-                          {% else %}
-                            <div class='col-xs-12'>Остаток с недели {{ key-1 }}</div>
-                            <div class='col-xs-12'>{{ opening_balance }} р</div>
-                          {% endif %}
-                        {% else %}
-                          <div class='col-xs-12'>&nbsp;</div>
-                          <div class='col-xs-12'>&nbsp;</div>
-                        {% endif %}
                       </div>
                     </div>
                   </div>
-                  {% if(key == current) %}
-                    <div class='c-table-wrap-footer up'>
-                      <span>
-                        <div class='c-table-wrap-footer-xs'>Минимальный</div>
-                        <div class='c-table-wrap-footer-sm'>Гарантированный приз</div>
-                      </span>
-                      <span>
-                        <span class='c-table-wrap-footer-lg'>{{ minimal_prise }}</span>
-                        <span class='c-table-wrap-footer-md'>р</span>
-                      </span>
-                    </div>
-                  {% endif %}
+
                 </div>
               </div>
             </div>
