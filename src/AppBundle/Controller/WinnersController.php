@@ -2,6 +2,7 @@
   
   namespace AppBundle\Controller;
   
+  use Dalee\PEPUWSClientBundle\Controller\PromoLotteryApiController;
   use Dalee\PEPUWSClientBundle\Exception\ApiFailedException;
   use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
   use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -36,8 +37,16 @@
     public function winnersAction()
     {
       $winners = [];
+      $promo_slug = $this->getParameter('promo_slug');
+      $apiLottery = new PromoLotteryApiController();
+      $lotteries = $apiLottery->getLotteries($promo_slug);
+      foreach ($lotteries as $lottery)
+      {
+        $winners[] = $apiLottery->getLotteryWinners($promo_slug, 1);
+      }
+      
       return $this->render('AppBundle:Default:winners.html.twig', [
-        'winners'      => $winners,
+        'winners' => $winners,
       ]);
     }
   }

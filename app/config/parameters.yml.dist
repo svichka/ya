@@ -30,3 +30,5 @@ parameters:
   apm.key: null
   apm_url: null
   start_date: null
+
+  promo_slug: null
