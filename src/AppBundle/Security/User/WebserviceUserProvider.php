@@ -84,6 +84,13 @@
         throw new UsernameNotFoundException();
       }
       $this->logger->warning("new user");
+      // Запросим дополнительные поля
+      $fields = ['lastname','firstname','secname','region','city','regionguid','cityguid'];
+      $p2 = $participantApi->getById($participant->id,$fields);
+      foreach ($fields as $field)
+      {
+        $participant->{$field} = $p2->{$field};
+      }
       
       return new WebserviceUser($participant->getEmail(), $password, '', ['ROLE_USER'], $participant);
     }

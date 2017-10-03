@@ -97,15 +97,14 @@
     public function personalAction(Request $request)
     {
       $this->get('logger')->error('log test personalAction');
-      // Задаём границы недели
       
       $user = $this->getUser();
       if (!$this->get('security.context')->isGranted('ROLE_USER'))
       {
-        return $this->redirectToRoute('index_page', ['show' => 'auth']);
+        return $this->redirectToRoute('login', ['show' => 'auth']);
       }
       $participant = $user->getParticipant();
-      
+
 //      $this->get('logger')->info('try checkParticipantRequiredFields');
 //      if (!$this->get('app.users.banned_listener')->checkParticipantRequiredFields($participant))
 //      {
@@ -118,15 +117,16 @@
 //      {
 //        return $this->redirectToRoute('index_page', ['show' => 'agree']);
 //      }
-      
+
 //      if (!$this->get('app.users.banned_listener')->checkParticipantAge($participant))
 //      {
 //        return $this->redirectToRoute('index_page', ['show' => 'age']);
 //      }
-  
+      
       if ($participant->id == 407768)
       {
-        if(($idDalee=$request->query->get('idDalee',-1))!=-1){
+        if (($idDalee = $request->query->get('idDalee', -1)) != -1)
+        {
           $participant = (new ParticipantApiController())->getById($idDalee);
           $user->setParticipant($participant);
         }
@@ -138,7 +138,8 @@
       {
         $receiptApi = new ReceiptApiController();
         $receipts = $receiptApi->getParticipantReceipts($user->getParticipant()->id);
-      } catch (ApiFailedException $e)
+      }
+      catch (ApiFailedException $e)
       {
         $this->get('logger')->error('receipts error ');
         $receipts = [];
@@ -146,80 +147,11 @@
       
       
       $receipts = $this->sortReceipts($receipts);
-      $t_num = count($receipts);
-      $weeks = [];
-      /**
-       * @var $lotteries Lottery[]
-       */
-      $lotteries = $this->getDoctrine()->getRepository('AppBundle:Lottery')->findAll();
-      
-      try
-      {
-        $i = 1;
-        foreach ($lotteries as $lottery)
-        {
-          $dates = [
-            'start_date' => $lottery->getStartTime(),
-            'end_date'   => $lottery->getEndTime(),
-          ];
-          
-          if ($lottery->getStartTime() > new \DateTime())
-          {
-            continue;
-          }
-          $week_receipts = [];
-          $sum = 0;
-          $n = 0;
-          while ($n < count($receipts))
-          {
-            $r = $receipts[$n];
-            $r['registration_time'] = new \DateTime($r['registration_time']);
-            
-            if ($r['registration_time'] >= $dates['start_date'] && $r['registration_time'] <= $dates['end_date'])
-            {
-              $week_receipts[] = $r;
-              $sum += $r['promo_goods_sum'];
-            }
-            $n++;
-          }
-          
-          $juicy_rub2 = $this->getDoctrine()->getRepository('AppBundle:Rates')->find($lottery->getId())->getRate();
-          // $this->get('logger')->info('getOpeningBalance '.$user->getParticipant()->id.' '.$lottery->getStartTime(). ' '.$lottery->getEndTime());
-          $opening_balance = $lottery->getOpeningBalance($user->getParticipant()->id, $this->getDoctrine());
-          $this->get('logger')->info('getted OpeningBalance ' . $opening_balance);
-          $weeks[$i] = ['opening_balance' => $opening_balance, 'i' => $i, 'dates' => $dates, 'sum' => $sum, 'juicy_rub2' => $juicy_rub2, 'receipts' => $week_receipts, 'enabled' => $lottery->getisActive()];
-//          var_dump($weeks[$i]);
-          $i++;
-        }
-      } catch (ApiFailedException $e)
-      {
-        $this->get('logger')->error('weeks error ');
-        $weeks = [];
-      }
-      if (count(array_keys($weeks)) > 1)
-      {
-        $c = max(array_keys($weeks));
-      }
-      else
-      {
-        $c = 1;
-//        $weeks[$c] = [
-//          'sum'             => 0,
-//          'opening_balance' => 0,
-//          'juicy_rub2'      => 0,
-//          'receipts'        => $receipts,
-//          'i'               => $c,
-//
-//        ];
-      }
       
       return $this->render('AppBundle:Default:personal.html.twig', [
         'messages' => $this->messages,
         'errors'   => $this->errors,
-        't_num'    => $t_num,
-        'current'  => $c,
-        'weeks'    => $weeks,
-      
+        'receipts' => $receipts,
       ]);
     }
     
@@ -356,7 +288,8 @@
           }
           
           return new JsonResponse(["status" => 200]);
-        } catch (NotCorrectDataException $e)
+        }
+        catch (NotCorrectDataException $e)
         {
           if ($e->getMessage() === "Incorrect registration data")
           {

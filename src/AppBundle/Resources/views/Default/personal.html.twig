@@ -7,231 +7,398 @@
 {% set user = app.user.participant %}
 
 {% block body %}
-  <main class="cabinet-block">
-    <div class="cabinet-wrapper brown">
-      <div class="custom-container row">
-        <div class='visible-sm visible-xs'>
-          <div class="c-header-main brown up">
-            Сегодня:
+  <main class="main" id="main">
+    <div class="main__content main__content_with_full">
+      <h1 class="title">Личный кабинет</h1>
+      <div class="profile">
+        <div class="profile__content">
+          <div class="profile__left">
+            <div class="profile__data">
+              <div class="profile__name">{{ app.user.participant.firstname }} <br>{% if app.user.participant.secname is defined %} {{ app.user.participant.secname }} {% endif %} {{ app.user.participant.lastname }}</div>
+              <div class="profile__city">{{ app.user.participant.region }}, {{ app.user.participant.city }}</div>
+              <div class="profile__email">{{ app.user.participant.email }}</div>
+            </div>
+            <div class="profile__edit"><a class="profile__link-edit" href="#!">Изменить</a></div>
           </div>
-          <div class="row up c-today-info-wrap">
-            <div class="col-xs-11">
-              <div class="c-today-info coffee-bg">
-                <div class="top-today-info">
-                  <div class="c-header-md">
-                    У тебя
-                  </div>
-                  <div class="c-header-lg">
-
-                  </div>
-                </div>
-                <div class="">
-                  <div class="c-header-md">
-                    1 долька стоит
-                  </div>
-                  <div class="c-header-lg">
-
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xs-13">
-              <div class="c-today-info-right">
-                <div class="c-header-md">
-                  Твой приз*
-                </div>
-                <div class="c-header-lg">
-
-                </div>
-              </div>
-            </div>
+          <div class="profile__right">
+            <div class="profile__button"><a class="button button_big button_regcheck" href="#!"> <span class="button__text">Зарегистрировать чек</span></a></div>
           </div>
         </div>
-        <div class="col-md-7 cabinet-nav brown coffee-bg text-center">
-          <div class='c-bg-sm'>
-            <div class="c-header up">
-              Профиль
-            </div>
-            <div class="c-data">
-              {% set user = app.user.participant %}
-              <div>{{ user.lastname }} {{ user.firstname }},</div>
-              <div>{{ banned_listener.getRegion(user.regionguid) }}, {{ banned_listener.getCity(user.cityguid) }}</div>
-              <div>{{ user.birthdate }}</div>
-            </div>
-            <a href="" class="underline alt link-xs brown" data-toggle="modal" data-target="#changeModal">изменить
-              данные</a>
+      </div>
+      <div class="table">
+        <div class="table__head">
+          <div class="table__box">
+            <div class="table__head-text">Номер чека</div>
           </div>
-          <a href="" class="button-orng" data-toggle="modal" data-target="{{ action }}">
-            <span class="button-orng-pre trs"></span>
-            <span class="button-orng-post">Загрузить чек
-								<img src="{{ asset('images/clip.png') }}" alt="">
-							</span>
-          </a>
-          <div class="c-info-wrapper">
-            <div class="c-info-block">
-              Период выдачи денежных призов:
-              <strong>с 6 ноября по 15 декабря.</strong>
-            </div>
-            <div class="c-info-block">
-              Призы до 500 руб. -
-              на счет телефона
-            </div>
-            <div class="c-info-block">
-              Призы от 501 до 4 000 руб -
-              по вашему выбору, на счет
-              сотового телефона, или на счет
-              кошелька Яндекс деньги
-            </div>
-            <div class="c-info-block">
-              Призы от 4001 руб -
-              на счет кошелька Яндекс деньги
-            </div>
-            <img src="{{ asset('images/ym.png') }}" alt="">
+          <div class="table__box">
+            <div class="table__head-text">Дата загрузки</div>
           </div>
-          <div class="c-info-xs hidden-xs hidden-sm">
-            *Сумма приза, на который ты претендуешь определится в понедельник по итоговому курсу дольки, финальная сумма
-            твоего приза будет определена после подведения итогов по всем периодам регистрации чеков, при условии
-            получения положительных результатов проверки предоставленных данных, в т.ч. чеков. Подробнее о формуле
-            расчёта читай на странице «об акции» и в «правилах акции».
+          <div class="table__box">
+            <div class="table__head-text">Фото чека</div>
+          </div>
+          <div class="table__box">
+            <div class="table__head-text">Статус чека</div>
+          </div>
+          <div class="table__box">
+            <div class="table__head-text">Результат																												</div>
           </div>
         </div>
-        <div class="col-md-17 cabinet-content">
-          <div class='hidden-sm hidden-xs'>
-            <div class="c-header-main brown up">
-              Сегодня:
-            </div>
-            <div class="row up c-today-info-wrap">
-              <div class="col-sm-6 col-md-7">
-                <div class="c-today-info coffee-bg">
-                  <div class="top-today-info">
-                    <div class="c-header-md">
-                      У тебя
-                    </div>
-                    <div class="c-header-lg">
-                      <sub class='c-header-md'>долек</sub>
-                    </div>
-                  </div>
-                  <div class="">
-                    <div class="c-header-md">
-                      1 долька стоит
-                    </div>
-                    <div class="c-header-lg">
-                      &nbsp;<sub class='c-header-md'>р</sub>
-                    </div>
+        <div class="table__content" id="jsScrollContent">
+          <div class="table__list table__list_items_5">
+            <div class="table__item">
+              <div class="table__item-content table__item-content_font_small">
+                <div class="table__box">
+                  <div class="table__text">1234 5678 12a34 5678</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__date">12.09.2017										</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__check"><img class="table__img" src="images/check-photo.png" alt=""></div>
+                </div>
+                <div class="table__box">
+                  <div class="table__text">
+                    <div class="table__status">Не принят</div>
+                    <div class="table__status-reason">Отсутствует штрих код</div>
                   </div>
                 </div>
-              </div>
-              <div class="col-sm-18 col-md-17">
-                <div class="c-today-info-right">
-                  <div class="c-header-md">
-                    Твой приз*
-                  </div>
-                  <div class="c-header-lg">
-                    {{ current_prise }}&nbsp;<sub class='c-header-md'>р</sub>
-                  </div>
+                <div class="table__box">
+                  <div class="table__text">Не выйгрышный	</div>
                 </div>
               </div>
             </div>
-          </div>
-          {% for i,value in weeks|reverse %}
-            <div class='c-table-wrap'>
-              <div class='c-static-text up'> неделя</div>
-              <div class='c-table-block'>
-                <div class='js-hide' style='display: {% if(key == current) %} block{% else %}none{% endif %};'>
-                  <div class='c-table coffee-bg'>
-                    <div class='table-responsive'>
-                      <table class='up'>
-                        <thead>
-                        <tr>
-                          <th>Номер <br> чека</th>
-                          <th>Дата <br> загрузки чека</th>
-                          <th>Сумма <br> покупки</th>
-                          <th>Количество <br> долек</th>
-                          <th>Фото <br> чека</th>
-                          <th>Статус <br> чека</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-asdasd
-                        </tbody>
-                      </table>
-                    </div>
-                    <div class='week-total'>
-                      <div class='row'>
-                      </div>
-                    </div>
+            <div class="table__item">
+              <div class="table__item-content table__item-content_font_small">
+                <div class="table__box">
+                  <div class="table__text">1234 4545 7575 4345</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__date">06.09.2017										</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__check"><img class="table__img" src="images/check-photo.png" alt=""></div>
+                </div>
+                <div class="table__box">
+                  <div class="table__text">
+                    <div class="table__status">Принят</div>
                   </div>
-
+                </div>
+                <div class="table__box">
+                  <div class="table__prize"><img class="table__img" src="images/prize_icon_1.png" alt=""><a class="table__link jsMoneyMobile" href="#!">Получить</a></div>
                 </div>
               </div>
             </div>
-          {% endfor %}
-          <div class="c-info-xs visible-xs visible-sm">
-            *Сумма приза, на который ты претендуешь определится в понедельник по итоговому курсу дольки, финальная сумма
-            твоего приза будет определена после подведения итогов по всем периодам регистрации чеков, при условии
-            получения положительных результатов проверки предоставленных данных, в т.ч. чеков. Подробнее о формуле
-            расчёта читай на странице «об акции» и в «правилах акции».
+            <div class="table__item">
+              <div class="table__item-content table__item-content_font_small">
+                <div class="table__box">
+                  <div class="table__text">4232 4776 324432 43246</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__date">12.09.2017										</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__check"><img class="table__img" src="images/check-photo.png" alt=""></div>
+                </div>
+                <div class="table__box">
+                  <div class="table__text">
+                    <div class="table__status">Принят</div>
+                  </div>
+                </div>
+                <div class="table__box">
+                  <div class="table__text">Не выйгрышный											</div>
+                </div>
+              </div>
+            </div>
+            <div class="table__item">
+              <div class="table__item-content table__item-content_font_small">
+                <div class="table__box">
+                  <div class="table__text">33434 56565 55 656534</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__date">06.09.2017										</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__check"><img class="table__img" src="images/check-photo.png" alt=""></div>
+                </div>
+                <div class="table__box">
+                  <div class="table__text">
+                    <div class="table__status">Принят</div>
+                  </div>
+                </div>
+                <div class="table__box">
+                  <div class="table__prize"><img class="table__img" src="images/prize_icon_2.png" alt=""></div>
+                </div>
+              </div>
+            </div>
+            <div class="table__item">
+              <div class="table__item-content table__item-content_font_small">
+                <div class="table__box">
+                  <div class="table__text">1234 5678 12a34 5678</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__date">12.09.2017										</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__check"><img class="table__img" src="images/check-photo.png" alt=""></div>
+                </div>
+                <div class="table__box">
+                  <div class="table__text">
+                    <div class="table__status">Не принят</div>
+                    <div class="table__status-reason">Дубль</div>
+                  </div>
+                </div>
+                <div class="table__box">
+                  <div class="table__text">Не выйгрышный										</div>
+                </div>
+              </div>
+            </div>
+            <div class="table__item">
+              <div class="table__item-content table__item-content_font_small">
+                <div class="table__box">
+                  <div class="table__text">33434 56565 55 656534</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__date">06.09.2017										</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__check"><img class="table__img" src="images/check-photo.png" alt=""></div>
+                </div>
+                <div class="table__box">
+                  <div class="table__text">
+                    <div class="table__status">Принят</div>
+                  </div>
+                </div>
+                <div class="table__box">
+                  <div class="table__prize"><img class="table__img" src="images/prize_icon_3.png" alt=""></div>
+                </div>
+              </div>
+            </div>
+            <div class="table__item">
+              <div class="table__item-content table__item-content_font_small">
+                <div class="table__box">
+                  <div class="table__text">1234 5678 12a34 5678</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__date">12.09.2017										</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__check"><img class="table__img" src="images/check-photo.png" alt=""></div>
+                </div>
+                <div class="table__box">
+                  <div class="table__text">
+                    <div class="table__status">Не принят</div>
+                    <div class="table__status-reason">Дубль</div>
+                  </div>
+                </div>
+                <div class="table__box">
+                  <div class="table__text">Не выйгрышный	</div>
+                </div>
+              </div>
+            </div>
+            <div class="table__item">
+              <div class="table__item-content table__item-content_font_small">
+                <div class="table__box">
+                  <div class="table__text">1234 5678 12a34 5678</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__date">12.09.2017										</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__check"><img class="table__img" src="images/check-photo.png" alt=""></div>
+                </div>
+                <div class="table__box">
+                  <div class="table__text">
+                    <div class="table__status">Не принят</div>
+                    <div class="table__status-reason">Дубль</div>
+                  </div>
+                </div>
+                <div class="table__box">
+                  <div class="table__text">Не выйгрышный	</div>
+                </div>
+              </div>
+            </div>
+            <div class="table__item">
+              <div class="table__item-content table__item-content_font_small">
+                <div class="table__box">
+                  <div class="table__text">1234 4545 7575 4345</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__date">06.09.2017										</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__check"><img class="table__img" src="images/check-photo.png" alt=""></div>
+                </div>
+                <div class="table__box">
+                  <div class="table__text">
+                    <div class="table__status">Принят</div>
+                  </div>
+                </div>
+                <div class="table__box">
+                  <div class="table__prize"><img class="table__img" src="images/prize_icon_1.png" alt=""><a class="table__link jsMoneyMobile" href="#!">Получить									</a></div>
+                </div>
+              </div>
+            </div>
+            <div class="table__item">
+              <div class="table__item-content table__item-content_font_small">
+                <div class="table__box">
+                  <div class="table__text">1234 5678 12a34 5678</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__date">12.09.2017										</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__check"><img class="table__img" src="images/check-photo.png" alt=""></div>
+                </div>
+                <div class="table__box">
+                  <div class="table__text">
+                    <div class="table__status">Не принят</div>
+                    <div class="table__status-reason">Дубль</div>
+                  </div>
+                </div>
+                <div class="table__box">
+                  <div class="table__text">Не выйгрышный	</div>
+                </div>
+              </div>
+            </div>
+            <div class="table__item">
+              <div class="table__item-content table__item-content_font_small">
+                <div class="table__box">
+                  <div class="table__text">1234 5678 12a34 5678</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__date">12.09.2017										</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__check"><img class="table__img" src="images/check-photo.png" alt=""></div>
+                </div>
+                <div class="table__box">
+                  <div class="table__text">
+                    <div class="table__status">Не принят</div>
+                    <div class="table__status-reason">Дубль</div>
+                  </div>
+                </div>
+                <div class="table__box">
+                  <div class="table__text">Не выйгрышный	</div>
+                </div>
+              </div>
+            </div>
+            <div class="table__item">
+              <div class="table__item-content table__item-content_font_small">
+                <div class="table__box">
+                  <div class="table__text">1234 4545 7575 4345</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__date">06.09.2017										</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__check"><img class="table__img" src="images/check-photo.png" alt=""></div>
+                </div>
+                <div class="table__box">
+                  <div class="table__text">
+                    <div class="table__status">Принят</div>
+                  </div>
+                </div>
+                <div class="table__box">
+                  <div class="table__prize"><img class="table__img" src="images/prize_icon_1.png" alt=""><a class="table__link jsMoneyMobile" href="#!">Получить									</a></div>
+                </div>
+              </div>
+            </div>
+            <div class="table__item">
+              <div class="table__item-content table__item-content_font_small">
+                <div class="table__box">
+                  <div class="table__text">1234 5678 12a34 5678</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__date">12.09.2017										</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__check"><img class="table__img" src="images/check-photo.png" alt=""></div>
+                </div>
+                <div class="table__box">
+                  <div class="table__text">
+                    <div class="table__status">Не принят</div>
+                    <div class="table__status-reason">Дубль</div>
+                  </div>
+                </div>
+                <div class="table__box">
+                  <div class="table__text">Не выйгрышный	</div>
+                </div>
+              </div>
+            </div>
+            <div class="table__item">
+              <div class="table__item-content table__item-content_font_small">
+                <div class="table__box">
+                  <div class="table__text">1234 5678 12a34 5678</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__date">12.09.2017										</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__check"><img class="table__img" src="images/check-photo.png" alt=""></div>
+                </div>
+                <div class="table__box">
+                  <div class="table__text">
+                    <div class="table__status">Не принят</div>
+                    <div class="table__status-reason">Дубль</div>
+                  </div>
+                </div>
+                <div class="table__box">
+                  <div class="table__text">Не выйгрышный	</div>
+                </div>
+              </div>
+            </div>
+            <div class="table__item">
+              <div class="table__item-content table__item-content_font_small">
+                <div class="table__box">
+                  <div class="table__text">1234 5678 12a34 5678</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__date">12.09.2017										</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__check"><img class="table__img" src="images/check-photo.png" alt=""></div>
+                </div>
+                <div class="table__box">
+                  <div class="table__text">
+                    <div class="table__status">Не принят</div>
+                    <div class="table__status-reason">Дубль</div>
+                  </div>
+                </div>
+                <div class="table__box">
+                  <div class="table__text">Не выйгрышный	</div>
+                </div>
+              </div>
+            </div>
+            <div class="table__item">
+              <div class="table__item-content table__item-content_font_small">
+                <div class="table__box">
+                  <div class="table__text">1234 5678 12a34 5678</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__date">12.09.2017										</div>
+                </div>
+                <div class="table__box">
+                  <div class="table__check"><img class="table__img" src="images/check-photo.png" alt=""></div>
+                </div>
+                <div class="table__box">
+                  <div class="table__text">
+                    <div class="table__status">Не принят</div>
+                    <div class="table__status-reason">Дубль</div>
+                  </div>
+                </div>
+                <div class="table__box">
+                  <div class="table__text">Не выйгрышный</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </main>
 {% endblock %}
-{% block javascripts %}
-  {{ parent() }}
-  <script type="text/javascript">
-    var formPrefix = 'personal_profile_form';
-    $(document).ready(function () {
-      $('.js-datepicker').datetimepicker({
-        timepicker: false,
-        format: 'd.m.Y',
-      });
-    });
-  </script>
-  <script type="text/javascript" src="{{ asset('js/geo_fields.js') }}"></script>
-  <script>
-    $(function () {
-      $('.js-open-week').click(function () {
-        if ($(this).text() === '-') {
-          dataLayer.push({
-            'event': 'GAEvent',
-            'eventCategory': 'Profile',
-            'eventAction': 'ExpandList',
-            'eventLabel': 'WeeklyStatistics',
-            'eventContext': '',
-          });
-        }
-      });
-    });
-  </script>
-{% endblock %}
 
 {% block modals %}
   {{ parent() }}
-  <div class="modal fade" id="changeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title up" id="myModalLabel">
-            Изменить данные
-          </h4>
-        </div>
-        <div class="modal-body  text-center">
-          <div class='pop-up-text-normal pop-up-text'>
-            Уважаемый участник, номер телефона <br> для получения приза ты сможешь <br> внести после завершения Акции.
-          </div>
-          <br>
-          <div class='pop-up-text-normal pop-up-text'>
-            Если ты хочешь изменить другую <br> личную информации, <br> пожалуйста, воспользуйся <br> формой
-            <a href='{{ path('feedback_page') }}' class='pop-up-callback-link underline'> обратной связи </a>.
-          </div>
-          <div class="pop-up-buttons text-center">
-            <button type="submit" class='btn-ylw' data-dismiss="modal" aria-label="Close">Ок</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+
 {% endblock %}

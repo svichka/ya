@@ -39,10 +39,16 @@
       $winners = [];
       $promo_slug = $this->getParameter('promo_slug');
       $apiLottery = new PromoLotteryApiController();
-      $lotteries = $apiLottery->getLotteries($promo_slug);
-      foreach ($lotteries as $lottery)
+      try
       {
-        $winners[] = $apiLottery->getLotteryWinners($promo_slug, 1);
+        $lotteries = $apiLottery->getLotteries($promo_slug);
+        foreach ($lotteries as $lottery)
+        {
+          $winners[] = $apiLottery->getLotteryWinners($promo_slug, 1);
+        }
+  
+      }catch (ApiFailedException $e){
+      
       }
       
       return $this->render('AppBundle:Default:winners.html.twig', [

@@ -22,7 +22,11 @@
             <div class="form__row">
               <div class="form__box">
                 <label class="form__label" for="theme">Тема сообщения</label>
-                <input class="form__input form__input_height_high" type="text" id="theme">
+                <select class="form__select form__select_height_high" id="theme" name="theme">
+                  <option value="1">Деньги не приходят</option>
+                  <option value="2">Чек потерял</option>
+                  <option value="3">Ничего не понимаю</option>
+                </select>
               </div>
             </div>
             <div class="form__row">
@@ -53,7 +57,7 @@
             </div>
             <div class="form__row">
               <div class="form__box form__box_button-faq">
-                <button class="button" type="submit"><span
+                <button class="button faqSubmit" type="submit"><span
                       class="button__text">Отправить                                        </span></button>
               </div>
             </div>
@@ -63,7 +67,7 @@
       <div class="main__right">
         <h1 class="title title_align_left">Часто задаваемые вопросы</h1>
         <div class="faq">
-          <div class="faq__content">
+          <div class="faq__content" id="jsScrollContent">
             <ul class="faq__list">
               <li class="faq__item">
                 <div class="faq__question jsOpenContent">Нужно ли мне сохранять чеки?</div>
@@ -234,6 +238,17 @@
               </li>
             </ul>
           </div>
+        </div>
+      </div>
+    </div>
+    <div class="hidden">
+      <div class="popup" id="faqSubmit">
+        <div class="popup__close arcticmodal-close">X</div>
+        <div class="popup__wrap">
+          <p class="popup__text popup__text_size_limit">Спасибо, мы получили Ваш вопрос. Ответ поступит в течение 24
+            часов. </p>
+          <p class="popup__text popup__text_size_limit">Если запрос приходится на выходной день, ответ поступит в
+            ближайший рабочий день. </p>
         </div>
       </div>
     </div>

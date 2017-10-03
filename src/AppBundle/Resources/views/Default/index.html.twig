@@ -46,7 +46,49 @@
             </div>
           </div>
           <div class="about__button-wrap">
-            <button class="button button_big-rem"><span class="button__text">Зарегистрировать чек</span></button>
+            <button class="button button_big-rem regCheckNotAuth"><span class="button__text">Зарегистрировать чек</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hidden">
+      <div class="popup" id="indexAuth">
+        <div class="popup__close arcticmodal-close">X</div>
+        <h2 class="popup__title">Добрый день! </h2>
+        <div class="popup__wrap">
+          <p class="popup__text popup__text_size_limit">Чтобы загрузить чек, нужно зарегистрироваться или авторизоваться</p>
+          <div class="popup__form-wrap">
+            <form class="form" action="#">
+              <div class="form__row">
+                <div class="form__box">
+                  <label class="form__label" for="email">Email</label>
+                  <input class="form__input" type="email" id="email">
+                </div>
+              </div>
+              <div class="form__row">
+                <div class="form__box">
+                  <label class="form__label" for="password">Пароль</label>
+                  <input class="form__input" type="password" id="password">
+                </div>
+              </div>
+            </form>
+            <div class="form__row">
+              <div class="form__box">
+                <div class="form__checkbox__container">
+                  <input class="form__checkbox" type="checkbox" id="check1">
+                  <label class="form__checkbox-text form__checkbox-text_big" for="check1">Запомнить пароль</label><a class="form__link password-reminder" href="#">Забыли пароль?</a>
+                </div>
+              </div>
+            </div>
+            <div class="form__row">
+              <div class="form__box"><div class="g-recaptcha" data-sitekey="6Lf-RS4UAAAAABK77fQwn0jagRJ_QXBNqy7FTHjb"></div>
+                <div class="form__row">
+                  <div class="form__box form__box_button">
+                    <button class="button" type="submit"><span class="button__text">Войти</span></button><a class="form__link form__link_block" href="/registrtion.html">Регистрация															</a>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
