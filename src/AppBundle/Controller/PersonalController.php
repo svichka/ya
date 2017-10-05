@@ -231,19 +231,19 @@
         $formData->ismale = $registration_form['ismale'];
         $this->validate($formData->ismale, "Выберите пол");
       }
-      if ($registration_form['agreement'])
-      {
-        $formData->isrulesagreed = "Y";
-        $formData->ispdagreed = "Y";
-        $formData->ismailingagreed = "Y";
-      }
-      else
-      {
-        $this->errors[] = "Согласитесь с условиями";
-        $formData->isrulesagreed = "N";
-        $formData->ispdagreed = "N";
-        $formData->ismailingagreed = "N";
-      }
+//      if ($registration_form['agreement'])
+//      {
+      $formData->isrulesagreed = "Y";
+      $formData->ispdagreed = "Y";
+      $formData->ismailingagreed = "Y";
+//      }
+//      else
+//      {
+//        $this->errors[] = "Согласитесь с условиями";
+//        $formData->isrulesagreed = "N";
+//        $formData->ispdagreed = "N";
+//        $formData->ismailingagreed = "N";
+//      }
       if ($this->valid)
       {
         
@@ -257,7 +257,7 @@
           $p = new Participant();
           foreach (array_keys($registration_form) as $array_key)
           {
-            if (in_array($array_key, ['agreement', 'iz18', 'region', 'city'])) // , 'region', 'city'
+            if (in_array($array_key, ['agreement', 'iz18', 'region', 'city', 'password', 'password_confirm'])) // , 'region', 'city'
             {
               continue;
             }

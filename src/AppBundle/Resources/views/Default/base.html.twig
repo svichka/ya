@@ -64,6 +64,86 @@
     </div>
   </header>
   {% block body %}{% endblock %}
+  <div class="hidden">
+    {% block modals %}
+      <div class="popup" id="blocked">
+        <div class="popup__close arcticmodal-close">X</div>
+        <h2 class="popup__title">Регистрация чека</h2>
+        <div class="popup__wrap">
+          <p class="popup__text popup__text_size_limit">К сожалению, Вы были заблокированы на 24 часа.</p>
+          <p class="popup__text popup__text_size_limit">С возможными причинами блокировки Вы можете ознакомиться в
+            разделе FAQ. </p>
+        </div>
+      </div>
+      <div class="popup" id="checkRegistr">
+        <div class="popup__close arcticmodal-close">X</div>
+        <h2 class="popup__title">Регистрация чека</h2>
+        <div class="popup__wrap popup__wrap_size_small">
+          <p class="popup__text">Приложите скан/фото чека <br> (jpeg, gif, png, размер не более 1,5 Мб)</p>
+          <div class="popup__form-wrap">
+            <form class="form" action="#">
+              <div class="form__row">
+                <div id="revizor"></div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="popup" id="checkRegistrFale">
+        <div class="popup__close arcticmodal-close">X</div>
+        <div class="popup__wrap">
+          <p class="popup__text popup__text_size_limit">Неверный формат или размер скана/фото чека.</p>
+          <div class="popup__button-wrap">
+            <button class="button button_regcheck" type="submit"><span class="button__text">Повторить попытку</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="popup" id="indexAuth">
+        <div class="popup__close arcticmodal-close">X</div>
+        <h2 class="popup__title">Добрый день! </h2>
+        <div class="popup__wrap">
+          <p class="popup__text popup__text_size_limit">Чтобы загрузить чек, нужно зарегистрироваться или авторизоваться</p>
+          <div class="popup__form-wrap">
+            <form class="form" action="#">
+              <div class="form__row">
+                <div class="form__box">
+                  <label class="form__label" for="email">Email</label>
+                  <input class="form__input" type="email" id="email">
+                </div>
+              </div>
+              <div class="form__row">
+                <div class="form__box">
+                  <label class="form__label" for="password">Пароль</label>
+                  <input class="form__input" type="password" id="password">
+                </div>
+              </div>
+            </form>
+            <div class="form__row">
+              <div class="form__box">
+                <div class="form__checkbox__container">
+                  <input class="form__checkbox" type="checkbox" id="check1">
+                  <label class="form__checkbox-text form__checkbox-text_big" for="check1">Запомнить пароль</label><a class="form__link password-reminder" href="#">Забыли пароль?</a>
+                </div>
+              </div>
+            </div>
+            <div class="form__row">
+              <div class="form__box">
+                <script src='https://www.google.com/recaptcha/api.js'></script>
+                <div class="g-recaptcha" data-sitekey="{{ recaptcha_key }}"></div>
+                <div class="form__row">
+                  <div class="form__box form__box_button">
+                    <button class="button" type="submit"><span class="button__text">Войти</span></button>
+                    <a class="form__link form__link_block" href="{{ path('registration_page') }}">Регистрация															</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endblock %}
+  </div>
   <footer class="footer" id="footer">
     <div class="footer__content">
       <div class="footer__row">
@@ -84,9 +164,33 @@
   <script src="{{ asset('js/jquery.arcticmodal-0.3.min.js') }}"></script>
   <script src="{{ asset('js/jquery.datetimepicker.js') }}"></script>
   <script src="{{ asset('js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
-  <script src="{{ asset('js/main.js') }}"></script>
   <script src="{{ asset('js/jquery.mask.js') }}"></script>
+  <script src="{{ asset('js/jquery.form.min.js') }}"></script>
+  <script src="{{ asset('js/moment.js') }}"></script>
+  <script src="{{ asset('js/moment-with-locales.js') }}"></script>
+  <script src="{{ asset('js/main.js') }}"></script>
+  <script>
+    function toDate(dateStr) {
+      var parts = dateStr.split(".");
+      return new Date(parts[ 2 ], parts[ 1 ] - 1, parts[ 0 ]);
+    }
 
+    function Ru(obj) {
+      obj.value = obj.value.replace(/[^а-яё\-]/ig, '');
+    }
+
+    function validateEmail(email) {
+      var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(email);
+    }
+
+    function _calculateAge(birthday) { // birthday is a date
+      console.log(birthday);
+      var ageDifMs = Date.now() - birthday.getTime();
+      var ageDate = new Date(ageDifMs); // miliseconds from epoch
+      return Math.abs(ageDate.getUTCFullYear() - 1970);
+    }
+  </script>
   {% if(is_granted('ROLE_USER')) %}
   {% set user = app.user.participant %}
   <script type="text/javascript" src="{{ apm_url }}"></script>
