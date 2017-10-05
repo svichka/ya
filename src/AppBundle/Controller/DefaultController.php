@@ -120,7 +120,7 @@
     }
     
     /**
-     * @Route("/registration/", name="registration_page")
+     * @Route("/registration", name="registration_page")
      */
     public function registrationAction(Request $request)
     {
@@ -150,8 +150,32 @@
           {
             throw new NotCorrectDataException('Confirm password does not match the password');
           }
-          $participantApi->add($formData, $form->get('password')->getData());
           
+          /**
+           * "data":{"region":"empty","city":"empty"},"
+           */
+          if ($formData->ispdagreed == "Y")
+          {
+            $formData->isrulesagreed = "Y";
+            $formData->ismailingagreed = "Y";
+          }
+          else
+          {
+            $this->errors[] = "Согласитесь с условиями";
+            $formData->isrulesagreed = "N";
+            $formData->ismailingagreed = "N";
+          }
+          
+          $city = $this->getDoctrine()->getRepository('AppBundle:City')->findOneBy(['guid'=>$formData->cityguid]);
+          $formData->city = $city->getName();
+          $region = $this->getDoctrine()->getRepository('AppBundle:Region')->findOneBy(['guid'=>$formData->regionguid]);
+          $formData->region = $region->getName();
+          try
+          {
+            $participantApi->add($formData, $form->get('password')->getData());
+          }catch (ApiFailedException $e){
+            throw new NotCorrectDataException('Ошибка связи с бандлом');
+          }
           return $this->redirectToRoute('registration_page', ['success' => 'y']);
         }
         catch (NotCorrectDataException $e)

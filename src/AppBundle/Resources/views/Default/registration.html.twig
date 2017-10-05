@@ -32,40 +32,10 @@
         <div class="form__row">
           {{ form_row(form.email) }}
           {{ form_row(form.ismale) }}
-
-          {#<div class="form__box form__box_width_half">#}
-            {#<label class="form__label" for="email">Пол*</label>#}
-            {#<div class="form__checkbox__container form__checkbox__container_dib">#}
-              {#<input class="form__checkbox" type="radio" value="male" name="male" id="male">#}
-              {#<label class="form__checkbox-text form__checkbox-text_type_male form__checkbox-text_error"#}
-                     {#for="male">М</label>#}
-            {#</div>#}
-            {#<div class="form__checkbox__container form__checkbox__container_dib">#}
-              {#<input class="form__checkbox" type="radio" value="female" name="male" id="female">#}
-              {#<label class="form__checkbox-text form__checkbox-text_type_male form__checkbox-text_error"#}
-                     {#for="female">Ж </label>#}
-            {#</div>#}
-          {#</div>#}
         </div>
         <div class="form__row">
           {{ form_row(form.regionguid) }}
           {{ form_row(form.cityguid) }}
-          {#<div class="form__box form__box_width_half">#}
-            {#<label class="form__label" for="email">Регион*</label>#}
-            {#<select class="form__select">#}
-              {#<option>Московский</option>#}
-              {#<option>Ленинградский</option>#}
-              {#<option>Калужский</option>#}
-            {#</select>#}
-          {#</div>#}
-          {#<div class="form__box form__box_width_half">#}
-            {#<label class="form__label" for="email">Город*</label>#}
-            {#<select class="form__select">#}
-              {#<option>Москва</option>#}
-              {#<option>Балашиха</option>#}
-              {#<option>Город</option>#}
-            {#</select>#}
-          {#</div>#}
         </div>
         <div class="form__row">
           {{ form_row(form.password) }}
@@ -95,6 +65,10 @@
           <div class="form__box form__box_button">
             <button class="button" type="submit"><span class="button__text">Зарегистрировать</span></button>
           </div>
+        </div>
+        <div class="form__row">
+          {{ form_errors(form) }}
+
         </div>
       </div>
       {{ form_end(form) }}

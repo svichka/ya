@@ -110,7 +110,7 @@
         }
         $choices[$title] = $region->getGuid();
       }
-      $options = ['placeholder' => ' ', 'choices_as_values' => true, 'choices' => $choices];
+      $options = ['placeholder' => ' ', 'choices_as_values' => true, 'choices' => $choices,'label'=>'Регион*'];
       if (static::class == 'AppBundle\Form\Type\Participant\PersonalProfileFormType')
       {
         $options['disabled'] = true;
@@ -134,7 +134,7 @@
       }
       if (count($cities) == 1)
       {
-        $options = ['empty_data' => $cities[0]->getGuid()];
+        $options = ['empty_data' => $cities[0]->getGuid(),'label'=>'Город*'];
         if (static::class == 'AppBundle\Form\Type\Participant\PersonalProfileFormType')
         {
           $options['disabled'] = true;
@@ -153,7 +153,7 @@
           }
           $choices[$title] = $city['guid'];
         }
-        $options = ['placeholder' => ' ', 'choices_as_values' => true, 'choices' => $choices];
+        $options = ['placeholder' => ' ', 'choices_as_values' => true, 'choices' => $choices,'label'=>'Город*'];
         if (static::class == 'AppBundle\Form\Type\Participant\PersonalProfileFormType')
         {
           $options['disabled'] = true;

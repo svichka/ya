@@ -85,7 +85,7 @@
       }
       $this->logger->warning("new user");
       // Запросим дополнительные поля
-      $fields = ['lastname','firstname','secname','region','city','regionguid','cityguid'];
+      $fields = ['lastname','firstname','secname','region','city','regionguid','cityguid','birthdate', 'email', 'ismale'];
       $p2 = $participantApi->getById($participant->id,$fields);
       foreach ($fields as $field)
       {

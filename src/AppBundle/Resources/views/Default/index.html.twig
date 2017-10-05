@@ -81,10 +81,13 @@
               </div>
             </div>
             <div class="form__row">
-              <div class="form__box"><div class="g-recaptcha" data-sitekey="6Lf-RS4UAAAAABK77fQwn0jagRJ_QXBNqy7FTHjb"></div>
+              <div class="form__box">
+                <script src='https://www.google.com/recaptcha/api.js'></script>
+                <div class="g-recaptcha" data-sitekey="{{ recaptcha_key }}"></div>
                 <div class="form__row">
                   <div class="form__box form__box_button">
-                    <button class="button" type="submit"><span class="button__text">Войти</span></button><a class="form__link form__link_block" href="/registrtion.html">Регистрация															</a>
+                    <button class="button" type="submit"><span class="button__text">Войти</span></button>
+                    <a class="form__link form__link_block" href="{{ path('registration_page') }}">Регистрация															</a>
                   </div>
                 </div>
               </div>

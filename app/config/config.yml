@@ -40,6 +40,7 @@ twig:
         recaptcha: '@app.recaptcha'
         apm_key: '%apm.key%'
         apm_url: '%apm_url%'
+        apm_css: '%apm_css%'
         recaptcha_key: '%recaptcha.public_key%'
         banned_listener: "@app.users.banned_listener"
         tools: "@app.users.tools"

@@ -12,10 +12,10 @@ $(function(){
 		var scrollBlockHeight = $('body').height();
 		if ($("#jsScrollContent").height() > scrollBlockHeight-200) {
 			if ($("#jsScrollContent").hasClass('table__content_winners') && $('body').height() > 650) {
-				var heightВifference = $('body').height() - $('.form').height() - $('#header').height() - $('#footer').height() - 50;
-				console.log(heightВifference)	
-				if (heightВifference > 250) {
-					scrollBlockHeight = heightВifference + 200;
+				var heightBifference = $('body').height() - $('.form').height() - $('#header').height() - $('#footer').height() - 50;
+				console.log(heightBifference)
+				if (heightBifference > 250) {
+					scrollBlockHeight = heightBifference + 200;
 					console.log(scrollBlockHeight)
 				}
 			}
@@ -41,16 +41,10 @@ $(function(){
 		$('#mainMenu').fadeToggle(0).toggleClass('main-menu_open');
 		return false;
 	});
-	if ($('#blocked').length) {
-		$('#blocked').arcticmodal(favSyr.popup.options);
-	}	
-	if ($('#adult').length) {
-		$('#adult').arcticmodal(favSyr.popup.options);
-	}
 	$('.existPopup').on('click', function(){
 		$('#exist').arcticmodal(favSyr.popup.options);
 		return false;
-	});	
+	});
 	$('.profile__link-edit').on('click', function(){
 		$('#editProfile').arcticmodal(favSyr.popup.options);
 		return false;
@@ -59,12 +53,12 @@ $(function(){
 		$.arcticmodal('close');
 		$('#checkRegistr').arcticmodal(favSyr.popup.options);
 		return false;
-	}); 
+	});
 	$('.jsMoneyMobile').on('click', function(){
 		$.arcticmodal('close');
 		$('#mobileMoney').arcticmodal(favSyr.popup.options);
 		return false;
-	});	
+	});
 	$('.regCheckNotAuth').on('click', function(){
 		$.arcticmodal('close');
 		$('#indexAuth').arcticmodal(favSyr.popup.options);
@@ -111,11 +105,11 @@ function resizeElems() {
 	if (currentHeight < 600) {
 		currentHeight = 601;
 	}
-	var currentСleanHeight =  currentHeight - $('#header').height() - $('#footer').height();
+	var currentCleanHeight =  currentHeight - $('#header').height() - $('#footer').height();
 
 	var differenceWidth =  currentWidth - initialWidth;
-	var differenceHeight = currentСleanHeight - initialHeight;
-	
+	var differenceHeight = currentCleanHeight - initialHeight;
+
 	var widthPercentage = differenceWidth / widthProcent;
 	var heightPercentage = differenceHeight / widthProcent;
 
@@ -126,7 +120,6 @@ function resizeElems() {
 	}
 	else {
 		html.css('fontSize', 10 + heightPercentage / 9.12);
-	}	
-
+	}
 
 }

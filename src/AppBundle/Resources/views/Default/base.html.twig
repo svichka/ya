@@ -10,6 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   {% block stylesheets %}
+    <link rel="stylesheet" href="{{ apm_css }}"/>
     <link rel="stylesheet" href="{{ asset('styles/main.css') }}">
   {% endblock %}
 </head>
@@ -22,16 +23,31 @@
         <div class="main-menu-wrap clearfix">
           <div class="mobile-menu-btn" id="menuButton"><span></span></div>
           <ul class="main-menu" id="mainMenu">
-            <li class="main-menu__item {{ route == 'index_page' ? 'active' }}"><a class="main-menu__link" href="{{ path('index_page') }}">Об акции</a>
+            <li class="main-menu__item {{ route == 'index_page' ? 'active' }}">
+              <a class="main-menu__link" href="{{ path('index_page') }}">Об акции</a>
             </li>
-            <li class="main-menu__item {{ route == 'prizes_page' ? 'active' }}"><a class="main-menu__link" href="{{ path('prizes_page') }}">Призы</a>
+            <li class="main-menu__item {{ route == 'prizes_page' ? 'active' }}">
+              <a class="main-menu__link" href="{{ path('prizes_page') }}">Призы</a>
             </li>
-            <li class="main-menu__item {{ route == 'winnners_page' ? 'active' }}"><a class="main-menu__link" href="{{ path('winnners_page') }}">Победители</a>
+            <li class="main-menu__item {{ route == 'winnners_page' ? 'active' }}">
+              <a class="main-menu__link" href="{{ path('winnners_page') }}">Победители</a>
             </li>
-            <li class="main-menu__item {{ route == 'feedback_page' ? 'active' }}"><a class="main-menu__link" href="{{ path('feedback_page') }}">FAQ</a>
+            <li class="main-menu__item {{ route == 'feedback_page' ? 'active' }}">
+              <a class="main-menu__link" href="{{ path('feedback_page') }}">FAQ</a>
             </li>
-            <li class="main-menu__item {{ route == 'login' ? 'active' }}"><a class="main-menu__link" href="{{ path('login') }}">Вход</a>
-            </li>
+            {% if(is_granted('ROLE_USER')) %}
+              <li class="main-menu__item {{ route == 'personal_page' ? 'active' }}">
+                <a class="main-menu__link" href="{{ path('personal_page') }}">Личный кабинет</a>
+              </li>
+              <li class="main-menu__item {{ route == 'login' ? 'active' }}">
+                <a class="main-menu__link" href="{{ path('logout') }}">Выход</a>
+              </li>
+            {% else %}
+              <li class="main-menu__item {{ route == 'login' ? 'active' }}">
+                <a class="main-menu__link" href="{{ path('login') }}">Вход</a>
+              </li>
+            {% endif %}
+
             <li class="main-menu__item main-menu__item_img">
               <a class="main-menu__link" href="{{ path('metro_redirect') }}">
                 <img class="main-menu__img" src="{{ asset('images/metro-menu.png') }}" alt="Metro">
@@ -70,6 +86,46 @@
   <script src="{{ asset('js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
   <script src="{{ asset('js/main.js') }}"></script>
   <script src="{{ asset('js/jquery.mask.js') }}"></script>
+
+  {% if(is_granted('ROLE_USER')) %}
+  {% set user = app.user.participant %}
+  <script type="text/javascript" src="{{ apm_url }}"></script>
+  <script>
+    function logUpload(userUuid) {
+      $.ajax({
+        method: "POST",
+        url: "{{ path('log_upload') }}",
+        data: { uuid: userUuid },
+      })
+        .done(function (msg) {
+          console.log('upload tracked');
+          console.log(msg);
+        });
+    }
+
+    revizorWidget.init('#revizor', // widget container id
+      {
+        apiKey: '{{ apm_key }}', // widget api key
+        userUuid: '{{ app.user.participant.guid }}', // uuid of logged in use
+        addButtonLabel: 'Добавить часть чека', // text for button 'add', type = string, defaultValue = 'Добавить чек'
+        sendButtonLabel: 'Зарегистрировать чек', // text for button 'send', type = string, defaultValue = 'Отправить чек'
+        uploadButtonLabel: 'Загрузить чек', // text for button 'upload', type = string, defaultValue = 'Загрузить чек'
+        classForUploadButton: 'btn-ylw',   // className for buttons to add and upload checks, type = string
+        classForUploadPreview: 'uploaded-preview', // className for block with preview uploaded check, type = string
+        classForDeleteButton: '', // className for delete button, type = string
+        classForSendButton: 'btn-ylw', // className for button to send, type = string
+        successCallback: function () {
+          logUpload('{{ app.user.participant.guid }}');
+          $('.modal').modal('hide');
+          $('#moderateModal').modal('show');
+        },
+        errorCallback: function (body) {
+          console.log(body);
+        },
+      }
+    );
+  </script>
+  {% endif %}
 {% endblock %}
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript"> (function (d, w, c) {

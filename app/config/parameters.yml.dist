@@ -27,8 +27,9 @@ parameters:
   recaptcha.public_key: null
   recaptcha.secret_key: null
 
-  apm.key: null
-  apm_url: null
+  apm.key: '04ea8b6b-e280-41fd-ae49-1a748788da01'
+  apm_url: '//widget-dev.apmcheck.ru/widget.min.js'
+  apm_css: '//widget-dev.apmcheck.ru/widget.min.css'
   start_date: null
 
   promo_slug: null
