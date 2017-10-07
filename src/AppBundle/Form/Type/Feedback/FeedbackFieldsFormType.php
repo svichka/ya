@@ -13,11 +13,13 @@ use Dalee\PEPUWSClientBundle\Controller\FeedbackApiController;
 
 abstract class FeedbackFieldsFormType extends AbstractType
 {
-	protected $feedbackApi;
+  /**
+   * @var $em \AppBundle\Entity\Theme[]
+   */
+	public static $em;
 
 	public function configureOptions(OptionsResolver $resolver)
 	{
-		$this->feedbackApi = new FeedbackApiController();
 		$resolver->setDefaults([
 			'translation_domain' => 'feedback'
 		]);
@@ -25,27 +27,16 @@ abstract class FeedbackFieldsFormType extends AbstractType
 
 	public function addThemes(FormEvent $event) {
 		$form = $event->getForm();
-		$forms = $this->feedbackApi->getForms();
-		$formParameters = null;
-		foreach ($forms as $formData) {
-			if (is_null($formParameters)) {
-				$formParameters = $formData;
-				break;
-			}
-		}
-		if (is_null($formParameters)) {
-			return;
-		}
-		
-		$themes = $this->feedbackApi->getThemes(['form_id' => $formParameters['id']]);
-		if (count($themes) == 1) {
-			$form->add('theme_id', HiddenType::class, ['empty_data'  => $themes[0]['id']]);
+	
+  
+		if (count(static::$em) == 1) {
+			$form->add('theme_id', HiddenType::class, ['empty_data'  => static::$em[0]['id']]);
 		} else {
 			$choices = [];
-			foreach ($themes as $theme) {
-				$choices[$theme['name']] = $theme['id'];
+			foreach (static::$em as $theme) {
+				$choices[$theme->getName()] = $theme->getId();
 			}
-			$form->add('theme_id', ChoiceType::class, ['placeholder' => 'Select theme of feedback', 'choices_as_values' => true, 'choices'  => $choices]);
+			$form->add('theme_id', ChoiceType::class, ['placeholder' => 'Select theme of feedback', 'choices_as_values' => true, 'choices'  => $choices,'attr' => ['class' => 'form__select form__select_height_high']]);
 		}
 	}
 }

@@ -49,68 +49,77 @@
         <div class="table__content" id="jsScrollContent">
           <div class="table__list table__list_items_5">
             {% if receipts is defined %}
-            {% for key,value in receipts %}
-              <div class="table__item">
-                <div class="table__item-content table__item-content_font_small">
-                  <div class="table__box">
-                    <div class="table__text">{{ value.id }}</div>
-                  </div>
-                  <div class="table__box">
-                    <div class="table__date">{{ value.registration_time|date("d.m.y") }}</div>
-                  </div>
-                  <div class="table__box">
-                    <div class="table__check">
-                      {% if( value.photos|length > 1) %}
-                        <span class="receipt_image" style="cursor: pointer" data-toggle="popover"
-                              title="Изображения чека"
-                              data-content="{% for link in value.photos %}<a href='{{ link }}' target='_blank' class='receipt_image'><img src='{{ asset('images/photo-b.png') }}'></a>{% endfor %}">
+              {% for key,value in receipts %}
+                <div class="table__item">
+                  <div class="table__item-content table__item-content_font_small">
+                    <div class="table__box">
+                      <div class="table__text">{{ value.id }}</div>
+                    </div>
+                    <div class="table__box">
+                      <div class="table__date">{{ value.registration_time|date("d.m.y") }}</div>
+                    </div>
+                    <div class="table__box">
+                      <div class="table__check">
+                        {% if( value.photos|length > 1) %}
+                          <span class="receipt_image" style="cursor: pointer" data-toggle="popover"
+                                title="Изображения чека"
+                                data-content="{% for link in value.photos %}<a href='{{ link }}' target='_blank' class='receipt_image'><img src='{{ asset('images/photo-b.png') }}'></a>{% endfor %}">
                                   <img class="table__img" src="{{ asset('images/check-photo.png') }}" alt="">
                                 </span>
-                      {% else %}
-                        <a href='{{ value.photos[0] }}' target="_blank" class="receipt_image">
-                          <img class="table__img" src="{{ asset('images/check-photo.png') }}" alt="">
-                        </a>
-                      {% endif %}
+                        {% else %}
+                          <a href='{{ value.photos[0] }}' target="_blank" class="receipt_image">
+                            <img class="table__img" src="{{ asset('images/check-photo.png') }}" alt="">
+                          </a>
+                        {% endif %}
+                      </div>
                     </div>
-                  </div>
-                  <div class="table__box">
-                    <div class="table__text">
-                      <div class="table__status">Не принят</div>
-                      <div class="table__status-reason">Отсутствует штрих код</div>
+                    <div class="table__box">
+                      <div class="table__text">
+                        <div class="table__status">Не принят</div>
+                        <div class="table__status-reason">Отсутствует штрих код</div>
+                      </div>
                     </div>
-                  </div>
-                  <div class="table__box">
-                    <div class="table__text">Не выйгрышный</div>
+                    <div class="table__box">
+                      <div class="table__text">Не выйгрышный</div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            {% else %}
-              <div class="table__item">
-                <div class="table__item-content table__item-content_font_small">
-                  <div class="table__box">
-                    <div class="table__text">1234 5678 12a34 5678</div>
-                  </div>
-                  <div class="table__box">
-                    <div class="table__date">12.09.2017										</div>
-                  </div>
-                  <div class="table__box">
-                    <div class="table__check">
-                      <a href='фывфыв1' target='_blank' class='receipt_image'><img src='{{ asset('images/check-photo.png') }}'></a>
-                      <a href='фывфыв2' target='_blank' class='receipt_image'><img src='{{ asset('images/check-photo.png') }}'></a>
+              {% else %}
+                <div class="table__item">
+                  <div class="table__item-content table__item-content_font_small">
+                    <div class="table__box" style="margin: auto;">
+                      Чеков не зарегистрировано
                     </div>
-                  </div>
-                  <div class="table__box">
-                    <div class="table__text">
-                      <div class="table__status">Не принят</div>
-                      <div class="table__status-reason">Дубль</div>
-                    </div>
-                  </div>
-                  <div class="table__box">
-                    <div class="table__text">Не выйгрышный</div>
                   </div>
                 </div>
-              </div>
-            {% endfor %}
+                <div class="table__item">
+                  <div class="table__item-content table__item-content_font_small">
+                    <div class="table__box">
+                      <div class="table__text">Пример</div>
+                    </div>
+                    <div class="table__box">
+                      <div class="table__date">Пример</div>
+                    </div>
+                    <div class="table__box">
+                      <div class="table__check">
+                        <a href='image1.png' target='_blank' class='receipt_image'><img
+                              src='{{ asset('images/check-photo.png') }}'></a>
+                        <a href='image2.png' target='_blank' class='receipt_image'><img
+                              src='{{ asset('images/check-photo.png') }}'></a>
+                      </div>
+                    </div>
+                    <div class="table__box">
+                      <div class="table__text">
+                        <div class="table__status">Не принят</div>
+                        <div class="table__status-reason">Дубль</div>
+                      </div>
+                    </div>
+                    <div class="table__box">
+                      <div class="table__text">Пример</div>
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
             {% endif %}
           </div>
         </div>
@@ -231,12 +240,13 @@
         </div>
         <div class="form__row">
           <div class="form__box form__box_width_half">
-            <label class="form__label" for="password">Старый пароль *(off)</label>
-            <input class="form__input" type="password" id="password" placeholder="Пароль">
+            <label class="form__label" for="password_old">Старый пароль *(off)</label>
+            <input class="form__input" type="password" id="password_old" name="password_old"
+                   placeholder="Текущий пароль">
           </div>
           <div class="form__box form__box_width_half">
-            <label class="form__label" for="password_confirm">Новый пароль *(off)</label>
-            <input class="form__input" type="password" id="password_confirm" placeholder="Повторите пароль">
+            <label class="form__label" for="password_new">Новый пароль *(off)</label>
+            <input class="form__input" type="password" id="password_new" name="password_new" placeholder="Новый пароль">
           </div>
         </div>
         <div class="form__row">
@@ -252,19 +262,21 @@
     <h2 class="popup__title">Поздравляем!</h2>
     <div class="popup__wrap">
       <p class="popup__text popup__text_size_limit">Вы выиграли Ежедневный приз – 50 р на телефон!</p>
-      <p class="popup__text popup__text_size_limit">Пожалуйста, укажите номер телефона, на счет которого мы
-        перечислим приз:</p>
+      <p class="popup__text popup__text_size_limit">
+        Пожалуйста, укажите номер телефона, на счет которого мы перечислим приз:
+      </p>
       <div class="popup__form-wrap">
         <form class="form" action="#">
           <div class="form__row">
             <div class="form__box">
-              <input class="form__input form__input_type_phone" type="text" id="phone">
+              <input class="form__input form__input_type_phone" type="text" id="phone" name="phone">
             </div>
           </div>
           <div class="form__row">
             <div class="form__box form__box_button">
-              <button class="button" type="submit"><span
-                    class="button__text">Отправить                                    </span></button>
+              <button class="button" type="submit">
+                <span class="button__text">Отправить</span>
+              </button>
             </div>
           </div>
         </form>
@@ -278,6 +290,7 @@
   <script>
     // Список регионов теперь динамический
     window.regions = {{ banned_listener.regions()|json_encode|raw }};
+    window.cities = {{ banned_listener.cities(user.regionguid)|json_encode|raw }};
     window.reg_errors = {};
   </script>
   <script>
@@ -310,7 +323,8 @@
       $(select).val('{{ user.regionguid }}').change();
       $("#region_text").val($("#region option:selected").text());
       console.log('region change');
-      loadCities({ region: '{{ user.regionguid }}' });
+      {#loadCities({ region: '{{ user.regionguid }}' });#}
+      loadJsonCities(cities);
       $(select).attr('disabled', 'disabled');
       $("#region_text").attr('disabled', 'disabled');
       {% endif %}
@@ -342,30 +356,32 @@
         }
       };
 
+      function loadJsonCities(json) {
+        var s;
+        selectC.html('');
+        for (var key in json) {
+          if (json.hasOwnProperty(key)) {
+            s = (json[ key ] === cityguid ? "selected" : "");
+            selectC.append('<option value="' + json[ key ] + '" ' + s + ' >' + key + '</option>');
+          }
+        }
+        selectC.removeAttr('disabled', 'disabled');
+        $("#city_text").removeAttr('disabled', 'disabled');
+        {% if(user.cityguid!='') %}
+        $(selectC).val('{{ user.cityguid }}').change();
+        $("#city_text").val($("#city option:selected").text());
+        console.log('city change');
+        $(selectC).attr('disabled', 'disabled');
+        $("#city_text").attr('disabled', 'disabled');
+        {% endif %}
+      }
+
       function loadCities(data) {
         $.ajax({
           url: '{{ path('cities_json') }}',
           type: 'post',
           data: data,
-          success: function (json) {
-            var s;
-            selectC.html('');
-            for (var key in json) {
-              if (json.hasOwnProperty(key)) {
-                s = (json[ key ] === cityguid ? "selected" : "");
-                selectC.append('<option value="' + json[ key ] + '" ' + s + ' >' + key + '</option>');
-              }
-            }
-            selectC.removeAttr('disabled', 'disabled');
-            $("#city_text").removeAttr('disabled', 'disabled');
-            {% if(user.cityguid!='') %}
-            $(selectC).val('{{ user.cityguid }}').change();
-            $("#city_text").val($("#city option:selected").text());
-            console.log('city change');
-            $(selectC).attr('disabled', 'disabled');
-            $("#city_text").attr('disabled', 'disabled');
-            {% endif %}
-          },
+          success: loadJsonCities,
         });
       }
 

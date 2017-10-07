@@ -104,12 +104,12 @@
         return $this->redirectToRoute('login', ['show' => 'auth']);
       }
       $participant = $user->getParticipant();
-
+      
       $this->get('logger')->info('try checkParticipantRequiredFields');
       if (!$this->get('app.users.banned_listener')->checkParticipantRequiredFields($participant))
       {
         $this->get('logger')->info('redirect checkParticipantRequiredFields');
-
+        
         return $this->redirectToRoute('index_page', ['show' => 'update']);
       }
       $this->get('logger')->info('passed checkParticipantRequiredFields');
@@ -117,7 +117,7 @@
       {
         return $this->redirectToRoute('index_page', ['show' => 'agree']);
       }
-
+      
       if (!$this->get('app.users.banned_listener')->checkParticipantAge($participant))
       {
         return $this->redirectToRoute('index_page', ['show' => 'age']);
@@ -186,8 +186,33 @@
      */
     public function registrationUJsonAction(Request $request)
     {
+      $participantApi = new ParticipantApiController();
       $request->getClientIp();
-      
+      $password_old = $request->get('password_old', null);
+      $password_new = $request->get('password_new', null);
+      if ($password_new != null && $password_old != null)
+      {
+        try
+        {
+          $data = [
+            "oldpassword" => $password_old,
+            "newpassword" => $password_new,
+          ];
+          $this->get('logger')->info("request new pass object: " . print_r($data, true));
+          $participantApi->changePassword($this->getUser()->getParticipant()->id, $data);
+          return new JsonResponse(["status" => 200]);
+        }
+        catch (NotCorrectDataException $e)
+        {
+          $this->get('logger')->error("Error change password NotCorrectDataException " . $e->getMessage());
+          throw $e;
+        }
+        catch (ApiFailedException $e2)
+        {
+          $this->get('logger')->error("Error change password ApiFailedException ");
+          throw $e2;
+        }
+      }
       $formData = $this->getUser()->getParticipant();
       $registration_form = $request->request->get('registration_form');
       $this->valid = true;
@@ -247,7 +272,7 @@
       if ($this->valid)
       {
         
-        $participantApi = new ParticipantApiController();
+        
         try
         {
           if ($registration_form == null)

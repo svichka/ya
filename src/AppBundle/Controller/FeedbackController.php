@@ -28,26 +28,19 @@
     private $errors = [];
     
     /**
-     * @Route("/feedback/", name="feedback_page")
+     * @Route("/feedback", name="feedback_page")
      */
     public function feedbackAction(Request $request)
     {
-      $themes = $this->getDoctrine()->getRepository('AppBundle:Theme')->findAll();
-      if (empty($themes))
-      {
-        $this->errors[] = 'Themes are not found';
-        
-        return $this->render('AppBundle:Default:feedback.html.twig', [
-          'errors' => $this->errors,
-        ]);
-      }
-      $formInputData = [];
+  
+      NotAuthorizedUserFormType::$em = $this->getDoctrine()->getRepository('AppBundle:Theme')->findAll();
+      
+      $formInputData = [''];
       $user = $this->getUser();
       if ($user)
       {
         $formInputData['user_id'] = $user->getParticipant()->id;
         $formInputData['email'] = $user->getParticipant()->email;
-        $formInputData['mobile_phone'] = $user->getParticipant()->mobilephone;
         $form = $this->createForm(AuthorizedUserFormType::class, $formInputData);
       }
       else
@@ -69,7 +62,6 @@
             throw new NotCorrectDataException('Каптча не заполнена');
           }
           
-          $formData['mobile_phone'] = preg_replace("/[^0-9]/", "", $formData['mobile_phone']);;
           if ($formData['file'] instanceof UploadedFile)
           {
             $this->get('logger')->info('add file');
@@ -90,6 +82,7 @@
           $ticketNumber = $feedbackApi->add($formData);
           
           return $this->redirectToRoute('feedback_page', [
+            'form'   => $form->createView(),
             'success' => 'y',
             'ticket'  => $ticketNumber['ticket_code'],
             'theme'  => $formData['theme_id']

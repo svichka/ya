@@ -240,6 +240,24 @@
       
       return $choices;
     }
+  
+    public function cities($region_guid)
+    {
+      $cities = $this->getDoctrine()->getRepository('AppBundle:City')->findByRegion($region_guid);
+      $choices = [];
+      foreach ($cities as $city)
+      {
+        $title = $city['name'];
+        if ($city['short_name'])
+        {
+          $title = $city['short_name'] . ' ' . $title;
+        }
+        $choices[$title] = $city['guid'];
+      
+      }
+    
+      return $choices;
+    }
     
     public function getRegion($guid)
     {

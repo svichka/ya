@@ -21,17 +21,17 @@
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
       $builder
-        ->add('theme_id', ChoiceType::class)
-        ->add('email', EmailType::class)
-        ->add('mobile_phone', TextType::class)
-        ->add('message', TextareaType::class)
-        ->add('file', FileType::class, ['required' => false]);
+        ->add('theme_id', ChoiceType::class, ['attr' => ['class' => 'form__select form__select_height_high']])
+        ->add('email', EmailType::class, ['attr' => ['class' => 'form__input form__input_height_high']])
+        ->add('message', TextareaType::class, ['attr' => ['class' => 'form__textarea']])
+        ->add('file', FileType::class, ['required' => false, 'attr' => ['class' => 'form__input form__input_type_file']]);
       global $kernel;
       $recaptchaService = $kernel->getContainer()->get('app.recaptcha');
       if ($recaptchaService && $recaptchaService->isActive())
       {
         $builder->add('recaptcha', RecaptchaType::class, ['mapped' => false, 'value' => $recaptchaService->getPublicKey()]);
       }
+      $builder->add('agree', CheckboxType::class, ['value' => 'Y', 'label' => 'Я согласен на обработку моих данных', 'attr' => ['class' => 'form__checkbox']]);
       
       $builder->addEventListener(FormEvents::PRE_SET_DATA, [$this, 'addThemes']);
     }

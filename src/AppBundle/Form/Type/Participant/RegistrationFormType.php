@@ -46,7 +46,7 @@
           ],
         ])
         ->add('isageagreed', CheckboxType::class, ['value' => 'Y', 'label' => 'Я подтверждаю, что мне исполнилось 18 лет на момент участия в Акции', 'attr' => ['class' => 'form__checkbox']])
-        ->add('ispdagreed', CheckboxType::class, ['value' => 'Y', 'label' => 'Я согласен с правилами акции иa поьзовательским соглашением, а так же на обработку моих данных', 'attr' => ['class' => 'form__checkbox']]);
+        ->add('ispdagreed', CheckboxType::class, ['value' => 'Y', 'label' => 'Я согласен с правилами акции и поьзовательским соглашением, а так же на обработку моих данных', 'attr' => ['class' => 'form__checkbox']]);
       
       $builder->addEventListener(FormEvents::PRE_SET_DATA, [$this, 'callbackGeoFields']);
       $builder->addEventListener(FormEvents::PRE_SUBMIT, [$this, 'callbackGeoFields']);
