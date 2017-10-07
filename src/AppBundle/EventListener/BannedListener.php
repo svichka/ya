@@ -62,7 +62,7 @@
       {
         return;
       }
-  
+      
       $em = $this->getDoctrine()->getManager();
       ParticipantFieldsFormType::$em = $em;
       
@@ -80,29 +80,30 @@
             }
             else
             {
-              if((new \DateTime())->format("Y-m-d H:i:s")>"2017-11-05 23:59:59")
+              if ((new \DateTime())->format("Y-m-d H:i:s") > "2017-11-05 23:59:59")
               {
                 $this->action = '#eolModal';
-  
+                
                 return;
               }
               
-              $count = $this->getDoctrine()->getRepository('AppBundle:LogUpload')->getLastBan($controller[0]->getUser()->getParticipant()->guid);
-              if ($count == 0)
-              {
+//              $count = $this->getDoctrine()->getRepository('AppBundle:LogUpload')->getLastBan($controller[0]->getUser()->getParticipant()->guid);
+//              if ($count == 0)
+//              {
                 $api = new ParticipantApiController();
                 try
                 {
                   $data = $api->getBanStatusById($controller[0]->getUser()->getParticipant()->id);
-                } catch (ApiFailedException $e)
+                }
+                catch (ApiFailedException $e)
                 {
                   $data['status'] = 'bad';
                 }
-              }
-              else
-              {
-                $data['status'] = 'time_ban';
-              }
+//              }
+//              else
+//              {
+//                $data['status'] = 'time_ban';
+//              }
               if ($data['status'] == 'ok')
               {
                 if (!$this->checkParticipantRequiredFields($controller[0]->getUser()->getParticipant()))
@@ -119,31 +120,23 @@
                 }
                 else
                 {
-                  if ($this->dolkaExist())
-                  {
-                    $this->action = '#uploadModal';
-                  }
-                  else
-                  {
-                    $this->action = '#emptyModal';
-                    
-                  }
-                  
+                  $this->action = '#uploadModal';
                 }
               }
               else
               {
-                if ($data['status'] == 'time_ban')
-                {
-                  $this->action = '#timebanModal';
-                }
-                else
-                {
+//                if ($data['status'] == 'time_ban')
+//                {
+//                  $this->action = '#timebanModal';
+//                }
+//                else
+//                {
                   $this->action = '#banModal';
-                }
+//                }
               }
             }
-          } catch (Exception $e)
+          }
+          catch (Exception $e)
           {
             $this->action = '#authModal';
           }
@@ -157,9 +150,6 @@
       $this->logger->info("checkParticipantRequiredFields");
       $this->logger->info("checkParticipantRequiredFields " . $participant->id . " begin test ");
       $fields = [
-        "ismailingagreed",
-        "isrulesagreed",
-        "ispdagreed",
         "ismale",
         "birthdate",
         "cityguid",
@@ -220,6 +210,10 @@
       {
         return false;
       }
+      if ($user->getAgree() !== 1)
+      {
+        return false;
+      }
       
       return true;
     }
@@ -227,32 +221,6 @@
     public function getAction()
     {
       return $this->action;
-    }
-    
-    public function course2()
-    {
-      if ($this->c2 == null)
-      {
-        $this->c2 = $this->getDoctrine()->getRepository('AppBundle:Rates')->findCurrent();
-      }
-//      if ($this->c2 == 0)
-//      {
-//        $this->c2 = 1000000;
-//      }
-      
-      return $this->c2;
-    }
-    
-    
-    public function getRandomWinneer()
-    {
-      $data = [
-        'enabled' => false,
-        'name'    => "Иванов Владимир",
-        'prize'   => "100 000",
-      ];
-      
-      return $data;
     }
     
     public function regions()
@@ -295,31 +263,10 @@
       return $this->doctrine;
     }
     
-    public function dolkaExist()
-    {
-      if ($this->getRemaining() <= 133300)
-      {
-        return false;
-      }
-      
-      return true;
-    }
-    
-    public function getRemaining()
-    {
-      if ($this->cc == null)
-      {
-        $this->cc = $this->getDoctrine()->getRepository('AppBundle:Rates')->findRemaining();
-      }
-      
-      return $this->cc;
-    }
-    
     public function plural($i)
     {
       return $this->splur($i, 'Долька', 'Дольки', 'Долек');
     }
-    
     
     public function splur($n, $t1, $t2, $t3)
     {

@@ -48,373 +48,70 @@
         </div>
         <div class="table__content" id="jsScrollContent">
           <div class="table__list table__list_items_5">
-            <div class="table__item">
-              <div class="table__item-content table__item-content_font_small">
-                <div class="table__box">
-                  <div class="table__text">1234 5678 12a34 5678</div>
-                </div>
-                <div class="table__box">
-                  <div class="table__date">12.09.2017</div>
-                </div>
-                <div class="table__box">
-                  <div class="table__check"><img class="table__img" src="{{ asset('images/check-photo.png') }}" alt="">
+            {% if receipts is defined %}
+            {% for key,value in receipts %}
+              <div class="table__item">
+                <div class="table__item-content table__item-content_font_small">
+                  <div class="table__box">
+                    <div class="table__text">{{ value.id }}</div>
                   </div>
-                </div>
-                <div class="table__box">
-                  <div class="table__text">
-                    <div class="table__status">Не принят</div>
-                    <div class="table__status-reason">Отсутствует штрих код</div>
+                  <div class="table__box">
+                    <div class="table__date">{{ value.registration_time|date("d.m.y") }}</div>
                   </div>
-                </div>
-                <div class="table__box">
-                  <div class="table__text">Не выйгрышный</div>
-                </div>
-              </div>
-            </div>
-            <div class="table__item">
-              <div class="table__item-content table__item-content_font_small">
-                <div class="table__box">
-                  <div class="table__text">1234 4545 7575 4345</div>
-                </div>
-                <div class="table__box">
-                  <div class="table__date">06.09.2017</div>
-                </div>
-                <div class="table__box">
-                  <div class="table__check"><img class="table__img" src="{{ asset('images/check-photo.png') }}" alt="">
+                  <div class="table__box">
+                    <div class="table__check">
+                      {% if( value.photos|length > 1) %}
+                        <span class="receipt_image" style="cursor: pointer" data-toggle="popover"
+                              title="Изображения чека"
+                              data-content="{% for link in value.photos %}<a href='{{ link }}' target='_blank' class='receipt_image'><img src='{{ asset('images/photo-b.png') }}'></a>{% endfor %}">
+                                  <img class="table__img" src="{{ asset('images/check-photo.png') }}" alt="">
+                                </span>
+                      {% else %}
+                        <a href='{{ value.photos[0] }}' target="_blank" class="receipt_image">
+                          <img class="table__img" src="{{ asset('images/check-photo.png') }}" alt="">
+                        </a>
+                      {% endif %}
+                    </div>
                   </div>
-                </div>
-                <div class="table__box">
-                  <div class="table__text">
-                    <div class="table__status">Принят</div>
+                  <div class="table__box">
+                    <div class="table__text">
+                      <div class="table__status">Не принят</div>
+                      <div class="table__status-reason">Отсутствует штрих код</div>
+                    </div>
                   </div>
-                </div>
-                <div class="table__box">
-                  <div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_1.png') }}" alt="">
-                    <a class="table__link jsMoneyMobile" href="#!">Получить</a></div>
-                </div>
-              </div>
-            </div>
-            <div class="table__item">
-              <div class="table__item-content table__item-content_font_small">
-                <div class="table__box">
-                  <div class="table__text">4232 4776 324432 43246</div>
-                </div>
-                <div class="table__box">
-                  <div class="table__date">12.09.2017</div>
-                </div>
-                <div class="table__box">
-                  <div class="table__check"><img class="table__img" src="{{ asset('images/check-photo.png') }}" alt="">
-                  </div>
-                </div>
-                <div class="table__box">
-                  <div class="table__text">
-                    <div class="table__status">Принят</div>
-                  </div>
-                </div>
-                <div class="table__box">
-                  <div class="table__text">Не выйгрышный</div>
-                </div>
-              </div>
-            </div>
-            <div class="table__item">
-              <div class="table__item-content table__item-content_font_small">
-                <div class="table__box">
-                  <div class="table__text">33434 56565 55 656534</div>
-                </div>
-                <div class="table__box">
-                  <div class="table__date">06.09.2017</div>
-                </div>
-                <div class="table__box">
-                  <div class="table__check"><img class="table__img" src="{{ asset('images/check-photo.png') }}" alt="">
-                  </div>
-                </div>
-                <div class="table__box">
-                  <div class="table__text">
-                    <div class="table__status">Принят</div>
-                  </div>
-                </div>
-                <div class="table__box">
-                  <div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_2.png') }}" alt="">
+                  <div class="table__box">
+                    <div class="table__text">Не выйгрышный</div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="table__item">
-              <div class="table__item-content table__item-content_font_small">
-                <div class="table__box">
-                  <div class="table__text">1234 5678 12a34 5678</div>
-                </div>
-                <div class="table__box">
-                  <div class="table__date">12.09.2017</div>
-                </div>
-                <div class="table__box">
-                  <div class="table__check"><img class="table__img" src="{{ asset('images/check-photo.png') }}" alt="">
+            {% else %}
+              <div class="table__item">
+                <div class="table__item-content table__item-content_font_small">
+                  <div class="table__box">
+                    <div class="table__text">1234 5678 12a34 5678</div>
                   </div>
-                </div>
-                <div class="table__box">
-                  <div class="table__text">
-                    <div class="table__status">Не принят</div>
-                    <div class="table__status-reason">Дубль</div>
+                  <div class="table__box">
+                    <div class="table__date">12.09.2017										</div>
                   </div>
-                </div>
-                <div class="table__box">
-                  <div class="table__text">Не выйгрышный</div>
-                </div>
-              </div>
-            </div>
-            <div class="table__item">
-              <div class="table__item-content table__item-content_font_small">
-                <div class="table__box">
-                  <div class="table__text">33434 56565 55 656534</div>
-                </div>
-                <div class="table__box">
-                  <div class="table__date">06.09.2017</div>
-                </div>
-                <div class="table__box">
-                  <div class="table__check"><img class="table__img" src="{{ asset('images/check-photo.png') }}" alt="">
+                  <div class="table__box">
+                    <div class="table__check">
+                      <a href='фывфыв1' target='_blank' class='receipt_image'><img src='{{ asset('images/check-photo.png') }}'></a>
+                      <a href='фывфыв2' target='_blank' class='receipt_image'><img src='{{ asset('images/check-photo.png') }}'></a>
+                    </div>
                   </div>
-                </div>
-                <div class="table__box">
-                  <div class="table__text">
-                    <div class="table__status">Принят</div>
+                  <div class="table__box">
+                    <div class="table__text">
+                      <div class="table__status">Не принят</div>
+                      <div class="table__status-reason">Дубль</div>
+                    </div>
                   </div>
-                </div>
-                <div class="table__box">
-                  <div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_3.png') }}" alt="">
+                  <div class="table__box">
+                    <div class="table__text">Не выйгрышный</div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="table__item">
-              <div class="table__item-content table__item-content_font_small">
-                <div class="table__box">
-                  <div class="table__text">1234 5678 12a34 5678</div>
-                </div>
-                <div class="table__box">
-                  <div class="table__date">12.09.2017</div>
-                </div>
-                <div class="table__box">
-                  <div class="table__check"><img class="table__img" src="{{ asset('images/check-photo.png') }}" alt="">
-                  </div>
-                </div>
-                <div class="table__box">
-                  <div class="table__text">
-                    <div class="table__status">Не принят</div>
-                    <div class="table__status-reason">Дубль</div>
-                  </div>
-                </div>
-                <div class="table__box">
-                  <div class="table__text">Не выйгрышный</div>
-                </div>
-              </div>
-            </div>
-            <div class="table__item">
-              <div class="table__item-content table__item-content_font_small">
-                <div class="table__box">
-                  <div class="table__text">1234 5678 12a34 5678</div>
-                </div>
-                <div class="table__box">
-                  <div class="table__date">12.09.2017</div>
-                </div>
-                <div class="table__box">
-                  <div class="table__check"><img class="table__img" src="{{ asset('images/check-photo.png') }}" alt="">
-                  </div>
-                </div>
-                <div class="table__box">
-                  <div class="table__text">
-                    <div class="table__status">Не принят</div>
-                    <div class="table__status-reason">Дубль</div>
-                  </div>
-                </div>
-                <div class="table__box">
-                  <div class="table__text">Не выйгрышный</div>
-                </div>
-              </div>
-            </div>
-            <div class="table__item">
-              <div class="table__item-content table__item-content_font_small">
-                <div class="table__box">
-                  <div class="table__text">1234 4545 7575 4345</div>
-                </div>
-                <div class="table__box">
-                  <div class="table__date">06.09.2017</div>
-                </div>
-                <div class="table__box">
-                  <div class="table__check"><img class="table__img" src="{{ asset('images/check-photo.png') }}" alt="">
-                  </div>
-                </div>
-                <div class="table__box">
-                  <div class="table__text">
-                    <div class="table__status">Принят</div>
-                  </div>
-                </div>
-                <div class="table__box">
-                  <div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_1.png') }}" alt=""><a
-                        class="table__link jsMoneyMobile" href="#!">Получить </a></div>
-                </div>
-              </div>
-            </div>
-            <div class="table__item">
-              <div class="table__item-content table__item-content_font_small">
-                <div class="table__box">
-                  <div class="table__text">1234 5678 12a34 5678</div>
-                </div>
-                <div class="table__box">
-                  <div class="table__date">12.09.2017</div>
-                </div>
-                <div class="table__box">
-                  <div class="table__check"><img class="table__img" src="{{ asset('images/check-photo.png') }}" alt="">
-                  </div>
-                </div>
-                <div class="table__box">
-                  <div class="table__text">
-                    <div class="table__status">Не принят</div>
-                    <div class="table__status-reason">Дубль</div>
-                  </div>
-                </div>
-                <div class="table__box">
-                  <div class="table__text">Не выйгрышный</div>
-                </div>
-              </div>
-            </div>
-            <div class="table__item">
-              <div class="table__item-content table__item-content_font_small">
-                <div class="table__box">
-                  <div class="table__text">1234 5678 12a34 5678</div>
-                </div>
-                <div class="table__box">
-                  <div class="table__date">12.09.2017</div>
-                </div>
-                <div class="table__box">
-                  <div class="table__check"><img class="table__img" src="{{ asset('images/check-photo.png') }}" alt="">
-                  </div>
-                </div>
-                <div class="table__box">
-                  <div class="table__text">
-                    <div class="table__status">Не принят</div>
-                    <div class="table__status-reason">Дубль</div>
-                  </div>
-                </div>
-                <div class="table__box">
-                  <div class="table__text">Не выйгрышный</div>
-                </div>
-              </div>
-            </div>
-            <div class="table__item">
-              <div class="table__item-content table__item-content_font_small">
-                <div class="table__box">
-                  <div class="table__text">1234 4545 7575 4345</div>
-                </div>
-                <div class="table__box">
-                  <div class="table__date">06.09.2017</div>
-                </div>
-                <div class="table__box">
-                  <div class="table__check"><img class="table__img" src="{{ asset('images/check-photo.png') }}" alt="">
-                  </div>
-                </div>
-                <div class="table__box">
-                  <div class="table__text">
-                    <div class="table__status">Принят</div>
-                  </div>
-                </div>
-                <div class="table__box">
-                  <div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_1.png') }}" alt=""><a
-                        class="table__link jsMoneyMobile" href="#!">Получить </a></div>
-                </div>
-              </div>
-            </div>
-            <div class="table__item">
-              <div class="table__item-content table__item-content_font_small">
-                <div class="table__box">
-                  <div class="table__text">1234 5678 12a34 5678</div>
-                </div>
-                <div class="table__box">
-                  <div class="table__date">12.09.2017</div>
-                </div>
-                <div class="table__box">
-                  <div class="table__check"><img class="table__img" src="{{ asset('images/check-photo.png') }}" alt="">
-                  </div>
-                </div>
-                <div class="table__box">
-                  <div class="table__text">
-                    <div class="table__status">Не принят</div>
-                    <div class="table__status-reason">Дубль</div>
-                  </div>
-                </div>
-                <div class="table__box">
-                  <div class="table__text">Не выйгрышный</div>
-                </div>
-              </div>
-            </div>
-            <div class="table__item">
-              <div class="table__item-content table__item-content_font_small">
-                <div class="table__box">
-                  <div class="table__text">1234 5678 12a34 5678</div>
-                </div>
-                <div class="table__box">
-                  <div class="table__date">12.09.2017</div>
-                </div>
-                <div class="table__box">
-                  <div class="table__check"><img class="table__img" src="{{ asset('images/check-photo.png') }}" alt="">
-                  </div>
-                </div>
-                <div class="table__box">
-                  <div class="table__text">
-                    <div class="table__status">Не принят</div>
-                    <div class="table__status-reason">Дубль</div>
-                  </div>
-                </div>
-                <div class="table__box">
-                  <div class="table__text">Не выйгрышный</div>
-                </div>
-              </div>
-            </div>
-            <div class="table__item">
-              <div class="table__item-content table__item-content_font_small">
-                <div class="table__box">
-                  <div class="table__text">1234 5678 12a34 5678</div>
-                </div>
-                <div class="table__box">
-                  <div class="table__date">12.09.2017</div>
-                </div>
-                <div class="table__box">
-                  <div class="table__check"><img class="table__img" src="{{ asset('images/check-photo.png') }}" alt="">
-                  </div>
-                </div>
-                <div class="table__box">
-                  <div class="table__text">
-                    <div class="table__status">Не принят</div>
-                    <div class="table__status-reason">Дубль</div>
-                  </div>
-                </div>
-                <div class="table__box">
-                  <div class="table__text">Не выйгрышный</div>
-                </div>
-              </div>
-            </div>
-            <div class="table__item">
-              <div class="table__item-content table__item-content_font_small">
-                <div class="table__box">
-                  <div class="table__text">1234 5678 12a34 5678</div>
-                </div>
-                <div class="table__box">
-                  <div class="table__date">12.09.2017</div>
-                </div>
-                <div class="table__box">
-                  <div class="table__check"><img class="table__img" src="{{ asset('images/check-photo.png') }}" alt="">
-                  </div>
-                </div>
-                <div class="table__box">
-                  <div class="table__text">
-                    <div class="table__status">Не принят</div>
-                    <div class="table__status-reason">Дубль</div>
-                  </div>
-                </div>
-                <div class="table__box">
-                  <div class="table__text">Не выйгрышный</div>
-                </div>
-              </div>
-            </div>
+            {% endfor %}
+            {% endif %}
           </div>
         </div>
       </div>
@@ -425,7 +122,27 @@
 
 {% block modals %}
   {{ parent() }}
-  <div class="popup" id="editProfile">
+  <div class="popup" id="enterCode">
+    <div class="popup__close arcticmodal-close">X</div>
+    <div class="popup__wrap">
+      <div class="popup__form-wrap popup__form-wrap_width_min">
+        <form class="form" action="#">
+          <div class="form__row">
+            <div class="form__box">
+              <label class="form__label" for="code">Введите код:</label>
+              <input class="form__input" type="code" id="code">
+            </div>
+          </div>
+          <div class="form__row">
+            <div class="form__box form__box_button">
+              <button class="button button_width_full" type="submit"><span class="button__text">Ок</span></button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="popup" id="updateModal">
     <div class="popup__close arcticmodal-close"></div>
     <h2 class="popup__title">Профиль</h2>
     <div class="popup__wrap popup__wrap_width_big">

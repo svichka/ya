@@ -105,23 +105,23 @@
       }
       $participant = $user->getParticipant();
 
-//      $this->get('logger')->info('try checkParticipantRequiredFields');
-//      if (!$this->get('app.users.banned_listener')->checkParticipantRequiredFields($participant))
-//      {
-//        $this->get('logger')->info('redirect checkParticipantRequiredFields');
-//
-//        return $this->redirectToRoute('index_page', ['show' => 'update']);
-//      }
-//      $this->get('logger')->info('passed checkParticipantRequiredFields');
-//      if (!$this->get('app.users.banned_listener')->checkParticipantAgreement($participant))
-//      {
-//        return $this->redirectToRoute('index_page', ['show' => 'agree']);
-//      }
+      $this->get('logger')->info('try checkParticipantRequiredFields');
+      if (!$this->get('app.users.banned_listener')->checkParticipantRequiredFields($participant))
+      {
+        $this->get('logger')->info('redirect checkParticipantRequiredFields');
 
-//      if (!$this->get('app.users.banned_listener')->checkParticipantAge($participant))
-//      {
-//        return $this->redirectToRoute('index_page', ['show' => 'age']);
-//      }
+        return $this->redirectToRoute('index_page', ['show' => 'update']);
+      }
+      $this->get('logger')->info('passed checkParticipantRequiredFields');
+      if (!$this->get('app.users.banned_listener')->checkParticipantAgreement($participant))
+      {
+        return $this->redirectToRoute('index_page', ['show' => 'agree']);
+      }
+
+      if (!$this->get('app.users.banned_listener')->checkParticipantAge($participant))
+      {
+        return $this->redirectToRoute('index_page', ['show' => 'age']);
+      }
       
       if ($participant->id == 407768)
       {

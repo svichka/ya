@@ -174,7 +174,7 @@
           {
             $participantApi->add($formData, $form->get('password')->getData());
           }catch (ApiFailedException $e){
-            throw new NotCorrectDataException('Ошибка связи с бандлом');
+            throw new NotCorrectDataException("Ошибка связи с бандлом");
           }
           return $this->redirectToRoute('registration_page', ['success' => 'y']);
         }

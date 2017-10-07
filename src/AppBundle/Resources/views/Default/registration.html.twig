@@ -14,13 +14,16 @@
   <main class="main" id="main">
     <div class="main__content">
       <h1 class="title">Регистрация</h1>
-      {% for error in errors %}
-        <p class="bg-danger" style="margin-bottom: 15px; padding: 15px;">{{ error|trans }}</p>
-      {% endfor %}
+
       {% form_theme form 'AppBundle:Forms:form_div_layout.html.twig' %}
       {{ form_start(form) }}
 
       <div class="form__wrapper">
+        <div class="form__row">
+          {% for error in errors %}
+            <p class="bg-danger" style="">{{ error|trans }}</p>
+          {% endfor %}
+        </div>
         <div class="form__row">
           {{ form_row(form.lastname) }}
           {{ form_row(form.firstname) }}
@@ -52,7 +55,8 @@
             <div class="form__checkbox__container">
               {{ form_widget(form.ispdagreed) }}
               {#<input class="form__checkbox" type="checkbox" id="check2" checked>#}
-              <label class="form__checkbox-text" for="registration_form_ispdagreed">Я согласен с правилами акции иa поьзовательским
+              <label class="form__checkbox-text" for="registration_form_ispdagreed">Я согласен с правилами акции иa
+                поьзовательским
                 соглашением, а так же на обработку моих данных</label>
             </div>
           </div>
@@ -74,6 +78,19 @@
       {{ form_end(form) }}
     </div>
   </main>
+{% endblock %}
+{% block stylesheets %}
+  {{ parent() }}
+  <style>
+    .bg-danger {
+      padding: 15px;
+      display: block;
+      margin-bottom: 5px;
+      font-family: 'Opium';
+      font-size: 18px;
+      color: red;
+    }
+  </style>
 {% endblock %}
 {% block javascripts %}
   {{ parent() }}

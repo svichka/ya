@@ -30,9 +30,13 @@
      * @ORM\Column(type="integer")
      */
     private $agree;
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $remember;
     
     /**
-     * @return mixed
+     * @return integer
      */
     public function getAgree()
     {
@@ -40,7 +44,7 @@
     }
     
     /**
-     * @param mixed $agree
+     * @param integer $agree
      */
     public function setAgree($agree)
     {
@@ -48,7 +52,7 @@
     }
     
     /**
-     * @return mixed
+     * @return integer
      */
     public function getId()
     {
@@ -56,10 +60,31 @@
     }
     
     /**
-     * @param mixed $id
+     * @param integer $id
      */
     public function setId($id)
     {
       $this->id = $id;
+    }
+    
+    public function __construct()
+    {
+      $this->remember = "";
+    }
+    
+    /**
+     * @return string
+     */
+    public function getRemember()
+    {
+      return $this->remember;
+    }
+    
+    /**
+     * @param string $remember
+     */
+    public function setRemember($remember)
+    {
+      $this->remember = $remember;
     }
   }

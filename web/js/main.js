@@ -46,12 +46,7 @@ $(function(){
 		return false;
 	});
 	$('.profile__link-edit').on('click', function(){
-		$('#editProfile').arcticmodal(favSyr.popup.options);
-		return false;
-	});
-	$('.button_regcheck').on('click', function(){
-		$.arcticmodal('close');
-		$('#checkRegistr').arcticmodal(favSyr.popup.options);
+		$('#updateModal').arcticmodal(favSyr.popup.options);
 		return false;
 	});
 	$('.jsMoneyMobile').on('click', function(){
@@ -59,24 +54,17 @@ $(function(){
 		$('#mobileMoney').arcticmodal(favSyr.popup.options);
 		return false;
 	});
-	$('.regCheckNotAuth').on('click', function(){
-		$.arcticmodal('close');
-		$('#indexAuth').arcticmodal(favSyr.popup.options);
-		return false;
-	});
+
 	$('.regFale').on('click', function(){
 		$.arcticmodal('close');
 		$('#checkRegistrFale').arcticmodal(favSyr.popup.options);
 		return false;
 	});
 	$('.password-reminder').on('click', function(){
-		$('#passwordReminder').arcticmodal(favSyr.popup.options);
+		$('#restoreModal').arcticmodal(favSyr.popup.options);
 		return false;
 	});
-	$('.faqSubmit').on('click', function(){
-		$('#faqSubmit').arcticmodal(favSyr.popup.options);
-		return false;
-	});
+
 	$('.form__input_type_date').datetimepicker({
 		lang: "ru",
 		timepicker:false,
