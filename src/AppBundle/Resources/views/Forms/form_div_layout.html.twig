@@ -9,7 +9,7 @@
   {% if block_prefixes.1 == 'recaptcha' %}
     <div class="form__box form__box_width_half">
       <script src='https://www.google.com/recaptcha/api.js'></script>
-      <div class="g-recaptcha" data-sitekey="{{ form.vars.value }}"></div>
+      <div class="g-recaptcha g-recaptcha__small" data-sitekey="{{ form.vars.value }}"></div>
       {{- form_errors(form) -}}
     </div>
   {% elseif block_prefixes.1 == 'checkbox' %}

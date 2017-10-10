@@ -11,6 +11,13 @@
 
   {% block stylesheets %}
     <link rel="stylesheet" href="{{ apm_css }}"/>
+    <link rel="stylesheet" href="{{ asset('styles/bootstrap.min.css') }}">
+    <style>
+      .tooltip-inner {
+        max-width: 300px;
+        font-size: 2rem;
+      }
+    </style>
     <link rel="stylesheet" href="{{ asset('styles/main.css') }}">
   {% endblock %}
 </head>
@@ -174,23 +181,21 @@
         </div>
       </div>
       <div class="popup" id="restoreModal">
-        <div class="popup__close arcticmodal-close"></div>
+        <div class="popup__close arcticmodal-close">X</div>
         <h2 class="popup__title">Восстановление пароля</h2>
         <div class="popup__wrap">
-          <p class="popup__text">Мы вышлем ваш новый пароль Вам на e-mail</p>
+          <p class="popup__text">Мы вышлем Ваш новый пароль на e-mail.</p>
           <div class="popup__form-wrap">
-            <form class="form" action="{{ path('recover_password_page') }}" id="form_restore" method="post">
+            <form class="form" action="{{ path('recover_password_page') }}" id="form_restore">
               <div class="form__row">
-                <div class="form__box form__box_width_full">
-                  <div class="restore-helper"></div>
+                <div class="form__box">
+                  <label class="form__label" for="email">Email*</label>
+                  <input class="form__input" type="email" id="email">
                 </div>
               </div>
               <div class="form__row">
-                <div class="form__col">
-                  <div class="form__box form__box_width_full">
-                    <input class="form__input" type="email" id="email_restore"
-                           placeholder="Введите e-mail указанный при регистрации">
-                  </div>
+                <div class="form__box form__box_button">
+                  <button class="button" type="submit"><span class="button__text">Отправить</span></button>
                 </div>
               </div>
             </form>
@@ -230,6 +235,9 @@
   <script src="{{ asset('js/jquery.form.min.js') }}"></script>
   <script src="{{ asset('js/moment.js') }}"></script>
   <script src="{{ asset('js/moment-with-locales.js') }}"></script>
+  <script src="{{ asset('js/popper.min.js') }}"></script>
+  <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+
   <script src="{{ asset('js/main.js') }}"></script>
   <script>
     function toDate(dateStr) {
@@ -252,6 +260,14 @@
       var ageDate = new Date(ageDifMs); // miliseconds from epoch
       return Math.abs(ageDate.getUTCFullYear() - 1970);
     }
+
+    $(function () {
+      $('[data-toggle="popover"]').popover()
+    });
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    });
+
   </script>
 
   {% if(is_granted('ROLE_USER')) %}

@@ -62,10 +62,16 @@
                       <div class="table__check">
                         {% if( value.photos|length > 1) %}
                           <span class="receipt_image" style="cursor: pointer" data-toggle="popover"
-                                title="Изображения чека"
-                                data-content="{% for link in value.photos %}<a href='{{ link }}' target='_blank' class='receipt_image'><img src='{{ asset('images/photo-b.png') }}'></a>{% endfor %}">
-                                  <img class="table__img" src="{{ asset('images/check-photo.png') }}" alt="">
-                                </span>
+                                title="Изображения чека" data-html="true" data-placement="top"
+                                data-content='{% for link in value.photos %}<a href="{{ link }}" target="_blank" class="receipt_image"><img src="{{ asset('images/check-photo.png') }}" style="margin: 0.2rem;"></a>{% endfor %}'>
+                          <img class="table__img" src="{{ asset('images/check-photo.png') }}" alt="">
+                          </span>
+                          {#{% for link in value.photos %}#}
+                          {#<a href='{{ link }}' target="_blank" class="receipt_image" style="display: inline;">#}
+                          {#<img class="table__img" src="{{ asset('images/check-photo.png') }}" alt=""#}
+                          {#style="display: inline;">#}
+                          {#</a>#}
+                          {#{% endfor %}#}
                         {% else %}
                           <a href='{{ value.photos[0] }}' target="_blank" class="receipt_image">
                             <img class="table__img" src="{{ asset('images/check-photo.png') }}" alt="">
@@ -75,8 +81,13 @@
                     </div>
                     <div class="table__box">
                       <div class="table__text">
-                        <div class="table__status">Не принят</div>
-                        <div class="table__status-reason">Отсутствует штрих код</div>
+                        <div class="table__status">{{ value.status|trans }}</div>
+                        {% if value.status =='REJECTED' %}
+                          <div
+                              class="table__status-reason" {% if(value.rejection_reason_comment!='') %} data-toggle="tooltip" title="{{ (value.rejection_reason~'_F')|trans }}" {% endif %}>
+                            {{ value.rejection_reason|trans }}
+                          </div>
+                        {% endif %}
                       </div>
                     </div>
                     <div class="table__box">
@@ -89,33 +100,6 @@
                   <div class="table__item-content table__item-content_font_small">
                     <div class="table__box" style="margin: auto;">
                       Чеков не зарегистрировано
-                    </div>
-                  </div>
-                </div>
-                <div class="table__item">
-                  <div class="table__item-content table__item-content_font_small">
-                    <div class="table__box">
-                      <div class="table__text">Пример</div>
-                    </div>
-                    <div class="table__box">
-                      <div class="table__date">Пример</div>
-                    </div>
-                    <div class="table__box">
-                      <div class="table__check">
-                        <a href='image1.png' target='_blank' class='receipt_image'><img
-                              src='{{ asset('images/check-photo.png') }}'></a>
-                        <a href='image2.png' target='_blank' class='receipt_image'><img
-                              src='{{ asset('images/check-photo.png') }}'></a>
-                      </div>
-                    </div>
-                    <div class="table__box">
-                      <div class="table__text">
-                        <div class="table__status">Не принят</div>
-                        <div class="table__status-reason">Дубль</div>
-                      </div>
-                    </div>
-                    <div class="table__box">
-                      <div class="table__text">Пример</div>
                     </div>
                   </div>
                 </div>

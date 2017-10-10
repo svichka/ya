@@ -32,7 +32,6 @@
      */
     public function feedbackAction(Request $request)
     {
-  
       NotAuthorizedUserFormType::$em = $this->getDoctrine()->getRepository('AppBundle:Theme')->findAll();
       
       $formInputData = [''];
@@ -79,15 +78,19 @@
           
           $this->get('logger')->info('formData' . print_r($formData, true));
           $feedbackApi = new FeedbackApiController();
+          unset($formData[0]);
+          unset($formData['agree']);
+          unset($formData['recaptcha']);
           $ticketNumber = $feedbackApi->add($formData);
           
-          return $this->redirectToRoute('feedback_page', [
-            'form'   => $form->createView(),
-            'success' => 'y',
-            'ticket'  => $ticketNumber['ticket_code'],
-            'theme'  => $formData['theme_id']
-          ]);
-        } catch (NotCorrectDataException $e)
+          $this->addFlash(
+            'feedback',
+            'ok'
+          );
+          
+          return $this->redirectToRoute('feedback_page');
+        }
+        catch (NotCorrectDataException $e)
         {
           $this->get('logger')->error($e->getMessage());
           if ($e->getMessage() == 'Incorrect request data')
@@ -98,7 +101,8 @@
           {
             $this->errors[] = $e->getMessage();
           }
-        } catch (ApiFailedException $e2)
+        }
+        catch (ApiFailedException $e2)
         {
           $this->get('logger')->error('feedback error ' . print_r($formData, true));
           $this->errors[] = "Внутренняя ошибка сервера";
