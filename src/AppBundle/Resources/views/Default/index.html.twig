@@ -60,4 +60,22 @@
 
 {% block javascripts %}
   {{ parent() }}
+  {% for label, messages in app.session.flashbag.all %}
+    {% if label =='registration' %}
+      {% for message in messages %}
+        {% if message =='ok' %}
+          <script>
+            $(function () {
+              $('.free-text-h').html('Регистрация');
+              $('.free-text').html('Поздравляем! <br>Ты успешно зарегистрировался!<br>' +
+                ' Активируй свой аккаунт, перейдя по ссылке в письме,<br>' +
+                'которое отправлено на твой email.<br>' +
+                'Если письмо не пришло сразу, пожалуйста, проверь папку «Спам».');
+              $('#freeModal').arcticmodal(favSyr.popup.options);
+            });
+          </script>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+  {% endfor %}
 {% endblock %}

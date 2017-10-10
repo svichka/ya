@@ -66,12 +66,6 @@
                                 data-content='{% for link in value.photos %}<a href="{{ link }}" target="_blank" class="receipt_image"><img src="{{ asset('images/check-photo.png') }}" style="margin: 0.2rem;"></a>{% endfor %}'>
                           <img class="table__img" src="{{ asset('images/check-photo.png') }}" alt="">
                           </span>
-                          {#{% for link in value.photos %}#}
-                          {#<a href='{{ link }}' target="_blank" class="receipt_image" style="display: inline;">#}
-                          {#<img class="table__img" src="{{ asset('images/check-photo.png') }}" alt=""#}
-                          {#style="display: inline;">#}
-                          {#</a>#}
-                          {#{% endfor %}#}
                         {% else %}
                           <a href='{{ value.photos[0] }}' target="_blank" class="receipt_image">
                             <img class="table__img" src="{{ asset('images/check-photo.png') }}" alt="">

@@ -124,7 +124,7 @@
      */
     public function registrationAction(Request $request)
     {
-      $form = $this->createForm(RegistrationFormType::class, new Participant(),['attr'=>['class'=>'form']]);
+      $form = $this->createForm(RegistrationFormType::class, new Participant(), ['attr' => ['class' => 'form']]);
       
       $form->handleRequest($request);
       if ($form->isSubmitted() && $form->isValid())
@@ -166,17 +166,21 @@
             $formData->ismailingagreed = "N";
           }
           
-          $city = $this->getDoctrine()->getRepository('AppBundle:City')->findOneBy(['guid'=>$formData->cityguid]);
+          $city = $this->getDoctrine()->getRepository('AppBundle:City')->findOneBy(['guid' => $formData->cityguid]);
           $formData->city = $city->getName();
-          $region = $this->getDoctrine()->getRepository('AppBundle:Region')->findOneBy(['guid'=>$formData->regionguid]);
+          $region = $this->getDoctrine()->getRepository('AppBundle:Region')->findOneBy(['guid' => $formData->regionguid]);
           $formData->region = $region->getName();
           try
           {
             $participantApi->add($formData, $form->get('password')->getData());
-          }catch (ApiFailedException $e){
+          }
+          catch (ApiFailedException $e)
+          {
             throw new NotCorrectDataException("Ошибка связи с бандлом");
           }
-          return $this->redirectToRoute('registration_page', ['success' => 'y']);
+          $this->addFlash('registration', 'ok');
+          
+          return $this->redirectToRoute('index_page');
         }
         catch (NotCorrectDataException $e)
         {
