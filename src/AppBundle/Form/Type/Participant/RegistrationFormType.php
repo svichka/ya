@@ -41,8 +41,8 @@
           'placeholder' => 'Пол',
           'label'       => 'Пол',
           'choices'     => [
-            "Ж" => 'N',
-            "М" => 'Y',
+            'N'=> "Ж",
+            'Y'=> "М",
           ],
         ])
         ->add('isageagreed', CheckboxType::class, ['value' => 'Y', 'label' => 'Я подтверждаю, что мне исполнилось 18 лет на момент участия в Акции', 'attr' => ['class' => 'form__checkbox']])

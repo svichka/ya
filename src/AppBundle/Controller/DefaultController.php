@@ -755,7 +755,7 @@
     public
     function metroRedirectAction()
     {
-      return $this->redirect("https://msk.metro-cc.ru/virtual/regulyarniy-katalog-2/napitki/");
+      return $this->redirect("https://www.metro-cc.ru/shop/ru/office/category/%D0%A1%D0%BE%D0%BA%D0%B8_%D0%BD%D0%B5%D0%BA%D1%82%D0%B0%D1%80%D1%8B_%D0%BC%D0%BE%D1%80%D1%81%D1%8B/%D0%A1%D0%BE%D0%BA%D0%B8,%20%D0%BD%D0%B5%D0%BA%D1%82%D0%B0%D1%80%D1%8B,%20%D0%BC%D0%BE%D1%80%D1%81%D1%8B/applyRef?activePage=1&pageSize=24&viewType=2&catTsr=exp&sortBy=DEFAULT&selectRefCmds[0].selected=true&selectRefCmds[0].code=10002&selectRefCmds[0].values[3].selected=true&selectRefCmds[0].values[3].code=4294965411&present_components_cs_footer=true&present_components_cs_contentSubArea=true&present_components_cs_footerLinks=true&present_components_cs_specialNavigation=true&present_components_cs_helpFlyout=true&present_components_cs_categoryPageTeaser=false&present_components_cs_metaNavigation=true&present_components_cs_contentServiceTeaserArea=true&present_components_cs_firstLevelNavigation=true&present_components_cs_footerContact=true&present_components_cs_bread=true&present_components_cs_teaserZone=false");
     }
     
     

@@ -22,7 +22,7 @@ class PersonalProfileFormType extends ParticipantFieldsFormType
 			->add('lastname', TextType::class, ['disabled' => true])
 			->add('firstname', TextType::class, ['disabled' => true])
 			->add('secname', TextType::class, ['disabled' => true])
-			->add('ismale', ChoiceType::class, ['choices_as_values' => true, 'choices'  => ['female' => 'N', 'male' => 'Y'], 'expanded' => true, 'multiple' => false, 'disabled' => true])
+			->add('ismale', ChoiceType::class, ['choices_as_values' => true, 'choices'  => ['N' => 'Ж', 'Y' => 'М'], 'expanded' => true, 'multiple' => false, 'disabled' => true])
 			->add('birthdate', TextType::class, ['constraints' => [new Constraints\RussianDate()], 'attr' => ['class' => 'js-datepicker'], 'disabled' => true])
 			->add('countrycode', HiddenType::class, ['disabled' => true])
 			->add('regionguid', ChoiceType::class, ['disabled' => true])

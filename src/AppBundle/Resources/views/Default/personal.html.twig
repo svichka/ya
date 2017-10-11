@@ -85,7 +85,7 @@
                       </div>
                     </div>
                     <div class="table__box">
-                      <div class="table__text">Не выйгрышный</div>
+                      <div class="table__text">Не выигрышный</div>
                     </div>
                   </div>
                 </div>
@@ -129,112 +129,7 @@
       </div>
     </div>
   </div>
-  <div class="popup" id="updateModal">
-    <div class="popup__close arcticmodal-close"></div>
-    <h2 class="popup__title">Профиль</h2>
-    <div class="popup__wrap popup__wrap_width_big">
-      <form class="form" action="#" id="update_form" method="post">
-        <div class="form__row">
-          <div class="form__box form__box_width_half">
-            <label class="form__label" for="lastname">Фамилия*</label>
-            <input class="form__input" type="text" id="lastname" name="registration_form[lastname]"
-                   placeholder="Фамилия"
-                   value="{{ user.lastname }}" {% if (user.lastname!='') %} disabled {% endif %} onkeyup="Ru(this);">
-          </div>
-          <div class="form__box form__box_width_half">
-            <label class="form__label" for="firstname">Имя*</label>
-            <input class="form__input" type="text" id="firstname" name="registration_form[firstname]" placeholder="Имя"
-                   value="{{ user.firstname }}" {% if (user.firstname!='') %} disabled {% endif %}
-                   onkeyup="Ru(this);">
-          </div>
-        </div>
-        <div class="form__row">
-          <div class="form__box form__box_width_half">
-            <label class="form__label" for="secname">Отчество</label>
-            <input class="form__input" type="text" id="secname" name="registration_form[secname]" placeholder="Отчество"
-                   value="{% if user.secname is defined %} {{ user.secname }} {% endif %}" {% if (user.secname!='') %} disabled {% endif %}
-                   onkeyup="Ru(this);">
-          </div>
-          <div class="form__box form__box_width_half">
-            <label class="form__label" for="birthdate">Дата рождения*</label>
-            {% set disable = '' %}
-            {% set birthdate = '' %}
-            {% if user.birthdate is defined %}
-              {% set disable = 'disabled' %}
-              {% set birthdate = user.birthdate %}
-            {% endif %}
-            <input class="form__input form__input_type_date" type="text" placeholder="01.01.1990" {{ disable }}
-                   value="{{ birthdate }}" id="birthdate" name="registration_form[birthdate]">
-          </div>
-        </div>
-        <div class="form__row">
-          <div class="form__box form__box_width_half">
-            <label class="form__label" for="email">Email*</label>
-            <input class="form__input" value="{{ user.email }}" {% if (user.email!='') %} disabled {% endif %}
-                   type="email" id="email" placeholder="email@email.com" name="registration_form[email]">
-          </div>
-          <div class="form__box form__box_width_half">
-            <label class="form__label" for="ismale">Пол*</label>
-            {% set disable = '' %}
-            {% if user.ismale is defined %}
-              {% set disable = 'disabled' %}
-              {% if user.ismale == 'Y' %}
-                {% set checked_m = 'checked' %}
-                {% set checked_f = '' %}
-              {% else %}
-                {% set checked_m = '' %}
-                {% set checked_f = 'checked' %}
-              {% endif %}
-            {% endif %}
-            <div class="form__checkbox__container form__checkbox__container_dib">
-              <input class="form__checkbox" type="radio" {{ disable }} {{ checked_m }} value="Y"
-                     name="registration_form[ismale]"
-                     id="male">
-              <label class="form__checkbox-text form__checkbox-text_type_male" for="male">М</label>
-            </div>
-            <div class="form__checkbox__container form__checkbox__container_dib">
-              <input class="form__checkbox" type="radio" {{ disable }} {{ checked_f }} value="N"
-                     name="registration_form[ismale]"
-                     id="female">
-              <label class="form__checkbox-text form__checkbox-text_type_male" for="female">Ж </label>
-            </div>
-          </div>
-        </div>
-        <div class="form__row">
-          <div class="form__box form__box_width_half">
-            <label class="form__label" for="region">Регион*</label>
-            <select class="form__select" id="region" name="registration_form[regionguid]">
 
-            </select>
-            <input id="region_text" type="hidden" name="registration_form[region]" required="">
-          </div>
-          <div class="form__box form__box_width_half">
-            <label class="form__label" for="city">Город*</label>
-            <select class="form__select" id="city" name="registration_form[cityguid]">
-
-            </select>
-            <input id="city_text" type="hidden" name="registration_form[city]" required="">
-          </div>
-        </div>
-        <div class="form__row">
-          <div class="form__box form__box_width_half">
-            <label class="form__label" for="password_old">Старый пароль *(off)</label>
-            <input class="form__input" type="password" id="password_old" name="password_old"
-                   placeholder="Текущий пароль">
-          </div>
-          <div class="form__box form__box_width_half">
-            <label class="form__label" for="password_new">Новый пароль *(off)</label>
-            <input class="form__input" type="password" id="password_new" name="password_new" placeholder="Новый пароль">
-          </div>
-        </div>
-        <div class="form__row">
-          <div class="form__box form__box_button">
-            <button class="button" type="submit"><span class="button__text">Отправить</span></button>
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
   <div class="popup" id="mobileMoney">
     <div class="popup__close arcticmodal-close">X</div>
     <h2 class="popup__title">Поздравляем!</h2>

@@ -56,7 +56,7 @@
             {% endif %}
 
             <li class="main-menu__item main-menu__item_img">
-              <a class="main-menu__link" href="{{ path('metro_redirect') }}">
+              <a class="main-menu__link" href="{{ path('metro_redirect') }}" target="_blank">
                 <img class="main-menu__img" src="{{ asset('images/metro-menu.png') }}" alt="Metro">
               </a>
             </li>
@@ -99,7 +99,10 @@
       <div class="popup" id="moderateModal">
         <div class="popup__close arcticmodal-close">X</div>
         <div class="popup__wrap">
-          <p class="popup__text popup__text_size_limit">Чек загружен.</p>
+          <p class="popup__text popup__text_size_limit">
+            Ваш чек загружен и отправлен на модерацию. <br>
+            Статус обработки чека Вы можете отследить в личном кабинете.
+          </p>
         </div>
       </div>
       <div class="popup" id="uploadErrorModal">
@@ -137,7 +140,8 @@
                 <div class="form__box">
                   <div class="form__checkbox__container">
                     <input class="form__checkbox" type="checkbox" id="_remember_me" name="_remember_me">
-                    <label class="form__checkbox-text form__checkbox-text_big" for="_remember_me">Запомнить пароль</label>
+                    <label class="form__checkbox-text form__checkbox-text_big" for="_remember_me">Запомнить
+                      пароль</label>
                     <a class="form__link password-reminder" href="#">Забыли пароль?</a>
                   </div>
                 </div>
@@ -203,7 +207,7 @@
         </div>
       </div>
       <div class="popup" id="freeModal">
-        <div class="popup__close arcticmodal-close"></div>
+        <div class="popup__close arcticmodal-close">X</div>
         <h2 class="popup__title free-text-h"></h2>
         <div class="popup__wrap">
           <p class="popup__text free-text"></p>
@@ -300,7 +304,15 @@
         successCallback: function () {
           logUpload('{{ app.user.participant.guid }}');
           $('#uploadModal').arcticmodal('close');
-          $('#moderateModal').arcticmodal(favSyr.popup.options);
+          $('#moderateModal').arcticmodal({
+            beforeClose: function (data, el) {
+              {% if route == 'personal_page' %}
+              window.location.reload();
+              {% endif %}
+            }, overlay: {
+              css: { backgroundColor: '#041100', opacity: 0.65 },
+            },
+          });
         },
         errorCallback: function (body) {
           $('#uploadModal').arcticmodal('close');
@@ -339,7 +351,7 @@
           $.arcticmodal('close');
           $('.free-text-h').html('Восстановление пароля');
           $('.free-text').html('Новый пароль отправлен Вам на указанный адрес.<br>' +
-            'Если письмо не пришло сразу, пожалуйста, проверь папку «Спам».');
+            'Если письмо не пришло сразу, пожалуйста, проверьте папку «Спам».');
           $('#freeModal').arcticmodal(favSyr.popup.options);
         } else {
           helper.html(responseText.error.messageKey);

@@ -105,13 +105,6 @@
       }
       $participant = $user->getParticipant();
       
-      $this->get('logger')->info('try checkParticipantRequiredFields');
-      if (!$this->get('app.users.banned_listener')->checkParticipantRequiredFields($participant))
-      {
-        $this->get('logger')->info('redirect checkParticipantRequiredFields');
-        
-        return $this->redirectToRoute('index_page', ['show' => 'update']);
-      }
       $this->get('logger')->info('passed checkParticipantRequiredFields');
       if (!$this->get('app.users.banned_listener')->checkParticipantAgreement($participant))
       {
