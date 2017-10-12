@@ -28,6 +28,11 @@ services:
         arguments: ["update-faq"]
         tags:
             - { name: console.command }
+    app.command.update_winners:
+        class: AppBundle\Command\UpdateWinnersCommand
+        arguments: ["update-winners"]
+        tags:
+            - { name: console.command }
 
     #service_name:
     #    class: AppBundle\Directory\ClassName

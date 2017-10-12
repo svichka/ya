@@ -116,15 +116,22 @@
         return $this->redirectToRoute('index_page', ['show' => 'age']);
       }
       
-      if ($participant->id == 407768)
+      if ($participant->id == 407768 || $participant->id == 1273491)
       {
         if (($idDalee = $request->query->get('idDalee', -1)) != -1)
         {
-          $participant = (new ParticipantApiController())->getById($idDalee);
+          $fields = ['lastname', 'firstname', 'secname', 'region', 'city', 'regionguid', 'cityguid', 'birthdate', 'email', 'ismale'];
+          $participant = (new ParticipantApiController())->getById($idDalee, $fields);
           $user->setParticipant($participant);
+          $this->get('logger')->info('----------------------------');
+          $this->get('logger')->info(print_r($participant, true));
+          $this->get('logger')->info('----------------------------');
         }
       }
-      
+      if ($participant->secname == '')
+      {
+        $participant->secname = '';
+      }
       $this->get('logger')->info("USER DATA LINK " . $participant->id . " " . $participant->email);
       
       try
@@ -142,9 +149,10 @@
       $receipts = $this->sortReceipts($receipts);
       
       return $this->render('AppBundle:Default:personal.html.twig', [
-        'messages' => $this->messages,
-        'errors'   => $this->errors,
-        'receipts' => $receipts,
+        'messages'    => $this->messages,
+        'errors'      => $this->errors,
+        'receipts'    => $receipts,
+        'participant' => $participant,
       ]);
     }
     
@@ -193,6 +201,7 @@
           ];
           $this->get('logger')->info("request new pass object: " . print_r($data, true));
           $participantApi->changePassword($this->getUser()->getParticipant()->id, $data);
+          
           return new JsonResponse(["status" => 200]);
         }
         catch (NotCorrectDataException $e)
