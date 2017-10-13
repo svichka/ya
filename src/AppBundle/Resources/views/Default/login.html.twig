@@ -14,9 +14,9 @@
         {% if error %}
         <div class="form__wrapper form__wrapper_align_center">
           <div class="form__row">
-            <div class="form__box" style=" max-width: 300px" >
+            <div class="form__box" style=" max-width: 400px;margin: auto;margin-bottom: 1em;" >
               <label class="form__label" style="color: red;">
-                {{ error.messageKey|trans(error.messageData, 'security') }}
+                {{ error.messageKey|trans(error.messageData, 'auth') }}
               </label>
             </div>
           </div>

@@ -8,3 +8,4 @@ Auth Unknown Error: Неизвестная ошибка
 Auth Success Message: вы успешно авторизовались
 Auth Logout: Выйти
 Please, activate email: Пожалуйста, перейдите по ссылке в письме активации
+Invalid credentials.: Неправильный логин или пароль

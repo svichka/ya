@@ -18,7 +18,7 @@
         font-size: 2rem;
       }
     </style>
-    <link rel="stylesheet" href="{{ asset('styles/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('styles/main.css') }}?1">
   {% endblock %}
 </head>
 <body>
@@ -242,7 +242,7 @@
   <script src="{{ asset('js/popper.min.js') }}"></script>
   {#<script src="{{ asset('js/bootstrap.min.js') }}"></script>#}
 
-  <script src="{{ asset('js/main.js') }}"></script>
+  <script src="{{ asset('js/main.js') }}?1"></script>
   <script>
     function toDate(dateStr) {
       var parts = dateStr.split(".");

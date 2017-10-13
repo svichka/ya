@@ -32,9 +32,10 @@
             'placeholder' => 'Регион*',
             'expanded'    => false,
             'multiple'    => false,
+            'attr'=>['class'=>'form__select']
           ]
         )
-        ->add('cityguid', ChoiceType::class, ['label' => 'ГОРОД*', 'attr' => ["placeholder" => "город"]])
+        ->add('cityguid', ChoiceType::class, ['label' => 'ГОРОД*', 'attr' => ["placeholder" => "город",'class'=>'form__select']])
         ->add('ismale', ChoiceType::class, [
           'expanded'    => true,
           'multiple'    => false,

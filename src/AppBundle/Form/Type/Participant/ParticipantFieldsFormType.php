@@ -20,7 +20,7 @@
   {
     protected $geoApi;
     protected $booleanToYNFormatCallbackTransformer;
-  
+    
     /**
      * @var $em EntityManagerInterface
      */
@@ -110,7 +110,7 @@
         }
         $choices[$title] = $region->getGuid();
       }
-      $options = ['placeholder' => ' ', 'choices_as_values' => true, 'choices' => $choices,'label'=>'Регион*'];
+      $options = ['placeholder' => ' ', 'choices_as_values' => true, 'choices' => $choices, 'label' => 'Регион*', 'attr' => ['class' => 'form__select']];
       if (static::class == 'AppBundle\Form\Type\Participant\PersonalProfileFormType')
       {
         $options['disabled'] = true;
@@ -134,7 +134,7 @@
       }
       if (count($cities) == 1)
       {
-        $options = ['empty_data' => $cities[0]->getGuid(),'label'=>'Город*'];
+        $options = ['empty_data' => $cities[0]->getGuid(), 'label' => 'Город*', 'attr' => ['class' => 'form__select']];
         if (static::class == 'AppBundle\Form\Type\Participant\PersonalProfileFormType')
         {
           $options['disabled'] = true;
@@ -153,7 +153,7 @@
           }
           $choices[$title] = $city['guid'];
         }
-        $options = ['placeholder' => ' ', 'choices_as_values' => true, 'choices' => $choices,'label'=>'Город*'];
+        $options = ['placeholder' => ' ', 'choices_as_values' => true, 'choices' => $choices, 'label' => 'Город*', 'attr' => ['class' => 'form__select']];
         if (static::class == 'AppBundle\Form\Type\Participant\PersonalProfileFormType')
         {
           $options['disabled'] = true;
