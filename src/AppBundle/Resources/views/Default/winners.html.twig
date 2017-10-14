@@ -23,494 +23,118 @@
       <div class="table">
         <div class="table__content table__content_winners" id="jsScrollContent">
           <div class="table__list">
-            <div class="table__item">
-              <div class="table__item-content">
-                <div class="table__box" style="width: 100%; text-align: center">
-&nbsp;
+            {% set i = 1 %}
+            {% for winner in winners %}
+              {% set i = i + 1 %}
+              <div class="table__item">
+                <div class="table__item-content">
+                  <div class="table__box">
+                    <div class="table__name">{{ winner.promocodeParticipantFio }}</div>
+                  </div>
+                  <div class="table__box">
+                    <div class="table__prize">
+                      <img class="table__img"
+                           src="{{ asset('images/prize_icon_' ~ winner.promocodeParticipantPrize ~ '.png') }}" alt="">
+                    </div>
+                  </div>
+                  <div class="table__box">
+                    <div class="table__date">{{ winner.promocodeParticipantDate }}</div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="table__item">
-              <div class="table__item-content">
-                <div class="table__box" style="width: 100%; text-align: center">
-                  &nbsp;
+            {% else %}
+              <div class="table__item">
+                <div class="table__item-content">
+                  <div class="table__box" style="width: 100%; text-align: center">
+                    &nbsp;
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="table__item">
-              <div class="table__item-content">
-                <div class="table__box" style="width: 100%; text-align: center">
-                  &nbsp;
+              <div class="table__item">
+                <div class="table__item-content">
+                  <div class="table__box" style="width: 100%; text-align: center">
+                    &nbsp;
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="table__item">
-              <div class="table__item-content">
-                <div class="table__box" style="width: 100%; text-align: center">
-                  &nbsp;
+              <div class="table__item">
+                <div class="table__item-content">
+                  <div class="table__box" style="width: 100%; text-align: center">
+                    &nbsp;
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="table__item">
-              <div class="table__item-content">
-                <div class="table__box" style="width: 100%; text-align: center">
-                  Розыгрыши не проводились
+              <div class="table__item">
+                <div class="table__item-content">
+                  <div class="table__box" style="width: 100%; text-align: center">
+                    &nbsp;
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="table__item">
-              <div class="table__item-content">
-                <div class="table__box" style="width: 100%; text-align: center">
-                  &nbsp;
+              <div class="table__item">
+                <div class="table__item-content">
+                  <div class="table__box" style="width: 100%; text-align: center">
+                    Розыгрыши не проводились
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="table__item">
-              <div class="table__item-content">
-                <div class="table__box" style="width: 100%; text-align: center">
-                  &nbsp;
+              <div class="table__item">
+                <div class="table__item-content">
+                  <div class="table__box" style="width: 100%; text-align: center">
+                    &nbsp;
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="table__item">
-              <div class="table__item-content">
-                <div class="table__box" style="width: 100%; text-align: center">
-                  &nbsp;
+              <div class="table__item">
+                <div class="table__item-content">
+                  <div class="table__box" style="width: 100%; text-align: center">
+                    &nbsp;
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="table__item">
-              <div class="table__item-content">
-                <div class="table__box" style="width: 100%; text-align: center">
-                  &nbsp;
+              <div class="table__item">
+                <div class="table__item-content">
+                  <div class="table__box" style="width: 100%; text-align: center">
+                    &nbsp;
+                  </div>
                 </div>
               </div>
-            </div>
-            {#<div class="table__item">#}
-              {#<div class="table__item-content">#}
-                {#<div class="table__box">#}
-                  {#<div class="table__name">Петрова Анна Ивановна</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_1.png') }}" alt="">#}
-                  {#</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__date">12.09.2017</div>#}
-                {#</div>#}
-              {#</div>#}
-            {#</div>#}
-            {#<div class="table__item">#}
-              {#<div class="table__item-content">#}
-                {#<div class="table__box">#}
-                  {#<div class="table__name">Петрова Анна Ивановна</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_2.png') }}" alt="">#}
-                  {#</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__date">12.09.2017</div>#}
-                {#</div>#}
-              {#</div>#}
-            {#</div>#}
-            {#<div class="table__item">#}
-              {#<div class="table__item-content">#}
-                {#<div class="table__box">#}
-                  {#<div class="table__name">Сидоров Василий Петрович</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_3.png') }}" alt="">#}
-                  {#</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__date">12.09.2017</div>#}
-                {#</div>#}
-              {#</div>#}
-            {#</div>#}
-            {#<div class="table__item">#}
-              {#<div class="table__item-content">#}
-                {#<div class="table__box">#}
-                  {#<div class="table__name">Иванов Иван Иванович</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_1.png') }}" alt="">#}
-                  {#</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__date">12.09.2017</div>#}
-                {#</div>#}
-              {#</div>#}
-            {#</div>#}
-            {#<div class="table__item">#}
-              {#<div class="table__item-content">#}
-                {#<div class="table__box">#}
-                  {#<div class="table__name">Петрова Анна Ивановна</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_3.png') }}" alt="">#}
-                  {#</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__date">12.09.2017</div>#}
-                {#</div>#}
-              {#</div>#}
-            {#</div>#}
-            {#<div class="table__item">#}
-              {#<div class="table__item-content">#}
-                {#<div class="table__box">#}
-                  {#<div class="table__name">Сидоров Василий Петрович</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_1.png') }}" alt="">#}
-                  {#</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__date">12.09.2017</div>#}
-                {#</div>#}
-              {#</div>#}
-            {#</div>#}
-            {#<div class="table__item">#}
-              {#<div class="table__item-content">#}
-                {#<div class="table__box">#}
-                  {#<div class="table__name">Сидоров Василий Петрович</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_3.png') }}" alt="">#}
-                  {#</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__date">12.09.2017</div>#}
-                {#</div>#}
-              {#</div>#}
-            {#</div>#}
-            {#<div class="table__item">#}
-              {#<div class="table__item-content">#}
-                {#<div class="table__box">#}
-                  {#<div class="table__name">Сидоров Василий Петрович</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_1.png') }}" alt="">#}
-                  {#</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__date">12.09.2017</div>#}
-                {#</div>#}
-              {#</div>#}
-            {#</div>#}
-            {#<div class="table__item">#}
-              {#<div class="table__item-content">#}
-                {#<div class="table__box">#}
-                  {#<div class="table__name">Сидоров Василий Петрович</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_1.png') }}" alt="">#}
-                  {#</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__date">12.09.2017</div>#}
-                {#</div>#}
-              {#</div>#}
-            {#</div>#}
-            {#<div class="table__item">#}
-              {#<div class="table__item-content">#}
-                {#<div class="table__box">#}
-                  {#<div class="table__name">Сидоров Василий Петрович</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_3.png') }}" alt="">#}
-                  {#</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__date">12.09.2017</div>#}
-                {#</div>#}
-              {#</div>#}
-            {#</div>#}
-            {#<div class="table__item">#}
-              {#<div class="table__item-content">#}
-                {#<div class="table__box">#}
-                  {#<div class="table__name">Иванов Иван Иванович</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_1.png') }}" alt="">#}
-                  {#</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__date">12.09.2017</div>#}
-                {#</div>#}
-              {#</div>#}
-            {#</div>#}
-            {#<div class="table__item">#}
-              {#<div class="table__item-content">#}
-                {#<div class="table__box">#}
-                  {#<div class="table__name">Петрова Анна Ивановна</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_3.png') }}" alt="">#}
-                  {#</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__date">12.09.2017</div>#}
-                {#</div>#}
-              {#</div>#}
-            {#</div>#}
-            {#<div class="table__item">#}
-              {#<div class="table__item-content">#}
-                {#<div class="table__box">#}
-                  {#<div class="table__name">Сидоров Василий Петрович</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_1.png') }}" alt="">#}
-                  {#</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__date">12.09.2017</div>#}
-                {#</div>#}
-              {#</div>#}
-            {#</div>#}
-            {#<div class="table__item">#}
-              {#<div class="table__item-content">#}
-                {#<div class="table__box">#}
-                  {#<div class="table__name">Сидоров Василий Петрович</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_3.png') }}" alt="">#}
-                  {#</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__date">12.09.2017</div>#}
-                {#</div>#}
-              {#</div>#}
-            {#</div>#}
-            {#<div class="table__item">#}
-              {#<div class="table__item-content">#}
-                {#<div class="table__box">#}
-                  {#<div class="table__name">Сидоров Василий Петрович</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_1.png') }}" alt="">#}
-                  {#</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__date">12.09.2017</div>#}
-                {#</div>#}
-              {#</div>#}
-            {#</div>#}
-            {#<div class="table__item">#}
-              {#<div class="table__item-content">#}
-                {#<div class="table__box">#}
-                  {#<div class="table__name">Сидоров Василий Петрович</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_1.png') }}" alt="">#}
-                  {#</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__date">12.09.2017</div>#}
-                {#</div>#}
-              {#</div>#}
-            {#</div>#}
-            {#<div class="table__item">#}
-              {#<div class="table__item-content">#}
-                {#<div class="table__box">#}
-                  {#<div class="table__name">Иванов Иван Иванович</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_1.png') }}" alt="">#}
-                  {#</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__date">12.09.2017</div>#}
-                {#</div>#}
-              {#</div>#}
-            {#</div>#}
-            {#<div class="table__item">#}
-              {#<div class="table__item-content">#}
-                {#<div class="table__box">#}
-                  {#<div class="table__name">Петрова Анна Ивановна</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_1.png') }}" alt="">#}
-                  {#</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__date">12.09.2017</div>#}
-                {#</div>#}
-              {#</div>#}
-            {#</div>#}
-            {#<div class="table__item">#}
-              {#<div class="table__item-content">#}
-                {#<div class="table__box">#}
-                  {#<div class="table__name">Петрова Анна Ивановна</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_2.png') }}" alt="">#}
-                  {#</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__date">12.09.2017</div>#}
-                {#</div>#}
-              {#</div>#}
-            {#</div>#}
-            {#<div class="table__item">#}
-              {#<div class="table__item-content">#}
-                {#<div class="table__box">#}
-                  {#<div class="table__name">Сидоров Василий Петрович</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_3.png') }}" alt="">#}
-                  {#</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__date">12.09.2017</div>#}
-                {#</div>#}
-              {#</div>#}
-            {#</div>#}
-            {#<div class="table__item">#}
-              {#<div class="table__item-content">#}
-                {#<div class="table__box">#}
-                  {#<div class="table__name">Иванов Иван Иванович</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_1.png') }}" alt="">#}
-                  {#</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__date">12.09.2017</div>#}
-                {#</div>#}
-              {#</div>#}
-            {#</div>#}
-            {#<div class="table__item">#}
-              {#<div class="table__item-content">#}
-                {#<div class="table__box">#}
-                  {#<div class="table__name">Петрова Анна Ивановна</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_3.png') }}" alt="">#}
-                  {#</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__date">12.09.2017</div>#}
-                {#</div>#}
-              {#</div>#}
-            {#</div>#}
-            {#<div class="table__item">#}
-              {#<div class="table__item-content">#}
-                {#<div class="table__box">#}
-                  {#<div class="table__name">Сидоров Василий Петрович</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_1.png') }}" alt="">#}
-                  {#</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__date">12.09.2017</div>#}
-                {#</div>#}
-              {#</div>#}
-            {#</div>#}
-            {#<div class="table__item">#}
-              {#<div class="table__item-content">#}
-                {#<div class="table__box">#}
-                  {#<div class="table__name">Сидоров Василий Петрович</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_3.png') }}" alt="">#}
-                  {#</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__date">12.09.2017</div>#}
-                {#</div>#}
-              {#</div>#}
-            {#</div>#}
-            {#<div class="table__item">#}
-              {#<div class="table__item-content">#}
-                {#<div class="table__box">#}
-                  {#<div class="table__name">Сидоров Василий Петрович</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_1.png') }}" alt="">#}
-                  {#</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__date">12.09.2017</div>#}
-                {#</div>#}
-              {#</div>#}
-            {#</div>#}
-            {#<div class="table__item">#}
-              {#<div class="table__item-content">#}
-                {#<div class="table__box">#}
-                  {#<div class="table__name">Сидоров Василий Петрович</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_1.png') }}" alt="">#}
-                  {#</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__date">12.09.2017</div>#}
-                {#</div>#}
-              {#</div>#}
-            {#</div>#}
-            {#<div class="table__item">#}
-              {#<div class="table__item-content">#}
-                {#<div class="table__box">#}
-                  {#<div class="table__name">Сидоров Василий Петрович</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_3.png') }}" alt="">#}
-                  {#</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__date">12.09.2017</div>#}
-                {#</div>#}
-              {#</div>#}
-            {#</div>#}
-            {#<div class="table__item">#}
-              {#<div class="table__item-content">#}
-                {#<div class="table__box">#}
-                  {#<div class="table__name">Иванов Иван Иванович</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_1.png') }}" alt="">#}
-                  {#</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__date">12.09.2017</div>#}
-                {#</div>#}
-              {#</div>#}
-            {#</div>#}
-            {#<div class="table__item">#}
-              {#<div class="table__item-content">#}
-                {#<div class="table__box">#}
-                  {#<div class="table__name">Петрова Анна Ивановна</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_3.png') }}" alt="">#}
-                  {#</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__date">12.09.2017</div>#}
-                {#</div>#}
-              {#</div>#}
-            {#</div>#}
-            {#<div class="table__item">#}
-              {#<div class="table__item-content">#}
-                {#<div class="table__box">#}
-                  {#<div class="table__name">Сидоров Василий Петрович</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__prize"><img class="table__img" src="{{ asset('images/prize_icon_1.png') }}" alt="">#}
-                  {#</div>#}
-                {#</div>#}
-                {#<div class="table__box">#}
-                  {#<div class="table__date">12.09.2017</div>#}
-                {#</div>#}
-              {#</div>#}
-            {#</div>#}
+              <div class="table__item">
+                <div class="table__item-content">
+                  <div class="table__box" style="width: 100%; text-align: center">
+                    &nbsp;
+                  </div>
+                </div>
+              </div>
+              {% set i=10 %}
+            {% endfor %}
+
+            {% if i < 10 %}
+              {% set n = 10-i %}
+              {% for i in 0..n %}
+                <div class="table__item">
+                  <div class="table__item-content">
+                    <div class="table__box" style="width: 100%; text-align: center">
+                      &nbsp;
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+            {% endif %}
           </div>
         </div>
       </div>
     </div>
   </main>
+  <div style="display: none">
+    <div class="table__item table__item__copy">
+      <div class="table__item-content">
+        <div class="table__box" style="width: 100%; text-align: center">
+          &nbsp;
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}
 
 {% block stylesheets %}
@@ -519,5 +143,35 @@
 
 {% block javascripts %}
   {{ parent() }}
-
+  <script>
+    $(function () {
+      var item = $('.table__item__copy');
+      $('.form').submit(function () {
+        return false;
+      });
+      $('#fiosearch').on('input', function () {
+        var enteredText = $(this).val().toLowerCase();
+        console.log(enteredText);
+        var i = 1;
+        $('.table__item').each(function () {
+          $(this).closest('.table__item').css('display', 'none');
+          if (~$(this).text().toLowerCase().indexOf(enteredText)) {
+            i++;
+            console.log(i);
+            $(this).closest('.table__item').css('display', 'block');
+          } else if ($(this).text().toLowerCase().trim().length === 0) {
+//            $(this).closest('.table__item').remove();
+          }
+        });
+        console.log(i);
+        if (i < 10) {
+          for (var j = i; j < 10; j++) {
+            var t = item.clone();
+            t.css('display', 'block');
+            $('.table__list').append(t);
+          }
+        }
+      });
+    });
+  </script>
 {% endblock %}

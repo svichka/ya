@@ -36,20 +36,10 @@
      */
     public function winnersAction()
     {
-      $winners = [];
-      $promo_slug = $this->getParameter('promo_slug');
-      $apiLottery = new PromoLotteryApiController();
-      try
-      {
-        $lotteries = $apiLottery->getLotteries($promo_slug);
-        foreach ($lotteries as $lottery)
-        {
-          $winners[] = $apiLottery->getLotteryWinners($promo_slug, 1);
-        }
-  
-      }catch (ApiFailedException $e){
-      
-      }
+      /**
+       * @var \AppBundle\Entity\Winner[] $winners
+       */
+      $winners = $this->getDoctrine()->getRepository('AppBundle:Winner')->findAll();
       
       return $this->render('AppBundle:Default:winners.html.twig', [
         'winners' => $winners,

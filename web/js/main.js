@@ -27,15 +27,6 @@ $(function(){
 			});
 		}
 	}
-	$('#fiosearch').on('input', function(){
-		var enteredText = $(this).val().toLowerCase();
-		$('.table_name').each(function(){
-			$(this).closest('.table_item').css('display', 'none');
-			if (~$(this).text().toLowerCase().indexOf(enteredText)) {
-				$(this).closest('.table_item').css('display', 'block');
-			}
-		});
-	});
 	$('#menuButton').on('click', function(){
 		$(this).toggleClass('mobile-menu-btn_active_close');
 		$('#mainMenu').fadeToggle(0).toggleClass('main-menu_open');

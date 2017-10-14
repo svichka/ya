@@ -82,6 +82,22 @@
 {% block stylesheets %}
   {{ parent() }}
   <style>
+
+    input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+      color: #116401 !important;
+    }
+    input::-moz-placeholder { /* Firefox 19+ */
+      color: #116401 !important;
+    }
+    input:-ms-input-placeholder { /* IE 10+ */
+      color: #116401 !important;
+    }
+    input:-moz-placeholder { /* Firefox 18- */
+      color: #116401 !important;
+    }
+    input::placeholder {
+      color: #116401 !important;
+    }
     .bg-danger {
       padding: 15px;
       display: block;
