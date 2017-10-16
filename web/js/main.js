@@ -63,6 +63,7 @@ $(function(){
 		maxDate:'+1970/01/01'
 	});
 	$('.form__input_type_phone').mask('+7(000)000-00-00');
+  $('.form__input_type_date').mask('00.00.0000');
 	$('.jsOpenContent').click(function () {
 		$('.jsContent').not($(this).next('.jsContent')).slideUp();
 		$(this).next('.jsContent').slideToggle();
