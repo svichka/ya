@@ -85,7 +85,20 @@
                       </div>
                     </div>
                     <div class="table__box">
-                      <div class="table__text">Не выигрышный</div>
+                      <div class="table__text">
+                        {% if win_receipts[value.guid] is defined %}
+                          {% if win_receipts[value.guid] =='ya_tel_50_rub' %}
+                            <img class="table__img" src="{{ asset('images/prize_icon_1.png') }}" alt="">
+                            <a class="table__link jsMoneyMobile" href="#!">Получить</a>
+                          {% elseif win_receipts[value.guid] =='ya_certificate_coctail_spain' %}
+                            <img class="table__img" src="{{ asset('images/prize_icon_2.png') }}" alt="">
+                          {% elseif win_receipts[value.guid] =='ya_certificate_metro' %}
+                            <img class="table__img" src="{{ asset('images/prize_icon_3.png') }}" alt="">
+                          {% else %}
+                            Не выигрышный
+                          {% endif %}
+                        {% endif %}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -107,264 +120,267 @@
 
 {% endblock %}
 
-{% block modals %}
-  {{ parent() }}
-  <div class="popup" id="enterCode">
-    <div class="popup__close arcticmodal-close">X</div>
-    <div class="popup__wrap">
-      <div class="popup__form-wrap popup__form-wrap_width_min">
-        <form class="form" action="#">
-          <div class="form__row">
-            <div class="form__box">
-              <label class="form__label" for="code">Введите код:</label>
-              <input class="form__input" type="code" id="code">
+  {% block modals %}
+    {{ parent() }}
+    <div class="popup" id="enterCode">
+      <div class="popup__close arcticmodal-close">X</div>
+      <div class="popup__wrap">
+        <div class="popup__form-wrap popup__form-wrap_width_min">
+          <form class="form" action="#">
+            <div class="form__row">
+              <div class="form__box">
+                <label class="form__label" for="code">Введите код:</label>
+                <input class="form__input" type="code" id="code">
+              </div>
             </div>
-          </div>
-          <div class="form__row">
-            <div class="form__box form__box_button">
-              <button class="button button_width_full" type="submit"><span class="button__text">Ок</span></button>
+            <div class="form__row">
+              <div class="form__box form__box_button">
+                <button class="button button_width_full" type="submit"><span class="button__text">Ок</span></button>
+              </div>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="popup" id="updateModal">
-    <div class="popup__close arcticmodal-close"></div>
-    <h2 class="popup__title">Профиль</h2>
-    <div class="popup__wrap popup__wrap_width_big">
-      <form class="form" action="#" id="update_form" method="post">
-        <div class="form__row">
-          <div class="form__box form__box_width_half">
-            <label class="form__label" for="lastname">Фамилия*</label>
-            <input class="form__input" type="text" id="lastname" name="registration_form[lastname]"
-                   placeholder="Фамилия"
-                   value="{{ user.lastname }}" {% if (user.lastname!='') %} disabled {% endif %} onkeyup="Ru(this);">
+    <div class="popup" id="updateModal">
+      <div class="popup__close arcticmodal-close"></div>
+      <h2 class="popup__title">Профиль</h2>
+      <div class="popup__wrap popup__wrap_width_big">
+        <form class="form" action="#" id="update_form" method="post">
+          <div class="form__row">
+            <div class="form__box form__box_width_half">
+              <label class="form__label" for="lastname">Фамилия*</label>
+              <input class="form__input" type="text" id="lastname" name="registration_form[lastname]"
+                     placeholder="Фамилия"
+                     value="{{ user.lastname }}" {% if (user.lastname!='') %} disabled {% endif %} onkeyup="Ru(this);">
+            </div>
+            <div class="form__box form__box_width_half">
+              <label class="form__label" for="firstname">Имя*</label>
+              <input class="form__input" type="text" id="firstname" name="registration_form[firstname]"
+                     placeholder="Имя"
+                     value="{{ user.firstname }}" {% if (user.firstname!='') %} disabled {% endif %}
+                     onkeyup="Ru(this);">
+            </div>
           </div>
-          <div class="form__box form__box_width_half">
-            <label class="form__label" for="firstname">Имя*</label>
-            <input class="form__input" type="text" id="firstname" name="registration_form[firstname]" placeholder="Имя"
-                   value="{{ user.firstname }}" {% if (user.firstname!='') %} disabled {% endif %}
-                   onkeyup="Ru(this);">
-          </div>
-        </div>
-        <div class="form__row">
-          <div class="form__box form__box_width_half">
-            <label class="form__label" for="secname">Отчество</label>
-            <input class="form__input" type="text" id="secname" name="registration_form[secname]" placeholder="Отчество"
-                   value="{% if user.secname is defined %} {{ user.secname }} {% endif %}" {% if (user.secname!='') %} disabled {% endif %}
-                   onkeyup="Ru(this);">
-          </div>
-          <div class="form__box form__box_width_half">
-            <label class="form__label" for="birthdate">Дата рождения*</label>
-            {% set disable = '' %}
-            {% set birthdate = '' %}
-            {% if user.birthdate is defined %}
-              {% set disable = 'disabled' %}
-              {% set birthdate = user.birthdate %}
-            {% endif %}
-            <input class="form__input form__input_type_date" type="text" placeholder="01.01.1990" {{ disable }}
-                   value="{{ birthdate }}" id="birthdate" name="registration_form[birthdate]">
-          </div>
-        </div>
-        <div class="form__row">
-          <div class="form__box form__box_width_half">
-            <label class="form__label" for="email">Email*</label>
-            <input class="form__input" value="{{ user.email }}" {% if (user.email!='') %} disabled {% endif %}
-                   type="email" id="email" placeholder="email@email.com" name="registration_form[email]">
-          </div>
-          <div class="form__box form__box_width_half">
-            <label class="form__label" for="ismale">Пол*</label>
-            {% set disable = '' %}
-            {% if user.ismale is defined %}
-              {% set disable = 'disabled' %}
-              {% if user.ismale == 'Y' %}
-                {% set checked_m = 'checked' %}
-                {% set checked_f = '' %}
-              {% else %}
-                {% set checked_m = '' %}
-                {% set checked_f = 'checked' %}
+          <div class="form__row">
+            <div class="form__box form__box_width_half">
+              <label class="form__label" for="secname">Отчество</label>
+              <input class="form__input" type="text" id="secname" name="registration_form[secname]"
+                     placeholder="Отчество"
+                     value="{% if user.secname is defined %} {{ user.secname }} {% endif %}" {% if (user.secname!='') %} disabled {% endif %}
+                     onkeyup="Ru(this);">
+            </div>
+            <div class="form__box form__box_width_half">
+              <label class="form__label" for="birthdate">Дата рождения*</label>
+              {% set disable = '' %}
+              {% set birthdate = '' %}
+              {% if user.birthdate is defined %}
+                {% set disable = 'disabled' %}
+                {% set birthdate = user.birthdate %}
               {% endif %}
-            {% endif %}
-            <div class="form__checkbox__container form__checkbox__container_dib">
-              <input class="form__checkbox" type="radio" {{ disable }} {{ checked_m }} value="Y"
-                     name="registration_form[ismale]"
-                     id="male">
-              <label class="form__checkbox-text form__checkbox-text_type_male" for="male">М</label>
-            </div>
-            <div class="form__checkbox__container form__checkbox__container_dib">
-              <input class="form__checkbox" type="radio" {{ disable }} {{ checked_f }} value="N"
-                     name="registration_form[ismale]"
-                     id="female">
-              <label class="form__checkbox-text form__checkbox-text_type_male" for="female">Ж </label>
+              <input class="form__input form__input_type_date" type="text" placeholder="01.01.1990" {{ disable }}
+                     value="{{ birthdate }}" id="birthdate" name="registration_form[birthdate]">
             </div>
           </div>
-        </div>
-        <div class="form__row">
-          <div class="form__box form__box_width_half">
-            <label class="form__label" for="region">Регион*</label>
-            <select class="form__select" id="region" name="registration_form[regionguid]">
-
-            </select>
-            <input id="region_text" type="hidden" name="registration_form[region]" required="">
-          </div>
-          <div class="form__box form__box_width_half">
-            <label class="form__label" for="city">Город*</label>
-            <select class="form__select" id="city" name="registration_form[cityguid]">
-
-            </select>
-            <input id="city_text" type="hidden" name="registration_form[city]" required="">
-          </div>
-        </div>
-        <div class="form__row">
-          <label class="form__label">для смены пароля нужна отдельная форма</label>
-        </div>
-        <div class="form__row">
-          <div class="form__box form__box_width_half">
-            <label class="form__label" for="password_old">Старый пароль *(off)</label>
-            <input class="form__input" type="password" id="password_old" name="password_old"
-                   placeholder="Текущий пароль">
-          </div>
-          <div class="form__box form__box_width_half">
-            <label class="form__label" for="password_new">Новый пароль *(off)</label>
-            <input class="form__input" type="password" id="password_new" name="password_new" placeholder="Новый пароль">
-          </div>
-        </div>
-        <div class="form__row">
-          <div class="form__box form__box_button">
-            <button class="button" type="submit"><span class="button__text">Отправить</span></button>
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
-  <div class="popup" id="mobileMoney">
-    <div class="popup__close arcticmodal-close">X</div>
-    <h2 class="popup__title">Поздравляем!</h2>
-    <div class="popup__wrap">
-      <p class="popup__text popup__text_size_limit">Вы выиграли Ежедневный приз – 50 р на телефон!</p>
-      <p class="popup__text popup__text_size_limit">
-        Пожалуйста, укажите номер телефона, на счет которого мы перечислим приз:
-      </p>
-      <div class="popup__form-wrap">
-        <form class="form" action="#">
           <div class="form__row">
-            <div class="form__box">
-              <input class="form__input form__input_type_phone" type="text" id="phone" name="phone">
+            <div class="form__box form__box_width_half">
+              <label class="form__label" for="email">Email*</label>
+              <input class="form__input" value="{{ user.email }}" {% if (user.email!='') %} disabled {% endif %}
+                     type="email" id="email" placeholder="email@email.com" name="registration_form[email]">
+            </div>
+            <div class="form__box form__box_width_half">
+              <label class="form__label" for="ismale">Пол*</label>
+              {% set disable = '' %}
+              {% if user.ismale is defined %}
+                {% set disable = 'disabled' %}
+                {% if user.ismale == 'Y' %}
+                  {% set checked_m = 'checked' %}
+                  {% set checked_f = '' %}
+                {% else %}
+                  {% set checked_m = '' %}
+                  {% set checked_f = 'checked' %}
+                {% endif %}
+              {% endif %}
+              <div class="form__checkbox__container form__checkbox__container_dib">
+                <input class="form__checkbox" type="radio" {{ disable }} {{ checked_m }} value="Y"
+                       name="registration_form[ismale]"
+                       id="male">
+                <label class="form__checkbox-text form__checkbox-text_type_male" for="male">М</label>
+              </div>
+              <div class="form__checkbox__container form__checkbox__container_dib">
+                <input class="form__checkbox" type="radio" {{ disable }} {{ checked_f }} value="N"
+                       name="registration_form[ismale]"
+                       id="female">
+                <label class="form__checkbox-text form__checkbox-text_type_male" for="female">Ж </label>
+              </div>
+            </div>
+          </div>
+          <div class="form__row">
+            <div class="form__box form__box_width_half">
+              <label class="form__label" for="region">Регион*</label>
+              <select class="form__select" id="region" name="registration_form[regionguid]">
+
+              </select>
+              <input id="region_text" type="hidden" name="registration_form[region]" required="">
+            </div>
+            <div class="form__box form__box_width_half">
+              <label class="form__label" for="city">Город*</label>
+              <select class="form__select" id="city" name="registration_form[cityguid]">
+
+              </select>
+              <input id="city_text" type="hidden" name="registration_form[city]" required="">
+            </div>
+          </div>
+          <div class="form__row">
+            <label class="form__label">для смены пароля нужна отдельная форма</label>
+          </div>
+          <div class="form__row">
+            <div class="form__box form__box_width_half">
+              <label class="form__label" for="password_old">Старый пароль *(off)</label>
+              <input class="form__input" type="password" id="password_old" name="password_old"
+                     placeholder="Текущий пароль">
+            </div>
+            <div class="form__box form__box_width_half">
+              <label class="form__label" for="password_new">Новый пароль *(off)</label>
+              <input class="form__input" type="password" id="password_new" name="password_new"
+                     placeholder="Новый пароль">
             </div>
           </div>
           <div class="form__row">
             <div class="form__box form__box_button">
-              <button class="button" type="submit">
-                <span class="button__text">Отправить</span>
-              </button>
+              <button class="button" type="submit"><span class="button__text">Отправить</span></button>
             </div>
           </div>
         </form>
       </div>
     </div>
-  </div>
-{% endblock %}
+    <div class="popup" id="mobileMoney">
+      <div class="popup__close arcticmodal-close">X</div>
+      <h2 class="popup__title">Поздравляем!</h2>
+      <div class="popup__wrap">
+        <p class="popup__text popup__text_size_limit">Вы выиграли Ежедневный приз – 50 р на телефон!</p>
+        <p class="popup__text popup__text_size_limit">
+          Пожалуйста, укажите номер телефона, на счет которого мы перечислим приз:
+        </p>
+        <div class="popup__form-wrap">
+          <form class="form" action="#">
+            <div class="form__row">
+              <div class="form__box">
+                <input class="form__input form__input_type_phone" type="text" id="phone" name="phone">
+              </div>
+            </div>
+            <div class="form__row">
+              <div class="form__box form__box_button">
+                <button class="button" type="submit">
+                  <span class="button__text">Отправить</span>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  {% endblock %}
 
-{% block javascripts %}
-  {{ parent() }}
-  <script>
-    // Список регионов теперь динамический
-    window.regions = {{ banned_listener.regions()|json_encode|raw }};
-    window.cities = {{ banned_listener.cities(user.regionguid)|json_encode|raw }};
-    window.reg_errors = {};
-  </script>
-  <script>
-    $(function () {
-      // Вешаем маски
+  {% block javascripts %}
+    {{ parent() }}
+    <script>
+      // Список регионов теперь динамический
+      window.regions = {{ banned_listener.regions()|json_encode|raw }};
+      window.cities = {{ banned_listener.cities(user.regionguid)|json_encode|raw }};
+      window.reg_errors = {};
+    </script>
+    <script>
+      $(function () {
+        // Вешаем маски
 //          $('#mobilephone').mask('79999999999');
 //          $('#birthdate').mask('99.99.9999');
 
-      //Сбрасываем селекты
-      var select = $("select#region");
-      var selectC = $("select#city");
-      select.html('');
-      selectC.html('');
-      select.append('<option value=""></option>');
-      // Закинем данные юзероа
-      var regionguid = "{{ user.regionguid }}";
+        //Сбрасываем селекты
+        var select = $("select#region");
+        var selectC = $("select#city");
+        select.html('');
+        selectC.html('');
+        select.append('<option value=""></option>');
+        // Закинем данные юзероа
+        var regionguid = "{{ user.regionguid }}";
 
-      var cityguid = "{{ user.cityguid }}";
+        var cityguid = "{{ user.cityguid }}";
 
-      var s = '';
-      for (var key in regions) {
-        if (regions.hasOwnProperty(key)) {
-          s = regions[ key ] === regionguid ? ' selected ' : ' ';
-          select.append('<option value="' + regions[ key ] + '" ' + s + ' >' + key + '</option>');
+        var s = '';
+        for (var key in regions) {
+          if (regions.hasOwnProperty(key)) {
+            s = regions[ key ] === regionguid ? ' selected ' : ' ';
+            select.append('<option value="' + regions[ key ] + '" ' + s + ' >' + key + '</option>');
+          }
         }
-      }
 
 
-      {% if(user.regionguid!='') %}
-      $(select).val('{{ user.regionguid }}').change();
-      $("#region_text").val($("#region option:selected").text());
-      console.log('region change');
-      {#loadCities({ region: '{{ user.regionguid }}' });#}
-      loadJsonCities(cities);
-      $(select).attr('disabled', 'disabled');
-      $("#region_text").attr('disabled', 'disabled');
-      {% endif %}
-
-
-
-      selectC.on('change', function () {
-        $("#city_text").val($("#city option:selected").text());
-      });
-
-      select.on('change', function () {
+        {% if(user.regionguid!='') %}
+        $(select).val('{{ user.regionguid }}').change();
         $("#region_text").val($("#region option:selected").text());
-
-        selectC.html('');
-        selectC.attr('disabled', 'disabled');
-        $("#city_text").removeAttr('disabled', 'disabled');
-        selectC.append('<option value="">Зарузка...</option>');
-        var data = { region: select.val() };
-        loadCities(data);
-      });
-      var reg_helper = $('.reg-helper');
-      var show_reg_errors = function () {
-        reg_helper.html("");
-        for (var key in reg_errors) {
-          if (reg_errors.hasOwnProperty(key)) {
-            console.log(key, reg_errors[ key ]);
-            reg_helper.append("<span>" + reg_errors[ key ] + "</span><br/>");
-          }
-        }
-      };
-
-      function loadJsonCities(json) {
-        var s;
-        selectC.html('');
-        for (var key in json) {
-          if (json.hasOwnProperty(key)) {
-            s = (json[ key ] === cityguid ? "selected" : "");
-            selectC.append('<option value="' + json[ key ] + '" ' + s + ' >' + key + '</option>');
-          }
-        }
-        selectC.removeAttr('disabled', 'disabled');
-        $("#city_text").removeAttr('disabled', 'disabled');
-        {% if(user.cityguid!='') %}
-        $(selectC).val('{{ user.cityguid }}').change();
-        $("#city_text").val($("#city option:selected").text());
-        console.log('city change');
-        $(selectC).attr('disabled', 'disabled');
-        $("#city_text").attr('disabled', 'disabled');
+        console.log('region change');
+        {#loadCities({ region: '{{ user.regionguid }}' });#}
+        loadJsonCities(cities);
+        $(select).attr('disabled', 'disabled');
+        $("#region_text").attr('disabled', 'disabled');
         {% endif %}
-      }
 
-      function loadCities(data) {
-        $.ajax({
-          url: '{{ path('cities_json') }}',
-          type: 'post',
-          data: data,
-          success: loadJsonCities,
+
+
+        selectC.on('change', function () {
+          $("#city_text").val($("#city option:selected").text());
         });
-      }
+
+        select.on('change', function () {
+          $("#region_text").val($("#region option:selected").text());
+
+          selectC.html('');
+          selectC.attr('disabled', 'disabled');
+          $("#city_text").removeAttr('disabled', 'disabled');
+          selectC.append('<option value="">Зарузка...</option>');
+          var data = { region: select.val() };
+          loadCities(data);
+        });
+        var reg_helper = $('.reg-helper');
+        var show_reg_errors = function () {
+          reg_helper.html("");
+          for (var key in reg_errors) {
+            if (reg_errors.hasOwnProperty(key)) {
+              console.log(key, reg_errors[ key ]);
+              reg_helper.append("<span>" + reg_errors[ key ] + "</span><br/>");
+            }
+          }
+        };
+
+        function loadJsonCities(json) {
+          var s;
+          selectC.html('');
+          for (var key in json) {
+            if (json.hasOwnProperty(key)) {
+              s = (json[ key ] === cityguid ? "selected" : "");
+              selectC.append('<option value="' + json[ key ] + '" ' + s + ' >' + key + '</option>');
+            }
+          }
+          selectC.removeAttr('disabled', 'disabled');
+          $("#city_text").removeAttr('disabled', 'disabled');
+          {% if(user.cityguid!='') %}
+          $(selectC).val('{{ user.cityguid }}').change();
+          $("#city_text").val($("#city option:selected").text());
+          console.log('city change');
+          $(selectC).attr('disabled', 'disabled');
+          $("#city_text").attr('disabled', 'disabled');
+          {% endif %}
+        }
+
+        function loadCities(data) {
+          $.ajax({
+            url: '{{ path('cities_json') }}',
+            type: 'post',
+            data: data,
+            success: loadJsonCities,
+          });
+        }
 
 //      $('input#password,input#password_confirm').on('keyup', function () {
 //        if ($('input#password').val() !== $('input#password_confirm').val()) {
@@ -375,81 +391,81 @@
 //        show_reg_errors();
 //      });
 
-      $('input#email').on('keyup', function () {
-        if (!validateEmail($('input#email').val())) {
-          reg_errors[ 'email' ] = "Введите корректный емейл";
-        } else {
-          console.log('email1');
-          delete reg_errors[ 'email' ];
-        }
-        show_reg_errors();
-      });
+        $('input#email').on('keyup', function () {
+          if (!validateEmail($('input#email').val())) {
+            reg_errors[ 'email' ] = "Введите корректный емейл";
+          } else {
+            console.log('email1');
+            delete reg_errors[ 'email' ];
+          }
+          show_reg_errors();
+        });
 
 
-      // update user
+        // update user
 
-      var optionsU = {
-        beforeSubmit: showRequestU,  // pre-submit callback
-        success: showResponseU,  // post-submit callback
-        url: '{{ path('registration_u_json_page') }}',         // override for form's 'action' attribute
-        type: 'post',        // 'get' or 'post', override for form's 'method' attribute
-        dataType: 'json',        // 'xml', 'script', or 'json' (expected server response type)
-        clearForm: false,       // clear all form fields after successful submit
-        resetForm: false        // reset the form after successful submit
-      };
+        var optionsU = {
+          beforeSubmit: showRequestU,  // pre-submit callback
+          success: showResponseU,  // post-submit callback
+          url: '{{ path('registration_u_json_page') }}',         // override for form's 'action' attribute
+          type: 'post',        // 'get' or 'post', override for form's 'method' attribute
+          dataType: 'json',        // 'xml', 'script', or 'json' (expected server response type)
+          clearForm: false,       // clear all form fields after successful submit
+          resetForm: false        // reset the form after successful submit
+        };
 
-      $('form#update_form').ajaxForm(optionsU);
+        $('form#update_form').ajaxForm(optionsU);
 
-      function showRequestU(formData, jqForm, options) {
-        console.log('showRequestU');
-        var valid = true;
-        if ($('#firstname').val().length < 2) {
-          reg_errors[ 'firstname' ] = "Введите имя";
-          valid = false;
-        } else {
-          delete reg_errors[ 'firstname' ];
-        }
-        if ($('#lastname').val().length < 2) {
-          reg_errors[ 'lastname' ] = "Введите фамилию";
-          valid = false;
-        } else {
-          delete reg_errors[ 'lastname' ];
-        }
-        if ($('#region').val().length < 2) {
-          reg_errors[ 'region' ] = "Выберите регион";
-          valid = false;
-        } else {
-          delete reg_errors[ 'region' ];
-        }
+        function showRequestU(formData, jqForm, options) {
+          console.log('showRequestU');
+          var valid = true;
+          if ($('#firstname').val().length < 2) {
+            reg_errors[ 'firstname' ] = "Введите имя";
+            valid = false;
+          } else {
+            delete reg_errors[ 'firstname' ];
+          }
+          if ($('#lastname').val().length < 2) {
+            reg_errors[ 'lastname' ] = "Введите фамилию";
+            valid = false;
+          } else {
+            delete reg_errors[ 'lastname' ];
+          }
+          if ($('#region').val().length < 2) {
+            reg_errors[ 'region' ] = "Выберите регион";
+            valid = false;
+          } else {
+            delete reg_errors[ 'region' ];
+          }
 
-        if ($('#city').val().length < 2) {
-          reg_errors[ 'city' ] = "Выберите город";
-          valid = false;
-        } else {
-          delete reg_errors[ 'city' ];
-        }
-        $("#city_text").val($("#city option:selected").text());
+          if ($('#city').val().length < 2) {
+            reg_errors[ 'city' ] = "Выберите город";
+            valid = false;
+          } else {
+            delete reg_errors[ 'city' ];
+          }
+          $("#city_text").val($("#city option:selected").text());
 //        if ($('#mobilephone').val().length < 2) {
 //          reg_errors['mobilephone'] = "Введите номер телефона";
 //          valid = false;
 //        } else {
 //          delete reg_errors['mobilephone'];
 //        }
-        if ($('#birthdate').val().length !== 10) {
-          reg_errors[ 'birthdate' ] = "Введите дату рождения";
-          valid = false;
-        } else if (moment($('#birthdate').val(), 'DD.MM.YYYY').toDate() === 'Invalid Date') {
-          reg_errors[ 'birthdate' ] = "Введите дату рождения";
-          valid = false;
-        } else {
-          delete reg_errors[ 'birthdate' ];
-          if (_calculateAge(moment($('#birthdate').val(), 'DD.MM.YYYY').toDate()) < 18) {
-            reg_errors[ 'birthdate' ] = "Возраст менее 18 лет";
+          if ($('#birthdate').val().length !== 10) {
+            reg_errors[ 'birthdate' ] = "Введите дату рождения";
+            valid = false;
+          } else if (moment($('#birthdate').val(), 'DD.MM.YYYY').toDate() === 'Invalid Date') {
+            reg_errors[ 'birthdate' ] = "Введите дату рождения";
             valid = false;
           } else {
             delete reg_errors[ 'birthdate' ];
+            if (_calculateAge(moment($('#birthdate').val(), 'DD.MM.YYYY').toDate()) < 18) {
+              reg_errors[ 'birthdate' ] = "Возраст менее 18 лет";
+              valid = false;
+            } else {
+              delete reg_errors[ 'birthdate' ];
+            }
           }
-        }
 
 //        if ($('input#password').val() !== $('input#password_confirm').val()) {
 //          reg_errors[ 'psw' ] = "Пароли должны совпадать";
@@ -457,42 +473,42 @@
 //        } else {
 //          delete reg_errors[ 'psw' ]
 //        }
-        if (!validateEmail($('input#email').val())) {
-          reg_errors[ 'email' ] = "Введите корректный емейл";
-          valid = false;
-        } else {
-          console.log('email3');
-          delete reg_errors[ 'email' ];
-        }
-        show_reg_errors();
-        if ($('form').serialize() === "") {
-          $('#editProfile').arcticmodal('close');
-          return false;
-        }
-        return valid;
-      }
-
-      function showResponseU(responseText, statusText, xhr, $form) {
-        console.log('showResponseU');
-        var helper = $('.reg-helper');
-
-        if (responseText.status === 200) {
-          window.location = '{{ path('personal_page') }}';
-          $('#editProfile').arcticmodal('close');
-        } else {
-          console.log(responseText.errors);
-          helper.html(responseText.errors);
-          if (responseText.errors.length === 1) {
-            console.log(1);
-            console.log(responseText.errors[ 0 ]);
-            if (responseText.errors[ 0 ] === "Participant with this email/phone/social account is already registered") {
-              $('#editProfile').arcticmodal('close');
-            } else {
-            }
+          if (!validateEmail($('input#email').val())) {
+            reg_errors[ 'email' ] = "Введите корректный емейл";
+            valid = false;
+          } else {
+            console.log('email3');
+            delete reg_errors[ 'email' ];
           }
-          helper.css('display', 'inline-block');
+          show_reg_errors();
+          if ($('form').serialize() === "") {
+            $('#editProfile').arcticmodal('close');
+            return false;
+          }
+          return valid;
         }
-      }
-    });
-  </script>
-{% endblock %}
+
+        function showResponseU(responseText, statusText, xhr, $form) {
+          console.log('showResponseU');
+          var helper = $('.reg-helper');
+
+          if (responseText.status === 200) {
+            window.location = '{{ path('personal_page') }}';
+            $('#editProfile').arcticmodal('close');
+          } else {
+            console.log(responseText.errors);
+            helper.html(responseText.errors);
+            if (responseText.errors.length === 1) {
+              console.log(1);
+              console.log(responseText.errors[ 0 ]);
+              if (responseText.errors[ 0 ] === "Participant with this email/phone/social account is already registered") {
+                $('#editProfile').arcticmodal('close');
+              } else {
+              }
+            }
+            helper.css('display', 'inline-block');
+          }
+        }
+      });
+    </script>
+  {% endblock %}

@@ -8,6 +8,7 @@
   use Dalee\PEPUWSClientBundle\Controller\CrmReceiptsController;
   use Dalee\PEPUWSClientBundle\Controller\GeoApiController;
   use Dalee\PEPUWSClientBundle\Controller\LedgerApiController;
+  use Dalee\PEPUWSClientBundle\Controller\PromocodeApiController;
   use Dalee\PEPUWSClientBundle\Controller\PromoLotteryApiController;
   use Dalee\PEPUWSClientBundle\Controller\ReceiptApiController;
   use Dalee\PEPUWSClientBundle\Exception\ApiFailedException;
@@ -144,20 +145,40 @@
         $this->get('logger')->error('receipts error ');
         $receipts = [];
       }
-      
+      $win_receipts = [];
+      /**
+       * @var \Dalee\PEPUWSClientBundle\Entity\PromocodeApplication[] $promocodes
+       */
+      $promocodes = (new PromocodeApiController())->getApplicationsByParticipantId($user->getParticipant()->id);
+      echo "<pre>";
+      foreach ($promocodes as $application)
+      {
+        $promoApplications = $application->getPromoApplications();
+        foreach ($promoApplications as $promoApplication)
+        {
+          if (count($promoApplication['prize_options']))
+          {
+            $options = $promoApplication['prize_options'][0];
+            $guid = $application->getCode();
+            $win_receipts[$guid] = $options['slug'];
+          }
+        }
+      }
+      echo "</pre>";
       
       $receipts = $this->sortReceipts($receipts);
       
       return $this->render('AppBundle:Default:personal.html.twig', [
-        'messages'    => $this->messages,
-        'errors'      => $this->errors,
-        'receipts'    => $receipts,
-        'participant' => $participant,
-      ]);
+        'messages'     => $this->messages,
+        'errors'       => $this->errors,
+        'receipts'     => $receipts,
+        'win_receipts' => $win_receipts,
+        'participant'  => $participant,]);
     }
     
     
-    private function makeErrorsFromFields($fields)
+    private
+    function makeErrorsFromFields($fields)
     {
       foreach ($fields as $field => $status)
       {
@@ -173,7 +194,8 @@
     }
     
     
-    public function validate($val, $err)
+    public
+    function validate($val, $err)
     {
       if (trim($val) == "")
       {
@@ -185,7 +207,8 @@
     /**
      * @Route("/registration_u_json/", name="registration_u_json_page")
      */
-    public function registrationUJsonAction(Request $request)
+    public
+    function registrationUJsonAction(Request $request)
     {
       $participantApi = new ParticipantApiController();
       $request->getClientIp();
@@ -352,7 +375,8 @@
      *
      * @return array
      */
-    public function sortReceipts($receipts): array
+    public
+    function sortReceipts($receipts): array
     {
       $tmp = [];
       $tmp3 = [];

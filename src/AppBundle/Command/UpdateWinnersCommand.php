@@ -94,16 +94,21 @@
                 foreach ($promocodes as $promocode)
                 {
                   $win_object = new Winner();
+                  
                   $win_object->setTicketsCount($winner['tickets_count']);
                   $win_object->setIsActive($winner['is_active']);
                   $win_object->setIsWinner($winner['is_winner']);
                   $win_object->setPrizeApplication($winner['prize_application']);
                   $win_object->setId($winner['id']);
                   $win_object->setPromocodeId($promocode['id']);
-                  $win_object->setPromocodeParticipantId($promocode['participant']['id']);;
-                  $win_object->setPromocodeParticipantCrmIdIlp($promocode['participant']['crm_id_ilp']);;
-                  $win_object->setPromocodeParticipantGuid($promocode['participant']['guid']);;
-                  $win_object->setPromocodeParticipantCrmData(serialize($promocode['participant']['crm_data']));;
+                  $win_object->setPromocodeParticipantId($promocode['participant']['id']);
+                  $win_object->setPromocodeParticipantCrmIdIlp($promocode['participant']['crm_id_ilp']);
+                  $win_object->setPromocodeParticipantGuid($promocode['participant']['guid']);
+                  $win_object->setPromocodeParticipantCrmData(serialize($promocode['participant']['crm_data']));
+// Для списка
+                  $win_object->setPromocodeParticipantDate($lottery['prize']['balance_date']);
+                  $win_object->setPromocodeParticipantPrize($lottery['prize']['ya_certificate_metro']);
+
                   $pApi = new ParticipantApiController();
                   $p = $pApi->getById($promocode['participant']['id'], ['firstname', 'secname', 'lastname']);
                   $fio = "";
