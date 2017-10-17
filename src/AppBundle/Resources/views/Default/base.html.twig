@@ -1,4 +1,4 @@
-{#{% minifyhtml %}#}
+{% minifyhtml %}
 <!DOCTYPE html>
 {% set show = app.request.query.get("show") %}
 {% set action =  banned_listener.getAction() %}
@@ -38,7 +38,7 @@
         font-size: 18px;
       }
     </style>
-    <link rel="stylesheet" href="{{ asset('styles/main.css') }}?1">
+    <link rel="stylesheet" href="{{ asset('styles/main.css') }}?2">
   {% endblock %}
 </head>
 <body>
@@ -269,7 +269,7 @@
   <script src="{{ asset('js/popper.min.js') }}"></script>
   {#<script src="{{ asset('js/bootstrap.min.js') }}"></script>#}
 
-  <script src="{{ asset('js/main.js') }}?1"></script>
+  <script src="{{ asset('js/main.js') }}?2"></script>
   <script>
     function toDate(dateStr) {
       var parts = dateStr.split(".");
@@ -436,4 +436,4 @@
 </noscript> <!-- /Yandex.Metrika counter -->
 </body>
 </html>
-{#{% endminifyhtml %}#}
+{% endminifyhtml %}
