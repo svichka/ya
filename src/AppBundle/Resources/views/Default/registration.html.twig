@@ -18,7 +18,7 @@
       {% form_theme form 'AppBundle:Forms:form_div_layout.html.twig' %}
       {{ form_start(form) }}
 
-      <div class="form__wrapper">
+      <div class="form__wrapper" style="padding-bottom: 20px;">
         <div class="form__row">
           {% for error in errors %}
             <p class="bg-danger" style="">{{ error|trans }}</p>
