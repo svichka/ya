@@ -5,6 +5,21 @@
 <html>
 <head>
   <meta charset="UTF-8"/>
+  <!-- Google Tag Manager -->
+  <script>(function (w, d, s, l, i) {
+      w[ l ] = w[ l ] || [];
+      w[ l ].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js',
+      });
+      var f = d.getElementsByTagName(s)[ 0 ],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+      j.async = true;
+      j.src =
+        'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+      f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-TPF753F');</script>
+  <!-- End Google Tag Manager -->
   <title>{% block title %}Узнай вкус наслаждения{% endblock %}</title>
   <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,11 +32,22 @@
         max-width: 300px;
         font-size: 2rem;
       }
+
+      .restore-helper {
+        color: #b50064;
+        font-size: 18px;
+      }
     </style>
     <link rel="stylesheet" href="{{ asset('styles/main.css') }}?1">
   {% endblock %}
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript>
+  <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TPF753F" height="0" width="0"
+          style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
 {% set route = app.request.attributes.get('_route') %}
 <div class="page">
   <header class="header" id="header">
@@ -194,7 +220,8 @@
               <div class="form__row">
                 <div class="form__box">
                   <label class="form__label" for="email">Email*</label>
-                  <input class="form__input" type="email" id="email">
+                  <input class="form__input" type="email" id="email" name="login">
+                  <p class="restore-helper"></p>
                 </div>
               </div>
               <div class="form__row">
@@ -218,9 +245,9 @@
   <footer class="footer" id="footer">
     <div class="footer__content">
       <div class="footer__row">
-        <a class="footer__link" href="{{ asset('files/Правила акции.pdf') }}">Правила Акции</a>
+        <a class="footer__link" href="{{ asset('files/Правила акции.pdf') }}" target="_blank">Правила Акции</a>
         <span class="footer__delimiter">| </span>
-        <a class="footer__link" href="{{ asset('files/Пользовательское соглашение.pdf') }}">Пользовательское
+        <a class="footer__link" href="{{ asset('files/Пользовательское соглашение.pdf') }}" target="_blank">Пользовательское
           соглашение</a>
       </div>
       <div class="footer__row">
@@ -265,12 +292,12 @@
       return Math.abs(ageDate.getUTCFullYear() - 1970);
     }
 
-//    $(function () {
-//      $('[data-toggle="popover"]').popover()
-//    });
-//    $(function () {
-//      $('[data-toggle="tooltip"]').tooltip()
-//    });
+    //    $(function () {
+    //      $('[data-toggle="popover"]').popover()
+    //    });
+    //    $(function () {
+    //      $('[data-toggle="tooltip"]').tooltip()
+    //    });
 
   </script>
 
@@ -355,6 +382,9 @@
           $('#freeModal').arcticmodal(favSyr.popup.options);
         } else {
           helper.html(responseText.error.messageKey);
+          if (responseText.error.messageKey === 'User not found') {
+            helper.html("Пользователь с указанным адресом электронной почты не найден");
+          }
           helper.css('display', 'inline-block');
         }
       }

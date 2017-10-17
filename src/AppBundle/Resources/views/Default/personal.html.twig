@@ -7,6 +7,7 @@
 {% set user = participant %}
 
 {% block body %}
+  {{ dump(user) }}
   <main class="main" id="main">
     <div class="main__content main__content_with_full">
       <h1 class="title">Личный кабинет</h1>
@@ -89,7 +90,11 @@
                         {% if win_receipts[value.guid] is defined %}
                           {% if win_receipts[value.guid] =='ya_tel_50_rub' %}
                             <img class="table__img" src="{{ asset('images/prize_icon_1.png') }}" alt="">
-                            <a class="table__link jsMoneyMobile" href="#!">Получить</a>
+                            {% if not banned_listener.isSended(value.guid) %}
+                              <a class="table__link data-id='{{ value.guid }}'
+                            {% if  banned_listener.isFilled(user.id) %}jsMoneySend{% else %}jsMoneyMobile{% endif %}"
+                                 href="#!">Получить</a>
+                            {% endif %}
                           {% elseif win_receipts[value.guid] =='ya_certificate_coctail_spain' %}
                             <img class="table__img" src="{{ asset('images/prize_icon_2.png') }}" alt="">
                           {% elseif win_receipts[value.guid] =='ya_certificate_metro' %}
@@ -126,11 +131,12 @@
       <div class="popup__close arcticmodal-close">X</div>
       <div class="popup__wrap">
         <div class="popup__form-wrap popup__form-wrap_width_min">
-          <form class="form" action="#">
+          <form class="form" action="#" id="Code">
             <div class="form__row">
               <div class="form__box">
                 <label class="form__label" for="code">Введите код:</label>
-                <input class="form__input" type="code" id="code">
+                <input class="form__input" type="text" id="code" name="code">
+                <label class="form__label code-helper"></label>
               </div>
             </div>
             <div class="form__row">
@@ -263,10 +269,11 @@
           Пожалуйста, укажите номер телефона, на счет которого мы перечислим приз:
         </p>
         <div class="popup__form-wrap">
-          <form class="form" action="#">
+          <form class="form jsMoney" id="jsMoney" action="#">
             <div class="form__row">
               <div class="form__box">
-                <input class="form__input form__input_type_phone" type="text" id="phone" name="phone">
+                <input class="form__input form__input_type_phone" type="text" id="phone"
+                       name="mobilephone">
               </div>
             </div>
             <div class="form__row">
@@ -292,6 +299,56 @@
     </script>
     <script>
       $(function () {
+        // jsMoney
+        var optionsCode = {
+          beforeSubmit: showRequestCode,  // pre-submit callback
+          success: showResponseCode,  // post-submit callback
+          url: '{{ path('mobile_code') }}',         // override for form's 'action' attribute
+          type: 'post',        // 'get' or 'post', override for form's 'method' attribute
+          dataType: 'json',        // 'xml', 'script', or 'json' (expected server response type)
+          clearForm: false,       // clear all form fields after successful submit
+          resetForm: false        // reset the form after successful submit
+        };
+
+        $('form#code').ajaxForm(optionsCode);
+
+        function showRequestCode(formData, jqForm, options) {
+          $('.code-helper').text('');
+          $('.code-helper').css('display', 'none');
+        }
+
+        function showResponseCode(responseText, statusText, xhr, $form) {
+          if (responseText.status === 200) {
+            $.arcticmodal('close');
+            window.location.reload;
+          } else {
+            $('.code-helper').text(responseText.errors);
+            $('.code-helper').css('display', 'block');
+          }
+        }
+
+        $('.jsMoneySend').on('click', function () {
+          console.log('jsMoneySend');
+          {% if user.isphoneactivated=='Y' %}
+          $.ajax({
+            url: '{{ path('send_money') }}',
+            data: { guid: $(this).data('id') },
+          }).done(function (json) {
+            console.log(json);
+          });
+          {% else %}
+          $.arcticmodal('close');
+          $('#enterCode').arcticmodal(favSyr.popup.options);
+          {% endif %}
+          return false;
+        });
+        $('.jsMoneyMobile').on('click', function () {
+          console.log('jsMoneyMobile');
+          $.arcticmodal('close');
+          $('#mobileMoney').arcticmodal(favSyr.popup.options);
+          return false;
+        });
+
         // Вешаем маски
 //          $('#mobilephone').mask('79999999999');
 //          $('#birthdate').mask('99.99.9999');
@@ -315,7 +372,6 @@
           }
         }
 
-
         {% if(user.regionguid!='') %}
         $(select).val('{{ user.regionguid }}').change();
         $("#region_text").val($("#region option:selected").text());
@@ -325,8 +381,6 @@
         $(select).attr('disabled', 'disabled');
         $("#region_text").attr('disabled', 'disabled');
         {% endif %}
-
-
 
         selectC.on('change', function () {
           $("#city_text").val($("#city option:selected").text());
@@ -401,6 +455,26 @@
           show_reg_errors();
         });
 
+        // jsMoney
+        var optionsjsMoney = {
+          beforeSubmit: showRequestjsMoney,  // pre-submit callback
+          success: showResponsejsMoney,  // post-submit callback
+          url: '{{ path('mobile_u_json_page') }}',         // override for form's 'action' attribute
+          type: 'post',        // 'get' or 'post', override for form's 'method' attribute
+          dataType: 'json',        // 'xml', 'script', or 'json' (expected server response type)
+          clearForm: false,       // clear all form fields after successful submit
+          resetForm: false        // reset the form after successful submit
+        };
+
+        $('form#jsMoney').ajaxForm(optionsjsMoney);
+
+        function showRequestjsMoney(formData, jqForm, options) {
+        }
+
+        function showResponsejsMoney(responseText, statusText, xhr, $form) {
+          $.arcticmodal('close');
+          $('#enterCode').arcticmodal(favSyr.popup.options);
+        }
 
         // update user
 

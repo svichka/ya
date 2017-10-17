@@ -40,11 +40,7 @@ $(function(){
 		$('#updateModal').arcticmodal(favSyr.popup.options);
 		return false;
 	});
-	$('.jsMoneyMobile').on('click', function(){
-		$.arcticmodal('close');
-		$('#mobileMoney').arcticmodal(favSyr.popup.options);
-		return false;
-	});
+
 
 	$('.regFale').on('click', function(){
 		$.arcticmodal('close');

@@ -34,6 +34,10 @@
      * @ORM\Column(type="string")
      */
     private $remember;
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $mobile_filled;
     
     /**
      * @return integer
@@ -70,6 +74,7 @@
     public function __construct()
     {
       $this->remember = "";
+      $this->mobile_filled = 0;
     }
     
     /**
@@ -86,5 +91,21 @@
     public function setRemember($remember)
     {
       $this->remember = $remember;
+    }
+    
+    /**
+     * @return mixed
+     */
+    public function getMobileFilled()
+    {
+      return $this->mobile_filled;
+    }
+    
+    /**
+     * @param mixed $mobile_filled
+     */
+    public function setMobileFilled($mobile_filled)
+    {
+      $this->mobile_filled = $mobile_filled;
     }
   }

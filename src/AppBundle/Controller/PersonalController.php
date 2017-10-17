@@ -370,6 +370,85 @@
       ]);
     }
     
+    
+    /**
+     * @Route("/mobile_code/", name="mobile_code")
+     */
+    public function mobileCodeAction(Request $request)
+    {
+      $participantApi = new ParticipantApiController();
+      $code = $request->request->get('code');
+      if (!$code)
+      {
+        return new JsonResponse([
+          "status" => 400,
+          'errors' => "Введите код",
+        ]);
+      }
+      
+      $user = $this->getUser()->getParticipant();
+      try
+      {
+        $participantApi->activate('MOBILE', $user->mobilephone, $code);
+      }
+      catch (NotCorrectDataException $e)
+      {
+        return new JsonResponse([
+          "status" => 400,
+          'errors' => "Код не верный",
+        ]);
+      }
+      $user->isphoneactivated = 'Y';
+      
+      return new JsonResponse([
+        "status" => 200,
+      ]);
+      
+    }
+    
+    /**
+     * @Route("/mobile_u_json_page/", name="mobile_u_json_page")
+     */
+    public function mobileUpdateAction(Request $request)
+    {
+      $participantApi = new ParticipantApiController();
+      $mobilephone = $request->request->get('mobilephone');
+      $mobilephone = preg_replace("/[^0-9]/", "", $mobilephone);
+      if (!$mobilephone)
+      {
+        return new JsonResponse([
+          "status" => 400,
+          'errors' => "Введите номер телефона",
+        ]);
+      }
+      $user = $this->getUser()->getParticipant();
+      $user->mobilephone = $mobilephone;
+      
+      $p2 = $participantApi->update($user->id, ['mobilephone' => $mobilephone]);
+      
+      $u = $this->getDoctrine()->getRepository('AppBundle:User')->find($user->id);
+      $u->setMobileFilled(1);
+      $this->getDoctrine()->getManager()->merge($u);
+      $this->getDoctrine()->getManager()->flush();
+      
+      $user->setMobilephone($p2->getMobilephone());
+      $user->setIsphoneactivated($p2->getIsphoneactivated());
+      if ($p2->getIsphoneactivated() == 'N')
+      {
+        $participantApi->activationUpdate($mobilephone);
+        
+        return new JsonResponse([
+          "status" => 300,
+        ]);
+      }
+      else
+      {
+        return new JsonResponse([
+          "status" => 200,
+        ]);
+      }
+    }
+    
     /**
      * @param $receipts
      *

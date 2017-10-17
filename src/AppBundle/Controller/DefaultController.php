@@ -3,6 +3,7 @@
   namespace AppBundle\Controller;
   
   use AppBundle\Entity\LogUpload;
+  use AppBundle\Entity\Receipt;
   use Dalee\PEPUWSClientBundle\Controller\CrmReceiptsController;
   use Dalee\PEPUWSClientBundle\Controller\GeoApiController;
   use Dalee\PEPUWSClientBundle\Controller\LedgerApiController;
@@ -470,45 +471,80 @@
     }
     
     /**
+     * @Route("/send_money/", name="send_money")
+     */
+    public function sendMoneyAction(Request $request)
+    {
+      $guid = $request->request->get('guid');
+      if (!$guid)
+      {
+        return new JsonResponse([
+          "status" => 400,
+          'errors' => "Введите guid",
+        ]);
+      }
+      
+      
+      // TODO: запрос к Далее
+      
+      
+      // Записываем локально
+      $receipt = $this->getDoctrine()->getRepository('AppBundle:Receipt')->findOneByGuid($guid);
+      if ($receipt == null)
+      {
+        $receipt = new Receipt();
+        $receipt->setGuid($guid);
+      }
+      $receipt->setSended(1);
+      $this->getDoctrine()->getManager()->merge($receipt);
+      $this->getDoctrine()->getManager()->flush();
+      
+      return JsonResponse::create(
+        [
+          'status' => 200,
+        ]);
+    }
+    
+    /**
      * @Route("/recover_password/", name="recover_password_page")
      */
-    public
-    function recoverPasswordAction(Request $request)
+    public function recoverPasswordAction(Request $request)
     {
       $authenticationUtils = $this->get('security.authentication_utils');
       $error = $authenticationUtils->getLastAuthenticationError();
       
       $lastUsername = $authenticationUtils->getLastUsername();
       
-      $formBuilder = $this->createFormBuilder([], ['translation_domain' => 'personal', 'csrf_protection' => false])
-        ->add('login', EmailType::class, ['data' => $lastUsername, 'constraints' => new Assert\Email()])
-        ->add('save', SubmitType::class, ['label' => $this->get('translator')->trans('Recover password submit')]);
-      
-      $form = $formBuilder->getForm();
-      
-      $form->handleRequest($request);
-      if ($form->isSubmitted() && $form->isValid())
+      $login = $request->request->get('login');
+      if ($login == '')
       {
-        $formData = $form->getData();
-        $participantApi = new ParticipantApiController();
-        try
-        {
-          $this->get('logger')->error("Login: " . $formData['login']);
+        $error = ['messageKey' => 'Введите емейл'];
+        
+        return JsonResponse::create(
+          [
+            'status'        => 400,
+            'last_username' => $lastUsername,
+            'error'         => $error,
+          ]);
+      }
+      $participantApi = new ParticipantApiController();
+      try
+      {
+        $this->get('logger')->error("Login: " . $login);
 //          $participantApi->recoverPassword($formData['login']);
-          $participantApi->dropPassword($formData['login']);
-          $this->messages[] = 'Success recover';
-        }
-        catch (NotCorrectDataException $e)
-        {
-          $error = ['messageKey' => $e->getMessage()];
-          
-          return JsonResponse::create(
-            [
-              'status'        => 400,
-              'last_username' => $lastUsername,
-              'error'         => $error,
-            ]);
-        }
+        $participantApi->dropPassword($login);
+        $this->messages[] = 'Success recover';
+      }
+      catch (NotCorrectDataException $e)
+      {
+        $error = ['messageKey' => $e->getMessage()];
+        
+        return JsonResponse::create(
+          [
+            'status'        => 400,
+            'last_username' => $lastUsername,
+            'error'         => $error,
+          ]);
       }
       
       return JsonResponse::create(

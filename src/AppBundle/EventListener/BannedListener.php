@@ -86,19 +86,19 @@
                 
                 return;
               }
-              
+
 //              $count = $this->getDoctrine()->getRepository('AppBundle:LogUpload')->getLastBan($controller[0]->getUser()->getParticipant()->guid);
 //              if ($count == 0)
 //              {
-                $api = new ParticipantApiController();
-                try
-                {
-                  $data = $api->getBanStatusById($controller[0]->getUser()->getParticipant()->id);
-                }
-                catch (ApiFailedException $e)
-                {
-                  $data['status'] = 'bad';
-                }
+              $api = new ParticipantApiController();
+              try
+              {
+                $data = $api->getBanStatusById($controller[0]->getUser()->getParticipant()->id);
+              }
+              catch (ApiFailedException $e)
+              {
+                $data['status'] = 'bad';
+              }
 //              }
 //              else
 //              {
@@ -131,7 +131,7 @@
 //                }
 //                else
 //                {
-                  $this->action = '#banModal';
+                $this->action = '#banModal';
 //                }
               }
             }
@@ -223,6 +223,28 @@
       return $this->action;
     }
     
+    public function isSended($guid)
+    {
+      $receipt = $this->getDoctrine()->getRepository('AppBundle:Receipt')->findOneByGuid($guid);
+      if ($receipt == null)
+      {
+        return false;
+      }
+      
+      return $receipt->getSended() == 1;
+    }
+    
+    public function isFilled($id)
+    {
+      $u = $this->getDoctrine()->getRepository('AppBundle:User')->find($id);
+      if ($u == null)
+      {
+        return false;
+      }
+      
+      return $u->getMobileFilled() == 1;
+    }
+    
     public function regions()
     {
       $regions = $this->getDoctrine()->getRepository('AppBundle:Region')->findAll();
@@ -240,7 +262,7 @@
       
       return $choices;
     }
-  
+    
     public function cities($region_guid)
     {
       $cities = $this->getDoctrine()->getRepository('AppBundle:City')->findByRegion($region_guid);
@@ -253,9 +275,9 @@
           $title = $city['short_name'] . ' ' . $title;
         }
         $choices[$title] = $city['guid'];
-      
+        
       }
-    
+      
       return $choices;
     }
     
