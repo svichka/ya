@@ -22,7 +22,7 @@
         ->add('theme_id', ChoiceType::class, ['attr' => ['class' => 'form__select form__select_height_high']])
         ->add('email', EmailType::class, ["disabled" => true, 'attr' => ['class' => 'form__input form__input_height_high']])
         ->add('message', TextareaType::class, ['attr' => ['class' => 'form__textarea']])
-        ->add('file', FileType::class, ['required' => false, 'attr' => ['class' => 'form__input form__input_type_file']]);
+        ->add('file', FileType::class, ['required' => false, 'attr' => ['class' => 'form__input form__input_type_file', 'onchange'=>"ValidateSize(this)"]]);
       
       $builder->add('agree', HiddenType::class);
       $builder->add('recaptcha', HiddenType::class);

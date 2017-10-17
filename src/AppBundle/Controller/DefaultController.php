@@ -171,6 +171,7 @@
           $formData->city = $city->getName();
           $region = $this->getDoctrine()->getRepository('AppBundle:Region')->findOneBy(['guid' => $formData->regionguid]);
           $formData->region = $region->getName();
+          
           try
           {
             $participantApi->add($formData, $form->get('password')->getData());
@@ -239,12 +240,14 @@
       $formData->confirm_password = $registration_form['confirm_password'];
       $formData->countrycode = $registration_form['countrycode'];
       $formData->regionguid = $registration_form['regionguid'];
-      $region =$this->getDoctrine()->getRepository('AppBundle:Region')->findOneBy(['guid'=>$registration_form['regionguid']]);
+      $region = $this->getDoctrine()->getRepository('AppBundle:Region')->findOneBy(['guid' => $registration_form['regionguid']]);
+      $this->get('logger')->info('region ' . $region);
       $formData->region = $region;
       $this->validate($formData->region, "Выберите регион");
       $formData->cityguid = $registration_form['cityguid'];
-      $city =$this->getDoctrine()->getRepository('AppBundle:City')->findOneBy(['guid'=>$registration_form['cityguid']]);
+      $city = $this->getDoctrine()->getRepository('AppBundle:City')->findOneBy(['guid' => $registration_form['cityguid']]);
       $formData->city = $city;
+      $this->get('logger')->info('city ' . $city);
       $this->validate($formData->city, "Выберите город");
       $formData->ismale = $registration_form['ismale'];
       $this->validate($formData->ismale, "Выберите пол");

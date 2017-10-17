@@ -24,7 +24,7 @@
         ->add('theme_id', ChoiceType::class, ['attr' => ['class' => 'form__select form__select_height_high']])
         ->add('email', EmailType::class, ['attr' => ['class' => 'form__input form__input_height_high']])
         ->add('message', TextareaType::class, ['attr' => ['class' => 'form__textarea']])
-        ->add('file', FileType::class, ['required' => false, 'attr' => ['class' => 'form__input form__input_type_file']]);
+        ->add('file', FileType::class, ['required' => false, 'attr' => ['class' => 'form__input form__input_type_file', 'onchange'=>"ValidateSize(this)"]]);
       global $kernel;
       $recaptchaService = $kernel->getContainer()->get('app.recaptcha');
       if ($recaptchaService && $recaptchaService->isActive())
