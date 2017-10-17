@@ -321,7 +321,7 @@
 .main-menu__item{display:inline-block;vertical-align:middle;padding:0 15px;}
 @media only screen and (max-width:1023px){.main-menu__item{display:block;padding:15px;}
 }
-.main-menu__link{text-transform:uppercase;font-family:'Opium';font-size:16px;color:#fcef9c;}
+.main-menu__link {text-transform: uppercase; font-family: 'Opium'; font-size: 16px; color: #fcef9c; text-decoration: none; display: inline-block; border-bottom: 1px solid;}
 @media only screen and (max-width:1023px){.main-menu__link{font-size:32px;color:#030f00;text-decoration:none;border-bottom:1px solid #030f00;}
 }
 @media only screen and (max-width:550px){.main-menu__link{font-size:25px;}
