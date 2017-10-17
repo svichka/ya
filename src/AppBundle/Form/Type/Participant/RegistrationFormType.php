@@ -46,8 +46,8 @@
             'Y'=> "М",
           ],
         ])
-        ->add('isageagreed', CheckboxType::class, ['value' => 'Y', 'label' => 'Я подтверждаю, что мне исполнилось 18 лет на момент участия в Акции', 'attr' => ['class' => 'form__checkbox']])
-        ->add('ispdagreed', CheckboxType::class, ['value' => 'Y', 'label' => 'Я согласен с правилами акции и поьзовательским соглашением, а так же на обработку моих данных', 'attr' => ['class' => 'form__checkbox']]);
+        ->add('isageagreed', CheckboxType::class, ['required'=>false ,'value' => 'Y', 'label' => 'Я подтверждаю, что мне исполнилось 18 лет на момент участия в Акции', 'attr' => ['class' => 'form__checkbox']])
+        ->add('ispdagreed', CheckboxType::class, ['required'=>false,'value' => 'Y', 'label' => 'Я согласен с правилами акции и поьзовательским соглашением, а так же на обработку моих данных', 'attr' => ['class' => 'form__checkbox']]);
       
       $builder->addEventListener(FormEvents::PRE_SET_DATA, [$this, 'callbackGeoFields']);
       $builder->addEventListener(FormEvents::PRE_SUBMIT, [$this, 'callbackGeoFields']);
@@ -58,11 +58,8 @@
       {
         $builder->add('recaptcha', RecaptchaType::class, ['mapped' => false, 'value' => $recaptchaService->getPublicKey()]);
       }
-//		$builder->add('save', SubmitType::class, ['label' => 'Registration submit']);
 
-//		$builder->get('isrulesagreed')->addModelTransformer($this->booleanToYNFormatCallbackTransformer);
       $builder->get('ispdagreed')->addModelTransformer($this->booleanToYNFormatCallbackTransformer);
-//		$builder->get('ismailingagreed')->addModelTransformer($this->booleanToYNFormatCallbackTransformer);
       $builder->get('ismale')->addModelTransformer($this->booleanToYNFormatCallbackTransformer);
     }
   }

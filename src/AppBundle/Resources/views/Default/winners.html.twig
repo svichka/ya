@@ -151,22 +151,27 @@
       });
       $('#fiosearch').on('input', function () {
         var enteredText = $(this).val().toLowerCase();
-        console.log(enteredText);
+        console.log('enteredText ' + enteredText);
         var i = 1;
         $('.table__item').each(function () {
-          $(this).closest('.table__item').css('display', 'none');
-          if (~$(this).text().toLowerCase().indexOf(enteredText)) {
-            i++;
-            console.log(i);
-            $(this).closest('.table__item').css('display', 'block');
-          } else if ($(this).text().toLowerCase().trim().length === 0) {
+          if ($(this).text().toLowerCase().trim() === '') {
+            $(this).remove();
+          } else {
+            $(this).closest('.table__item').css('display', 'none');
+            if (~$(this).text().toLowerCase().indexOf(enteredText)) {
+              i++;
+              console.log(i);
+              $(this).closest('.table__item').css('display', 'block');
+            } else if ($(this).text().toLowerCase().trim().length === 0) {
 //            $(this).closest('.table__item').remove();
+            }
           }
         });
         console.log(i);
         if (i < 10) {
           for (var j = i; j < 10; j++) {
             var t = item.clone();
+            console.log('add');
             t.css('display', 'block');
             $('.table__list').append(t);
           }

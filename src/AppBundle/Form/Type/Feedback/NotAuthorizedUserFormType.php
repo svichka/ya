@@ -24,15 +24,17 @@
         ->add('theme_id', ChoiceType::class, ['attr' => ['class' => 'form__select form__select_height_high']])
         ->add('email', EmailType::class, ['attr' => ['class' => 'form__input form__input_height_high']])
         ->add('message', TextareaType::class, ['attr' => ['class' => 'form__textarea']])
-        ->add('file', FileType::class, ['required' => false, 'attr' => ['class' => 'form__input form__input_type_file', 'onchange'=>"ValidateSize(this)"]]);
+        ->add('file', FileType::class, ['required' => false, 'attr' => ['class' => 'form__input form__input_type_file', 'onchange' => "ValidateSize(this)"]])
+        ->add('agree', CheckboxType::class, ['required' => true,'value' => 'Y', 'label' => 'Я согласен на обработку моих данных', 'attr' => ['class' => 'form__checkbox']]);
+      
       global $kernel;
       $recaptchaService = $kernel->getContainer()->get('app.recaptcha');
       if ($recaptchaService && $recaptchaService->isActive())
       {
         $builder->add('recaptcha', RecaptchaType::class, ['mapped' => false, 'value' => $recaptchaService->getPublicKey()]);
       }
-      $builder->add('agree', CheckboxType::class, ['value' => 'Y', 'label' => 'Я согласен на обработку моих данных', 'attr' => ['class' => 'form__checkbox']]);
       
+      $builder->get('agree')->addModelTransformer($this->booleanToYNFormatCallbackTransformer);
       $builder->addEventListener(FormEvents::PRE_SET_DATA, [$this, 'addThemes']);
     }
   }

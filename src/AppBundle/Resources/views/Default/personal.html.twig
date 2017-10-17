@@ -17,7 +17,13 @@
               <div class="profile__name">{{ user.firstname }}
                 <br>{% if user.secname is defined %} {{ user.secname }} {% endif %} {{ user.lastname }}
               </div>
-              <div class="profile__city">{{ user.region }}, {{ user.city }}</div>
+              <div class="profile__city">
+                {% if user.region != '' and user.city!='' %}
+                  {{ user.region }}, {{ user.city }}
+                {% else %}
+                  {{ user.region }} {{ user.city }}
+                {% endif %}
+              </div>
               <div class="profile__email">{{ user.email }}</div>
             </div>
             <div class="profile__edit"><a class="profile__link-edit" href="#!">Изменить</a></div>

@@ -2,7 +2,7 @@
 
 {% block form_widget_simple %}
   {% set type = type|default('text') %}
-  <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+  <input type="{{ type }}" name="{{ full_name }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
 {% endblock form_widget_simple %}
 
 {%- block form_row -%}
@@ -14,7 +14,7 @@
     </div>
   {% elseif block_prefixes.1 == 'checkbox' %}
     <div class="form__checkbox__container">
-      <input class="form__checkbox" type="checkbox" id="{{ form.vars.id }}" checked>
+      <input class="form__checkbox" type="checkbox" id="{{ form.vars.id }}" checked name="{{ form.vars.full_name }}">
       <label class="form__checkbox-text" for="{{ form.vars.id }}">{{ form.vars.label }}</label>
       {{- form_errors(form) -}}
     </div>

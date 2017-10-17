@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form\Type\Feedback;
 
+use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\AbstractType;
 
@@ -17,12 +18,23 @@ abstract class FeedbackFieldsFormType extends AbstractType
    * @var $em \AppBundle\Entity\Theme[]
    */
 	public static $em;
-
-	public function configureOptions(OptionsResolver $resolver)
+  public $booleanToYNFormatCallbackTransformer;
+  
+  public function configureOptions(OptionsResolver $resolver)
 	{
 		$resolver->setDefaults([
 			'translation_domain' => 'feedback'
 		]);
+    $this->booleanToYNFormatCallbackTransformer = new CallbackTransformer(
+      function($value)
+      {
+        return ($value == 'Y') ? true : false;
+      },
+      function($value)
+      {
+        return ($value) ? 'Y' : 'N';
+      }
+    );
 	}
 
 	public function addThemes(FormEvent $event) {

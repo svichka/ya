@@ -162,9 +162,14 @@
           }
           else
           {
-            $this->errors[] = "Согласитесь с условиями";
             $formData->isrulesagreed = "N";
             $formData->ismailingagreed = "N";
+            throw new NotCorrectDataException("Согласитесь с условиями");
+          }
+          
+          if ($formData->isageagreed == "N")
+          {
+            throw new NotCorrectDataException("Подтвердите возраст");
           }
           
           $city = $this->getDoctrine()->getRepository('AppBundle:City')->findOneBy(['guid' => $formData->cityguid]);

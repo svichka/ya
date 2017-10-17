@@ -112,6 +112,10 @@
   {{ parent() }}
   <script type="text/javascript">
     var formPrefix = 'registration_form';
+    $(function () {
+      $('#registration_form_ismale_0').attr('name','registration_form[ismale]');
+      $('#registration_form_ismale_1').attr('name','registration_form[ismale]');
+    })
   </script>
   <script type="text/javascript" src="{{ asset('js/geo_fields.js') }}"></script>
 {% endblock %}

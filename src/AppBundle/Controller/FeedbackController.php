@@ -51,15 +51,21 @@
       if ($form->isSubmitted() && $form->isValid())
       {
         $formData = $form->getData();
-        
+        print_r($formData);
         try
         {
+          if ($formData['agree'] == 'N')
+          {
+            throw new NotCorrectDataException('Укажите согласие на обработку данных');
+          }
+          
           $recaptcha = $this->container->get('app.recaptcha');
           if (!$user && !$recaptcha->isSuccess($request))
           {
             $this->get('logger')->error('recaptcha error');
             throw new NotCorrectDataException('Каптча не заполнена');
           }
+          
           
           if ($formData['file'] instanceof UploadedFile)
           {

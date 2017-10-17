@@ -150,7 +150,7 @@
        * @var \Dalee\PEPUWSClientBundle\Entity\PromocodeApplication[] $promocodes
        */
       $promocodes = (new PromocodeApiController())->getApplicationsByParticipantId($user->getParticipant()->id);
-      echo "<pre>";
+      
       foreach ($promocodes as $application)
       {
         $promoApplications = $application->getPromoApplications();
@@ -164,7 +164,7 @@
           }
         }
       }
-      echo "</pre>";
+      
       
       $receipts = $this->sortReceipts($receipts);
       

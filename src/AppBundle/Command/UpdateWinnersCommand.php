@@ -16,6 +16,7 @@
   use AppBundle\Entity\Winner;
   use Dalee\PEPUWSClientBundle\Controller\GeoApiController;
   use Dalee\PEPUWSClientBundle\Controller\ParticipantApiController;
+  use Dalee\PEPUWSClientBundle\Controller\PromocodeApiController;
   use Dalee\PEPUWSClientBundle\Controller\PromoLotteryApiController;
   use Dalee\PEPUWSClientBundle\Exception\ApiFailedException;
   use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
@@ -55,6 +56,50 @@
       $doctrine = $this->getContainer()->get('doctrine');
       $em = $doctrine->getManager();
       
+      // 50 Рублей на телефон
+      $users = $doctrine->getRepository('AppBundle:User')->findAll();
+      foreach ($users as $user)
+      {
+        /**
+         * @var \Dalee\PEPUWSClientBundle\Entity\PromocodeApplication[] $promocodes
+         */
+        $promocodes = (new PromocodeApiController())->getApplicationsByParticipantId($user->getId());
+        
+        foreach ($promocodes as $application)
+        {
+          $promoApplications = $application->getPromoApplications();
+          
+          foreach ($promoApplications as $promoApplication)
+          {
+            if (count($promoApplication['prize_options']))
+            {
+              $options = $promoApplication['prize_options'][0];
+              $guid = $application->getCode();
+              $win_receipts[$guid] = $options['slug'];
+              $output->writeln(['win', $application->getId()]);
+              $win_object = new Winner();
+              $win_object->setPromocodeParticipantPrize(1);
+              $win_object->setPromocodeParticipantDate(date('d.m.Y',strtotime($options['balance_date'])));
+              $win_object->setId($application->getId());
+              $win_object->setPromocodeId($application->getId());
+              
+              $pApi = new ParticipantApiController();
+              $p = $pApi->getById($user->getId(), ['firstname', 'secname', 'lastname']);
+              $fio = "";
+              $fio .= $p->lastname . " ";
+              $fio .= $p->firstname . " ";
+              $fio .= $p->secname . " ";
+              $fio = trim($fio);
+              $win_object->setPromocodeParticipantFio($fio);
+              $em->merge($win_object);
+              $output->writeln(['win flush']);
+              $em->flush();
+            }
+          }
+        }
+      }
+      
+      $output->writeln(['win lotteries']);
       $api = new PromoLotteryApiController();
       $promos = $api->getPromos();
       foreach ($promos as $promo)
@@ -108,13 +153,13 @@
 // Для списка
                   $win_object->setPromocodeParticipantDate($lottery['prize']['balance_date']);
                   $win_object->setPromocodeParticipantPrize($lottery['prize']['ya_certificate_metro']);
-
+                  
                   $pApi = new ParticipantApiController();
                   $p = $pApi->getById($promocode['participant']['id'], ['firstname', 'secname', 'lastname']);
                   $fio = "";
-                  $fio .= $p['lastname'] . " ";
-                  $fio .= $p['firstname'] . " ";
-                  $fio .= $p['secname'] . " ";
+                  $fio .= $p->lastname . " ";
+                  $fio .= $p->firstname . " ";
+                  $fio .= $p->secname . " ";
                   $fio = trim($fio);
                   $win_object->setPromocodeParticipantFio($fio);
                   $em->merge($win_object);
