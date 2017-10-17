@@ -99,6 +99,14 @@
   {% block body %}{% endblock %}
   <div class="hidden">
     {% block modals %}
+      <div class="popup" id="doneModal">
+        <div class="popup__close arcticmodal-close">X</div>
+        <div class="popup__wrap">
+          <p class="popup__text popup__text_size_limit">
+            Аккаунт активирован
+          </p>
+        </div>
+      </div>
       <div class="popup" id="banModal">
         <div class="popup__close arcticmodal-close">X</div>
         <h2 class="popup__title">Регистрация чека</h2>

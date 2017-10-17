@@ -254,6 +254,8 @@
         $formData->lastname = $registration_form['lastname'];
         $this->validate($formData->lastname, "Введите фамилию");
       }
+  
+      $formData->secname = $registration_form['secname'];
       
       if ($formData->birthdate == '')
       {

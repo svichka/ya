@@ -229,6 +229,7 @@
       $this->validate($formData->firstname, "Введите имя");
       $formData->lastname = $registration_form['lastname'];
       $this->validate($formData->lastname, "Введите фамилию");
+      $formData->secname = $registration_form['secname'];
 //      $formData->mobilephone = $registration_form['mobilephone'];
 //      $this->validate($formData->mobilephone, "Введите телефон");
       $formData->birthdate = $registration_form['birthdate'];
@@ -238,10 +239,12 @@
       $formData->confirm_password = $registration_form['confirm_password'];
       $formData->countrycode = $registration_form['countrycode'];
       $formData->regionguid = $registration_form['regionguid'];
-      $formData->region = $registration_form['region'];
+      $region =$this->getDoctrine()->getRepository('AppBundle:Region')->findOneBy(['guid'=>$registration_form['regionguid']]);
+      $formData->region = $region;
       $this->validate($formData->region, "Выберите регион");
       $formData->cityguid = $registration_form['cityguid'];
-      $formData->city = $registration_form['city'];
+      $city =$this->getDoctrine()->getRepository('AppBundle:City')->findOneBy(['guid'=>$registration_form['cityguid']]);
+      $formData->city = $city;
       $this->validate($formData->city, "Выберите город");
       $formData->ismale = $registration_form['ismale'];
       $this->validate($formData->ismale, "Выберите пол");
