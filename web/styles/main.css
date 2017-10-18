@@ -197,7 +197,7 @@
 }
 .form__box{width:100%;margin-right:70px;margin-bottom:25px;}
 .form__box_grow_true{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;}
-.form__box_width_half{width:50%;}
+.form__box_width_half{width:50%;margin-right: 5px;position: relative;bottom: -11px;margin-bottom: 35px;}
 .form__box_margin_min{margin-right:10px;}
 .form__box_margin_med{margin-right:40px;}
 .form__box_button{margin-top:15px;margin-bottom:60px;text-align:center;}
