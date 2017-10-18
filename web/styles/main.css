@@ -1,6 +1,7 @@
 .link{font-family:"Bliss Pro";font-size:26px;color:#fff;}
 .link_fake{color:#fde900;}
 .btn-lg-h {display: none;}
+.main-menu__item.active a {color: #2f881b;border-bottom-color: transparent;}
 .about{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;}
 .about__content{display:-webkit-box;display:-ms-flexbox;display:flex;padding-top:20px;padding-bottom:10px;}
 @media only screen and (max-width:800px){.about__content{-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;}
