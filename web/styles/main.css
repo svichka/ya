@@ -223,7 +223,7 @@
 .form__label_type_file{cursor:pointer;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}
 .form__label_type_file::after{content:'';width:18px;height:24px;background:url("../images/file-load.png") no-repeat;margin-left:8px;}
 .form__label_type_file:hover .form__load-file-title{border-bottom:0;margin-bottom:1px;}
-.form__load-file-title{border-bottom:1px solid;}
+.form__load-file-title{border-bottom: 1px solid;width: 200px;text-align: center;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
 .form__load-file-title:hover{border-bottom:0;margin-bottom:1px;}
 .form__input,
 .form__select,
