@@ -59,6 +59,7 @@
         $builder->add('recaptcha', RecaptchaType::class, ['mapped' => false, 'value' => $recaptchaService->getPublicKey()]);
       }
 
+      $builder->get('isageagreed')->addModelTransformer($this->booleanToYNFormatCallbackTransformer);
       $builder->get('ispdagreed')->addModelTransformer($this->booleanToYNFormatCallbackTransformer);
       $builder->get('ismale')->addModelTransformer($this->booleanToYNFormatCallbackTransformer);
     }
