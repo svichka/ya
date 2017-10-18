@@ -1,6 +1,7 @@
 .link{font-family:"Bliss Pro";font-size:26px;color:#fff;}
 .link_fake{color:#fde900;}
 .btn-lg-h {display: none;}
+.main-menu__item.active a {color: #2f881b;border-bottom-color: transparent;}
 .about{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;}
 .about__content{display:-webkit-box;display:-ms-flexbox;display:flex;padding-top:20px;padding-bottom:10px;}
 @media only screen and (max-width:800px){.about__content{-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;}
@@ -196,7 +197,7 @@
 }
 .form__box{width:100%;margin-right:70px;margin-bottom:25px;}
 .form__box_grow_true{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;}
-.form__box_width_half{width:50%;}
+.form__box_width_half{width:50%;margin-right: 5px;position: relative;bottom: -11px;margin-bottom: 35px;}
 .form__box_margin_min{margin-right:10px;}
 .form__box_margin_med{margin-right:40px;}
 .form__box_button{margin-top:15px;margin-bottom:60px;text-align:center;}
@@ -222,7 +223,7 @@
 .form__label_type_file{cursor:pointer;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}
 .form__label_type_file::after{content:'';width:18px;height:24px;background:url("../images/file-load.png") no-repeat;margin-left:8px;}
 .form__label_type_file:hover .form__load-file-title{border-bottom:0;margin-bottom:1px;}
-.form__load-file-title{border-bottom:1px solid;}
+.form__load-file-title{border-bottom: 1px solid;width: 200px;text-align: center;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
 .form__load-file-title:hover{border-bottom:0;margin-bottom:1px;}
 .form__input,
 .form__select,
@@ -269,7 +270,7 @@
 .form__checkbox-text_big{font-size:19px;font-family:'Opium';}
 .form__checkbox-text_type_male{font-size:18px;}
 .form__checkbox-text_error{color:#f00;}
-.form__checkbox-text::before{content:'';-ms-flex-negative:0;flex-shrink:0;width:27px;height:27px;margin-right:8px;border:2px solid #ded27c;border-radius:10px;background-color:rgba(0,0,0,0.35);}
+.form__checkbox-text::before{content:'';display: block;-ms-flex-negative:0;flex-shrink:0;width:27px;height:27px;margin-right:8px;border:2px solid #ded27c;border-radius:10px;background-color:rgba(0,0,0,0.35);}
 .form__checkbox:checked + .form__checkbox-text::before{background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABDElEQVQ4jZ3RvyvFURzG8de97kR3YLhZ+A9EykAGm8GNZLCIQRkMJmaKhUEsZFRMipLBRLIqxWKzKikW+REZ7jl1+ubWvffZPs857+c8n07OokY1iHK+QXgBlyg2ErCMbRTwUm/ALFaS+aOegH7sZLxSk4Ga4CIu0Jbxc7U22ERnxnvEejaghImM16eye6pz9OIkBuQwhwfsh6CojXAedYQxvEIeXbjGHlrRgqVwuYyhBD7DFL6ikUc3OjIV59GO1cS7wWQKx4CD0OIw8ZtxjJ4wP2Ec75mHxG/8DMAbhsPOsdUPRnGfhWODVFuYCVDUGq7+g9MGqe7wjBHcYhq/1QIKVfxdlRVO8V0Nhj/MOC1MNIFttgAAAABJRU5ErkJggg==");background-position:50% 50%;background-repeat:no-repeat;}
 .form__link{font-family:'Opium';font-size:14px;line-height:2;color:#fcef9c;text-transform:uppercase;}
 .form__link:hover{text-decoration:none;}
