@@ -56,8 +56,7 @@
               {{ form_widget(form.ispdagreed) }}
               {#<input class="form__checkbox" type="checkbox" id="check2" checked>#}
               <label class="form__checkbox-text" for="registration_form_ispdagreed">Я согласен с правилами акции иa
-                поьзовательским
-                соглашением, а так же на обработку моих данных</label>
+                поьзовательским соглашением, а так же на обработку моих данных</label>
             </div>
           </div>
           <div class="form__box form__box_width_half">
@@ -86,18 +85,23 @@
     input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
       color: #116401 !important;
     }
+
     input::-moz-placeholder { /* Firefox 19+ */
       color: #116401 !important;
     }
+
     input:-ms-input-placeholder { /* IE 10+ */
       color: #116401 !important;
     }
+
     input:-moz-placeholder { /* Firefox 18- */
       color: #116401 !important;
     }
+
     input::placeholder {
       color: #116401 !important;
     }
+
     .bg-danger {
       padding: 15px;
       display: block;
@@ -113,8 +117,8 @@
   <script type="text/javascript">
     var formPrefix = 'registration_form';
     $(function () {
-      $('#registration_form_ismale_0').attr('name','registration_form[ismale]');
-      $('#registration_form_ismale_1').attr('name','registration_form[ismale]');
+      $('#registration_form_ismale_0').attr('name', 'registration_form[ismale]');
+      $('#registration_form_ismale_1').attr('name', 'registration_form[ismale]');
     })
   </script>
   <script type="text/javascript" src="{{ asset('js/geo_fields.js') }}"></script>

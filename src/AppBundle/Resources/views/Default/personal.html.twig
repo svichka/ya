@@ -243,16 +243,16 @@
             </div>
           </div>
           <div class="form__row">
-            <label class="form__label">для смены пароля нужна отдельная форма</label>
+            <label class="form__label">Если Вы хотите изменить личную информацию, пожалуйста, воспользуйтесь формой обратной связи</label>
           </div>
           <div class="form__row">
             <div class="form__box form__box_width_half">
-              <label class="form__label" for="password_old">Старый пароль *(off)</label>
+              <label class="form__label" for="password_old">Старый пароль</label>
               <input class="form__input" type="password" id="password_old" name="password_old"
                      placeholder="Текущий пароль">
             </div>
             <div class="form__box form__box_width_half">
-              <label class="form__label" for="password_new">Новый пароль *(off)</label>
+              <label class="form__label" for="password_new">Новый пароль</label>
               <input class="form__input" type="password" id="password_new" name="password_new"
                      placeholder="Новый пароль">
             </div>
@@ -292,6 +292,17 @@
         </div>
       </div>
     </div>
+  {% endblock %}
+
+{% block stylesheets %}
+  <style>
+    .form__input:disabled, .form__select:disabled, .form__textarea:disabled {
+      border: 2px solid #ded27c;
+    }
+    .form__input, .form__select, .form__textarea {
+      border: 2px solid #de9984;
+    }
+  </style>
   {% endblock %}
 
   {% block javascripts %}
