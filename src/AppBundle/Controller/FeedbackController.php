@@ -51,7 +51,6 @@
       if ($form->isSubmitted() && $form->isValid())
       {
         $formData = $form->getData();
-        print_r($formData);
         try
         {
           if ($formData instanceof NotAuthorizedUserFormType)
