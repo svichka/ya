@@ -82,7 +82,7 @@
             {% endif %}
 
             <li class="main-menu__item main-menu__item_img">
-              <a class="main-menu__link" href="{{ path('metro_redirect') }}" target="_blank">
+              <a class="main-menu__link" href="{{ path('metro_redirect') }}" style="border-bottom: none;" target="_blank">
                 <img class="main-menu__img" src="{{ asset('images/metro-menu.png') }}" alt="Metro">
               </a>
             </li>
@@ -229,6 +229,7 @@
                 <div class="form__box">
                   <label class="form__label" for="email">Email*</label>
                   <input class="form__input" type="email" id="email" name="login">
+                  <p style="font-size: 14px;font-family: &quot;Opium&quot;">* Обязательно для заполнения</p>
                   <p class="restore-helper form__label" style="color:red;"></p>
                 </div>
               </div>
