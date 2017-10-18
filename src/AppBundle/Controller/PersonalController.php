@@ -318,6 +318,8 @@
             $p->{$array_key} = $registration_form[$array_key];
           }
           $p2 = $participantApi->update($formData->id, $p);
+          $fields = ['lastname','firstname','secname','region','city','regionguid','cityguid','birthdate', 'email', 'ismale'];
+          $p2 = $participantApi->getById($formData->id,$fields);
           $participant = $this->getUser()->getParticipant();
           $participant->setCityguid($p2->getCityguid());
           $participant->setCity($p2->getCity());
