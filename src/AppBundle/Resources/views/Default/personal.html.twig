@@ -154,8 +154,8 @@
       </div>
     </div>
     <div class="popup" id="updateModal">
-      <div class="popup__close arcticmodal-close"></div>
-      <h2 class="popup__title">Профиль</h2>
+      <div class="popup__close arcticmodal-close">X</div>
+      <h2 class="popup__title">Дозаполнение профиля</h2>
       <div class="popup__wrap popup__wrap_width_big">
         <form class="form" action="#" id="update_form" method="post">
           <div class="form__row">
@@ -229,34 +229,55 @@
           <div class="form__row">
             <div class="form__box form__box_width_half">
               <label class="form__label" for="region">Регион*</label>
-              <select class="form__select" id="region" name="registration_form[regionguid]">
+              {% if user.regionguid is defined and user.regionguid != ''%}
+                <select class="form__select" id="region" name="registration_form[regionguid]">
 
-              </select>
-              <input id="region_text" type="hidden" name="registration_form[region]" required="">
+                </select>
+                <input id="region_text" type="hidden" name="registration_form[region]" required="">
+              {% else %}
+                {% set disable = '' %}
+                {% if user.region is defined and user.region != '' %}
+                  {% set disable = 'disabled' %}
+                {% endif %}
+                <input id="region" type="text" class="form__input" name="registration_form[region]"
+                       required="" {{ disable }} value="{{ user.region }}">
+              {% endif %}
             </div>
             <div class="form__box form__box_width_half">
               <label class="form__label" for="city">Город*</label>
-              <select class="form__select" id="city" name="registration_form[cityguid]">
+              {% if user.cityguid is defined and user.cityguid != '' %}
+                <select class="form__select" id="city" name="registration_form[cityguid]">
 
-              </select>
-              <input id="city_text" type="hidden" name="registration_form[city]" required="">
+                </select>
+                <input id="city_text" type="hidden" name="registration_form[city]" required="">
+              {% else %}
+                {% set disable = '' %}
+                {% if user.city is defined and user.city != '' %}
+                  {% set disable = 'disabled' %}
+                {% endif %}
+                <input id="city" type="text" class="form__input" name="registration_form[city]"
+                       required="" {{ disable }} value="{{ user.city }}">
+              {% endif %}
             </div>
           </div>
           <div class="form__row">
-            <label class="form__label">для смены пароля нужна отдельная форма</label>
+            <label class="form__label" style="text-align: center; font-size: 15px; margin-bottom: 1em">Если Вы хотите
+              изменить личную информацию, пожалуйста, воспользуйтесь <a href="{{ path('feedback_page') }}"
+                                                                        class="form_to_feedback_link">формой обратной
+                связи</a></label>
           </div>
-          <div class="form__row">
-            <div class="form__box form__box_width_half">
-              <label class="form__label" for="password_old">Старый пароль *(off)</label>
-              <input class="form__input" type="password" id="password_old" name="password_old"
-                     placeholder="Текущий пароль">
-            </div>
-            <div class="form__box form__box_width_half">
-              <label class="form__label" for="password_new">Новый пароль *(off)</label>
-              <input class="form__input" type="password" id="password_new" name="password_new"
-                     placeholder="Новый пароль">
-            </div>
-          </div>
+          {#<div class="form__row">#}
+          {#<div class="form__box form__box_width_half">#}
+          {#<label class="form__label" for="password_old">Старый пароль</label>#}
+          {#<input class="form__input" type="password" id="password_old" name="password_old"#}
+          {#placeholder="Текущий пароль">#}
+          {#</div>#}
+          {#<div class="form__box form__box_width_half">#}
+          {#<label class="form__label" for="password_new">Новый пароль</label>#}
+          {#<input class="form__input" type="password" id="password_new" name="password_new"#}
+          {#placeholder="Новый пароль">#}
+          {#</div>#}
+          {#</div>#}
           <div class="form__row">
             <div class="form__box form__box_button">
               <button class="button" type="submit"><span class="button__text">Отправить</span></button>
@@ -293,6 +314,27 @@
       </div>
     </div>
   {% endblock %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  <style>
+    .form__input:disabled, .form__select:disabled, .form__textarea:disabled {
+      border: 2px solid #ded27c;
+    }
+
+    .form__input, .form__select, .form__textarea {
+      border: 2px solid #de9984;
+    }
+
+    .form__input[type=password] {
+      border: 2px solid #ded27c;
+    }
+
+    .form_to_feedback_link {
+      color: #000;
+    }
+  </style>
+{% endblock %}
 
   {% block javascripts %}
     {{ parent() }}
@@ -498,26 +540,27 @@
         function showRequestU(formData, jqForm, options) {
           console.log('showRequestU');
           var valid = true;
-          if ($('#firstname').val().length < 2) {
+
+          if (!$('#firstname').prop("disabled") && $('#firstname').val().length < 2) {
             reg_errors[ 'firstname' ] = "Введите имя";
             valid = false;
           } else {
             delete reg_errors[ 'firstname' ];
           }
-          if ($('#lastname').val().length < 2) {
+          if (!$('#lastname').prop("disabled") && $('#lastname').val().length < 2) {
             reg_errors[ 'lastname' ] = "Введите фамилию";
             valid = false;
           } else {
             delete reg_errors[ 'lastname' ];
           }
-          if ($('#region').val().length < 2) {
+          if (!$('#region').prop("disabled") && $('#region').val().length < 2) {
             reg_errors[ 'region' ] = "Выберите регион";
             valid = false;
           } else {
             delete reg_errors[ 'region' ];
           }
 
-          if ($('#city').val().length < 2) {
+          if (!$('#city').prop("disabled") && $('#city').val().length < 2) {
             reg_errors[ 'city' ] = "Выберите город";
             valid = false;
           } else {
@@ -530,7 +573,7 @@
 //        } else {
 //          delete reg_errors['mobilephone'];
 //        }
-          if ($('#birthdate').val().length !== 10) {
+          if (!$('#birthdate').prop("disabled") && $('#birthdate').val().length !== 10) {
             reg_errors[ 'birthdate' ] = "Введите дату рождения";
             valid = false;
           } else if (moment($('#birthdate').val(), 'DD.MM.YYYY').toDate() === 'Invalid Date') {
@@ -545,23 +588,18 @@
               delete reg_errors[ 'birthdate' ];
             }
           }
-
-//        if ($('input#password').val() !== $('input#password_confirm').val()) {
-//          reg_errors[ 'psw' ] = "Пароли должны совпадать";
-//          valid = false;
-//        } else {
-//          delete reg_errors[ 'psw' ]
-//        }
-          if (!validateEmail($('input#email').val())) {
-            reg_errors[ 'email' ] = "Введите корректный емейл";
-            valid = false;
-          } else {
-            console.log('email3');
-            delete reg_errors[ 'email' ];
+          if (!$('#email').prop("disabled")) {
+            if (!validateEmail($('input#email').val())) {
+              reg_errors[ 'email' ] = "Введите корректный емейл";
+              valid = false;
+            } else {
+              console.log('email3');
+              delete reg_errors[ 'email' ];
+            }
           }
           show_reg_errors();
-          if ($('form').serialize() === "") {
-            $('#editProfile').arcticmodal('close');
+          if ($('#update_form').serialize() === "") {
+            $('#updateModal').arcticmodal('close');
             return false;
           }
           return valid;

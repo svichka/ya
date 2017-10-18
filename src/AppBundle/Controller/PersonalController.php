@@ -212,9 +212,9 @@
     {
       $participantApi = new ParticipantApiController();
       $request->getClientIp();
-      $password_old = $request->get('password_old', null);
-      $password_new = $request->get('password_new', null);
-      if ($password_new != null && $password_old != null)
+      $password_old = $request->get('password_old', '');
+      $password_new = $request->get('password_new', '');
+      if ($password_new != '' && $password_old != '')
       {
         try
         {
@@ -254,8 +254,10 @@
         $formData->lastname = $registration_form['lastname'];
         $this->validate($formData->lastname, "Введите фамилию");
       }
-  
-      $formData->secname = $registration_form['secname'];
+      if (isset($registration_form['secname']))
+      {
+        $formData->secname = $registration_form['secname'];
+      }
       
       if ($formData->birthdate == '')
       {
@@ -309,13 +311,17 @@
           $p = new Participant();
           foreach (array_keys($registration_form) as $array_key)
           {
-            if (in_array($array_key, ['agreement', 'iz18', 'region', 'city', 'password', 'password_confirm'])) // , 'region', 'city'
+            if (in_array($array_key, ['agreement', 'iz18', 'password', 'password_confirm'])) // , 'region', 'city'
             {
               continue;
             }
             $p->{$array_key} = $registration_form[$array_key];
           }
           $p2 = $participantApi->update($formData->id, $p);
+          $fields = ['lastname','firstname','secname','region','city','regionguid','cityguid','birthdate', 'email', 'ismale'];
+          $p2 = $participantApi->getById($formData->id,$fields);
+  
+          $this->getUser()->setParticipant($p2);
           $participant = $this->getUser()->getParticipant();
           $participant->setCityguid($p2->getCityguid());
           $participant->setCity($p2->getCity());
