@@ -82,7 +82,8 @@
             {% endif %}
 
             <li class="main-menu__item main-menu__item_img">
-              <a class="main-menu__link" href="{{ path('metro_redirect') }}" style="border-bottom: none;" target="_blank">
+              <a class="main-menu__link" href="{{ path('metro_redirect') }}" style="border-bottom: none;"
+                 target="_blank">
                 <img class="main-menu__img" src="{{ asset('images/metro-menu.png') }}" alt="Metro">
               </a>
             </li>
@@ -401,7 +402,12 @@
   </script>
   <script>
     $('.button_regcheck').on('click', function () {
-      $('{{ action }}').arcticmodal(favSyr.popup.options);
+      window.route = '{{ route }}';
+      if ('{{ action }}' === '#updateModal' && {{ route != 'personal_page' ? 'true':'false' }}) {
+        window.location = '{{ path('personal_page',{'show':'update'}) }}';
+      } else {
+        $('{{ action }}').arcticmodal(favSyr.popup.options);
+      }
     });
   </script>
   {% if show is defined %}

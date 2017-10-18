@@ -152,11 +152,11 @@
       $fields = [
         "ismale",
         "birthdate",
-        "cityguid",
         "email",
         "firstname",
         "lastname",
-        "regionguid",
+        //        "cityguid",
+        //        "regionguid",
       ];
       
       foreach ($fields as $field)
@@ -167,20 +167,44 @@
           $this->logger->info("checkParticipantRequiredFields FAIL" . $participant->id . "  " . $field);
           
           return false;
+        }else{
+          $this->logger->info("checkParticipantRequiredFields GOOD" . $participant->id . "  " . $field);
         }
       }
       
-      $city = $this->getDoctrine()->getRepository('AppBundle:City')->find($participant->cityguid);
-      $region = $this->getDoctrine()->getRepository('AppBundle:Region')->find($participant->regionguid);
+      if ($participant->cityguid != '')
+      {
+        $city = $this->getDoctrine()->getRepository('AppBundle:City')->find($participant->cityguid);
+        if ($city != null)
+        {
+          $participant->city = $city->getName();
+        }
+      }
+      else
+      {
+        $city = $participant->city;
+      }
+      if ($participant->regionguid != '')
+      {
+        $region = $this->getDoctrine()->getRepository('AppBundle:Region')->find($participant->regionguid);
+        if ($region != null)
+        {
+          $participant->region = $region->getName();
+        }
+      }
+      else
+      {
+        $region = $participant->region;
+      }
+      
       if ($city == null || $region == null)
       {
         $this->logger->info("checkParticipantRequiredFields FAIL city or region");
-        $this->logger->info("city " . $participant->cityguid . " or region " . $participant->regionguid);
+        $this->logger->info("cityguid " . $participant->cityguid . " or regionguid " . $participant->regionguid);
+        $this->logger->info("city " . $participant->city . " or region " . $participant->region);
         
         return false;
       }
-      $participant->city = $city->getName();
-      $participant->region = $region->getName();
       
       $this->logger->info("checkParticipantRequiredFields " . $participant->id . " test CORRECT");
       
