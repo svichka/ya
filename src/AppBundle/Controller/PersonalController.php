@@ -254,8 +254,10 @@
         $formData->lastname = $registration_form['lastname'];
         $this->validate($formData->lastname, "Введите фамилию");
       }
-  
-      $formData->secname = $registration_form['secname'];
+      if (isset($registration_form['secname']))
+      {
+        $formData->secname = $registration_form['secname'];
+      }
       
       if ($formData->birthdate == '')
       {
@@ -309,7 +311,7 @@
           $p = new Participant();
           foreach (array_keys($registration_form) as $array_key)
           {
-            if (in_array($array_key, ['agreement', 'iz18', 'region', 'city', 'password', 'password_confirm'])) // , 'region', 'city'
+            if (in_array($array_key, ['agreement', 'iz18', 'password', 'password_confirm'])) // , 'region', 'city'
             {
               continue;
             }

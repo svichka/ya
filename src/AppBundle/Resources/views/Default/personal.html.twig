@@ -244,7 +244,9 @@
           </div>
           <div class="form__row">
             <label class="form__label" style="text-align: center; font-size: 15px; margin-bottom: 1em">Если Вы хотите
-              изменить личную информацию, пожалуйста, воспользуйтесь формой обратной связи</label>
+              изменить личную информацию, пожалуйста, воспользуйтесь <a href="{{ path('feedback_page') }}"
+                                                                        class="form_to_feedback_link">формой обратной
+                связи</a></label>
           </div>
           {#<div class="form__row">#}
           {#<div class="form__box form__box_width_half">#}
@@ -308,6 +310,10 @@
 
     .form__input[type=password] {
       border: 2px solid #ded27c;
+    }
+
+    .form_to_feedback_link {
+      color: #000;
     }
   </style>
 {% endblock %}
@@ -575,7 +581,7 @@
           }
           show_reg_errors();
           if ($('#update_form').serialize() === "") {
-            $('#editProfile').arcticmodal('close');
+            $('#updateModal').arcticmodal('close');
             return false;
           }
           return valid;
