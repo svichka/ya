@@ -40,6 +40,7 @@
       {
         $formInputData['user_id'] = $user->getParticipant()->id;
         $formInputData['email'] = $user->getParticipant()->email;
+        $formInputData['agree'] = 'Y';
         $form = $this->createForm(AuthorizedUserFormType::class, $formInputData);
       }
       else
@@ -53,12 +54,9 @@
         $formData = $form->getData();
         try
         {
-          if ($formData instanceof NotAuthorizedUserFormType)
+          if ($formData['agree'] == 'N')
           {
-            if ($formData['agree'] == 'N')
-            {
-              throw new NotCorrectDataException('Укажите согласие на обработку данных');
-            }
+            throw new NotCorrectDataException('Укажите согласие на обработку данных');
           }
           
           $recaptcha = $this->container->get('app.recaptcha');
@@ -117,9 +115,7 @@
         }
       }
       
-      return $this->render('AppBundle:Default:feedback.html.twig', [
-        'errors' => $this->errors,
-        'form'   => $form->createView(),
-      ]);
+      return $this->render('AppBundle:Default:feedback.html.twig', ['errors' => $this->errors,
+                                                                    'form'   => $form->createView(),]);
     }
   }
