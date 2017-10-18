@@ -320,6 +320,8 @@
           $p2 = $participantApi->update($formData->id, $p);
           $fields = ['lastname','firstname','secname','region','city','regionguid','cityguid','birthdate', 'email', 'ismale'];
           $p2 = $participantApi->getById($formData->id,$fields);
+  
+          $this->getUser()->setParticipant($p2);
           $participant = $this->getUser()->getParticipant();
           $participant->setCityguid($p2->getCityguid());
           $participant->setCity($p2->getCity());
