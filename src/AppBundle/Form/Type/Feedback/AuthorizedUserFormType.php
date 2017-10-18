@@ -25,10 +25,8 @@
         ->add('email', EmailType::class, ["disabled" => true, 'attr' => ['class' => 'form__input form__input_height_high']])
         ->add('message', TextareaType::class, ['attr' => ['class' => 'form__textarea']])
         ->add('file', FileType::class, ['required' => false, 'attr' => ['class' => 'form__input form__input_type_file', 'onchange' => "ValidateSize(this)"]])
-        ->add('agree', HiddenType::class, ['value' => 'Y']);
+        ->add('agree', HiddenType::class);
       
-
-      $builder->get('agree')->addModelTransformer($this->booleanToYNFormatCallbackTransformer);
       $builder->add('recaptcha', HiddenType::class);
       
       $builder->addEventListener(FormEvents::PRE_SET_DATA, [$this, 'addThemes']);

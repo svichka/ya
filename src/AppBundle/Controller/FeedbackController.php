@@ -54,9 +54,12 @@
         print_r($formData);
         try
         {
-          if ($formData['agree'] == 'N')
+          if ($formData instanceof NotAuthorizedUserFormType)
           {
-            throw new NotCorrectDataException('Укажите согласие на обработку данных');
+            if ($formData['agree'] == 'N')
+            {
+              throw new NotCorrectDataException('Укажите согласие на обработку данных');
+            }
           }
           
           $recaptcha = $this->container->get('app.recaptcha');
