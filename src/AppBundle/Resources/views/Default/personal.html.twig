@@ -229,17 +229,35 @@
           <div class="form__row">
             <div class="form__box form__box_width_half">
               <label class="form__label" for="region">Регион*</label>
-              <select class="form__select" id="region" name="registration_form[regionguid]">
+              {% if user.regionguid is defined and user.regionguid != ''%}
+                <select class="form__select" id="region" name="registration_form[regionguid]">
 
-              </select>
-              <input id="region_text" type="hidden" name="registration_form[region]" required="">
+                </select>
+                <input id="region_text" type="hidden" name="registration_form[region]" required="">
+              {% else %}
+                {% set disable = '' %}
+                {% if user.region is defined and user.region != '' %}
+                  {% set disable = 'disabled' %}
+                {% endif %}
+                <input id="region" type="text" class="form__input" name="registration_form[region]"
+                       required="" {{ disable }} value="{{ user.region }}">
+              {% endif %}
             </div>
             <div class="form__box form__box_width_half">
               <label class="form__label" for="city">Город*</label>
-              <select class="form__select" id="city" name="registration_form[cityguid]">
+              {% if user.cityguid is defined and user.cityguid != '' %}
+                <select class="form__select" id="city" name="registration_form[cityguid]">
 
-              </select>
-              <input id="city_text" type="hidden" name="registration_form[city]" required="">
+                </select>
+                <input id="city_text" type="hidden" name="registration_form[city]" required="">
+              {% else %}
+                {% set disable = '' %}
+                {% if user.city is defined and user.city != '' %}
+                  {% set disable = 'disabled' %}
+                {% endif %}
+                <input id="city" type="text" class="form__input" name="registration_form[city]"
+                       required="" {{ disable }} value="{{ user.city }}">
+              {% endif %}
             </div>
           </div>
           <div class="form__row">
