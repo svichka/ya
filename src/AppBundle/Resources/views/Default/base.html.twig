@@ -409,6 +409,11 @@
         $('{{ action }}').arcticmodal(favSyr.popup.options);
       }
     });
+    $(function () {
+      if ('{{ action }}' === '#updateModal' && {{ route == 'personal_page' ? 'true':'false' }}) {
+        $('{{ action }}').arcticmodal(favSyr.popup.options);
+      }
+    });
   </script>
   {% if show is defined %}
   <script>
