@@ -270,7 +270,7 @@
 .form__checkbox-text_big{font-size:19px;font-family:'Opium';}
 .form__checkbox-text_type_male{font-size:18px;}
 .form__checkbox-text_error{color:#f00;}
-.form__checkbox-text::before{content:'';-ms-flex-negative:0;flex-shrink:0;width:27px;height:27px;margin-right:8px;border:2px solid #ded27c;border-radius:10px;background-color:rgba(0,0,0,0.35);}
+.form__checkbox-text::before{content:'';display: block;-ms-flex-negative:0;flex-shrink:0;width:27px;height:27px;margin-right:8px;border:2px solid #ded27c;border-radius:10px;background-color:rgba(0,0,0,0.35);}
 .form__checkbox:checked + .form__checkbox-text::before{background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABDElEQVQ4jZ3RvyvFURzG8de97kR3YLhZ+A9EykAGm8GNZLCIQRkMJmaKhUEsZFRMipLBRLIqxWKzKikW+REZ7jl1+ubWvffZPs857+c8n07OokY1iHK+QXgBlyg2ErCMbRTwUm/ALFaS+aOegH7sZLxSk4Ga4CIu0Jbxc7U22ERnxnvEejaghImM16eye6pz9OIkBuQwhwfsh6CojXAedYQxvEIeXbjGHlrRgqVwuYyhBD7DFL6ikUc3OjIV59GO1cS7wWQKx4CD0OIw8ZtxjJ4wP2Ec75mHxG/8DMAbhsPOsdUPRnGfhWODVFuYCVDUGq7+g9MGqe7wjBHcYhq/1QIKVfxdlRVO8V0Nhj/MOC1MNIFttgAAAABJRU5ErkJggg==");background-position:50% 50%;background-repeat:no-repeat;}
 .form__link{font-family:'Opium';font-size:14px;line-height:2;color:#fcef9c;text-transform:uppercase;}
 .form__link:hover{text-decoration:none;}
