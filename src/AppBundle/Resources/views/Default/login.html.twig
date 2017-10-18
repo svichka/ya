@@ -14,7 +14,7 @@
         {% if error %}
         <div class="form__wrapper form__wrapper_align_center">
           <div class="form__row">
-            <div class="form__box" style=" max-width: 400px;margin: auto;margin-bottom: 1em;" >
+            <div class="form__box" style=" max-width: 400px;margin: auto;margin-bottom: 1em;">
               <label class="form__label" style="color: red;">
                 {{ error.messageKey|trans(error.messageData, 'auth') }}
               </label>
@@ -26,31 +26,28 @@
               <div class="form__box">
                 <label class="form__label" for="email">E-mail *</label>
                 <input class="form__input form__input_height_high form__input_align_center" name="_username"
-                       type="email"
-                       id="email" value="{{ last_username }}" placeholder="mail@mail.com">
+                       type="email" id="email" value="{{ last_username }}" placeholder="mail@mail.com">
               </div>
             </div>
             <div class="form__row">
               <div class="form__box">
                 <label class="form__label" for="password">Пароль *</label>
                 <input class="form__input form__input_height_high form__input_align_center" type="password"
-                       id="password"
-                       name="_password" placeholder="Пароль">
+                       id="password" name="_password" placeholder="Пароль">
                 <a class="form__link password-reminder" href="#">Забыли пароль?</a>
               </div>
             </div>
-            <div class="form__row" style="margin-bottom: 10px ;  -webkit-box-pack: center;
-                -ms-flex-pack: center;
-                justify-content: center;">
-            <div class="form__checkbox__container">
-            <input class="form__checkbox" type="checkbox" id="_remember_me" name="_remember_me">
-            <label class="form__checkbox-text form__checkbox-text_big" for="_remember_me" style="
+            <div class="form__row"
+                 style="margin-bottom: 10px;-webkit-box-pack: center;-ms-flex-pack: center;justify-content: center;">
+              <div class="form__checkbox__container">
+                <input class="form__checkbox" type="checkbox" id="_remember_me" name="_remember_me">
+                <label class="form__checkbox-text form__checkbox-text_big" for="_remember_me" style="
                 -webkit-box-pack: center;
                 -ms-flex-pack: center;
                 justify-content: center;
             ">Запомнить
-            пароль</label>
-            </div>
+                  пароль</label>
+              </div>
             </div>
             <div class="form__row">
               <div class="form__box form__box_button form__box_mt_none">
