@@ -295,6 +295,7 @@
   {% endblock %}
 
 {% block stylesheets %}
+  {{ parent() }}
   <style>
     .form__input:disabled, .form__select:disabled, .form__textarea:disabled {
       border: 2px solid #ded27c;
