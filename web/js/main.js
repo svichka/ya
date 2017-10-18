@@ -1,6 +1,6 @@
 var favSyr={popup:{options:{overlay:{css:{backgroundColor:'#041100',opacity:0.65}}}}}
 $(function(){
-	$(input[type="file"]).change(function(){
+	$('input[type="file"]').change(function(){
 		$(this).next('.form__load-file-title').text($(this).val());
 	})
 	if($("#jsScrollContent").length){var scrollBlockHeight=$('body').height();if($("#jsScrollContent").height()>scrollBlockHeight-200){if($("#jsScrollContent").hasClass('table__content_winners')&&$('body').height()>650){var heightBifference=$('body').height()-$('.form').height()-$('#header').height()-$('#footer').height()-50;console.log(heightBifference)
