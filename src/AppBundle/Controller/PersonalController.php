@@ -212,9 +212,9 @@
     {
       $participantApi = new ParticipantApiController();
       $request->getClientIp();
-      $password_old = $request->get('password_old', null);
-      $password_new = $request->get('password_new', null);
-      if ($password_new != null && $password_old != null)
+      $password_old = $request->get('password_old', '');
+      $password_new = $request->get('password_new', '');
+      if ($password_new != '' && $password_old != '')
       {
         try
         {

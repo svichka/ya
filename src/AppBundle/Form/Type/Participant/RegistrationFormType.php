@@ -24,8 +24,8 @@
         ->add('lastname', TextType::class, ['label' => "Фамилия*", 'attr' => ["placeholder" => "Фамилия", 'onkeyup' => 'Ru(this)']])// ,"onkeyup"=>"Ru(this);"
         ->add('secname', TextType::class, ['label' => "Отчество", 'required' => false, 'attr' => ["placeholder" => "Отчество", 'onkeyup' => 'Ru(this)']])// ,"onkeyup"=>"Ru(this);"
         ->add('birthdate', TextType::class, ['label' => 'Дата рождения*', 'attr' => ['class' => 'form__input_type_date', "placeholder" => "01.01.1990"]])
-        ->add('password', PasswordType::class, ['label' => 'Пароль', 'mapped' => false, 'attr' => ['plaseholder' => 'Пароль']])
-        ->add('confirm_password', PasswordType::class, ['label' => 'Повторите пароль', 'mapped' => false, 'attr' => ['plaseholder' => 'Повторите пароль']])
+        ->add('password', PasswordType::class, ['label' => 'Пароль*', 'mapped' => false, 'attr' => ['plaseholder' => 'Пароль']])
+        ->add('confirm_password', PasswordType::class, ['label' => 'Повторите пароль*', 'mapped' => false, 'attr' => ['plaseholder' => 'Повторите пароль']])
         ->add('countrycode', ChoiceType::class, ['label' => 'Страна'])
         ->add('regionguid', ChoiceType::class, [
             'label'       => 'Регион*',
@@ -40,7 +40,7 @@
           'expanded'    => true,
           'multiple'    => false,
           'placeholder' => 'Пол',
-          'label'       => 'Пол',
+          'label'       => 'Пол*',
           'choices'     => [
             'N' => "Ж",
             'Y' => "М",

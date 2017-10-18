@@ -219,30 +219,32 @@
           </form>
         </div>
       </div>
-      <div class="popup" id="restoreModal">
-        <div class="popup__close arcticmodal-close">X</div>
-        <h2 class="popup__title">Восстановление пароля</h2>
-        <div class="popup__wrap">
-          <p class="popup__text">Мы вышлем Ваш новый пароль на e-mail.</p>
-          <div class="popup__form-wrap">
-            <form class="form" action="{{ path('recover_password_page') }}" id="form_restore">
-              <div class="form__row">
-                <div class="form__box">
-                  <label class="form__label" for="email">Email*</label>
-                  <input class="form__input" type="email" id="email" name="login">
-                  <p style="font-size: 14px;font-family: &quot;Opium&quot;">* Обязательно для заполнения</p>
-                  <p class="restore-helper form__label" style="color:red;"></p>
+      {% if(not is_granted('ROLE_USER')) %}
+        <div class="popup" id="restoreModal">
+          <div class="popup__close arcticmodal-close">X</div>
+          <h2 class="popup__title">Восстановление пароля</h2>
+          <div class="popup__wrap">
+            <p class="popup__text">Мы вышлем Ваш новый пароль на e-mail.</p>
+            <div class="popup__form-wrap">
+              <form class="form" action="{{ path('recover_password_page') }}" id="form_restore">
+                <div class="form__row">
+                  <div class="form__box">
+                    <label class="form__label" for="email">Email*</label>
+                    <input class="form__input" type="email" id="email" name="login">
+                    <p style="font-size: 14px;font-family: &quot;Opium&quot;">* Обязательно для заполнения</p>
+                    <p class="restore-helper form__label" style="color:red;"></p>
+                  </div>
                 </div>
-              </div>
-              <div class="form__row">
-                <div class="form__box form__box_button">
-                  <button class="button" type="submit"><span class="button__text">Отправить</span></button>
+                <div class="form__row">
+                  <div class="form__box form__box_button">
+                    <button class="button" type="submit"><span class="button__text">Отправить</span></button>
+                  </div>
                 </div>
-              </div>
-            </form>
+              </form>
+            </div>
           </div>
         </div>
-      </div>
+      {% endif %}
       <div class="popup" id="freeModal">
         <div class="popup__close arcticmodal-close">X</div>
         <h2 class="popup__title free-text-h"></h2>
