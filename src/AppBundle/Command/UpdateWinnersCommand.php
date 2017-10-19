@@ -60,42 +60,52 @@
       $users = $doctrine->getRepository('AppBundle:User')->findAll();
       foreach ($users as $user)
       {
+        $output->writeln(['user = ' . $user->getId()]);
         /**
          * @var \Dalee\PEPUWSClientBundle\Entity\PromocodeApplication[] $promocodes
          */
-        $promocodes = (new PromocodeApiController())->getApplicationsByParticipantId($user->getId());
-        
-        foreach ($promocodes as $application)
+        $output->writeln(['promocodes = ' . '-']);
+        try
         {
-          $promoApplications = $application->getPromoApplications();
-          
-          foreach ($promoApplications as $promoApplication)
+          $promocodes = (new PromocodeApiController())->getApplicationsByParticipantId($user->getId());
+  
+          foreach ($promocodes as $application)
           {
-            if (count($promoApplication['prize_options']))
+            $output->writeln(['application = ' . $application->getId()]);
+            $promoApplications = $application->getPromoApplications();
+    
+            foreach ($promoApplications as $promoApplication)
             {
-              $options = $promoApplication['prize_options'][0];
-              $guid = $application->getCode();
-              $win_receipts[$guid] = $options['slug'];
-              $output->writeln(['win', $application->getId()]);
-              $win_object = new Winner();
-              $win_object->setPromocodeParticipantPrize(1);
-              $win_object->setPromocodeParticipantDate(date('d.m.Y',strtotime($options['balance_date'])));
-              $win_object->setId($application->getId());
-              $win_object->setPromocodeId($application->getId());
-              
-              $pApi = new ParticipantApiController();
-              $p = $pApi->getById($user->getId(), ['firstname', 'secname', 'lastname']);
-              $fio = "";
-              $fio .= $p->lastname . " ";
-              $fio .= $p->firstname . " ";
-              $fio .= $p->secname . " ";
-              $fio = trim($fio);
-              $win_object->setPromocodeParticipantFio($fio);
-              $em->merge($win_object);
-              $output->writeln(['win flush']);
-              $em->flush();
+              if (count($promoApplication['prize_options']))
+              {
+                $output->writeln(['promoApplication = ' . $promoApplication['prize_options']]);
+                $options = $promoApplication['prize_options'][0];
+                $guid = $application->getCode();
+                $win_receipts[$guid] = $options['slug'];
+                $output->writeln(['win', $application->getId()]);
+                $win_object = new Winner();
+                $win_object->setPromocodeParticipantPrize(1);
+                $win_object->setPromocodeParticipantDate(date('d.m.Y', strtotime($options['balance_date'])));
+                $win_object->setId($application->getId());
+                $win_object->setPromocodeId($application->getId());
+        
+                $pApi = new ParticipantApiController();
+                $output->writeln(['get User = ' . $user->getId()]);
+                $p = $pApi->getById($user->getId(), ['firstname', 'secname', 'lastname']);
+                $fio = "";
+                $fio .= $p->getLastname() . " ";
+                $fio .= $p->getFirstname() . " ";
+                $fio .= $p->getSecname() . " ";
+                $fio = trim($fio);
+                $win_object->setPromocodeParticipantFio($fio);
+                $em->merge($win_object);
+                $output->writeln(['win flush']);
+                $em->flush();
+              }
             }
           }
+        }catch (ApiFailedException $e){
+          $output->writeln([$e->getMessage()]);
         }
       }
       

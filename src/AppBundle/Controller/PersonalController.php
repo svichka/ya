@@ -431,8 +431,9 @@
       }
       $user = $this->getUser()->getParticipant();
       $user->mobilephone = $mobilephone;
-      
-      $p2 = $participantApi->update($user->id, ['mobilephone' => $mobilephone]);
+      $pp = new Participant();
+      $pp->setMobilephone($mobilephone);
+      $p2 = $participantApi->update($user->id, $pp);
       
       $u = $this->getDoctrine()->getRepository('AppBundle:User')->find($user->id);
       $u->setMobileFilled(1);
