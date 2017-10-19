@@ -496,6 +496,11 @@
         {% if message =='ok' %}
           <script>
             $(function () {
+              dataLayer.push({
+                'event': 'FormSent',
+                'eventCategory': 'FAQ',
+                'eventAction': 'Sent',
+              });
               $('#faqSubmit').arcticmodal(favSyr.popup.options);
             });
           </script>

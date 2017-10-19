@@ -315,21 +315,21 @@
   <script src="{{ asset('js/main.js') }}?{{ content_version }}"></script>
 
   {% for label, messages in app.session.flashbag.all %}
-    {% if label =='login' %}
-      {% for message in messages %}
-        {% if message =='ok' %}
-          <script>
-            $(function () {
-              dataLayer.push({
-                'event': 'FormSent',
-                'eventCategory': 'login',
-                'eventAction': 'success',
-              });
-            });
-          </script>
-        {% endif %}
-      {% endfor %}
-    {% endif %}
+  {% if label =='login' %}
+  {% for message in messages %}
+  {% if message =='ok' %}
+  <script>
+    $(function () {
+      dataLayer.push({
+        'event': 'FormSent',
+        'eventCategory': 'login',
+        'eventAction': 'success',
+      });
+    });
+  </script>
+  {% endif %}
+  {% endfor %}
+  {% endif %}
   {% endfor %}
 
 
@@ -338,23 +338,13 @@
       beforeOpen: function (data, el) {
         window.ppId = $(el).attr('id');
         console.log(ppId);
-        switch (ppId) {
-          case 'faqSubmit':
-            dataLayer.push({
-              'event': 'FormSent',
-              'eventCategory': 'FAQ',
-              'eventAction': 'Sent',
-            });
-            break;
-          default:
-            dataLayer.push({
-              'event': 'FormSent',
-              'eventCategory': ppId,
-              'eventAction': 'Popup',
-            });
-            console.log('default');
-            break;
-        }
+
+        dataLayer.push({
+          'event': 'FormSent',
+          'eventCategory': ppId,
+          'eventAction': 'Popup',
+        });
+        console.log('default');
       },
     });
 
