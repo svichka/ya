@@ -461,7 +461,7 @@
           }
         }
 
-        {% if(user.getregionguid()!='') %}
+        {% if(user.getregionguid()!='' and user.getregionguid()!='q') %}
         $(select).val('{{ user.getregionguid() }}').change();
         $("#region_text").val($("#region option:selected").text());
         console.log('region change');
