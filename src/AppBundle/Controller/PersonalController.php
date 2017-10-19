@@ -396,6 +396,7 @@
       try
       {
         $participantApi->activate('MOBILE', $user->mobilephone, $code);
+        
       }
       catch (NotCorrectDataException $e)
       {
@@ -432,6 +433,7 @@
       $pp = new Participant();
       $pp->setMobilephone($mobilephone);
       $p2 = $participantApi->update($user->id, $pp);
+      $participantApi->activationGenerate($mobilephone);
       
       $u = $this->getDoctrine()->getRepository('AppBundle:User')->find($user->id);
       $u->setMobileFilled(1);
