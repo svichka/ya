@@ -363,7 +363,7 @@
     revizorWidget.init('#revizor', // widget container id
       {
         apiKey: '{{ apm_key }}', // widget api key
-        userUuid: '{{ app.user.participant.guid }}', // uuid of logged in use
+        userUuid: '{{ app.user.participant.getGuid() }}', // uuid of logged in use
         addButtonLabel: 'Добавить часть чека', // text for button 'add', type = string, defaultValue = 'Добавить чек'
         sendButtonLabel: 'Зарегистрировать чек', // text for button 'send', type = string, defaultValue = 'Отправить чек'
         uploadButtonLabel: 'Загрузить чек', // text for button 'upload', type = string, defaultValue = 'Загрузить чек'
@@ -372,7 +372,7 @@
         classForDeleteButton: '', // className for delete button, type = string
         classForSendButton: 'btn-ylw', // className for button to send, type = string
         successCallback: function () {
-          logUpload('{{ app.user.participant.guid }}');
+          logUpload('{{ app.user.participant.getGuid() }}');
           $('#uploadModal').arcticmodal('close');
           $('#moderateModal').arcticmodal({
             beforeClose: function (data, el) {

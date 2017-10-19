@@ -14,17 +14,17 @@
         <div class="profile__content">
           <div class="profile__left">
             <div class="profile__data">
-              <div class="profile__name">{{ user.firstname }}
-                <br>{% if user.secname is defined %} {{ user.secname }} {% endif %} {{ user.lastname }}
+              <div class="profile__name">{{ user.getfirstname() }}
+                <br>{% if user.getsecname() is defined %} {{ user.getsecname() }} {% endif %} {{ user.getlastname() }}
               </div>
               <div class="profile__city">
-                {% if user.region != '' and user.city!='' %}
-                  {{ user.region }}, {{ user.city }}
+                {% if user.getregion() != '' and user.getcity()!='' %}
+                  {{ user.getregion() }}, {{ user.getcity() }}
                 {% else %}
-                  {{ user.region }} {{ user.city }}
+                  {{ user.getregion() }} {{ user.getcity() }}
                 {% endif %}
               </div>
-              <div class="profile__email">{{ user.email }}</div>
+              <div class="profile__email">{{ user.getemail() }}</div>
             </div>
             <div class="profile__edit"><a class="profile__link-edit" href="#!">Изменить</a></div>
           </div>
@@ -187,13 +187,13 @@
               <label class="form__label" for="lastname">Фамилия*</label>
               <input class="form__input" type="text" id="lastname" name="registration_form[lastname]"
                      placeholder="Фамилия"
-                     value="{{ user.lastname }}" {% if (user.lastname!='') %} disabled {% endif %} onkeyup="Ru(this);">
+                     value="{{ user.getlastname() }}" {% if (user.getlastname()!='') %} disabled {% endif %} onkeyup="Ru(this);">
             </div>
             <div class="form__box form__box_width_half">
               <label class="form__label" for="firstname">Имя*</label>
               <input class="form__input" type="text" id="firstname" name="registration_form[firstname]"
                      placeholder="Имя"
-                     value="{{ user.firstname }}" {% if (user.firstname!='') %} disabled {% endif %}
+                     value="{{ user.getfirstname() }}" {% if (user.getfirstname()!='') %} disabled {% endif %}
                      onkeyup="Ru(this);">
             </div>
           </div>
@@ -202,16 +202,16 @@
               <label class="form__label" for="secname">Отчество</label>
               <input class="form__input" type="text" id="secname" name="registration_form[secname]"
                      placeholder="Отчество"
-                     value="{% if user.secname is defined %} {{ user.secname }} {% endif %}" {% if (user.secname!='') %} disabled {% endif %}
+                     value="{% if user.getsecname() is defined %} {{ user.getsecname() }} {% endif %}" {% if (user.getsecname()!='') %} disabled {% endif %}
                      onkeyup="Ru(this);">
             </div>
             <div class="form__box form__box_width_half">
               <label class="form__label" for="birthdate">Дата рождения*</label>
               {% set disable = '' %}
               {% set birthdate = '' %}
-              {% if user.birthdate is defined %}
+              {% if user.getbirthdate() is defined %}
                 {% set disable = 'disabled' %}
-                {% set birthdate = user.birthdate %}
+                {% set birthdate = user.getbirthdate() %}
               {% endif %}
               <input class="form__input form__input_type_date" type="text" placeholder="01.01.1990" {{ disable }}
                      value="{{ birthdate }}" id="birthdate" name="registration_form[birthdate]">
@@ -220,15 +220,15 @@
           <div class="form__row">
             <div class="form__box form__box_width_half">
               <label class="form__label" for="email">Email*</label>
-              <input class="form__input" value="{{ user.email }}" {% if (user.email!='') %} disabled {% endif %}
+              <input class="form__input" value="{{ user.getemail() }}" {% if (user.getemail()!='') %} disabled {% endif %}
                      type="email" id="email" placeholder="email@email.com" name="registration_form[email]">
             </div>
             <div class="form__box form__box_width_half">
               <label class="form__label" for="ismale">Пол*</label>
               {% set disable = '' %}
-              {% if user.ismale is defined %}
+              {% if user.getismale() is defined %}
                 {% set disable = 'disabled' %}
-                {% if user.ismale == 'Y' %}
+                {% if user.getismale() == 'Y' %}
                   {% set checked_m = 'checked' %}
                   {% set checked_f = '' %}
                 {% else %}
@@ -253,34 +253,34 @@
           <div class="form__row">
             <div class="form__box form__box_width_half">
               <label class="form__label" for="region">Регион*</label>
-              {% if user.regionguid is defined and user.regionguid != '' %}
+              {% if user.getregionguid() is defined and user.getregionguid() != '' %}
                 <select class="form__select" id="region" name="registration_form[regionguid]">
 
                 </select>
                 <input id="region_text" type="hidden" name="registration_form[region]" required="">
               {% else %}
                 {% set disable = '' %}
-                {% if user.region is defined and user.region != '' %}
+                {% if user.getregion() is defined and user.getregion() != '' %}
                   {% set disable = 'disabled' %}
                 {% endif %}
                 <input id="region" type="text" class="form__input" name="registration_form[region]"
-                       required="" {{ disable }} value="{{ user.region }}">
+                       required="" {{ disable }} value="{{ user.getregion() }}">
               {% endif %}
             </div>
             <div class="form__box form__box_width_half">
               <label class="form__label" for="city">Город*</label>
-              {% if user.cityguid is defined and user.cityguid %}
+              {% if user.getcityguid() is defined and user.getcityguid() %}
                 <select class="form__select" id="city" name="registration_form[cityguid]">
 
                 </select>
                 <input id="city_text" type="hidden" name="registration_form[city]" required="">
               {% else %}
                 {% set disable = '' %}
-                {% if user.city is defined and user.city != '' %}
+                {% if user.getcity() is defined and user.getcity() != '' %}
                   {% set disable = 'disabled' %}
                 {% endif %}
                 <input id="city" type="text" class="form__input" name="registration_form[city]"
-                       required="" {{ disable }} value="{{ user.city }}">
+                       required="" {{ disable }} value="{{ user.getcity() }}">
               {% endif %}
             </div>
           </div>
@@ -360,7 +360,7 @@
     <script>
       // Список регионов теперь динамический
       window.regions = {{ banned_listener.regions()|json_encode|raw }};
-      window.cities = {{ banned_listener.cities(user.regionguid)|json_encode|raw }};
+      window.cities = {{ banned_listener.cities(user.getregionguid())|json_encode|raw }};
       window.reg_errors = {};
     </script>
     <script>
@@ -403,7 +403,7 @@
 
         $('.jsMoneySend').on('click', function () {
           console.log('jsMoneySend');
-          {% if user.isphoneactivated=='Y' %}
+          {% if user.getisphoneactivated()=='Y' %}
           $.ajax({
             url: '{{ path('send_money') }}',
             data: { guid: $(this).data('id') },
@@ -434,9 +434,9 @@
         selectC.html('');
         select.append('<option value=""></option>');
         // Закинем данные юзероа
-        var regionguid = "{{ user.regionguid }}";
+        var regionguid = "{{ user.getregionguid() }}";
 
-        var cityguid = "{{ user.cityguid }}";
+        var cityguid = "{{ user.getcityguid() }}";
 
         var s = '';
         for (var key in regions) {
@@ -446,8 +446,8 @@
           }
         }
 
-        {% if(user.regionguid!='') %}
-        $(select).val('{{ user.regionguid }}').change();
+        {% if(user.getregionguid()!='') %}
+        $(select).val('{{ user.getregionguid() }}').change();
         $("#region_text").val($("#region option:selected").text());
         console.log('region change');
         {#loadCities({ region: '{{ user.regionguid }}' });#}
@@ -492,8 +492,8 @@
           }
           selectC.removeAttr('disabled', 'disabled');
           $("#city_text").removeAttr('disabled', 'disabled');
-          {% if(user.cityguid!='') %}
-          $(selectC).val('{{ user.cityguid }}').change();
+          {% if(user.getcityguid()!='') %}
+          $(selectC).val('{{ user.getcityguid() }}').change();
           $("#city_text").val($("#city option:selected").text());
           console.log('city change');
           $(selectC).attr('disabled', 'disabled');
