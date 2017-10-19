@@ -136,12 +136,11 @@
     <div class="popup" id="showEditPP">
       <div class="popup__close arcticmodal-close">X</div>
       <div class="popup__wrap">
-        <div class="popup__form-wrap popup__form-wrap_width_min">
+        <div class="popup__form-wrap">
           <div class="form__row">
             <label class="form__label" style="text-align: center; font-size: 15px; margin-bottom: 1em">Если Вы хотите
-              изменить личную информацию, пожалуйста, воспользуйтесь <a href="{{ path('feedback_page') }}"
-                                                                        class="form_to_feedback_link">формой обратной
-                связи</a></label>
+              изменить личную информацию, пожалуйста, воспользуйтесь
+              <a href="{{ path('feedback_page') }}" class="form_to_feedback_link">формой&nbsp;обратной&nbsp;связи</a></label>
           </div>
         </div>
       </div>
@@ -254,7 +253,7 @@
           <div class="form__row">
             <div class="form__box form__box_width_half">
               <label class="form__label" for="region">Регион*</label>
-              {% if user.regionguid is defined and user.regionguid != ''%}
+              {% if user.regionguid is defined and user.regionguid != '' %}
                 <select class="form__select" id="region" name="registration_form[regionguid]">
 
                 </select>
@@ -270,7 +269,7 @@
             </div>
             <div class="form__box form__box_width_half">
               <label class="form__label" for="city">Город*</label>
-              {% if user.cityguid is defined and user.cityguid%}
+              {% if user.cityguid is defined and user.cityguid %}
                 <select class="form__select" id="city" name="registration_form[cityguid]">
 
                 </select>
