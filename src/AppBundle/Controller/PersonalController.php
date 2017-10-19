@@ -316,9 +316,9 @@
             $p->{$array_key} = $registration_form[$array_key];
           }
           $p2 = $participantApi->update($formData->id, $p);
-          $fields = ['lastname','firstname','secname','region','city','regionguid','cityguid','birthdate', 'email', 'ismale'];
-          $p2 = $participantApi->getById($formData->id,$fields);
-  
+          $fields = ['lastname', 'firstname', 'secname', 'region', 'city', 'regionguid', 'cityguid', 'birthdate', 'email', 'ismale'];
+          $p2 = $participantApi->getById($formData->id, $fields);
+          
           $this->getUser()->setParticipant($p2);
           $participant = $this->getUser()->getParticipant();
           $participant->setCityguid($p2->getCityguid());
@@ -396,7 +396,12 @@
       try
       {
         $participantApi->activate('MOBILE', $user->mobilephone, $code);
+        $user->isphoneactivated = 'Y';
+        $this->getUser()->setParticipant($user);
         
+        return new JsonResponse([
+          "status" => 200,
+        ]);
       }
       catch (NotCorrectDataException $e)
       {
@@ -405,12 +410,6 @@
           'errors' => "Код не верный",
         ]);
       }
-      $user->isphoneactivated = 'Y';
-      
-      return new JsonResponse([
-        "status" => 200,
-      ]);
-      
     }
     
     /**
