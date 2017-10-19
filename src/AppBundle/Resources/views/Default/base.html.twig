@@ -1,4 +1,4 @@
-{#{% minifyhtml %}#}
+{% minifyhtml %}
 <!DOCTYPE html>
 {% set show = app.request.query.get("show") %}
 {% set action =  banned_listener.getAction() %}
@@ -534,4 +534,4 @@
 </noscript> <!-- /Yandex.Metrika counter -->
 </body>
 </html>
-{#{% endminifyhtml %}#}
+{% endminifyhtml %}
