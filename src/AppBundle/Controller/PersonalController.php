@@ -2,8 +2,6 @@
   
   namespace AppBundle\Controller;
   
-  use AppBundle\Entity\Lottery;
-  use AppBundle\Entity\Rates;
   use AppBundle\Entity\User;
   use Dalee\PEPUWSClientBundle\Controller\CrmReceiptsController;
   use Dalee\PEPUWSClientBundle\Controller\GeoApiController;
