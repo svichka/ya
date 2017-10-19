@@ -4,6 +4,7 @@
   
   use AppBundle\Entity\LogUpload;
   use AppBundle\Entity\Receipt;
+  use AppBundle\Entity\User;
   use Dalee\PEPUWSClientBundle\Controller\CrmReceiptsController;
   use Dalee\PEPUWSClientBundle\Controller\GeoApiController;
   use Dalee\PEPUWSClientBundle\Controller\LedgerApiController;
@@ -179,7 +180,29 @@
           
           try
           {
-            $participantApi->add($formData, $form->get('password')->getData());
+            $participant = $participantApi->add($formData, $form->get('password')->getData());
+            try
+            {
+              $user = $this->getDoctrine()->getRepository('AppBundle:User')->find($participant->id);
+              if ($user)
+              {
+                $user->setAgree(1);
+                $this->getDoctrine()->getManager()->merge($user);
+                $this->getDoctrine()->getManager()->flush();
+              }
+              else
+              {
+                $user = new User();
+                $user->setId($participant->id);
+                $user->setAgree(1);
+                $this->getDoctrine()->getManager()->merge($user);
+                $this->getDoctrine()->getManager()->flush();
+              }
+            }
+            catch (Exception $e)
+            {
+              $this->get('logger')->error("agree log");
+            }
           }
           catch (ApiFailedException $e)
           {
@@ -644,6 +667,7 @@
       {
         $participant = $participantApi->activate(ParticipantApiController::CONTACT_TYPE_EMAIL, $formData['login'], $formData['activation_code']);
         $this->get('logger')->info('activate success ' . print_r($participant, true));
+        
         return $this->redirectToRoute('index_page', ['show' => 'done']);
         
       }

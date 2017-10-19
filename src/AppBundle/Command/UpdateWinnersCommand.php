@@ -68,17 +68,17 @@
         try
         {
           $promocodes = (new PromocodeApiController())->getApplicationsByParticipantId($user->getId());
-  
+          
           foreach ($promocodes as $application)
           {
             $output->writeln(['application = ' . $application->getId()]);
             $promoApplications = $application->getPromoApplications();
-    
+            
             foreach ($promoApplications as $promoApplication)
             {
               if (count($promoApplication['prize_options']))
               {
-                $output->writeln(['promoApplication = ' . $promoApplication['prize_options']]);
+                $output->writeln(['promoApplication = ' . print_r($promoApplication['prize_options'], true)]);
                 $options = $promoApplication['prize_options'][0];
                 $guid = $application->getCode();
                 $win_receipts[$guid] = $options['slug'];
@@ -88,7 +88,7 @@
                 $win_object->setPromocodeParticipantDate(date('d.m.Y', strtotime($options['balance_date'])));
                 $win_object->setId($application->getId());
                 $win_object->setPromocodeId($application->getId());
-        
+                
                 $pApi = new ParticipantApiController();
                 $output->writeln(['get User = ' . $user->getId()]);
                 $p = $pApi->getById($user->getId(), ['firstname', 'secname', 'lastname']);
@@ -98,13 +98,22 @@
                 $fio .= $p->getSecname() . " ";
                 $fio = trim($fio);
                 $win_object->setPromocodeParticipantFio($fio);
-                $em->merge($win_object);
+                if ($em->contains($win_object))
+                {
+                  $em->merge($win_object);
+                }
+                else
+                {
+                  $em->persist($win_object);
+                }
                 $output->writeln(['win flush']);
                 $em->flush();
               }
             }
           }
-        }catch (ApiFailedException $e){
+        }
+        catch (ApiFailedException $e)
+        {
           $output->writeln([$e->getMessage()]);
         }
       }

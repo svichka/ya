@@ -354,7 +354,7 @@
             {
               $keys = array_keys($registration_form);
             }
-            $this->errors[] = "Данные не верны ";
+            $this->errors[] = "Данные не верны " . implode(", ", $keys);
           }
           else
           {

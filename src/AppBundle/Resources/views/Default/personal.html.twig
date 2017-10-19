@@ -140,7 +140,8 @@
           <div class="form__row">
             <label class="form__label" style="text-align: center; font-size: 15px; margin-bottom: 1em">Если Вы хотите
               изменить личную информацию, пожалуйста, воспользуйтесь
-              <a href="{{ path('feedback_page') }}" class="form_to_feedback_link">формой&nbsp;обратной&nbsp;связи</a></label>
+              <a href="{{ path('feedback_page') }}"
+                 class="form_to_feedback_link">формой&nbsp;обратной&nbsp;связи</a></label>
           </div>
         </div>
       </div>
@@ -187,7 +188,8 @@
               <label class="form__label" for="lastname">Фамилия*</label>
               <input class="form__input" type="text" id="lastname" name="registration_form[lastname]"
                      placeholder="Фамилия"
-                     value="{{ user.getlastname() }}" {% if (user.getlastname()!='') %} disabled {% endif %} onkeyup="Ru(this);">
+                     value="{{ user.getlastname() }}" {% if (user.getlastname()!='') %} disabled {% endif %}
+                     onkeyup="Ru(this);">
             </div>
             <div class="form__box form__box_width_half">
               <label class="form__label" for="firstname">Имя*</label>
@@ -220,7 +222,8 @@
           <div class="form__row">
             <div class="form__box form__box_width_half">
               <label class="form__label" for="email">Email*</label>
-              <input class="form__input" value="{{ user.getemail() }}" {% if (user.getemail()!='') %} disabled {% endif %}
+              <input class="form__input"
+                     value="{{ user.getemail() }}" {% if (user.getemail()!='') %} disabled {% endif %}
                      type="email" id="email" placeholder="email@email.com" name="registration_form[email]">
             </div>
             <div class="form__box form__box_width_half">
@@ -262,9 +265,15 @@
                 {% set disable = '' %}
                 {% if user.getregion() is defined and user.getregion() != '' %}
                   {% set disable = 'disabled' %}
+                  <input id="region" type="text" class="form__input" name="registration_form[region]"
+                         required="" {{ disable }} value="{{ user.getregion() }}">
+                {% else %}
+                  <select class="form__select" id="region" name="registration_form[regionguid]">
+
+                  </select>
+                  <input id="region_text" type="hidden" name="registration_form[region]" required="">
                 {% endif %}
-                <input id="region" type="text" class="form__input" name="registration_form[region]"
-                       required="" {{ disable }} value="{{ user.getregion() }}">
+
               {% endif %}
             </div>
             <div class="form__box form__box_width_half">
@@ -278,9 +287,15 @@
                 {% set disable = '' %}
                 {% if user.getcity() is defined and user.getcity() != '' %}
                   {% set disable = 'disabled' %}
+                  <input id="city" type="text" class="form__input" name="registration_form[city]"
+                         required="" {{ disable }} value="{{ user.getcity() }}">
+                {% else %}
+                  <select class="form__select" id="city" name="registration_form[cityguid]">
+
+                  </select>
+                  <input id="city_text" type="hidden" name="registration_form[city]" required="">
                 {% endif %}
-                <input id="city" type="text" class="form__input" name="registration_form[city]"
-                       required="" {{ disable }} value="{{ user.getcity() }}">
+
               {% endif %}
             </div>
           </div>
@@ -369,7 +384,7 @@
           lang: "ru",
           timepicker: false,
           format: 'd.m.Y',
-          maxDate: '+1970/01/01'
+          maxDate: '+1970/01/01',
         });
 
 
