@@ -633,7 +633,7 @@
       {
         return $this->redirectToRoute('personal_page');
       }
-      
+      $this->get('logger')->error('activate start ');
       $formData = [
         "login"           => $email,
         "activation_code" => $code,
@@ -643,13 +643,14 @@
       try
       {
         $participant = $participantApi->activate(ParticipantApiController::CONTACT_TYPE_EMAIL, $formData['login'], $formData['activation_code']);
-        
+        $this->get('logger')->info('activate success ' . print_r($participant, true));
         return $this->redirectToRoute('index_page', ['show' => 'done']);
         
       }
       catch (NotCorrectDataException $e)
       {
         $this->errors[] = $e->getMessage();
+        $this->get('logger')->error('activate error ' . print_r($e->getMessage(), true));
       }
       catch (ApiFailedException $e2)
       {

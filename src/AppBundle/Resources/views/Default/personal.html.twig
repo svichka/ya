@@ -132,6 +132,24 @@
 
   {% block modals %}
     {{ parent() }}
+
+    <div class="popup" id="showEditPP">
+      <div class="popup__close arcticmodal-close">X</div>
+      <div class="popup__wrap">
+        <div class="popup__form-wrap popup__form-wrap_width_min">
+          <div class="form__row">
+            <label class="form__label" style="text-align: center; font-size: 15px; margin-bottom: 1em">Если Вы хотите
+              изменить личную информацию, пожалуйста, воспользуйтесь <a href="{{ path('feedback_page') }}"
+                                                                        class="form_to_feedback_link">формой обратной
+                связи</a></label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
     <div class="popup" id="enterCode">
       <div class="popup__close arcticmodal-close">X</div>
       <div class="popup__wrap">
@@ -156,8 +174,15 @@
     <div class="popup" id="updateModal">
       <div class="popup__close arcticmodal-close">X</div>
       <h2 class="popup__title">Дозаполнение профиля</h2>
+
+
       <div class="popup__wrap popup__wrap_width_big">
         <form class="form" action="#" id="update_form" method="post">
+          <div class="form__row">
+            <label class="form__label" style="text-align: center; font-size: 15px; margin-bottom: 1em">
+              Пожалуйста, заполните недостающую информацию о себе, чтобы участвовать в Акции
+            </label>
+          </div>
           <div class="form__row">
             <div class="form__box form__box_width_half">
               <label class="form__label" for="lastname">Фамилия*</label>
@@ -245,7 +270,7 @@
             </div>
             <div class="form__box form__box_width_half">
               <label class="form__label" for="city">Город*</label>
-              {% if user.cityguid is defined and user.cityguid != '' %}
+              {% if user.cityguid is defined and user.cityguid%}
                 <select class="form__select" id="city" name="registration_form[cityguid]">
 
                 </select>
@@ -260,12 +285,7 @@
               {% endif %}
             </div>
           </div>
-          <div class="form__row">
-            <label class="form__label" style="text-align: center; font-size: 15px; margin-bottom: 1em">Если Вы хотите
-              изменить личную информацию, пожалуйста, воспользуйтесь <a href="{{ path('feedback_page') }}"
-                                                                        class="form_to_feedback_link">формой обратной
-                связи</a></label>
-          </div>
+
           {#<div class="form__row">#}
           {#<div class="form__box form__box_width_half">#}
           {#<label class="form__label" for="password_old">Старый пароль</label>#}

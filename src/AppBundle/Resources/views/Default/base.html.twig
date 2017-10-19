@@ -1,4 +1,4 @@
-{% minifyhtml %}
+{#{% minifyhtml %}#}
 <!DOCTYPE html>
 {% set show = app.request.query.get("show") %}
 {% set action =  banned_listener.getAction() %}
@@ -130,6 +130,16 @@
               </div>
             </div>
           </form>
+        </div>
+      </div>
+      <div class="popup" id="ageModal">
+        <div class="popup__close arcticmodal-close">X</div>
+        <div class="popup__wrap">
+          <p class="popup__text popup__text_size_limit">
+            Согласно правилам акции,<br>
+            принять участие в Акции могут<br>
+            только лица, достигшие 18 лет.
+          </p>
         </div>
       </div>
       <div class="popup" id="moderateModal">
@@ -460,4 +470,4 @@
 </noscript> <!-- /Yandex.Metrika counter -->
 </body>
 </html>
-{% endminifyhtml %}
+{#{% endminifyhtml %}#}
