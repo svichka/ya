@@ -20,6 +20,7 @@
 
       <div class="form__wrapper" style="padding-bottom: 20px;">
         <div class="form__row">
+          <p class="bg-danger reg-helper"></p>
           {% for error in errors %}
             <p class="bg-danger" style="">{{ error|trans }}</p>
           {% endfor %}
@@ -116,11 +117,61 @@
 {% block javascripts %}
   {{ parent() }}
   <script type="text/javascript">
+    var reg_errors = {};
+    var reg_helper = $('.reg-helper');
+    var show_reg_errors = function () {
+      reg_helper.html("");
+      for (var key in reg_errors) {
+        if (reg_errors.hasOwnProperty(key)) {
+          reg_helper.append("<span>" + reg_errors[ key ] + "</span><br/>");
+        }
+      }
+    };
     var formPrefix = 'registration_form';
     $(function () {
       $('#registration_form_ismale_0').attr('name', 'registration_form[ismale]');
       $('#registration_form_ismale_1').attr('name', 'registration_form[ismale]');
-    })
+      $('form[name=registration_form]').submit(function () {
+        var valid = true;
+        if ($('#registration_form_birthdate').val().length !== 10 || moment($('#registration_form_birthdate').val(), 'DD.MM.YYYY').toDate() === 'Invalid Date') {
+          reg_errors[ 'registration_form_birthdate' ] = "Введите дату рождения";
+          valid = false;
+        } else {
+          delete reg_errors[ 'registration_form_birthdate' ];
+          if (_calculateAge(moment($('#registration_form_birthdate').val(), 'DD.MM.YYYY').toDate()) < 18) {
+            reg_errors[ 'registration_form_birthdate' ] = "Возраст менее 18 лет";
+            valid = false;
+          } else {
+            delete reg_errors[ 'registration_form_birthdate' ];
+          }
+        }
+        show_reg_errors();
+        return valid;
+      });
+      $('.form__input_type_date').datetimepicker({
+        lang: "ru",
+        timepicker: false,
+        format: 'd.m.Y',
+        maxDate: '+1970/01/01',
+        onChangeDateTime: validateChangeDateTime
+      });
+    });
+
+    function validateChangeDateTime(a,b,c,d) {
+      if ($('#registration_form_birthdate').val().length !== 10 || moment($('#registration_form_birthdate').val(), 'DD.MM.YYYY').toDate() === 'Invalid Date') {
+        reg_errors[ 'registration_form_birthdate' ] = "Введите дату рождения";
+        valid = false;
+      } else {
+        delete reg_errors[ 'registration_form_birthdate' ];
+        if (_calculateAge(moment($('#registration_form_birthdate').val(), 'DD.MM.YYYY').toDate()) < 18) {
+          reg_errors[ 'registration_form_birthdate' ] = "Возраст менее 18 лет";
+          valid = false;
+        } else {
+          delete reg_errors[ 'registration_form_birthdate' ];
+        }
+      }
+      show_reg_errors();
+    }
   </script>
   <script type="text/javascript" src="{{ asset('js/geo_fields.js') }}"></script>
 {% endblock %}

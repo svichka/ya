@@ -45,12 +45,7 @@ $(function () {
     $('#restoreModal').arcticmodal(favSyr.popup.options);
     return false;
   });
-  $('.form__input_type_date').datetimepicker({
-    lang: "ru",
-    timepicker: false,
-    format: 'd.m.Y',
-    maxDate: '+1970/01/01',
-  });
+
 
   $('.jsOpenContent').click(function () {
     $('.jsContent').not($(this).next('.jsContent')).slideUp();

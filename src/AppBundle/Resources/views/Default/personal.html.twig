@@ -365,6 +365,14 @@
     </script>
     <script>
       $(function () {
+        $('.form__input_type_date').datetimepicker({
+          lang: "ru",
+          timepicker: false,
+          format: 'd.m.Y',
+          maxDate: '+1970/01/01'
+        });
+
+
         // jsMoney
         var optionsCode = {
           beforeSubmit: showRequestCode,  // pre-submit callback
