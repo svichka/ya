@@ -56,9 +56,15 @@
             <div class="form__checkbox__container">
               {{ form_widget(form.ispdagreed) }}
               {#<input class="form__checkbox" type="checkbox" id="check2" checked>#}
-              <label class="form__checkbox-text" for="registration_form_ispdagreed">Я согласен с правилами акции и
-                пользовательским
-                соглашением, а так же на обработку моих данных</label>
+              <label class="form__checkbox-text" for="registration_form_ispdagreed">
+                  <span>Я согласен с <a href="https://promo.ya-juice.ru/files/Правила%20акции.pdf" target="_blank" style="
+                        color: #fcef9c;
+                    ">правилами акции</a> и
+                                    <a href="https://promo.ya-juice.ru/files/Пользовательское%20соглашение.pdf" target="_blank" style="
+                        color: #fcef9c;
+                    ">пользовательским
+                                        соглашением</a>, а так же на обработку моих данных</span>
+              </label>
             </div>
           </div>
           <div class="form__box form__box_width_half">
