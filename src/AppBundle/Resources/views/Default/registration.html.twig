@@ -120,6 +120,24 @@
     }
   </style>
 {% endblock %}
+{% block modals %}
+  {{ parent() }}
+  <div class="popup" id="agePP">
+    <div class="popup__close arcticmodal-close">X</div>
+    <div class="popup__wrap">
+      <div class="popup__form-wrap">
+        <div class="form__row">
+          <label class="form__label" style="text-align: center; font-size: 15px; margin-bottom: 1em">Согласно правилам, принять участие в Акции могут <br> только лица, достигшие 18 лет.</label>
+        </div>
+        <div class="form__row">
+          <div class="form__box form__box_button">
+            <button class="button arcticmodal-close" type="submit"><span class="button__text">ОК</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endblock %}
 {% block javascripts %}
   {{ parent() }}
   <script type="text/javascript">
@@ -170,7 +188,9 @@
       } else {
         delete reg_errors[ 'registration_form_birthdate' ];
         if (_calculateAge(moment($('#registration_form_birthdate').val(), 'DD.MM.YYYY').toDate()) < 18) {
-          reg_errors[ 'registration_form_birthdate' ] = "Возраст менее 18 лет";
+//          reg_errors[ 'registration_form_birthdate' ] = "Возраст менее 18 лет";
+          $('#registration_form_birthdate').datetimepicker('hide');
+          $('#agePP').arcticmodal(favSyr.popup.options);
           valid = false;
         } else {
           delete reg_errors[ 'registration_form_birthdate' ];
