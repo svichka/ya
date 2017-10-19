@@ -55,6 +55,7 @@
         width: 250px;
         text-align: center;
       }
+
       .popup .revizor__button-style {
         overflow: visible;
       }
@@ -314,6 +315,32 @@
 
   <script src="{{ asset('js/main.js') }}?{{ content_version }}"></script>
   <script>
+    $.arcticmodal('setDefault', {
+      beforeOpen: function (data, el) {
+        window.ppId = $(el).attr('id');
+        console.log(ppId);
+        switch (ppId) {
+          case 'faqSubmit':
+            dataLayer.push({
+              'event': 'FormSent',
+              'eventCategory': 'FAQ',
+              'eventAction': 'Sent',
+            });
+            break;
+          case '':
+            dataLayer.push({
+              'event': 'FormSent',
+              'eventCategory': 'Registration',
+              'eventAction': 'success',
+            });
+            break;
+          default:
+            console.log('default');
+            break;
+        }
+      },
+    });
+
     function toDate(dateStr) {
       var parts = dateStr.split(".");
       return new Date(parts[ 2 ], parts[ 1 ] - 1, parts[ 0 ]);

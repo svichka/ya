@@ -8,14 +8,16 @@
   <main class="main" id="main">
     <div class="about" id="resizeBlock">
       <div class="about__content">
-        <div class="about__img-wrap"><img class="about__img" src="{{ asset('images/about__img.png') }}" alt="Я - сок"></div>
+        <div class="about__img-wrap"><img class="about__img" src="{{ asset('images/about__img.png') }}" alt="Я - сок">
+        </div>
         <div class="about__right">
           <div class="about__title">УЗНАЙ ВКУС НАСЛАЖДЕНИЯ И ВЫИГРЫВАЙ ПРИЗЫ!</div>
           <div class="about__title about__title_mobile">Регистрируй чек и выигрывай призы!</div>
           <div class="steps">
             <div class="steps__wrap">
               <div class="steps__item">
-                <div class="steps__img-wrap"><img class="steps__img" src="{{ asset('images/step_1.png') }}" alt="Шаг первый"></div>
+                <div class="steps__img-wrap"><img class="steps__img" src="{{ asset('images/step_1.png') }}"
+                                                  alt="Шаг первый"></div>
                 <div class="steps__descr">
                   <div class="steps__number">1</div>
                   <div class="steps__text">
@@ -25,7 +27,8 @@
                 </div>
               </div>
               <div class="steps__item">
-                <div class="steps__img-wrap"><img class="steps__img" src="{{ asset('images/step_2.png') }}" alt="Шаг первый"></div>
+                <div class="steps__img-wrap"><img class="steps__img" src="{{ asset('images/step_2.png') }}"
+                                                  alt="Шаг первый"></div>
                 <div class="steps__descr">
                   <div class="steps__number">2</div>
                   <div class="steps__text">
@@ -35,19 +38,22 @@
                 </div>
               </div>
               <div class="steps__item">
-                <div class="steps__img-wrap"><img class="steps__img" src="{{ asset('images/step_3.png') }}" alt="Шаг первый"></div>
+                <div class="steps__img-wrap"><img class="steps__img" src="{{ asset('images/step_3.png') }}"
+                                                  alt="Шаг первый"></div>
                 <div class="steps__descr">
                   <div class="steps__number">3</div>
                   <div class="steps__text">
                     <div class="steps__line" style="padding-bottom: 6px;">Участвуй</div>
-                    <a class="steps__line steps__line_small steps__line_link" href="{{ path('prizes_page') }}">в розыгрыше призов </a>
+                    <a class="steps__line steps__line_small steps__line_link" href="{{ path('prizes_page') }}">в
+                      розыгрыше призов </a>
                   </div>
                 </div>
               </div>
             </div>
           </div>
           <div class="about__button-wrap">
-            <button class="button button_big-rem button_regcheck"><span class="button__text">Зарегистрировать чек</span></button>
+            <button class="button button_big-rem button_regcheck"><span class="button__text">Зарегистрировать чек</span>
+            </button>
           </div>
         </div>
       </div>
@@ -67,6 +73,12 @@
         {% if message =='ok' %}
           <script>
             $(function () {
+              dataLayer.push({
+                'event': 'FormSent',
+                'eventCategory': 'Registration',
+                'eventAction': 'success',
+              });
+
               $('.free-text-h').html('Регистрация');
               $('.free-text').html('Поздравляем! <br>Ты успешно зарегистрировался!<br>' +
                 ' Активируй свой аккаунт, перейдя по ссылке в письме,<br>' +

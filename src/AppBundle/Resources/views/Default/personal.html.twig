@@ -507,7 +507,7 @@
           }
           selectC.removeAttr('disabled', 'disabled');
           $("#city_text").removeAttr('disabled', 'disabled');
-          {% if(user.getcityguid()!='') %}
+          {% if(user.getcityguid()!='' and user.getcityguid()!='q') %}
           $(selectC).val('{{ user.getcityguid() }}').change();
           $("#city_text").val($("#city option:selected").text());
           console.log('city change');
