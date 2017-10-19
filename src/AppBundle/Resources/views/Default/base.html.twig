@@ -314,6 +314,26 @@
   {#<script src="{{ asset('js/bootstrap.min.js') }}"></script>#}
 
   <script src="{{ asset('js/main.js') }}?{{ content_version }}"></script>
+
+  {% for label, messages in app.session.flashbag.all %}
+    {% if label =='login' %}
+      {% for message in messages %}
+        {% if message =='ok' %}
+          <script>
+            $(function () {
+              dataLayer.push({
+                'event': 'FormSent',
+                'eventCategory': 'login',
+                'eventAction': 'success',
+              });
+            });
+          </script>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+  {% endfor %}
+
+
   <script>
     $.arcticmodal('setDefault', {
       beforeOpen: function (data, el) {
@@ -327,14 +347,12 @@
               'eventAction': 'Sent',
             });
             break;
-          case '':
+          default:
             dataLayer.push({
               'event': 'FormSent',
-              'eventCategory': 'Registration',
-              'eventAction': 'success',
+              'eventCategory': ppId,
+              'eventAction': 'Popup',
             });
-            break;
-          default:
             console.log('default');
             break;
         }

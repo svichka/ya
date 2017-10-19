@@ -22,6 +22,7 @@
       if ($user) {
         $userRoles = $user->getRoles();
         if (in_array('ROLE_USER', $userRoles)) {
+          $this->addFlash('login', 'ok');
           return $this->redirectToRoute('personal_page');
         } elseif (in_array('ROLE_NOT_ACTIVE_USER', $userRoles)) {
           if (in_array('ROLE_NOT_ACTIVE_USER_NOT_ACTIVE_MOBILE', $userRoles)) {
