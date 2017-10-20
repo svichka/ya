@@ -58,21 +58,22 @@
       
       // 50 Рублей на телефон
       $users = $doctrine->getRepository('AppBundle:User')->findAll();
+      $total_count = count($users);
+      $i = 0;
       foreach ($users as $user)
       {
-        $output->writeln(['user = ' . $user->getId()]);
+        $i++;
+        $output->write("Process = $i of $total_count ");
         /**
          * @var \Dalee\PEPUWSClientBundle\Entity\PromocodeApplication[] $promocodes
          */
-        $output->writeln(['promocodes = ' . '-']);
         try
         {
           $promocodes = (new PromocodeApiController())->getApplicationsByParticipantId($user->getId());
-          
+          $pr = 0;
           foreach ($promocodes as $application)
           {
-            $output->writeln(['application = ' . $application->getId()]);
-            $output->writeln(['application = ' . print_r($application,true)]);
+            
             $promoApplications = $application->getPromoApplications();
             
             foreach ($promoApplications as $promoApplication)
@@ -80,40 +81,49 @@
               
               if (count($promoApplication['prize_options']))
               {
-                $output->writeln(['promoApplication = ' . print_r($promoApplication['prize_options'], true)]);
+                $pr++;
+                $output->write("$pr ");
                 $options = $promoApplication['prize_options'][0];
                 $guid = $application->getCode();
-                $win_receipts[$guid] = $options['slug'];
                 
-                $output->writeln(['win', $application->getId()]);
-                $win_object = new Winner();
+                $win_object = $this->getContainer()->get('doctrine')->getRepository('AppBundle:Winner')->find($application->getId());
+                if ($win_object == null)
+                {
+                  $win_object = new Winner();
+                  // Id розыгрыша
+                  $win_object->setId($application->getId());
+                }
+                // Id приза, для вывода корректной картинки
                 $win_object->setPromocodeParticipantPrize(1);
+                // Data по чеку
                 $win_object->setPromocodeParticipantDate(date('d.m.Y', strtotime($application->getReceipt()['registration_time'])));
-                $win_object->setId($application->getId());
+                // guid чека для
+                $win_object->setReceiptGuid($application->getReceipt()['guid']);
+                
+                // Кажется мусор
                 $win_object->setPromocodeId($options['id']);
-                $win_object->setPromocodeParticipantId($user->getId());
+                
                 
                 $pApi = new ParticipantApiController();
-                $output->writeln(['get User = ' . $user->getId()]);
+//                $output->writeln(['get User = ' . $user->getId()]);
                 /**
                  * @var \Dalee\PEPUWSClientBundle\Entity\Participant $p
                  */
-                $p = $pApi->getById($user->getId(), ['firstname', 'secname', 'lastname']);
+                $p = $pApi->getById($user->getId(), ['firstname', 'secname', 'lastname', 'guid', 'crm_id_ilp']);
                 $fio = "";
                 $fio .= $p->getLastname() . " ";
                 $fio .= $p->getFirstname() . " ";
                 $fio .= $p->getSecname() . " ";
                 $fio = trim($fio);
                 $win_object->setPromocodeParticipantFio($fio);
-                if ($em->contains($win_object))
-                {
-                  $em->merge($win_object);
-                }
-                else
-                {
-                  $em->persist($win_object);
-                }
-                $output->writeln(['win flush']);
+                
+                // Поля данных по юзеру
+                $win_object->setPromocodeParticipantId($user->getId());
+                $win_object->setPromocodeParticipantCrmIdIlp($p->getCrmIdIlp());
+                $win_object->setPromocodeParticipantGuid($p->getGuid());
+                
+                
+                $em->merge($win_object);
                 $em->flush();
               }
             }
@@ -123,6 +133,7 @@
         {
           $output->writeln([$e->getMessage()]);
         }
+        $output->writeln("\tDone.");
       }
       
       $output->writeln(['win lotteries']);

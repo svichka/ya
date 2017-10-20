@@ -23,13 +23,12 @@
     /**
      * @ORM\Id
      * @ORM\Column(type="integer", unique=true)
-     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
     /**
      * @ORM\Column(type="string", nullable=true)
      */
-    private $tickets_count;
+    private $receipt_guid;
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
@@ -43,7 +42,7 @@
      */
     private $prize_application;
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $promocode_id;
     /**
@@ -89,22 +88,6 @@
     public function setId($id)
     {
       $this->id = $id;
-    }
-    
-    /**
-     * @return mixed
-     */
-    public function getTicketsCount()
-    {
-      return $this->tickets_count;
-    }
-    
-    /**
-     * @param mixed $tickets_count
-     */
-    public function setTicketsCount($tickets_count)
-    {
-      $this->tickets_count = $tickets_count;
     }
     
     /**
@@ -282,6 +265,22 @@
     {
       $this->promocode_participant_date = $promocode_participant_date;
     }
-    
-    
+  
+    /**
+     * @return mixed
+     */
+    public function getReceiptGuid()
+    {
+      return $this->receipt_guid;
+    }
+  
+    /**
+     * @param mixed $receipt_guid
+     */
+    public function setReceiptGuid($receipt_guid)
+    {
+      $this->receipt_guid = $receipt_guid;
+    }
+  
+  
   }
