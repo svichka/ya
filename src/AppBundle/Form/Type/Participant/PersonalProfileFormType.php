@@ -19,9 +19,9 @@ class PersonalProfileFormType extends ParticipantFieldsFormType
 		$builder
 			->add('email', EmailType::class, ['disabled' => true])
 			->add('mobilephone', TextType::class)
-			->add('lastname', TextType::class, ['disabled' => true])
-			->add('firstname', TextType::class, ['disabled' => true])
-			->add('secname', TextType::class, ['disabled' => true])
+      ->add('firstname', TextType::class, ['label' => "Имя*", 'disabled' => true, 'attr' => ["placeholder" => "Имя", 'onkeyup' => 'Ru(this)']])// ,"onkeyup"=>"Ru(this);"
+      ->add('lastname', TextType::class, ['label' => "Фамилия*", 'disabled' => true, 'attr' => ["placeholder" => "Фамилия", 'onkeyup' => 'Ru(this)']])// ,"onkeyup"=>"Ru(this);"
+      ->add('secname', TextType::class, ['label' => "Отчество", 'disabled' => true, 'required' => false, 'attr' => ["placeholder" => "Отчество", 'onkeyup' => 'Ru(this)']])// ,"onkeyup"=>"Ru(this);"
 			->add('ismale', ChoiceType::class, ['choices_as_values' => true, 'choices'  => ['N' => 'Ж', 'Y' => 'М'], 'expanded' => true, 'multiple' => false, 'disabled' => true])
 			->add('birthdate', TextType::class, ['constraints' => [new Constraints\RussianDate()], 'attr' => ['class' => 'js-datepicker'], 'disabled' => true])
 			->add('countrycode', HiddenType::class, ['disabled' => true])

@@ -12,5 +12,8 @@
 
   class WinnerRepository extends EntityRepository
   {
-    
+    public function findAll()
+    {
+      return $this->findBy(array(), array('promocode_participant_date' => 'ASC'));
+    }
   }

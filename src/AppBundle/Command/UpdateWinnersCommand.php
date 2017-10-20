@@ -72,26 +72,32 @@
           foreach ($promocodes as $application)
           {
             $output->writeln(['application = ' . $application->getId()]);
+            $output->writeln(['application = ' . print_r($application,true)]);
             $promoApplications = $application->getPromoApplications();
             
             foreach ($promoApplications as $promoApplication)
             {
+              
               if (count($promoApplication['prize_options']))
               {
                 $output->writeln(['promoApplication = ' . print_r($promoApplication['prize_options'], true)]);
                 $options = $promoApplication['prize_options'][0];
                 $guid = $application->getCode();
                 $win_receipts[$guid] = $options['slug'];
+                
                 $output->writeln(['win', $application->getId()]);
                 $win_object = new Winner();
                 $win_object->setPromocodeParticipantPrize(1);
-                $win_object->setPromocodeParticipantDate(date('d.m.Y', strtotime($options['balance_date'])));
-                $win_object->setId($options['id']);
+                $win_object->setPromocodeParticipantDate(date('d.m.Y', strtotime($application->getReceipt()['registration_time'])));
+                $win_object->setId($application->getId());
                 $win_object->setPromocodeId($options['id']);
                 $win_object->setPromocodeParticipantId($user->getId());
                 
                 $pApi = new ParticipantApiController();
                 $output->writeln(['get User = ' . $user->getId()]);
+                /**
+                 * @var \Dalee\PEPUWSClientBundle\Entity\Participant $p
+                 */
                 $p = $pApi->getById($user->getId(), ['firstname', 'secname', 'lastname']);
                 $fio = "";
                 $fio .= $p->getLastname() . " ";
