@@ -162,9 +162,15 @@
           valid = false;
         } else {
           delete reg_errors[ 'registration_form_birthdate' ];
-          if (_calculateAge(moment($('#registration_form_birthdate').val(), 'DD.MM.YYYY').toDate()) < 18) {
-//            reg_errors[ 'registration_form_birthdate' ] = "Возраст менее 18 лет";
+          var age = _calculateAge(moment($('#registration_form_birthdate').val(), 'DD.MM.YYYY').toDate());
+          if (age < 18 ) {
             $('#agePP').arcticmodal(favSyr.popup.options);
+            valid = false;
+          } else {
+            delete reg_errors[ 'registration_form_birthdate' ];
+          }
+          if(age>=90){
+            reg_errors[ 'registration_form_birthdate' ] = "Введите дату рождения";
             valid = false;
           } else {
             delete reg_errors[ 'registration_form_birthdate' ];
@@ -191,10 +197,17 @@
         valid = false;
       } else {
         delete reg_errors[ 'registration_form_birthdate' ];
-        if (_calculateAge(moment($('#registration_form_birthdate').val(), 'DD.MM.YYYY').toDate()) < 18) {
+        var age = _calculateAge(moment($('#registration_form_birthdate').val(), 'DD.MM.YYYY').toDate());
+        if (age < 18) {
 //          reg_errors[ 'registration_form_birthdate' ] = "Возраст менее 18 лет";
           $('#registration_form_birthdate').datetimepicker('hide');
           $('#agePP').arcticmodal(favSyr.popup.options);
+          valid = false;
+        } else {
+          delete reg_errors[ 'registration_form_birthdate' ];
+        }
+        if(age>=90){
+          reg_errors[ 'registration_form_birthdate' ] = "Введите дату рождения";
           valid = false;
         } else {
           delete reg_errors[ 'registration_form_birthdate' ];

@@ -10,6 +10,7 @@
   
   use AppBundle\Form\Type\Feedback\NotAuthorizedUserFormType;
   use AppBundle\Form\Type\Feedback\AuthorizedUserFormType;
+  use Symfony\Component\Security\Acl\Exception\Exception;
   use Symfony\Component\Validator\Constraints as Assert;
   use Symfony\Component\Form\Extension\Core\Type\TextType;
   use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -33,7 +34,7 @@
     public function feedbackAction(Request $request)
     {
       NotAuthorizedUserFormType::$em = $this->getDoctrine()->getRepository('AppBundle:Theme')->findAll();
-      
+      $this->get('logger')->error("init!");
       $formInputData = [''];
       $user = $this->getUser();
       if ($user)
@@ -72,10 +73,17 @@
             $this->get('logger')->info('add file');
             $formData['file_name'] = $formData['file']->getClientOriginalName();
             $formData['file_type'] = $formData['file']->getClientOriginalExtension();
-            $file = $formData['file']->openFile();
-            $contents = $file->fread($file->getSize());
-            $file_data = base64_encode($contents);
-            $formData['file'] = $file_data;
+            try
+            {
+              $file = $formData['file']->openFile();
+              $contents = $file->fread($file->getSize());
+              $file_data = base64_encode($contents);
+              $formData['file'] = $file_data;
+            }
+            catch (Exception $e)
+            {
+              throw new NotCorrectDataException('Ошибка загрузки файла');
+            }
           }
           else
           {

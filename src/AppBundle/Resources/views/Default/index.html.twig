@@ -67,28 +67,4 @@
 
 {% block javascripts %}
   {{ parent() }}
-  {% for label, messages in app.session.flashbag.all %}
-    {% if label =='registration' %}
-      {% for message in messages %}
-        {% if message =='ok' %}
-          <script>
-            $(function () {
-              dataLayer.push({
-                'event': 'FormSent',
-                'eventCategory': 'Registration',
-                'eventAction': 'success',
-              });
-
-              $('.free-text-h').html('Регистрация');
-              $('.free-text').html('Поздравляем! <br>Вы успешно зарегистрированы!<br>' +
-                ' Активируйте свой аккаунт, перейдя по ссылке в письме,<br>' +
-                'которое отправлено на Ваш email.<br>' +
-                'Если письмо не пришло сразу, пожалуйста, проверьте папку «Спам».');
-              $('#freeModal').arcticmodal(favSyr.popup.options);
-            });
-          </script>
-        {% endif %}
-      {% endfor %}
-    {% endif %}
-  {% endfor %}
 {% endblock %}

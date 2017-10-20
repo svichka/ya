@@ -97,7 +97,7 @@
                             <img class="table__img" src="{{ asset('images/prize_icon_1.png') }}" alt="">
                             {% if not banned_listener.isSended(value.guid) %}
                               <a class="table__link data-id='{{ value.guid }}'
-                            {% if  banned_listener.isFilled(user.id) %}jsMoneySend{% else %}jsMoneyMobile{% endif %}"
+                            {% if  banned_listener.isFilled(user.getid()) %}jsMoneySend{% else %}jsMoneyMobile{% endif %}"
                                  href="#!">Получить</a>
                             {% endif %}
                           {% elseif win_receipts[value.guid] =='ya_certificate_coctail_spain' %}

@@ -86,8 +86,9 @@
                 $win_object = new Winner();
                 $win_object->setPromocodeParticipantPrize(1);
                 $win_object->setPromocodeParticipantDate(date('d.m.Y', strtotime($options['balance_date'])));
-                $win_object->setId($application->getId());
-                $win_object->setPromocodeId($application->getId());
+                $win_object->setId($options['id']);
+                $win_object->setPromocodeId($options['id']);
+                $win_object->setPromocodeParticipantId($user->getId());
                 
                 $pApi = new ParticipantApiController();
                 $output->writeln(['get User = ' . $user->getId()]);
@@ -164,7 +165,7 @@
                   $win_object->setIsWinner($winner['is_winner']);
                   $win_object->setPrizeApplication($winner['prize_application']);
                   $win_object->setId($winner['id']);
-                  $win_object->setPromocodeId($promocode['id']);
+                  $win_object->setPromocodeId($lottery['prize']['id']);
                   $win_object->setPromocodeParticipantId($promocode['participant']['id']);
                   $win_object->setPromocodeParticipantCrmIdIlp($promocode['participant']['crm_id_ilp']);
                   $win_object->setPromocodeParticipantGuid($promocode['participant']['guid']);

@@ -168,6 +168,19 @@
             throw new NotCorrectDataException("Согласитесь с условиями");
           }
           
+          
+          $age = \DateTime::createFromFormat('d.m.Y', $formData->birthdate)
+            ->diff(new \DateTime('now'))
+            ->y;
+          if ($age > 90)
+          {
+            throw new NotCorrectDataException("Введите верную дату рождения");
+          }
+          if($age < 18 ){
+            $this->addFlash('age', 'ok');
+            throw new NotCorrectDataException("Ошибка, младше 18 лет");
+          }
+          
           if ($formData->isageagreed == "N")
           {
             throw new NotCorrectDataException("Подтвердите возраст");

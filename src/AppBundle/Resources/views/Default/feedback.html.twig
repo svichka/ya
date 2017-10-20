@@ -490,25 +490,6 @@
       }
     }
   </script>
-  {% for label, messages in app.session.flashbag.all %}
-    {% if label =='feedback' %}
-      {% for message in messages %}
-        {% if message =='ok' %}
-          <script>
-            $(function () {
-              dataLayer.push({
-                'event': 'FormSent',
-                'eventCategory': 'FAQ',
-                'eventAction': 'Sent',
-              });
-              $('#faqSubmit').arcticmodal(favSyr.popup.options);
-            });
-          </script>
-        {% endif %}
-      {% endfor %}
-    {% endif %}
-  {% endfor %}
-
 {% endblock %}
 
 {% block modals %}

@@ -43,7 +43,7 @@
      */
     private $prize_application;
     /**
-     * @ORM\Column(type="integer", unique=true)
+     * @ORM\Column(type="integer")
      */
     private $promocode_id;
     /**
