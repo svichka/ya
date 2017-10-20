@@ -26,7 +26,7 @@
             {% set i = 1 %}
             {% for winner in winners %}
               {% set i = i + 1 %}
-              <div class="table__item">
+              <div class="table__item" data-owner="{{ winner.promocodeParticipantId }}">
                 <div class="table__item-content">
                   <div class="table__box">
                     <div class="table__name">{{ winner.promocodeParticipantFio }}</div>

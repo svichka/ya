@@ -311,23 +311,20 @@
   <script src="{{ asset('js/moment-with-locales.js') }}"></script>
 
   <script src="{{ asset('js/main.js') }}?{{ content_version }}"></script>
-
-  {% for label, messages in app.session.flashbag.all %}
-  {% if label =='age' %}
-  {% for message in messages %}
-  {% if message =='ok' %}
   <script>
+    {% for label, messages in app.session.flashbag.all %}
+    {% if label =='age' %}
+    {% for message in messages %}
+    {% if message =='ok' %}
     $(function () {
       $('#agePP').arcticmodal(favSyr.popup.options);
     });
-  </script>
-  {% endif %}
-  {% endfor %}
-  {% endif %}
-  {% if label =='login' %}
-  {% for message in messages %}
-  {% if message =='ok' %}
-  <script>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    {% if label =='login' %}
+    {% for message in messages %}
+    {% if message =='ok' %}
     $(function () {
       dataLayer.push({
         'event': 'FormSent',
@@ -335,14 +332,12 @@
         'eventAction': 'success',
       });
     });
-  </script>
-  {% endif %}
-  {% endfor %}
-  {% endif %}
-  {% if label =='feedback' %}
-  {% for message in messages %}
-  {% if message =='ok' %}
-  <script>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    {% if label =='feedback' %}
+    {% for message in messages %}
+    {% if message =='ok' %}
     $(function () {
       dataLayer.push({
         'event': 'FormSent',
@@ -351,21 +346,18 @@
       });
       $('#faqSubmit').arcticmodal(favSyr.popup.options);
     });
-  </script>
-  {% endif %}
-  {% endfor %}
-  {% endif %}
-  {% if label =='registration' %}
-  {% for message in messages %}
-  {% if message =='ok' %}
-  <script>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    {% if label =='registration' %}
+    {% for message in messages %}
+    {% if message =='ok' %}
     $(function () {
       dataLayer.push({
         'event': 'FormSent',
         'eventCategory': 'Registration',
-        'eventAction': 'success'
+        'eventAction': 'success',
       });
-
       $('.free-text-h').html('Регистрация');
       $('.free-text').html('Поздравляем! <br>Вы успешно зарегистрированы!<br>' +
         ' Активируйте свой аккаунт, перейдя по ссылке<br> в письме,' +
@@ -373,12 +365,11 @@
         'Если письмо не пришло сразу, пожалуйста, проверьте папку «Спам».');
       $('#freeModal').arcticmodal(favSyr.popup.options);
     });
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    {% endfor %}
   </script>
-  {% endif %}
-  {% endfor %}
-  {% endif %}
-  {% endfor %}
-
 
   <script>
     $.arcticmodal('setDefault', {
