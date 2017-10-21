@@ -5,7 +5,7 @@
 {% block title %}{% trans %}Личный кабинет{% endtrans %}{% endblock %}
 
 {% set user = participant %}
-
+{% set show_money = 0 %}
 {% block body %}
   <main class="main" id="main">
     <div class="main__content main__content_with_full">
@@ -94,11 +94,17 @@
                       <div class="table__text">
                         {% if win_receipts[value.guid] is defined %}
                           {% if win_receipts[value.guid] =='ya_tel_50_rub' %}
+                            {% set show_money = 1 %}
                             <img class="table__img" src="{{ asset('images/prize_icon_1.png') }}" alt="">
                             {% if not banned_listener.isSended(value.guid) %}
-                              <a class="table__link data-id='{{ value.guid }}'
-                            {% if  banned_listener.isFilled(user.getid()) %}jsMoneySend{% else %}jsMoneyMobile{% endif %}"
-                                 href="#!">Получить</a>
+                              {% if  banned_listener.isFilled(user.getid()) %}
+                                {% set typeL = "jsMoneySend" %}
+                              {% else %}
+                                {% set typeL = "jsMoneyMobile" %}
+                              {% endif %}
+                              {% if  not banned_listener.isSms(user.getid()) %}
+                                <a class="table__link {{ typeL }}" data-id="{{ value.guid }}" href="#!">Получить</a>
+                              {% endif %}
                             {% endif %}
                           {% elseif win_receipts[value.guid] =='ya_certificate_coctail_spain' %}
                             <img class="table__img" src="{{ asset('images/prize_icon_2.png') }}" alt="">
@@ -154,7 +160,7 @@
       <div class="popup__close arcticmodal-close">X</div>
       <div class="popup__wrap">
         <div class="popup__form-wrap popup__form-wrap_width_min">
-          <form class="form" action="#" id="Code">
+          <form class="form form-code" action="#" id="code" method="post">
             <div class="form__row">
               <div class="form__box">
                 <label class="form__label" for="code">Введите код:</label>
@@ -399,7 +405,7 @@
           resetForm: false        // reset the form after successful submit
         };
 
-        $('form#code').ajaxForm(optionsCode);
+        $('.form-code').ajaxForm(optionsCode);
 
         function showRequestCode(formData, jqForm, options) {
           $('.code-helper').text('');
@@ -408,8 +414,8 @@
 
         function showResponseCode(responseText, statusText, xhr, $form) {
           if (responseText.status === 200) {
-            $.arcticmodal('close');
             window.location.reload;
+            $.arcticmodal('close');
           } else {
             $('.code-helper').text(responseText.errors);
             $('.code-helper').css('display', 'block');

@@ -56,12 +56,11 @@
      */
     public function promos2Action(Request $request)
     {
-      $data = [];
-      for ($i = 1; $i <= 10; $i++)
-      {
-        $data[$i] = $this->get('app.users.tools')->getWeekByBum($i);
-      }
-      
+      $participant = $this->getUser()->getParticipant();
+      $data = [
+        'p1' => $participant->getIsphoneactivated(),
+        'f'=>$participant->getFieldList()
+      ];
       
       $response = new JsonResponse($data);
       $response->setEncodingOptions($response->getEncodingOptions() | JSON_PRETTY_PRINT);
@@ -176,7 +175,8 @@
           {
             throw new NotCorrectDataException("Введите верную дату рождения");
           }
-          if($age < 18 ){
+          if ($age < 18)
+          {
             $this->addFlash('age', 'ok');
             throw new NotCorrectDataException("Ошибка, младше 18 лет");
           }
@@ -207,6 +207,7 @@
               {
                 $user = new User();
                 $user->setId($participant->id);
+                $user->setPreMobileStatus($participant->getIsphoneactivated());
                 $user->setAgree(1);
                 $this->getDoctrine()->getManager()->merge($user);
                 $this->getDoctrine()->getManager()->flush();

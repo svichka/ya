@@ -384,6 +384,8 @@
     {
       $participantApi = new ParticipantApiController();
       $code = $request->request->get('code');
+      $participant = $this->getUser()->getParticipant();
+      $uI = $this->getDoctrine()->getRepository('AppBundle:User')->find($participant->id);
       if (!$code)
       {
         return new JsonResponse([
@@ -398,7 +400,9 @@
         $participantApi->activate('MOBILE', $user->mobilephone, $code);
         $user->isphoneactivated = 'Y';
         $this->getUser()->setParticipant($user);
-        
+        $uI->setMobileActivated(1);
+        $this->getDoctrine()->getManager()->merge($uI);
+        $this->getDoctrine()->getManager()->flush();
         return new JsonResponse([
           "status" => 200,
         ]);
@@ -441,9 +445,14 @@
       
       $user->setMobilephone($p2->getMobilephone());
       $user->setIsphoneactivated($p2->getIsphoneactivated());
+      $uI = $this->getDoctrine()->getRepository('AppBundle:User')->find($user->id);
       if ($p2->getIsphoneactivated() == 'N')
       {
         $participantApi->activationUpdate($mobilephone);
+        
+        $uI->setMobileFilled(1);
+        $this->getDoctrine()->getManager()->merge($uI);
+        $this->getDoctrine()->getManager()->flush();
         
         return new JsonResponse([
           "status" => 300,
@@ -451,10 +460,16 @@
       }
       else
       {
+        $uI->setMobileFilled(1);
+        $uI->setMobileActivated(1);
+        $this->getDoctrine()->getManager()->merge($uI);
+        $this->getDoctrine()->getManager()->flush();
+        
         return new JsonResponse([
           "status" => 200,
         ]);
       }
+      
     }
     
     /**

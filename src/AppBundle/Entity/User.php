@@ -33,11 +33,19 @@
     /**
      * @ORM\Column(type="string")
      */
+    private $pre_mobile_status;
+    /**
+     * @ORM\Column(type="string")
+     */
     private $remember;
     /**
      * @ORM\Column(type="integer")
      */
     private $mobile_filled;
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $mobile_activated;
     
     /**
      * @return integer
@@ -75,6 +83,8 @@
     {
       $this->remember = "";
       $this->mobile_filled = 0;
+      $this->mobile_activated = 0;
+      $this->pre_mobile_status = "N";
     }
     
     /**
@@ -107,5 +117,37 @@
     public function setMobileFilled($mobile_filled)
     {
       $this->mobile_filled = $mobile_filled;
+    }
+    
+    /**
+     * @return mixed
+     */
+    public function getMobileActivated()
+    {
+      return $this->mobile_activated;
+    }
+    
+    /**
+     * @param mixed $mobile_activated
+     */
+    public function setMobileActivated($mobile_activated)
+    {
+      $this->mobile_activated = $mobile_activated;
+    }
+  
+    /**
+     * @return mixed
+     */
+    public function getPreMobileStatus()
+    {
+      return $this->pre_mobile_status;
+    }
+  
+    /**
+     * @param mixed $pre_mobile_status
+     */
+    public function setPreMobileStatus($pre_mobile_status)
+    {
+      $this->pre_mobile_status = $pre_mobile_status;
     }
   }

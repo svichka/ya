@@ -1,0 +1,25 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host: wrewolf.com
+    database_port: 3306
+    database_name: yajuice
+    database_user: yajuice
+    database_password: NaXIYGmU21
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: null
+    mailer_password: null
+    secret: 06FrixI03ufP9JgAm5AZ7iDBBMY0LPK8fi0hMNRx
+    dalee_pepuws_client.url: 'https://pep-uws-2.dalee.ru/api/v1'
+    dalee_pepuws_client.basic_auth_enabled: false
+    dalee_pepuws_client.basic_auth_username: 1
+    dalee_pepuws_client.basic_auth_password: qwe
+    dalee_pepuws_client.security_token: YpsuSC9mC27NYhCD1Ne2ALTSmunzhq3keyrvMsz4B5S6Xs7E1cpuNfUOZghzNl0t
+    dalee_pepuws_client.client_timeout: 10
+    recaptcha.public_key: 6LfaATIUAAAAABzJ3la39y6LCkmOAYOdMeh0DLGK
+    recaptcha.secret_key: 6LfaATIUAAAAAIzkglCBH9kyZDFSXKvLtViSUzfw
+    start_date: '2017-08-28 00:00:00'
+    apm.key: e3b313fd-54d6-4985-8ade-11f0ef0c0811
+    apm_url: //widget.apmcheck.ru/widget.min.js
+    apm_css: //widget.apmcheck.ru/widget.min.css
+    promo_slug: promo

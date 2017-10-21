@@ -167,7 +167,9 @@
           $this->logger->info("checkParticipantRequiredFields FAIL" . $participant->id . "  " . $field);
           
           return false;
-        }else{
+        }
+        else
+        {
           $this->logger->info("checkParticipantRequiredFields GOOD" . $participant->id . "  " . $field);
         }
       }
@@ -256,6 +258,17 @@
       }
       
       return $receipt->getSended() == 1;
+    }
+    
+    public function isSms($id)
+    {
+      $u = $this->getDoctrine()->getRepository('AppBundle:User')->find($id);
+      if ($u == null)
+      {
+        return false;
+      }
+      
+      return $u->getMobileActivated() == 1;
     }
     
     public function isFilled($id)
