@@ -1,0 +1,35 @@
+{% extends 'AppBundle:Default:base.html.twig' %}
+
+{% trans_default_domain "personal" %}
+
+{% block title %}{% trans %}Победители{% endtrans %}{% endblock %}
+
+{% block body %}
+  <div id="webix-container" style="height: 100%;"></div>
+{% endblock %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  <link rel="stylesheet" href="{{ asset('codebase/webix.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  <script src="{{ asset('codebase/webix.js') }}"></script>
+  <script>
+
+    window.grid = new webix.ui({
+      id: 'webix-container1',
+      view: "datatable",
+      container: 'webix-container',
+//      columns: [
+//        { id: "id", header: "Id" },
+//        { id: "fio", header: "Film title", fillspace: true },
+//      ],
+      autoConfig:true,
+      url: '{{ path('win_json') }}',
+      height: "500px",
+    });
+
+  </script>
+{% endblock %}

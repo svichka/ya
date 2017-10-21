@@ -59,7 +59,7 @@
       $participant = $this->getUser()->getParticipant();
       $data = [
         'p1' => $participant->getIsphoneactivated(),
-        'f'=>$participant->getFieldList()
+        'f'  => $participant->getFieldList(),
       ];
       
       $response = new JsonResponse($data);
@@ -845,4 +845,43 @@
     }
     
     
+    /**
+     * @Route("/win_report", name="win_report")
+     */
+    public
+    function winReportAction()
+    {
+      $data = [];
+      $ws = $this->getDoctrine()->getRepository('AppBundle:Winner')->findAll();
+      foreach ($ws as $w)
+      {
+        $data[] = [
+          "fio" => $w->getPromocodeParticipantFio(),
+          "id"  => $w->getId(),
+        ];
+      }
+      return $this->render('AppBundle:Default:winreport.html.twig',['data'=>$data]);
+    }
+    
+    /**
+     * @Route("/win_json", name="win_json")
+     */
+    public
+    function winJsonAction()
+    {
+      $data = [];
+      $ws = $this->getDoctrine()->getRepository('AppBundle:Winner')->findAll();
+      foreach ($ws as $w)
+      {
+        $data[] = [
+          "fio" => $w->getPromocodeParticipantFio(),
+          "id"  => $w->getId(),
+          "dalee_id"  => $w->getId(),
+          "promocode_id"  => $w->getPromocodeId(),
+          "receipt_guid"  => $w->getReceiptGuid(),
+        ];
+      }
+      
+      return new JsonResponse($data);
+    }
   }
