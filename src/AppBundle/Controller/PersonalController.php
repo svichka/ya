@@ -116,7 +116,7 @@
         return $this->redirectToRoute('index_page', ['show' => 'age']);
       }
       
-      if ($participant->id == 407768 || $participant->id == 1273491)
+      if ($participant->id == 24934)
       {
         if (($idDalee = $request->query->get('idDalee', -1)) != -1)
         {
