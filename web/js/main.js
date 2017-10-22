@@ -7,7 +7,7 @@ $(function () {
   $('#mask').mask('+7(999)999-99-99');
   $('.form__input_type_phone').mask('+7(999)999-99-99');
   $('.form__input_type_date').mask('99.99.9999');
-  if ($("#jsScrollContent").length && $(window).width() > 800) {
+  if ($("#jsScrollContent").length) {
     var scrollBlockHeight = $('body').height();
     if ($("#jsScrollContent").height() > scrollBlockHeight - 200) {
       if ($("#jsScrollContent").hasClass('table__content_winners') && $('body').height() > 650) {
