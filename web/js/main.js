@@ -1,5 +1,24 @@
-var favSyr = { popup: { options: { overlay: { css: { backgroundColor: '#041100', opacity: 0.65 } } } } }
+
+
 $(function () {
+  var favSyr = { 
+    popup: 
+      { 
+        options: { 
+          overlay: { 
+            css: { 
+              backgroundColor: '#041100', opacity: 0.65 
+            } 
+          },
+          afterOpen: function(data, el) {
+              $('body').css('position' , 'fixed');
+          },
+          afterClose: function(data, el) {
+              $('body').css('position' , 'static');
+          } 
+        } 
+      } 
+    }
   $('input[type="file"]').change(function () {
     var text = $(this).val();
     $(this).next('.form__load-file-title').text(text.replace("C:\\fakepath\\" , ''));
