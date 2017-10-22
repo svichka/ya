@@ -5,7 +5,7 @@ form[name="not_authorized_user_form"] .form__checkbox__container {width: 50%;}
 form[action="/login/"] .form__link.form__link_big:last-child {text-decoration: none;display: inline-block;border-bottom: 1px solid;line-height: 25px;}
 form[name="registration_form"] .form__wrapper .form__row:nth-child(7) .form__checkbox-text {font-size: 11px;line-height: 12px;}
 .main-menu__item.active a {color: #2f881b;border-bottom-color: transparent;}
-.about{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;}
+.about{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;flex-direction: column;}
 .about__content{display:-webkit-box;display:-ms-flexbox;display:flex;padding-top:20px;padding-bottom:10px;}
 @media only screen and (max-width:800px){.about__content{-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;}
 }
@@ -21,7 +21,7 @@ form[name="registration_form"] .form__wrapper .form__row:nth-child(7) .form__che
 .about__title_mobile{display:none;}
 @media only screen and (max-width:550px){.about__title_mobile{display:block;font-size:26px;}
 }
-.about__button-wrap{text-align:center;padding-top:6rem;}
+.about__button-wrap{text-align:center;padding-top:0;}
 @media only screen and (max-width:800px){.about__button-wrap{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1;padding-top:20px;}
 }
 @media only screen and (max-width:800px){.about__right{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;}
