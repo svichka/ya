@@ -68,6 +68,10 @@
     /**
      * @ORM\Column(type="string", nullable=true)
      */
+    private $promocode_participant_phone;
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
     private $promocode_participant_date;
     /**
      * @ORM\Column(type="string", nullable=true)
@@ -280,6 +284,22 @@
     public function setReceiptGuid($receipt_guid)
     {
       $this->receipt_guid = $receipt_guid;
+    }
+  
+    /**
+     * @return mixed
+     */
+    public function getPromocodeParticipantPhone()
+    {
+      return $this->promocode_participant_phone;
+    }
+  
+    /**
+     * @param mixed $promocode_participant_phone
+     */
+    public function setPromocodeParticipantPhone($promocode_participant_phone)
+    {
+      $this->promocode_participant_phone = $promocode_participant_phone;
     }
   
   

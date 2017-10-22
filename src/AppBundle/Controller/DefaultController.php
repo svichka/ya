@@ -887,11 +887,14 @@
       $data = [];
       $d = $this->getDoctrine();
       $ws = $this->getDoctrine()->getRepository('AppBundle:Winner')->findAll();
+//      $api = new ParticipantApiController();
       foreach ($ws as $w)
       {
+//        $p = $api->getById($w->getPromocodeParticipantId(),['mobilephone','lastname', 'firstname', 'secname']);
         $u = $d->getRepository('AppBundle:User')->find($w->getPromocodeParticipantId());
         $data[] = [
           "fio"          => $w->getPromocodeParticipantFio(),
+          "phone"        => $w->getPromocodeParticipantPhone(),
           "pdate"        => $w->getPromocodeParticipantDate(),
           "id"           => $w->getId(),
           "user_crm_id"  => $w->getPromocodeParticipantCrmIdIlp(),

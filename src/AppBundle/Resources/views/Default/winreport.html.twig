@@ -23,14 +23,15 @@
       view: "datatable",
       container: 'webix-container',
       columns: [
-        { id:"fio",header:"fio", width:300},
-        { id:"pdate",header:"pdate"},
-        { id:"user_id",header:"user_id"},
-        { id:"user_guid",header:"user_guid",width:300},
-        { id:"receipt_guid",header:"receipt_guid",width:300},
+        { id:"fio",header:"ФИО", width:300},
+        { id:"phone",header:"Телефон", width:100},
+        { id:"pdate",header:"Дата розыгрыша"},
+        { id:"user_id",header:"id Пользователя"},
+        { id:"user_guid",header:"guid Пользователя",width:300},
+        { id:"receipt_guid",header:"receipt Чека",width:300},
         { id:"preactivated",header:"preactivated"},
-        { id:"filled",header:"filled"},
-        { id:"sms",header:"sms"}
+        { id:"filled",header:"filled (Номер введён)"},
+        { id:"sms",header:"sms (Номер подтверждён)"}
       ],
 //      autoConfig:true,
       url: '{{ path('win_json') }}',

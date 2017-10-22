@@ -109,13 +109,14 @@
                 /**
                  * @var \Dalee\PEPUWSClientBundle\Entity\Participant $p
                  */
-                $p = $pApi->getById($user->getId(), ['firstname', 'secname', 'lastname', 'guid', 'crm_id_ilp']);
+                $p = $pApi->getById($user->getId(), ['mobilephone', 'firstname', 'secname', 'lastname', 'guid', 'crm_id_ilp']);
                 $fio = "";
                 $fio .= $p->getLastname() . " ";
                 $fio .= $p->getFirstname() . " ";
                 $fio .= $p->getSecname() . " ";
                 $fio = trim($fio);
                 $win_object->setPromocodeParticipantFio($fio);
+                $win_object->setPromocodeParticipantPhone($p->getMobilephone());
                 
                 // Поля данных по юзеру
                 $win_object->setPromocodeParticipantId($user->getId());
