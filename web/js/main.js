@@ -1,7 +1,8 @@
 var favSyr = { popup: { options: { overlay: { css: { backgroundColor: '#041100', opacity: 0.65 } } } } }
 $(function () {
   $('input[type="file"]').change(function () {
-    $(this).next('.form__load-file-title').text($(this).val());
+    var text = $(this).val();
+    $(this).next('.form__load-file-title').text(text.replace("C:\\fakepath\\" , ''));
   })
   $('#mask').mask('+7(999)999-99-99');
   $('.form__input_type_phone').mask('+7(999)999-99-99');
