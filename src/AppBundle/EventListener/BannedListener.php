@@ -271,6 +271,11 @@
       return $u->getMobileActivated() == 1;
     }
     
+    public function getAssetsVersion()
+    {
+      return 8;
+    }
+    
     public function isFilled($id)
     {
       $u = $this->getDoctrine()->getRepository('AppBundle:User')->find($id);
