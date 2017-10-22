@@ -232,7 +232,7 @@ form[name="not_authorized_user_form"] .form__box_width_half {margin-bottom: 35px
 .form__load-file-title:hover{border-bottom:0;margin-bottom:1px;}
 .form__input,
 .form__select,
-.form__textarea{height:29px;padding:0 7px;width:100%;border:2px solid #ded27c;border-radius:10px;font-family:'Opium';font-size:16px;color:#1e9a01;background:rgba(0,0,0,0.35);}
+.form__textarea{height:29px;padding:0 7px;width:100%;border:2px solid #ded27c;border-radius:10px;font-family:'Opium';font-size:14px;color:#1e9a01;background:rgba(0,0,0,0.35);}
 .form__input::-webkit-input-placeholder,
 .form__select::-webkit-input-placeholder,
 .form__textarea::-webkit-input-placeholder{color:#1e9a01;text-transform:uppercase;}
@@ -260,7 +260,7 @@ form[name="not_authorized_user_form"] .form__box_width_half {margin-bottom: 35px
 .form__input_with_icon,
 .form__select_with_icon,
 .form__textarea_with_icon{margin-right:15px;}
-.form__select{padding-right:33px;text-transform:uppercase;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none !important;background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAICAYAAAAm06XyAAAAgklEQVQYlZXLoQ3CYBiE4Yd/OggGh8WjSZmhG3SCLlCHwVcCEyBRNRVNmmI+kqZAoOfuvXsX90uW42B+8oQMxUyxwDFhwB7ln2IZ/yEF6LFD9UOs4tdDGg0dtjh/Ec+xdy+QJocWG9QTXgdvx3AqQ4M1rtFv0Zvp8ZMMD6xwwjL6W567rh2yw49gDQAAAABJRU5ErkJggg==");background-repeat:no-repeat;background-position:95% 50%;}
+.form__select{padding-right:33px;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none !important;background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAICAYAAAAm06XyAAAAgklEQVQYlZXLoQ3CYBiE4Yd/OggGh8WjSZmhG3SCLlCHwVcCEyBRNRVNmmI+kqZAoOfuvXsX90uW42B+8oQMxUyxwDFhwB7ln2IZ/yEF6LFD9UOs4tdDGg0dtjh/Ec+xdy+QJocWG9QTXgdvx3AqQ4M1rtFv0Zvp8ZMMD6xwwjL6W567rh2yw49gDQAAAABJRU5ErkJggg==");background-repeat:no-repeat;background-position:95% 50%;}
 .form__select::-ms-expand{display:none;}
 .form__select option{background:#072600;}
 .form__textarea{height:17.8rem;padding:7px;resize:vertical;}
