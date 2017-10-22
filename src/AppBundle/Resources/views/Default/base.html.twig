@@ -59,17 +59,19 @@
         overflow: visible;
       }
 
-      @media screen and (max-width: 1150px){
+      @media screen and (max-width: 1150px) {
         .main-menu__item {
           padding: 0 1vh;
         }
       }
-      @media screen and (max-width: 1100px){
+
+      @media screen and (max-width: 1100px) {
         .main-menu__item {
           padding: 0 .9vh;
         }
       }
-      @media screen and (max-width: 1040px){
+
+      @media screen and (max-width: 1040px) {
         .main-menu__item {
           padding: 0 .7vh;
         }
@@ -278,7 +280,7 @@
                   <div class="form__box">
                     <label class="form__label" for="email">Email*</label>
                     <input class="form__input" type="email" id="email" name="login">
-                    <p style="font-size: 14px;font-family: &quot;Opium&quot;">* Обязательно для заполнения</p>
+                    <p style="font-size: 14px;font-family: 'Opium'">* Обязательно для заполнения</p>
                     <p class="restore-helper form__label" style="color:red;"></p>
                   </div>
                 </div>
@@ -306,8 +308,9 @@
       <div class="footer__row">
         <a class="footer__link" href="{{ asset('files/Правила акции.pdf') }}" target="_blank">Правила Акции</a>
         <span class="footer__delimiter">| </span>
-        <a class="footer__link" href="{{ asset('files/Пользовательское соглашение.pdf') }}" target="_blank">Пользовательское
-          соглашение</a>
+        <a class="footer__link" href="{{ asset('files/Пользовательское соглашение.pdf') }}" target="_blank">
+          Пользовательское соглашение
+        </a>
       </div>
       <div class="footer__row">
         <div class="footer__copyright">© ВСЕ ПРАВА ЗАЩИЩЕНЫ</div>
@@ -328,65 +331,6 @@
   <script src="{{ asset('js/moment-with-locales.js') }}"></script>
 
   <script src="{{ asset('js/main.js') }}?{{ content_version }}"></script>
-  <script>
-    {% for label, messages in app.session.flashbag.all %}
-    {% if label =='age' %}
-    {% for message in messages %}
-    {% if message =='ok' %}
-    $(function () {
-      $('#agePP').arcticmodal(favSyr.popup.options);
-    });
-    {% endif %}
-    {% endfor %}
-    {% endif %}
-    {% if label =='login' %}
-    {% for message in messages %}
-    {% if message =='ok' %}
-    $(function () {
-      dataLayer.push({
-        'event': 'FormSent',
-        'eventCategory': 'login',
-        'eventAction': 'success',
-      });
-    });
-    {% endif %}
-    {% endfor %}
-    {% endif %}
-    {% if label =='feedback' %}
-    {% for message in messages %}
-    {% if message =='ok' %}
-    $(function () {
-      dataLayer.push({
-        'event': 'FormSent',
-        'eventCategory': 'FAQ',
-        'eventAction': 'Sent',
-      });
-      $('#faqSubmit').arcticmodal(favSyr.popup.options);
-    });
-    {% endif %}
-    {% endfor %}
-    {% endif %}
-    {% if label =='registration' %}
-    {% for message in messages %}
-    {% if message =='ok' %}
-    $(function () {
-      dataLayer.push({
-        'event': 'FormSent',
-        'eventCategory': 'Registration',
-        'eventAction': 'success',
-      });
-      $('.free-text-h').html('Регистрация');
-      $('.free-text').html('Поздравляем! <br>Вы успешно зарегистрированы!<br>' +
-        ' Активируйте свой аккаунт, перейдя по ссылке<br> в письме,' +
-        'которое отправлено на Ваш email.<br>' +
-        'Если письмо не пришло сразу, пожалуйста, проверьте папку «Спам».');
-      $('#freeModal').arcticmodal(favSyr.popup.options);
-    });
-    {% endif %}
-    {% endfor %}
-    {% endif %}
-    {% endfor %}
-  </script>
 
   <script>
     $.arcticmodal('setDefault', {
@@ -546,6 +490,63 @@
   </script>
   {% endif %}
 {% endblock %}
+{#Эммитим#}
+{% for label, messages in app.session.flashbag.all %}
+  {% if label == 'age' %}
+    <script>
+      $(function () {
+        $('#agePP').arcticmodal(favSyr.popup.options);
+      });
+    </script>
+    {% elseif label == 'login' %}
+    <script>
+      $(function () {
+        dataLayer.push({
+          'event': 'FormSent',
+          'eventCategory': 'login',
+          'eventAction': 'success',
+        });
+      });
+    </script>
+    {% elseif label == 'feedback' %}
+    <script>
+
+      dataLayer.push({
+        'event': 'FormSent',
+        'eventCategory': 'FAQ',
+        'eventAction': 'Sent',
+      });
+      $('#faqSubmit').arcticmodal(favSyr.popup.options);
+
+    </script>
+    {% elseif label == 'registration' %}
+    <script>
+      $(function () {
+        console.log('reg');
+        dataLayer.push({
+          'event': 'FormSent',
+          'eventCategory': 'Registration',
+          'eventAction': 'success',
+        });
+        $('.free-text-h').html('Регистрация');
+        $('.free-text').html('Поздравляем! <br>Вы успешно зарегистрированы!<br>' +
+          ' Активируйте свой аккаунт, перейдя по ссылке<br> в письме,которое отправлено на Ваш email.<br>' +
+          'Если письмо не пришло сразу, пожалуйста, проверьте папку «Спам».');
+        $('#freeModal').arcticmodal(favSyr.popup.options);
+      });
+    </script>
+  {% else %}
+    <script>
+      $(function () {
+        var event = document.createEvent('Event');
+        event.initEvent('{{ label }}', true, true);
+        document.dispatchEvent(event);
+      });
+    </script>
+  {% endif %}
+{% endfor %}
+
+
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript"> (function (d, w, c) {
     (w[ c ] = w[ c ] || []).push(function () {

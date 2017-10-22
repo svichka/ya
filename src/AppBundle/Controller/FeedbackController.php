@@ -33,6 +33,7 @@
      */
     public function feedbackAction(Request $request)
     {
+      
       NotAuthorizedUserFormType::$em = $this->getDoctrine()->getRepository('AppBundle:Theme')->findAll();
       $this->get('logger')->error("init!");
       $formInputData = [''];
@@ -107,7 +108,7 @@
         catch (NotCorrectDataException $e)
         {
           $this->get('logger')->error($e->getMessage());
-          if ($e->getMessage() == 'Incorrect request data')
+          if ($e->getMessage() == 'Incorrect request data' || $e->getMessage() == null || $e->getMessage() == '')
           {
             $this->errors[] = "Ошибка отправки данных.";
           }
@@ -115,11 +116,19 @@
           {
             $this->errors[] = $e->getMessage();
           }
+          $this->addFlash(
+            'feedback_error',
+            'ok'
+          );
         }
         catch (ApiFailedException $e2)
         {
           $this->get('logger')->error('feedback error ' . print_r($formData, true));
           $this->errors[] = "Внутренняя ошибка сервера";
+          $this->addFlash(
+            'feedback_error',
+            'ok'
+          );
         }
       }
       

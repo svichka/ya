@@ -844,7 +844,6 @@
       return $this->redirect("https://www.metro-cc.ru/shop/ru/office/category/%D0%A1%D0%BE%D0%BA%D0%B8_%D0%BD%D0%B5%D0%BA%D1%82%D0%B0%D1%80%D1%8B_%D0%BC%D0%BE%D1%80%D1%81%D1%8B/%D0%A1%D0%BE%D0%BA%D0%B8,%20%D0%BD%D0%B5%D0%BA%D1%82%D0%B0%D1%80%D1%8B,%20%D0%BC%D0%BE%D1%80%D1%81%D1%8B/applyRef?activePage=1&pageSize=24&viewType=2&catTsr=exp&sortBy=DEFAULT&selectRefCmds[0].selected=true&selectRefCmds[0].code=10002&selectRefCmds[0].values[3].selected=true&selectRefCmds[0].values[3].code=4294965411&present_components_cs_footer=true&present_components_cs_contentSubArea=true&present_components_cs_footerLinks=true&present_components_cs_specialNavigation=true&present_components_cs_helpFlyout=true&present_components_cs_categoryPageTeaser=false&present_components_cs_metaNavigation=true&present_components_cs_contentServiceTeaserArea=true&present_components_cs_firstLevelNavigation=true&present_components_cs_footerContact=true&present_components_cs_bread=true&present_components_cs_teaserZone=false");
     }
     
-    
     /**
      * @Route("/win_report", name="win_report")
      */
@@ -852,15 +851,27 @@
     function winReportAction()
     {
       $data = [];
+      $d = $this->getDoctrine();
       $ws = $this->getDoctrine()->getRepository('AppBundle:Winner')->findAll();
       foreach ($ws as $w)
       {
+        $u = $d->getRepository('AppBundle:User')->find($w->getPromocodeParticipantId());
         $data[] = [
-          "fio" => $w->getPromocodeParticipantFio(),
-          "id"  => $w->getId(),
+          "fio"          => $w->getPromocodeParticipantFio(),
+          "pdate"        => $w->getPromocodeParticipantDate(),
+          "id"           => $w->getId(),
+          "user_crm_id"  => $w->getPromocodeParticipantCrmIdIlp(),
+          "user_id"      => $w->getPromocodeParticipantId(),
+          "user_guid"    => $w->getPromocodeParticipantGuid(),
+          "promocode_id" => $w->getPromocodeId(),
+          "receipt_guid" => $w->getReceiptGuid(),
+          "preactivated" => $u->getPreMobileStatus(),
+          "filled"       => $u->getMobileFilled(),
+          "sms"          => $u->getMobileActivated(),
         ];
       }
-      return $this->render('AppBundle:Default:winreport.html.twig',['data'=>$data]);
+      
+      return $this->render('AppBundle:Default:winreport.html.twig', ['data' => $data]);
     }
     
     /**
@@ -870,15 +881,23 @@
     function winJsonAction()
     {
       $data = [];
+      $d = $this->getDoctrine();
       $ws = $this->getDoctrine()->getRepository('AppBundle:Winner')->findAll();
       foreach ($ws as $w)
       {
+        $u = $d->getRepository('AppBundle:User')->find($w->getPromocodeParticipantId());
         $data[] = [
-          "fio" => $w->getPromocodeParticipantFio(),
-          "id"  => $w->getId(),
-          "dalee_id"  => $w->getId(),
-          "promocode_id"  => $w->getPromocodeId(),
-          "receipt_guid"  => $w->getReceiptGuid(),
+          "fio"          => $w->getPromocodeParticipantFio(),
+          "pdate"        => $w->getPromocodeParticipantDate(),
+          "id"           => $w->getId(),
+          "user_crm_id"  => $w->getPromocodeParticipantCrmIdIlp(),
+          "user_id"      => $w->getPromocodeParticipantId(),
+          "user_guid"    => $w->getPromocodeParticipantGuid(),
+          "promocode_id" => $w->getPromocodeId(),
+          "receipt_guid" => $w->getReceiptGuid(),
+          "preactivated" => $u->getPreMobileStatus(),
+          "filled"       => $u->getMobileFilled(),
+          "sms"          => $u->getMobileActivated(),
         ];
       }
       
