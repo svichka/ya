@@ -139,184 +139,186 @@
   {% block body %}{% endblock %}
   <div class="hidden">
     {% block modals %}
-      <div class="popup" id="doneModal">
-        <div class="popup__close arcticmodal-close">X</div>
-        <div class="popup__wrap">
-          <p class="popup__text popup__text_size_limit">
-            Аккаунт активирован
-          </p>
+
+  <div class="popup" id="doneModal">
+    <div class="popup__close arcticmodal-close">X</div>
+    <div class="popup__wrap">
+      <p class="popup__text popup__text_size_limit">
+        Аккаунт активирован
+      </p>
+    </div>
+  </div>
+  <div class="popup" id="banModal">
+    <div class="popup__close arcticmodal-close">X</div>
+    <h2 class="popup__title">Регистрация чека</h2>
+    <div class="popup__wrap">
+      <p class="popup__text popup__text_size_limit">К сожалению, Вы были заблокированы на 24 часа.</p>
+      <p class="popup__text popup__text_size_limit">С возможными причинами блокировки Вы можете ознакомиться в
+        разделе FAQ. </p>
+    </div>
+  </div>
+  <div class="popup" id="uploadModal">
+    <div class="popup__close arcticmodal-close">X</div>
+    <h2 class="popup__title">Регистрация чека</h2>
+    <div class="popup__wrap popup__wrap_size_small">
+      <p class="popup__text">Приложите скан/фото чека <br> (jpeg, gif, png, размер не более 10 Мб)</p>
+      <form class="form" action="#">
+        <div class="form__row">
+          <div class="form__box">
+            <div id="revizor"></div>
+          </div>
         </div>
+      </form>
+    </div>
+  </div>
+  <div class="popup" id="ageModal">
+    <div class="popup__close arcticmodal-close">X</div>
+    <div class="popup__wrap">
+      <p class="popup__text popup__text_size_limit">
+        Согласно правилам акции,<br>
+        принять участие в Акции могут<br>
+        только лица, достигшие 18 лет.
+      </p>
+    </div>
+  </div>
+  <div class="popup" id="moderateModal">
+    <div class="popup__close arcticmodal-close">X</div>
+    <div class="popup__wrap">
+      <p class="popup__text popup__text_size_limit">
+        Ваш чек загружен и отправлен на модерацию. <br>
+        Статус обработки чека Вы можете отследить в личном кабинете.
+      </p>
+    </div>
+  </div>
+  <div class="popup" id="uploadErrorModal">
+    <div class="popup__close arcticmodal-close">X</div>
+    <div class="popup__wrap">
+      <p class="popup__text popup__text_size_limit">Неверный формат или размер скана/фото чека.</p>
+      <div class="popup__button-wrap">
+        <button class="button button_regcheck" type="submit"><span class="button__text">Повторить попытку</span>
+        </button>
       </div>
-      <div class="popup" id="banModal">
-        <div class="popup__close arcticmodal-close">X</div>
-        <h2 class="popup__title">Регистрация чека</h2>
-        <div class="popup__wrap">
-          <p class="popup__text popup__text_size_limit">К сожалению, Вы были заблокированы на 24 часа.</p>
-          <p class="popup__text popup__text_size_limit">С возможными причинами блокировки Вы можете ознакомиться в
-            разделе FAQ. </p>
-        </div>
-      </div>
-      <div class="popup" id="uploadModal">
-        <div class="popup__close arcticmodal-close">X</div>
-        <h2 class="popup__title">Регистрация чека</h2>
-        <div class="popup__wrap popup__wrap_size_small">
-          <p class="popup__text">Приложите скан/фото чека <br> (jpeg, gif, png, размер не более 10 Мб)</p>
-          <form class="form" action="#">
-            <div class="form__row">
-              <div class="form__box">
-                <div id="revizor"></div>
+    </div>
+  </div>
+  <div class="popup" id="authModal">
+    <div class="popup__close arcticmodal-close">X</div>
+    <h2 class="popup__title">Добрый день! </h2>
+    <div class="popup__wrap">
+      <p class="popup__text popup__text_size_limit">Чтобы загрузить чек, нужно зарегистрироваться или
+        авторизоваться</p>
+      <div class="popup__form-wrap">
+        <form class="form" action="{{ path('login') }}" method="post">
+          <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+          <div class="form__row">
+            <div class="form__box">
+              <label class="form__label" for="_username">Email</label>
+              <input class="form__input" type="email" id="_username" name="_username">
+            </div>
+          </div>
+          <div class="form__row">
+            <div class="form__box">
+              <label class="form__label" for="_password">Пароль</label>
+              <input class="form__input" type="password" id="_password" name="_password">
+            </div>
+          </div>
+          <div class="form__row">
+            <div class="form__box">
+              <div class="form__checkbox__container">
+                <input class="form__checkbox" type="checkbox" id="rememberme" name="_remember_me">
+                <label class="form__checkbox-text form__checkbox-text_big" for="rememberme">Запомнить
+                  пароль</label>
+                <a class="form__link password-reminder" href="#">Забыли пароль?</a>
               </div>
             </div>
-          </form>
-        </div>
+          </div>
+          {#<div class="form__row">#}
+          {#<div class="form__box">#}
+          {#<script src='https://www.google.com/recaptcha/api.js'></script>#}
+          {#<div class="g-recaptcha" data-sitekey="{{ recaptcha_key }}"></div>#}
+          {#</div>#}
+          {#</div>#}
+          <div class="form__row">
+            <div class="form__box form__box_button">
+              <button class="button" type="submit"><span class="button__text">Войти</span></button>
+              <a class="form__link form__link_block" href="{{ path('registration_page') }}">Регистрация </a>
+            </div>
+          </div>
+        </form>
       </div>
-      <div class="popup" id="ageModal">
-        <div class="popup__close arcticmodal-close">X</div>
-        <div class="popup__wrap">
-          <p class="popup__text popup__text_size_limit">
-            Согласно правилам акции,<br>
-            принять участие в Акции могут<br>
-            только лица, достигшие 18 лет.
-          </p>
-        </div>
-      </div>
-      <div class="popup" id="moderateModal">
-        <div class="popup__close arcticmodal-close">X</div>
-        <div class="popup__wrap">
-          <p class="popup__text popup__text_size_limit">
-            Ваш чек загружен и отправлен на модерацию. <br>
-            Статус обработки чека Вы можете отследить в личном кабинете.
-          </p>
-        </div>
-      </div>
-      <div class="popup" id="uploadErrorModal">
-        <div class="popup__close arcticmodal-close">X</div>
-        <div class="popup__wrap">
-          <p class="popup__text popup__text_size_limit">Неверный формат или размер скана/фото чека.</p>
-          <div class="popup__button-wrap">
-            <button class="button button_regcheck" type="submit"><span class="button__text">Повторить попытку</span>
+    </div>
+  </div>
+  <div class="popup" id="agreeModal">
+    <div class="popup__close arcticmodal-close">X</div>
+    <h2 class="popup__title">Добро пожаловать!</h2>
+    <div class="popup__wrap">
+      <p class="popup__text popup__text_big">Пожалуйста, подтвердите:</p>
+      <p class="popup__text">Я подтверждаю, что мне исполнилось 18 лет на момент участия в Акции</p>
+      <p class="popup__text">Я согласен с правилами Акции и пользовательским соглашением, а также на обработку моих
+        данных</p>
+      <form class="form" action="{{ path('agree_page') }}">
+        <input type="hidden" name="agreement" value="Согласен">
+        <div class="form__row">
+          <div class="form__box form__box_button form__box_margin_med">
+            <button class="button button_width_full" type="submit"><span class="button__text">ОК   </span></button>
+          </div>
+          <div class="form__box form__box_button form__box_margin_med">
+            <button class="button button_width_full arcticmodal-close"><span
+                  class="button__text no-wrap">Не согласен                                                                                                            </span>
             </button>
           </div>
         </div>
-      </div>
-      <div class="popup" id="authModal">
-        <div class="popup__close arcticmodal-close">X</div>
-        <h2 class="popup__title">Добрый день! </h2>
-        <div class="popup__wrap">
-          <p class="popup__text popup__text_size_limit">Чтобы загрузить чек, нужно зарегистрироваться или
-            авторизоваться</p>
-          <div class="popup__form-wrap">
-            <form class="form" action="{{ path('login') }}" method="post">
-              <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-              <div class="form__row">
-                <div class="form__box">
-                  <label class="form__label" for="_username">Email</label>
-                  <input class="form__input" type="email" id="_username" name="_username">
-                </div>
-              </div>
-              <div class="form__row">
-                <div class="form__box">
-                  <label class="form__label" for="_password">Пароль</label>
-                  <input class="form__input" type="password" id="_password" name="_password">
-                </div>
-              </div>
-              <div class="form__row">
-                <div class="form__box">
-                  <div class="form__checkbox__container">
-                    <input class="form__checkbox" type="checkbox" id="rememberme" name="_remember_me">
-                    <label class="form__checkbox-text form__checkbox-text_big" for="rememberme">Запомнить
-                      пароль</label>
-                    <a class="form__link password-reminder" href="#">Забыли пароль?</a>
-                  </div>
-                </div>
-              </div>
-              {#<div class="form__row">#}
-              {#<div class="form__box">#}
-              {#<script src='https://www.google.com/recaptcha/api.js'></script>#}
-              {#<div class="g-recaptcha" data-sitekey="{{ recaptcha_key }}"></div>#}
-              {#</div>#}
-              {#</div>#}
-              <div class="form__row">
-                <div class="form__box form__box_button">
-                  <button class="button" type="submit"><span class="button__text">Войти</span></button>
-                  <a class="form__link form__link_block" href="{{ path('registration_page') }}">Регистрация </a>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-      <div class="popup" id="agreeModal">
-        <div class="popup__close arcticmodal-close">X</div>
-        <h2 class="popup__title">Добро пожаловать!</h2>
-        <div class="popup__wrap">
-          <p class="popup__text popup__text_big">Пожалуйста, подтвердите:</p>
-          <p class="popup__text">Я подтверждаю, что мне исполнилось 18 лет на момент участия в Акции</p>
-          <p class="popup__text">Я согласен с правилами Акции и пользовательским соглашением, а также на обработку моих
-            данных</p>
-          <form class="form" action="{{ path('agree_page') }}">
-            <input type="hidden" name="agreement" value="Согласен">
+      </form>
+    </div>
+  </div>
+  {% if(not is_granted('ROLE_USER')) %}
+    <div class="popup" id="restoreModal">
+      <div class="popup__close arcticmodal-close">X</div>
+      <h2 class="popup__title">Восстановление пароля</h2>
+      <div class="popup__wrap">
+        <p class="popup__text">Мы вышлем Ваш новый пароль на e-mail.</p>
+        <div class="popup__form-wrap">
+          <form class="form" action="{{ path('recover_password_page') }}" id="form_restore">
             <div class="form__row">
-              <div class="form__box form__box_button form__box_margin_med">
-                <button class="button button_width_full" type="submit"><span class="button__text">ОК   </span></button>
+              <div class="form__box">
+                <label class="form__label" for="email">Email*</label>
+                <input class="form__input" type="email" id="email" name="login">
+                <p style="font-size: 14px;font-family: 'Opium'">* Обязательно для заполнения</p>
+                <p class="restore-helper form__label" style="color:red;"></p>
               </div>
-              <div class="form__box form__box_button form__box_margin_med">
-                <button class="button button_width_full arcticmodal-close"><span class="button__text no-wrap">Не согласен                                                                                                            </span>
-                </button>
+            </div>
+            <div class="form__row">
+              <div class="form__box form__box_button">
+                <button class="button" type="submit"><span class="button__text">Отправить</span></button>
               </div>
             </div>
           </form>
         </div>
       </div>
-      {% if(not is_granted('ROLE_USER')) %}
-        <div class="popup" id="restoreModal">
-          <div class="popup__close arcticmodal-close">X</div>
-          <h2 class="popup__title">Восстановление пароля</h2>
-          <div class="popup__wrap">
-            <p class="popup__text">Мы вышлем Ваш новый пароль на e-mail.</p>
-            <div class="popup__form-wrap">
-              <form class="form" action="{{ path('recover_password_page') }}" id="form_restore">
-                <div class="form__row">
-                  <div class="form__box">
-                    <label class="form__label" for="email">Email*</label>
-                    <input class="form__input" type="email" id="email" name="login">
-                    <p style="font-size: 14px;font-family: 'Opium'">* Обязательно для заполнения</p>
-                    <p class="restore-helper form__label" style="color:red;"></p>
-                  </div>
-                </div>
-                <div class="form__row">
-                  <div class="form__box form__box_button">
-                    <button class="button" type="submit"><span class="button__text">Отправить</span></button>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      {% endif %}
-      <div class="popup" id="freeModal">
-        <div class="popup__close arcticmodal-close">X</div>
-        <h2 class="popup__title free-text-h"></h2>
-        <div class="popup__wrap">
-          <p class="popup__text free-text"></p>
-        </div>
-      </div>
-    {% endblock %}
-  </div>
-  <footer class="footer" id="footer">
-    <div class="footer__content">
-      <div class="footer__row">
-        <a class="footer__link" href="{{ asset('files/Правила акции.pdf') }}" target="_blank">Правила Акции</a>
-        <span class="footer__delimiter">| </span>
-        <a class="footer__link" href="{{ asset('files/Пользовательское соглашение.pdf') }}" target="_blank">
-          Пользовательское соглашение
-        </a>
-      </div>
-      <div class="footer__row">
-        <div class="footer__copyright">© ВСЕ ПРАВА ЗАЩИЩЕНЫ</div>
-      </div>
     </div>
-  </footer>
+  {% endif %}
+  <div class="popup" id="freeModal">
+    <div class="popup__close arcticmodal-close">X</div>
+    <h2 class="popup__title free-text-h"></h2>
+    <div class="popup__wrap">
+      <p class="popup__text free-text"></p>
+    </div>
+  </div>
+  {% endblock %}
+</div>
+<footer class="footer" id="footer">
+  <div class="footer__content">
+    <div class="footer__row">
+      <a class="footer__link" href="{{ asset('files/Правила акции.pdf') }}" target="_blank">Правила Акции</a>
+      <span class="footer__delimiter">| </span>
+      <a class="footer__link" href="{{ asset('files/Пользовательское соглашение.pdf') }}" target="_blank">
+        Пользовательское соглашение
+      </a>
+    </div>
+    <div class="footer__row">
+      <div class="footer__copyright">© ВСЕ ПРАВА ЗАЩИЩЕНЫ</div>
+    </div>
+  </div>
+</footer>
 </div>
 
 {% block javascripts %}
@@ -510,14 +512,14 @@
     </script>
     {% elseif label == 'feedback' %}
     <script>
-
-      dataLayer.push({
-        'event': 'FormSent',
-        'eventCategory': 'FAQ',
-        'eventAction': 'Sent',
+      $(function () {
+        dataLayer.push({
+          'event': 'FormSent',
+          'eventCategory': 'FAQ',
+          'eventAction': 'Sent',
+        });
+        $('#faqSubmit').arcticmodal(favSyr.popup.options);
       });
-      $('#faqSubmit').arcticmodal(favSyr.popup.options);
-
     </script>
     {% elseif label == 'registration' %}
     <script>

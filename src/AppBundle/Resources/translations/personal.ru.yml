@@ -44,6 +44,7 @@ Success update: Информация успешно обновлена
 
 Incorrect registration data: Некорректная регистрационная информация
 Participant with this email/phone/social account is already registered: Участник с такими данными уже зарегистрирован
+Confirm password does not match the password: Пароли должны совпадать
 Unknown API error: Неизвестная ошибка
 
 Oldpassword: Старый пароль

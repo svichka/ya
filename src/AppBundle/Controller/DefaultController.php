@@ -234,6 +234,10 @@
           {
             $this->makeErrorsFromFields($fields);
           }
+          if ($e->getMessage() == 'Participant with this email/phone/social account is already registered')
+          {
+            $this->addFlash('exist', 'ok');
+          }
         }
       }
       

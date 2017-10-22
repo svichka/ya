@@ -57,10 +57,12 @@
               {{ form_widget(form.ispdagreed) }}
               {#<input class="form__checkbox" type="checkbox" id="check2" checked>#}
               <label class="form__checkbox-text" for="registration_form_ispdagreed">
-                  <span>Я согласен с <a href="https://promo.ya-juice.ru/files/Правила%20акции.pdf" target="_blank" style="
+                  <span>Я согласен с <a href="https://promo.ya-juice.ru/files/Правила%20акции.pdf" target="_blank"
+                                        style="
                         color: #fcef9c;
                     ">правилами акции</a> и
-                                    <a href="https://promo.ya-juice.ru/files/Пользовательское%20соглашение.pdf" target="_blank" style="
+                                    <a href="https://promo.ya-juice.ru/files/Пользовательское%20соглашение.pdf"
+                                       target="_blank" style="
                         color: #fcef9c;
                     ">пользовательским
                                         соглашением</a>, а так же на обработку моих данных</span>
@@ -127,7 +129,8 @@
     <div class="popup__wrap">
       <div class="popup__form-wrap">
         <div class="form__row">
-          <label class="form__label" style="text-align: center; font-size: 15px; margin-bottom: 1em">Согласно правилам, принять участие в Акции могут <br> только лица, достигшие 18 лет.</label>
+          <label class="form__label" style="text-align: center; font-size: 15px; margin-bottom: 1em">Согласно правилам,
+            принять участие в Акции могут <br> только лица, достигшие 18 лет.</label>
         </div>
         <div class="form__row">
           <div class="form__box form__box_button">
@@ -137,10 +140,27 @@
       </div>
     </div>
   </div>
-  {% endblock %}
+  <div class="popup" id="existModal">
+    <div class="popup__close arcticmodal-close">X</div>
+    <div class="popup__wrap">
+      <p class="popup__text popup__text_size_limit">Введенные данные уже существуют. </p>
+      <p class="popup__text popup__text_size_limit">
+        Если Вы участвовали в других акциях <span class="popup__text-underline"> группы Компании PepsiCo Россия</span>,
+        то можете использовать прежний
+        логин и пароль для <a href="{{ path('login') }}" class="popup__link">авторизации</a> на сайте.
+      </p>
+      <p class="popup__text popup__text_size_limit">Если необходимо восстановить пароль, воспользуйся формой <a
+            href="#!" class="popup__link password-reminder">восстановления пароля</a>. </p>
+    </div>
+  </div>
+{% endblock %}
 {% block javascripts %}
   {{ parent() }}
   <script type="text/javascript">
+    document.addEventListener('exist', function (e) {
+      $('#existModal').arcticmodal(favSyr.popup.options);
+    }, false);
+
     var reg_errors = {};
     var reg_helper = $('.reg-helper');
     var show_reg_errors = function () {
@@ -163,13 +183,13 @@
         } else {
           delete reg_errors[ 'registration_form_birthdate' ];
           var age = _calculateAge(moment($('#registration_form_birthdate').val(), 'DD.MM.YYYY').toDate());
-          if (age < 18 ) {
+          if (age < 18) {
             $('#agePP').arcticmodal(favSyr.popup.options);
             valid = false;
           } else {
             delete reg_errors[ 'registration_form_birthdate' ];
           }
-          if(age>=90){
+          if (age >= 90) {
             reg_errors[ 'registration_form_birthdate' ] = "Введите дату рождения";
             valid = false;
           } else {
@@ -184,14 +204,14 @@
         timepicker: false,
         format: 'd.m.Y',
         maxDate: '+1970/01/01',
-        minDate:'1937/01/01',
-        yearStart : '1937',
-        yearEnd : '2017',
-        onChangeDateTime: validateChangeDateTime
+        minDate: '1937/01/01',
+        yearStart: '1937',
+        yearEnd: '2017',
+        onChangeDateTime: validateChangeDateTime,
       });
     });
 
-    function validateChangeDateTime(a,b,c,d) {
+    function validateChangeDateTime(a, b, c, d) {
       if ($('#registration_form_birthdate').val().length !== 10 || moment($('#registration_form_birthdate').val(), 'DD.MM.YYYY').toDate() === 'Invalid Date') {
         reg_errors[ 'registration_form_birthdate' ] = "Введите дату рождения";
         valid = false;
@@ -206,7 +226,7 @@
         } else {
           delete reg_errors[ 'registration_form_birthdate' ];
         }
-        if(age>=90){
+        if (age >= 90) {
           reg_errors[ 'registration_form_birthdate' ] = "Введите дату рождения";
           valid = false;
         } else {
