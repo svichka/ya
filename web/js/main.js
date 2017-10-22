@@ -10,10 +10,10 @@
             } 
           },
           afterOpen: function(data, el) {
-              document.getElementsByTagName('body')[0].stlye.position = 'fixed';
+              $('body').css('position' , 'fixed');
           },
           afterClose: function(data, el) {
-              document.getElementsByTagName('body')[0].stlye.position = 'static';
+              $('body').css('position' , 'static');              
           } 
         } 
       } 
