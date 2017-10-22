@@ -1,6 +1,5 @@
 
 
-$(function () {
   var favSyr = { 
     popup: 
       { 
@@ -11,14 +10,15 @@ $(function () {
             } 
           },
           afterOpen: function(data, el) {
-              $('body').css('position' , 'fixed');
+              document.body.stlye.position = 'fixed';
           },
           afterClose: function(data, el) {
-              $('body').css('position' , 'static');
+              document.body.stlye.position = 'static';
           } 
         } 
       } 
     }
+$(function () {
   $('input[type="file"]').change(function () {
     var text = $(this).val();
     $(this).next('.form__load-file-title').text(text.replace("C:\\fakepath\\" , ''));
