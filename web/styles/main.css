@@ -36,7 +36,7 @@ form[name="registration_form"] .form__wrapper .form__row:nth-child(7) .form__che
 @media only screen and (max-width:550px){.button_big{font-size:20px;padding:15px 15px;}
 }
 .button_width_full{width:100%;}
-.button_big-rem{font-size:2rem;padding-top:2rem;padding-bottom:2rem;border-radius:2.5rem;}
+.button_big-rem{font-size:2rem;padding-top:2rem;padding-bottom:2rem;border-radius:2.5rem;-webkit-transition: none;transition: none;}
 @media only screen and (max-width:800px){.button_big-rem{font-size:24px;padding-top:20px;padding-bottom:20px;border-radius:25px;}
 }
 @media only screen and (max-width:550px){.button_big-rem{font-size:20px;padding:15px 15px;}
