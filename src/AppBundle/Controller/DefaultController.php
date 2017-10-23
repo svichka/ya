@@ -925,6 +925,7 @@
           "preactivated" => $u->getPreMobileStatus() == '' ? '-' : $u->getPreMobileStatus(),
           "filled"       => $u->getMobileFilled(),
           "sms"          => $u->getMobileActivated(),
+          "prize"        => $w->getPromocodeParticipantPrize() == 1 ? "50 рублей" : ($w->getPromocodeParticipantPrize() == 3 ? "Сертификат" : "Главный"),
         ];
       }
       
