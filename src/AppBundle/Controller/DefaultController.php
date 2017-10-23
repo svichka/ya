@@ -167,6 +167,26 @@
             throw new NotCorrectDataException("Согласитесь с условиями");
           }
           
+          $dateSArr = explode(".", $formData->birthdate);
+          if (count($dateSArr) != 3)
+          {
+            throw new NotCorrectDataException("Введите верную дату рождения");
+          }
+          $d = $dateSArr[0];
+          $m = $dateSArr[1];
+          $y = $dateSArr[2];
+          if (!checkdate($m, $d, $y))
+          {
+            throw new NotCorrectDataException("Введите верную дату рождения");
+          }
+//          if ($m > 12)
+//          {
+//            throw new NotCorrectDataException("Введите верную дату рождения");
+//          }
+//          if ($d = 31 && in_array($m, [2, 4, 6, 9, 11]))
+//          {
+//            throw new NotCorrectDataException("Введите верную дату рождения");
+//          }
           
           $age = \DateTime::createFromFormat('d.m.Y', $formData->birthdate)
             ->diff(new \DateTime('now'))
@@ -902,7 +922,7 @@
           "user_guid"    => $w->getPromocodeParticipantGuid(),
           "promocode_id" => $w->getPromocodeId(),
           "receipt_guid" => $w->getReceiptGuid(),
-          "preactivated" => $u->getPreMobileStatus(),
+          "preactivated" => $u->getPreMobileStatus() == '' ? '-' : $u->getPreMobileStatus(),
           "filled"       => $u->getMobileFilled(),
           "sms"          => $u->getMobileActivated(),
         ];

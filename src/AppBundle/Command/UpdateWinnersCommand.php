@@ -52,7 +52,7 @@
         '============',
         '',
       ]);
-      
+      $pApi = new ParticipantApiController();
       $doctrine = $this->getContainer()->get('doctrine');
       $em = $doctrine->getManager();
       
@@ -102,9 +102,8 @@
                 
                 // Кажется мусор
                 $win_object->setPromocodeId($options['id']);
-                
-                
-                $pApi = new ParticipantApiController();
+
+
 //                $output->writeln(['get User = ' . $user->getId()]);
                 /**
                  * @var \Dalee\PEPUWSClientBundle\Entity\Participant $p
@@ -137,6 +136,7 @@
         $output->writeln("\tDone.");
       }
       
+      
       $output->writeln(['win lotteries']);
       $api = new PromoLotteryApiController();
       $promos = $api->getPromos();
@@ -150,61 +150,85 @@
             $lotteries = $api->getLotteries($promo['slug']);
             foreach ($lotteries as $lottery)
             {
-              $winners = $api->getLotteryWinners($promo['slug'], $lottery['id']);
-              foreach ($winners as $winner)
+              if ($lottery["is_done"] == true)
               {
-                /**
-                 * {
-                 *   "tickets_count": null,
-                 *   "is_active": true,
-                 *   "is_winner": true,
-                 *   "prize_application": null,
-                 *   "id": 224,
-                 *   "promocodes": [
-                 *     {
-                 *       "id": 3149,
-                 *       "participant": {
-                 *         "id": 1111111,
-                 *         "crm_id_ilp": "1111111",
-                 *         "guid": "9a15a7dd-edaf-5cf6-b5b7-8e1adcaabd63",
-                 *         "crm_data": []
-                 *       }
-                 *     }
-                 *   ]
-                 * },
-                 */
-                $promocodes = $winner['promocodes'];
-                foreach ($promocodes as $promocode)
+                $output->writeln(print_r("Ready {$promo['slug']} {$lottery['id']}", true));
+                $winners = $api->getLotteryWinners($promo['slug'], $lottery['id']);
+                foreach ($winners as $winner)
                 {
-                  $win_object = new Winner();
+                  //$output->writeln(print_r($winner, true));
                   
-                  $win_object->setTicketsCount($winner['tickets_count']);
-                  $win_object->setIsActive($winner['is_active']);
-                  $win_object->setIsWinner($winner['is_winner']);
-                  $win_object->setPrizeApplication($winner['prize_application']);
-                  $win_object->setId($winner['id']);
-                  $win_object->setPromocodeId($lottery['prize']['id']);
-                  $win_object->setPromocodeParticipantId($promocode['participant']['id']);
-                  $win_object->setPromocodeParticipantCrmIdIlp($promocode['participant']['crm_id_ilp']);
-                  $win_object->setPromocodeParticipantGuid($promocode['participant']['guid']);
-                  $win_object->setPromocodeParticipantCrmData(serialize($promocode['participant']['crm_data']));
+                  /**
+                   * {
+                   *   "tickets_count": null,
+                   *   "is_active": true,
+                   *   "is_winner": true,
+                   *   "prize_application": null,
+                   *   "id": 224,
+                   *   "promocodes": [
+                   *     {
+                   *       "id": 3149,
+                   *       "participant": {
+                   *         "id": 1111111,
+                   *         "crm_id_ilp": "1111111",
+                   *         "guid": "9a15a7dd-edaf-5cf6-b5b7-8e1adcaabd63",
+                   *         "crm_data": []
+                   *       }
+                   *     }
+                   *   ]
+                   * },
+                   */
+                  
+                  $promocodes = $winner['promocodes'];
+                  foreach ($promocodes as $promocode)
+                  {
+                    $win_object = $this->getContainer()->get('doctrine')->getRepository('AppBundle:Winner')->find($winner['id']);
+                    if ($win_object == null)
+                    {
+                      $win_object = new Winner();
+                    }
+                    $win_object->setIsActive($winner['is_active']);
+                    $win_object->setIsWinner($winner['is_winner']);
+                    $win_object->setId($winner['id']);
+                    $win_object->setPromocodeId($lottery['prize']['id']);
+                    $win_object->setPromocodeParticipantId($promocode['participant']['id']);
+                    $win_object->setPromocodeParticipantCrmIdIlp($promocode['participant']['crm_id_ilp']);
+                    $output->writeln("point");
+                    $win_object->setPromocodeParticipantGuid($promocode['participant']['guid']);
+                    $win_object->setPromocodeParticipantCrmData(serialize($promocode['participant']['crm_data']));
 // Для списка
-                  $win_object->setPromocodeParticipantDate($lottery['prize']['balance_date']);
-                  $win_object->setPromocodeParticipantPrize($lottery['prize']['ya_certificate_metro']);
-                  
-                  $pApi = new ParticipantApiController();
-                  $p = $pApi->getById($promocode['participant']['id'], ['firstname', 'secname', 'lastname']);
-                  $fio = "";
-                  $fio .= $p->lastname . " ";
-                  $fio .= $p->firstname . " ";
-                  $fio .= $p->secname . " ";
-                  $fio = trim($fio);
-                  $win_object->setPromocodeParticipantFio($fio);
-                  $em->merge($win_object);
-                  $em->flush();
+                    $win_object->setPromocodeParticipantDate(date('d.m.Y', strtotime($lottery['run_time'])));
+                    $win_object->setPromocodeParticipantPrize($promo['slug'] == "ya_lottery" ? 3 : 2);
+                    
+                    $pApi = new ParticipantApiController();
+                    
+                    /**
+                     * @var \Dalee\PEPUWSClientBundle\Entity\Participant $p
+                     */
+                    $p = $pApi->getById($promocode['participant']['id'], ['mobilephone', 'firstname', 'secname', 'lastname', 'guid', 'crm_id_ilp']);
+                    $fio = "";
+                    $fio .= $p->getLastname() . " ";
+                    $fio .= $p->getFirstname() . " ";
+                    $fio .= $p->getSecname() . " ";
+                    $fio = trim($fio);
+                    $win_object->setPromocodeParticipantFio($fio);
+                    $win_object->setPromocodeParticipantPhone($p->getMobilephone());
+                    
+                    // Поля данных по юзеру
+                    $win_object->setPromocodeParticipantId($promocode['participant']['id']);
+                    $win_object->setPromocodeParticipantCrmIdIlp($p->getCrmIdIlp());
+                    $win_object->setPromocodeParticipantGuid($p->getGuid());
+                    $em = $doctrine->getManager();
+                    $em->merge($win_object);
+                    $em->flush();
+                  }
                 }
+                $output->writeln(print_r($lottery, true));
               }
-              $output->writeln(print_r($lottery, true));
+              else
+              {
+                $output->writeln(print_r("Not ready {$promo['slug']} {$lottery['id']}", true));
+              }
             }
           }
           catch (ContextErrorException $e)
@@ -219,7 +243,6 @@
       }
       
       
-      $em->flush();
       $output->writeln('Whoa!');
     }
   }

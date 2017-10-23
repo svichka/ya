@@ -1,3 +1,6 @@
+.form__box.form__box_width_half + .form__checkbox__container {
+	width: 50%;
+}
 .link{font-family:"Bliss Pro";font-size:26px;color:#fff;}
 .link_fake{color:#fde900;}
 .btn-lg-h {display: none;}

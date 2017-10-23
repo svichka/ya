@@ -14,7 +14,7 @@
         <div class="profile__content">
           <div class="profile__left">
             <div class="profile__data">
-              <div class="profile__name">{{ user.getfirstname() }}
+              <div class="profile__name" data-id="{{ user.getId() }}">{{ user.getfirstname() }}
                 <br>{% if user.getsecname() is defined %} {{ user.getsecname() }} {% endif %} {{ user.getlastname() }}
               </div>
               <div class="profile__city">
@@ -93,7 +93,9 @@
                     <div class="table__box">
                       <div class="table__text">
                         {% if win_receipts[value.guid] is defined %}
-                          {% if win_receipts[value.guid] =='ya_tel_50_rub' %}
+                          {% set pr = false %}
+                          {% if win_receipts[value.guid]['ya_tel_50_rub'] is defined %}
+                            {% set pr = true %}
                             {% set show_money = 1 %}
                             <img class="table__img" src="{{ asset('images/prize_icon_1.png') }}" alt="">
                             {% if not banned_listener.isSended(value.guid) %}
@@ -106,13 +108,20 @@
                                 <a class="table__link {{ typeL }}" data-id="{{ value.guid }}" href="#!">Получить</a>
                               {% endif %}
                             {% endif %}
-                          {% elseif win_receipts[value.guid] =='ya_certificate_coctail_spain' %}
+                          {% endif %}
+                          {% if win_receipts[value.guid]['ya_certificate_coctail_spain'] is defined %}
+                            {% set pr = true %}
                             <img class="table__img" src="{{ asset('images/prize_icon_2.png') }}" alt="">
-                          {% elseif win_receipts[value.guid] =='ya_certificate_metro' %}
+                          {% endif %}
+                          {% if win_receipts[value.guid]['ya_certificate_metro'] is defined %}
+                            {% set pr = true %}
                             <img class="table__img" src="{{ asset('images/prize_icon_3.png') }}" alt="">
-                          {% else %}
+                          {% endif %}
+                          {% if not pr %}
                             Не выигрышный
                           {% endif %}
+                        {% else %}
+                          Не выигрышный
                         {% endif %}
                       </div>
                     </div>
@@ -338,6 +347,7 @@
           <form class="form jsMoney" id="jsMoney" action="#">
             <div class="form__row">
               <div class="form__box">
+                <label class="jsMoney_label_error" for="phone" style="font-size: 19px;color: #ad0000;"></label>
                 <input class="form__input form__input_type_phone" type="text" id="phone"
                        name="mobilephone">
               </div>
@@ -414,9 +424,19 @@
 
         function showResponseCode(responseText, statusText, xhr, $form) {
           if (responseText.status === 200) {
+            dataLayer.push({
+              'event': 'Prizes',
+              'eventCategory': 'Prizing',
+              'eventAction': 'CorrectConfimCode',
+            });
             window.location.reload(true);
             $.arcticmodal('close');
           } else {
+            dataLayer.push({
+              'event': 'Prizes',
+              'eventCategory': 'Prizing',
+              'eventAction': 'UncorrectConfimCode',
+            });
             $('.code-helper').text(responseText.errors);
             $('.code-helper').css('display', 'block');
           }
@@ -564,11 +584,32 @@
         $('form#jsMoney').ajaxForm(optionsjsMoney);
 
         function showRequestjsMoney(formData, jqForm, options) {
+
+          console.log(formData);
         }
 
         function showResponsejsMoney(responseText, statusText, xhr, $form) {
-          $.arcticmodal('close');
-          $('#enterCode').arcticmodal(favSyr.popup.options);
+          console.log(responseText);
+          if (responseText.status === 200) {
+            dataLayer.push({
+              'event': 'Prizes',
+              'eventCategory': 'Prizing',
+              'eventAction': 'PhoneNumberSent',
+            });
+            $.arcticmodal('close');
+            $('#enterCode').arcticmodal(favSyr.popup.options);
+          }
+          else if (responseText.status === 201) {
+            window.location.reload();
+          }
+          else {
+            dataLayer.push({
+              'event': 'Prizes',
+              'eventCategory': 'Prizing',
+              'eventAction': 'PhoneNumberFail',
+            });
+            $('.jsMoney_label_error').text(responseText.errors);
+          }
         }
 
         // update user

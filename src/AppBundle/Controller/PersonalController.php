@@ -152,19 +152,36 @@
       
       foreach ($promocodes as $application)
       {
+        $receipt_guid = $application->getReceipt()['guid'];
         $promoApplications = $application->getPromoApplications();
         foreach ($promoApplications as $promoApplication)
         {
           if (count($promoApplication['prize_options']))
           {
-            $options = $promoApplication['prize_options'][0];
-            $guid = $application->getCode();
-            $win_receipts[$guid] = $options['slug'];
+            foreach ($promoApplication['prize_options'] as $prize_option)
+            {
+
+              $guid = $application->getCode();
+              if (!isset($win_receipts[$guid]))
+              {
+                $win_receipts[$guid] = [];
+              }
+              $options = $prize_option;
+              $win_receipts[$guid][$options['slug']] = $options['slug'];
+            }
           }
         }
+        $prizeApplications = $application->getPrizeApplications();
+        foreach ($prizeApplications as $prizeApplication)
+        {
+          if (!isset($win_receipts[$guid]))
+          {
+            $win_receipts[$guid] = [];
+          }
+          $win_receipts[$guid][$prizeApplication['prize']['slug']]=$prizeApplication['prize']['slug'];
+//              var_dump($prizeApplication);
+        }
       }
-      
-      
       $receipts = $this->sortReceipts($receipts);
       
       return $this->render('AppBundle:Default:personal.html.twig', [
@@ -404,6 +421,7 @@
         $uI->setMobileActivated(1);
         $this->getDoctrine()->getManager()->merge($uI);
         $this->getDoctrine()->getManager()->flush();
+        
         return new JsonResponse([
           "status" => 200,
         ]);
@@ -422,6 +440,7 @@
      */
     public function mobileUpdateAction(Request $request)
     {
+      $this->get('logger')->error("init");
       $participantApi = new ParticipantApiController();
       $mobilephone = $request->request->get('mobilephone');
       $mobilephone = preg_replace("/[^0-9]/", "", $mobilephone);
@@ -436,41 +455,111 @@
       $user->mobilephone = $mobilephone;
       $pp = new Participant();
       $pp->setMobilephone($mobilephone);
-      $p2 = $participantApi->update($user->id, $pp);
-      $participantApi->activationGenerate($mobilephone);
-      
-      $u = $this->getDoctrine()->getRepository('AppBundle:User')->find($user->id);
-      $u->setMobileFilled(1);
-      $this->getDoctrine()->getManager()->merge($u);
-      $this->getDoctrine()->getManager()->flush();
-      
-      $user->setMobilephone($p2->getMobilephone());
-      $user->setIsphoneactivated($p2->getIsphoneactivated());
-      $uI = $this->getDoctrine()->getRepository('AppBundle:User')->find($user->id);
-      if ($p2->getIsphoneactivated() == 'N')
+      try
       {
-        $participantApi->activationUpdate($mobilephone);
-        
-        $uI->setMobileFilled(1);
-        $this->getDoctrine()->getManager()->merge($uI);
+        $p2 = $participantApi->update($user->id, $pp);
+      }
+      catch (NotCorrectDataException $e2)
+      {
+        return new JsonResponse([
+          "status" => 400,
+          'errors' => "Введены не верные данные",
+        ]);
+      }
+      catch (ApiFailedException $e)
+      {
+        return new JsonResponse([
+          "status" => 400,
+          'errors' => "Внутренняя ошибка привязки номера",
+        ]);
+      }
+      if ($p2->isphoneactivated != 'Y')
+      {
+        try
+        {
+          $participantApi->activationGenerate($mobilephone);
+        }
+        catch (NotCorrectDataException $e2)
+        {
+          if ($e2->getMessage() == 'Incorrect data')
+          {
+            return new JsonResponse([
+              "status" => 400,
+              'errors' => "Ошибка запроса активации номера. Некорректные данные",
+            ]);
+          }
+          elseif ($e2->getMessage() == 'This email/phone is already activated')
+          {
+            $uI = $this->getDoctrine()->getRepository('AppBundle:User')->find($user->id);
+            $uI->setMobileFilled(1);
+            $uI->setMobileActivated(1);
+            $this->getDoctrine()->getManager()->merge($uI);
+            $this->getDoctrine()->getManager()->flush();
+            
+            return new JsonResponse([
+              "status" => 201,
+              'errors' => "Номер уже активирован",
+            ]);
+          }
+          else
+          {
+            return new JsonResponse([
+              "status" => 400,
+              'errors' => "Ошибка запроса активации номера",
+            ]);
+          }
+        }
+        catch (ApiFailedException $e)
+        {
+          return new JsonResponse([
+            "status" => 400,
+            'errors' => "Внутренняя ошибка запроса активации номера",
+          ]);
+        }
+        $u = $this->getDoctrine()->getRepository('AppBundle:User')->find($user->id);
+        $u->setMobileFilled(1);
+        $this->getDoctrine()->getManager()->merge($u);
         $this->getDoctrine()->getManager()->flush();
         
-        return new JsonResponse([
-          "status" => 300,
-        ]);
+        $user->setMobilephone($p2->getMobilephone());
+        $user->setIsphoneactivated($p2->getIsphoneactivated());
+        $uI = $this->getDoctrine()->getRepository('AppBundle:User')->find($user->id);
+        if ($p2->getIsphoneactivated() == 'N')
+        {
+          $participantApi->activationUpdate($mobilephone);
+          
+          $uI->setMobileFilled(1);
+          $this->getDoctrine()->getManager()->merge($uI);
+          $this->getDoctrine()->getManager()->flush();
+          
+          return new JsonResponse([
+            "status" => 300,
+          ]);
+        }
+        else
+        {
+          $uI->setMobileFilled(1);
+          $uI->setMobileActivated(1);
+          $this->getDoctrine()->getManager()->merge($uI);
+          $this->getDoctrine()->getManager()->flush();
+          
+          return new JsonResponse([
+            "status" => 200,
+          ]);
+        }
       }
       else
       {
+        $uI = $this->getDoctrine()->getRepository('AppBundle:User')->find($user->id);
         $uI->setMobileFilled(1);
         $uI->setMobileActivated(1);
         $this->getDoctrine()->getManager()->merge($uI);
         $this->getDoctrine()->getManager()->flush();
         
         return new JsonResponse([
-          "status" => 200,
+          "status" => 201,
         ]);
       }
-      
     }
     
     /**
