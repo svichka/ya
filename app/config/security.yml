@@ -37,6 +37,8 @@ security:
         secured_area:
             form_login:
                 csrf_token_generator: security.csrf.token_manager
-                
+    access_control:
+        # require ROLE_ADMIN for /admin*
+        - { path: ^/win_report, roles: ROLE_ADMIN }
     encoders:
         AppBundle\Security\User\WebserviceUser: plaintext

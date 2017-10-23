@@ -38,6 +38,8 @@
       url: '{{ path('win_json') }}',
       height: "500px",
     });
-
+    $(window).resize(function () {
+      window.grid.resize();
+    });
   </script>
 {% endblock %}
