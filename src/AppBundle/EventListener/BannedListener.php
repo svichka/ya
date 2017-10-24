@@ -273,7 +273,7 @@
     
     public function getAssetsVersion()
     {
-      return 10;
+      return 11;
     }
     
     public function isFilled($id)

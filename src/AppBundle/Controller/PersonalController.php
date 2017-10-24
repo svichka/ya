@@ -160,7 +160,7 @@
           {
             foreach ($promoApplication['prize_options'] as $prize_option)
             {
-
+              
               $guid = $application->getCode();
               if (!isset($win_receipts[$guid]))
               {
@@ -178,7 +178,7 @@
           {
             $win_receipts[$guid] = [];
           }
-          $win_receipts[$guid][$prizeApplication['prize']['slug']]=$prizeApplication['prize']['slug'];
+          $win_receipts[$guid][$prizeApplication['prize']['slug']] = $prizeApplication['prize']['slug'];
 //              var_dump($prizeApplication);
         }
       }
@@ -334,7 +334,7 @@
             $p->{$array_key} = $registration_form[$array_key];
           }
           $p2 = $participantApi->update($formData->id, $p);
-          $fields = ['lastname', 'firstname', 'secname', 'region', 'city', 'regionguid', 'cityguid', 'birthdate', 'email', 'ismale'];
+          $fields = ['lastname', 'firstname', 'secname', 'region', 'city', 'regionguid', 'cityguid', 'birthdate', 'email', 'ismale', 'mobilephone'];
           $p2 = $participantApi->getById($formData->id, $fields);
           
           $this->getUser()->setParticipant($p2);
@@ -461,13 +461,54 @@
       }
       catch (NotCorrectDataException $e2)
       {
-        return new JsonResponse([
-          "status" => 400,
-          'errors' => "Введены не верные данные",
-        ]);
+        $this->get('logger')->error("ERROR update NotCorrectDataException e2 " . $e2->getMessage());
+        if ($e2->getMessage() == 'Participant with this email/phone/social account is already registered')
+        {
+//          return new JsonResponse([
+//            "status" => 400,
+//            'errors' => "Номер уже привязан к другой учётной записи. Обратитесь в обратную связь.",
+//          ]);
+          $fields = ['lastname', 'firstname', 'secname', 'region', 'city', 'regionguid', 'cityguid', 'birthdate', 'email', 'ismale', 'mobilephone', 'isphoneactivated'];
+          $p_o = $participantApi->getById($user->id, $fields);
+          if ($p_o->getMobilephone() == $mobilephone)
+          {
+            if ($p_o->getIsphoneactivated() == 'Y')
+            {
+              $uI = $this->getDoctrine()->getRepository('AppBundle:User')->find($user->id);
+              $uI->setMobileFilled(1);
+              $uI->setMobileActivated(1);
+              $this->getDoctrine()->getManager()->merge($uI);
+              $this->getDoctrine()->getManager()->flush();
+              
+              return new JsonResponse([
+                "status" => 201,
+              ]);
+            }
+            else
+            {
+              // Nop идём на отправку смс активации
+            }
+          }
+          else
+          {
+            return new JsonResponse([
+              "status" => 400,
+              'errors' => "Номер уже привязан к другой учётной записи. Обратитесь в обратную связь.",
+            ]);
+          }
+        }
+        else
+        {
+          return new JsonResponse([
+            "status" => 400,
+            'errors' => "Введены не верные данные",
+          ]);
+        }
       }
       catch (ApiFailedException $e)
       {
+        $this->get('logger')->error("ERROR update ApiFailedException e " . $e->getMessage());
+        
         return new JsonResponse([
           "status" => 400,
           'errors' => "Внутренняя ошибка привязки номера",
@@ -481,8 +522,10 @@
         }
         catch (NotCorrectDataException $e2)
         {
+          $this->get('logger')->error("ERROR act NotCorrectDataException e2 " . $e2->getMessage());
           if ($e2->getMessage() == 'Incorrect data')
           {
+            
             return new JsonResponse([
               "status" => 400,
               'errors' => "Ошибка запроса активации номера. Некорректные данные",
@@ -503,6 +546,7 @@
           }
           else
           {
+            
             return new JsonResponse([
               "status" => 400,
               'errors' => "Ошибка запроса активации номера",
@@ -511,6 +555,8 @@
         }
         catch (ApiFailedException $e)
         {
+          $this->get('logger')->error("ERROR act ApiFailedException e " . $e->getMessage());
+          
           return new JsonResponse([
             "status" => 400,
             'errors' => "Внутренняя ошибка запроса активации номера",
