@@ -367,7 +367,7 @@ form[name="not_authorized_user_form"] .form__box_width_half {margin-bottom: 35px
 @media only screen and (max-width:800px){.popup{min-width:0;}
 }
 .popup__close{position:absolute;right:-15px;top:-17px;cursor:pointer;font-family:'Opium';font-size:22px;color:#f9eecc;}
-@media only screen and (max-width:550px){.popup__close{right:5px;top:-25px;}
+@media only screen and (max-width:550px){.popup__close {right: 9px;top: 2px;color: #000;}
 }
 .popup__title{width:100%;padding:30px 15px 10px;margin:0 0 -27px;text-align:center;color:#030f00;font-family:"Opium";font-weight:normal;text-transform:uppercase;font-size:32px;}
 @media only screen and (max-width:550px){.popup__title{padding:30px 10px 10px;font-size:28px;}
