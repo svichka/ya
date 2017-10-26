@@ -55,7 +55,8 @@
           
           return new WebserviceUser($username, $password, '', $roles);
         }
-      } catch (UserIsNotActiveException $e)
+      }
+      catch (UserIsNotActiveException $e)
       {
         $roles = ['ROLE_NOT_ACTIVE_USER'];
         
@@ -78,15 +79,16 @@
         }
         
         return new WebserviceUser($username, $password, '', $roles);
-      } catch (NotCorrectDataException $e)
+      }
+      catch (NotCorrectDataException $e)
       {
         $this->logger->error(print_r($e->getMessage(), true));
         throw new UsernameNotFoundException();
       }
       $this->logger->warning("new user");
       // Запросим дополнительные поля
-      $fields = ['lastname','firstname','secname','region','city','regionguid','cityguid','birthdate', 'email', 'ismale'];
-      $p2 = $participantApi->getById($participant->id,$fields);
+      $fields = ['lastname', 'firstname', 'secname', 'region', 'city', 'regionguid', 'cityguid', 'birthdate', 'email', 'ismale', 'mobilephone'];
+      $p2 = $participantApi->getById($participant->id, $fields);
       foreach ($fields as $field)
       {
         $participant->{$field} = $p2->{$field};

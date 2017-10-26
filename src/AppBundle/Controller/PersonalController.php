@@ -19,6 +19,7 @@
   use Dalee\PEPUWSClientBundle\Entity\Participant;
   use Dalee\PEPUWSClientBundle\Controller\ParticipantApiController;
   use Dalee\PEPUWSClientBundle\Exception\NotCorrectDataException;
+  use Twig_SimpleFilter;
   
   
   class PersonalController extends Base
