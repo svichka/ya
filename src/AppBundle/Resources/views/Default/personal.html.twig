@@ -147,225 +147,569 @@
 
 {% endblock %}
 
-  {% block modals %}
-    {{ parent() }}
 
-    <div class="popup" id="showEditPP" >
-      <div class="popup__close arcticmodal-close" >X</div >
-      <div class="popup__wrap" >
-        <div class="popup__form-wrap" >
-          <div class="form__row" >
-            <label class="form__label" style="text-align: center; font-size: 15px; margin-bottom: 1em" >Если Вы хотите
-              изменить личную информацию, пожалуйста, воспользуйтесь
-              <a href="{{ path('feedback_page') }}"
-                 class="form_to_feedback_link" >формой&nbsp;обратной&nbsp;связи</a ></label >
-          </div >
+{% block javascripts %}
+  {{ parent() }}
+  <script>
+    // Список регионов теперь динамический
+    window.regions = {{ banned_listener.regions()|json_encode|raw }};
+    window.cities = {{ banned_listener.cities(user.getregionguid())|json_encode|raw }};
+    window.reg_errors = {};
+  </script>
+  <script>
+    $(function () {
+      $('.form__input_type_date').datetimepicker({
+        lang: "ru",
+        timepicker: false,
+        format: 'd.m.Y',
+        maxDate: '+1970/01/01',
+      });
+
+      // jsMoney
+      var optionsCode = {
+        beforeSubmit: showRequestCode,  // pre-submit callback
+        success: showResponseCode,  // post-submit callback
+        url: '{{ path('mobile_code') }}',         // override for form's 'action' attribute
+        type: 'post',        // 'get' or 'post', override for form's 'method' attribute
+        dataType: 'json',        // 'xml', 'script', or 'json' (expected server response type)
+        clearForm: false,       // clear all form fields after successful submit
+        resetForm: false        // reset the form after successful submit
+      };
+
+      $('.form-code').ajaxForm(optionsCode);
+
+      function showRequestCode(formData, jqForm, options) {
+        $('.code-helper').text('');
+        $('.code-helper').css('display', 'none');
+      }
+
+      function showResponseCode(responseText, statusText, xhr, $form) {
+        if (responseText.status === 200) {
+          dataLayer.push({
+            'event': 'Prizes',
+            'eventCategory': 'Prizing',
+            'eventAction': 'CorrectConfimCode',
+          });
+          window.location.reload(true);
+          $.arcticmodal('close');
+        } else {
+          dataLayer.push({
+            'event': 'Prizes',
+            'eventCategory': 'Prizing',
+            'eventAction': 'UncorrectConfimCode',
+          });
+          $('.code-helper').text(responseText.errors);
+          $('.code-helper').css('display', 'block');
+        }
+      }
+
+      $('.jsMoneySend').on('click', function () {
+        console.log('jsMoneySend');
+        {% if user.getisphoneactivated()=='Y' %}
+        $.ajax({
+          url: '{{ path('send_money') }}',
+          data: { guid: $(this).data('id') },
+        }).done(function (json) {
+          console.log(json);
+        });
+        {% else %}
+        $.arcticmodal('close');
+        $('#enterCode').arcticmodal(favSyr.popup.options);
+        {% endif %}
+        return false;
+      });
+      $('.jsMoneyMobile').on('click', function () {
+        console.log('jsMoneyMobile');
+        $.arcticmodal('close');
+        $('#mobileMoney').arcticmodal(favSyr.popup.options);
+        return false;
+      });
+
+      // Вешаем маски
+//          $('#mobilephone').mask('79999999999');
+//          $('#birthdate').mask('99.99.9999');
+
+      //Сбрасываем селекты
+      var select = $("select#region");
+      var selectC = $("select#city");
+      select.html('');
+      selectC.html('');
+      select.append('<option value=""></option>');
+      // Закинем данные юзероа
+      var regionguid = "{{ user.getregionguid() }}";
+
+      var cityguid = "{{ user.getcityguid() }}";
+
+      var s = '';
+      for (var key in regions) {
+        if (regions.hasOwnProperty(key)) {
+          s = regions[ key ] === regionguid ? ' selected ' : ' ';
+          select.append('<option value="' + regions[ key ] + '" ' + s + ' >' + key + '</option>');
+        }
+      }
+
+      {% if(user.getregionguid()!='' and user.getregionguid()!='q') %}
+      $(select).val('{{ user.getregionguid() }}').change();
+      $("#region_text").val($("#region option:selected").text());
+      console.log('region change');
+      {#loadCities({ region: '{{ user.regionguid }}' });#}
+      loadJsonCities(cities);
+      $(select).attr('disabled', 'disabled');
+      $("#region_text").attr('disabled', 'disabled');
+      {% endif %}
+
+      selectC.on('change', function () {
+        $("#city_text").val($("#city option:selected").text());
+      });
+
+      select.on('change', function () {
+        $("#region_text").val($("#region option:selected").text());
+
+        selectC.html('');
+        selectC.attr('disabled', 'disabled');
+        $("#city_text").removeAttr('disabled', 'disabled');
+        selectC.append('<option value="">Зарузка...</option>');
+        var data = { region: select.val() };
+        loadCities(data);
+      });
+      var reg_helper = $('.reg-helper');
+      var show_reg_errors = function () {
+        reg_helper.html("");
+        for (var key in reg_errors) {
+          if (reg_errors.hasOwnProperty(key)) {
+            console.log(key, reg_errors[ key ]);
+            reg_helper.append("<span>" + reg_errors[ key ] + "</span><br/>");
+          }
+        }
+      };
+
+      function loadJsonCities(json) {
+        var s;
+        selectC.html('');
+        for (var key in json) {
+          if (json.hasOwnProperty(key)) {
+            s = (json[ key ] === cityguid ? "selected" : "");
+            selectC.append('<option value="' + json[ key ] + '" ' + s + ' >' + key + '</option>');
+          }
+        }
+        selectC.removeAttr('disabled', 'disabled');
+        $("#city_text").removeAttr('disabled', 'disabled');
+        {% if(user.getcityguid()!='' and user.getcityguid()!='q') %}
+        $(selectC).val('{{ user.getcityguid() }}').change();
+        $("#city_text").val($("#city option:selected").text());
+        console.log('city change');
+        $(selectC).attr('disabled', 'disabled');
+        $("#city_text").attr('disabled', 'disabled');
+        {% endif %}
+      }
+
+      function loadCities(data) {
+        $.ajax({
+          url: '{{ path('cities_json') }}',
+          type: 'post',
+          data: data,
+          success: loadJsonCities,
+        });
+      }
+
+//      $('input#password,input#password_confirm').on('keyup', function () {
+//        if ($('input#password').val() !== $('input#password_confirm').val()) {
+//          reg_errors[ 'psw' ] = "Пароли должны совпадать";
+//        } else {
+//          delete reg_errors[ 'psw' ]
+//        }
+//        show_reg_errors();
+//      });
+
+      $('input#email').on('keyup', function () {
+        if (!validateEmail($('input#email').val())) {
+          reg_errors[ 'email' ] = "Введите корректный емейл";
+        } else {
+          console.log('email1');
+          delete reg_errors[ 'email' ];
+        }
+        show_reg_errors();
+      });
+
+      // jsMoney
+      var optionsjsMoney = {
+        beforeSubmit: showRequestjsMoney,  // pre-submit callback
+        success: showResponsejsMoney,  // post-submit callback
+        url: '{{ path('mobile_u_json_page') }}',         // override for form's 'action' attribute
+        type: 'post',        // 'get' or 'post', override for form's 'method' attribute
+        dataType: 'json',        // 'xml', 'script', or 'json' (expected server response type)
+        clearForm: false,       // clear all form fields after successful submit
+        resetForm: false        // reset the form after successful submit
+      };
+
+      $('form#jsMoney').ajaxForm(optionsjsMoney);
+
+      function showRequestjsMoney(formData, jqForm, options) {
+
+        console.log(formData);
+      }
+
+      function showResponsejsMoney(responseText, statusText, xhr, $form) {
+        console.log(responseText);
+        if (responseText.status === 200) {
+          dataLayer.push({
+            'event': 'Prizes',
+            'eventCategory': 'Prizing',
+            'eventAction': 'PhoneNumberSent',
+          });
+          $.arcticmodal('close');
+          $('#enterCode').arcticmodal(favSyr.popup.options);
+        }
+        else if (responseText.status === 201) {
+          window.location.reload();
+        } else if (responseText.status === 205) {
+          $.arcticmodal('close');
+          $('.free-text-h').html('Уважаемый участник!');
+          $('.free-text').html('Ваш номер телефона уже зарегистрирован для другой учетной записи.' +
+            ' Чтобы получить приз, укажите другой номер телефона или направьте запрос' +
+            ' в <a href="{{ path('feedback_page') }}" style="color:#000">Обратную связь</a> с просьбой привязать текущий номер телефона к вашему аккаунту.');
+          $('#freeModal').arcticmodal(favSyr.popup.options);
+        }
+        else {
+          dataLayer.push({
+            'event': 'Prizes',
+            'eventCategory': 'Prizing',
+            'eventAction': 'PhoneNumberFail',
+          });
+          $('.jsMoney_label_error').text(responseText.errors);
+        }
+      }
+
+      // update user
+
+      var optionsU = {
+        beforeSubmit: showRequestU,  // pre-submit callback
+        success: showResponseU,  // post-submit callback
+        url: '{{ path('registration_u_json_page') }}',         // override for form's 'action' attribute
+        type: 'post',        // 'get' or 'post', override for form's 'method' attribute
+        dataType: 'json',        // 'xml', 'script', or 'json' (expected server response type)
+        clearForm: false,       // clear all form fields after successful submit
+        resetForm: false        // reset the form after successful submit
+      };
+
+      $('form#update_form').ajaxForm(optionsU);
+
+      function showRequestU(formData, jqForm, options) {
+        console.log('showRequestU');
+        var valid = true;
+
+        if (!$('#firstname').prop("disabled") && $('#firstname').val().length < 2) {
+          reg_errors[ 'firstname' ] = "Введите имя";
+          valid = false;
+        } else {
+          delete reg_errors[ 'firstname' ];
+        }
+        if (!$('#lastname').prop("disabled") && $('#lastname').val().length < 2) {
+          reg_errors[ 'lastname' ] = "Введите фамилию";
+          valid = false;
+        } else {
+          delete reg_errors[ 'lastname' ];
+        }
+        if (!$('#region').prop("disabled") && $('#region').val().length < 2) {
+          reg_errors[ 'region' ] = "Выберите регион";
+          valid = false;
+        } else {
+          delete reg_errors[ 'region' ];
+        }
+
+        if (!$('#city').prop("disabled") && $('#city').val().length < 2) {
+          reg_errors[ 'city' ] = "Выберите город";
+          valid = false;
+        } else {
+          delete reg_errors[ 'city' ];
+        }
+        $("#city_text").val($("#city option:selected").text());
+//        if ($('#mobilephone').val().length < 2) {
+//          reg_errors['mobilephone'] = "Введите номер телефона";
+//          valid = false;
+//        } else {
+//          delete reg_errors['mobilephone'];
+//        }
+        if (!$('#birthdate').prop("disabled") && $('#birthdate').val().length !== 10) {
+          reg_errors[ 'birthdate' ] = "Введите дату рождения";
+          valid = false;
+        } else if (moment($('#birthdate').val(), 'DD.MM.YYYY').toDate() === 'Invalid Date') {
+          reg_errors[ 'birthdate' ] = "Введите дату рождения";
+          valid = false;
+        } else {
+          delete reg_errors[ 'birthdate' ];
+          if (_calculateAge(moment($('#birthdate').val(), 'DD.MM.YYYY').toDate()) < 18) {
+            reg_errors[ 'birthdate' ] = "Возраст менее 18 лет";
+            valid = false;
+          } else {
+            delete reg_errors[ 'birthdate' ];
+          }
+        }
+        if (!$('#email').prop("disabled")) {
+          if (!validateEmail($('input#email').val())) {
+            reg_errors[ 'email' ] = "Введите корректный емейл";
+            valid = false;
+          } else {
+            console.log('email3');
+            delete reg_errors[ 'email' ];
+          }
+        }
+        show_reg_errors();
+        if ($('#update_form').serialize() === "") {
+          $('#updateModal').arcticmodal('close');
+          return false;
+        }
+        return valid;
+      }
+
+      function showResponseU(responseText, statusText, xhr, $form) {
+        console.log('showResponseU');
+        var helper = $('.reg-helper');
+
+        if (responseText.status === 200) {
+          window.location = '{{ path('personal_page') }}';
+          $('#editProfile').arcticmodal('close');
+        } else {
+          console.log(responseText.errors);
+          helper.html(responseText.errors);
+          if (responseText.errors.length === 1) {
+            console.log(1);
+            console.log(responseText.errors[ 0 ]);
+            if (responseText.errors[ 0 ] === "Participant with this email/phone/social account is already registered") {
+              $('#editProfile').arcticmodal('close');
+            } else {
+            }
+          }
+          helper.css('display', 'inline-block');
+        }
+      }
+    });
+  </script>
+  <script>
+    {% if not banned_listener.isSms(user.getid()) and show_money == 1 %}
+    $(function () {
+
+    });
+    {% endif %}
+  </script>
+{% endblock %}
+
+{% block modals %}
+  {{ parent() }}
+
+  <div class="popup" id="showEditPP" >
+    <div class="popup__close arcticmodal-close" >X</div >
+    <div class="popup__wrap" >
+      <div class="popup__form-wrap" >
+        <div class="form__row" >
+          <label class="form__label" style="text-align: center; font-size: 15px; margin-bottom: 1em" >Если Вы хотите
+            изменить личную информацию, пожалуйста, воспользуйтесь
+            <a href="{{ path('feedback_page') }}"
+               class="form_to_feedback_link" >формой&nbsp;обратной&nbsp;связи</a ></label >
         </div >
       </div >
     </div >
+  </div >
 
-
-
-
-    <div class="popup" id="enterCode" >
-      <div class="popup__close arcticmodal-close" >X</div >
-      <div class="popup__wrap" >
-        <div class="popup__form-wrap popup__form-wrap_width_min" >
-          <form class="form form-code" action="#" id="code" method="post" >
-            <div class="form__row" >
-              <div class="form__box" >
-                <label class="form__label" for="code" >Введите код:</label >
-                <input class="form__input" type="text" id="code" name="code" >
-                <label class="form__label code-helper" ></label >
-              </div >
-            </div >
-            <div class="form__row" >
-              <div class="form__box form__box_button" >
-                <button class="button button_width_full" type="submit" ><span class="button__text" >Ок</span ></button >
-              </div >
-            </div >
-          </form >
-        </div >
-      </div >
-    </div >
-    <div class="popup" id="updateModal" >
-      <div class="popup__close arcticmodal-close" >X</div >
-      <h2 class="popup__title" >Дозаполнение профиля</h2 >
-
-
-      <div class="popup__wrap popup__wrap_width_big" >
-        <form class="form" action="#" id="update_form" method="post" >
+  <div class="popup" id="enterCode" >
+    <div class="popup__close arcticmodal-close" >X</div >
+    <div class="popup__wrap" >
+      <div class="popup__form-wrap popup__form-wrap_width_min" >
+        <form class="form form-code" action="#" id="code" method="post" >
           <div class="form__row" >
-            <label class="form__label" style="text-align: center; font-size: 15px; margin-bottom: 1em" >
-              Пожалуйста, заполните недостающую информацию о себе, чтобы участвовать в Акции
-            </label >
-          </div >
-          <div class="form__row" >
-            <div class="form__box form__box_width_half" >
-              <label class="form__label" for="lastname" >Фамилия*</label >
-              <input class="form__input" type="text" id="lastname" name="registration_form[lastname]"
-                     placeholder="Фамилия"
-                     value="{{ user.getlastname() }}" {% if (user.getlastname()!='') %} disabled {% endif %}
-                     onkeyup="Ru(this);" >
-            </div >
-            <div class="form__box form__box_width_half" >
-              <label class="form__label" for="firstname" >Имя*</label >
-              <input class="form__input" type="text" id="firstname" name="registration_form[firstname]"
-                     placeholder="Имя"
-                     value="{{ user.getfirstname() }}" {% if (user.getfirstname()!='') %} disabled {% endif %}
-                     onkeyup="Ru(this);" >
+            <div class="form__box" >
+              <label class="form__label" for="code" >Введите код:</label >
+              <input class="form__input" type="text" id="code" name="code" >
+              <label class="form__label code-helper" ></label >
             </div >
           </div >
-          <div class="form__row" >
-            <div class="form__box form__box_width_half" >
-              <label class="form__label" for="secname" >Отчество</label >
-              <input class="form__input" type="text" id="secname" name="registration_form[secname]"
-                     placeholder="Отчество"
-                     value="{% if user.getsecname() is defined %} {{ user.getsecname() }} {% endif %}" {% if (user.getsecname()!='') %} disabled {% endif %}
-                     onkeyup="Ru(this);" >
-            </div >
-            <div class="form__box form__box_width_half" >
-              <label class="form__label" for="birthdate" >Дата рождения*</label >
-              {% set disable = '' %}
-              {% set birthdate = '' %}
-              {% if user.getbirthdate() is defined %}
-                {% set disable = 'disabled' %}
-                {% set birthdate = user.getbirthdate() %}
-              {% endif %}
-              <input class="form__input form__input_type_date" type="text" placeholder="01.01.1990" {{ disable }}
-                     value="{{ birthdate }}" id="birthdate" name="registration_form[birthdate]" >
-            </div >
-          </div >
-          <div class="form__row" >
-            <div class="form__box form__box_width_half" >
-              <label class="form__label" for="email" >Email*</label >
-              <input class="form__input"
-                     value="{{ user.getemail() }}" {% if (user.getemail()!='') %} disabled {% endif %}
-                     type="email" id="email" placeholder="email@email.com" name="registration_form[email]" >
-            </div >
-            <div class="form__box form__box_width_half" >
-              <label class="form__label" for="ismale" >Пол*</label >
-              {% set disable = '' %}
-              {% if user.getismale() is defined %}
-                {% set disable = 'disabled' %}
-                {% if user.getismale() == 'Y' %}
-                  {% set checked_m = 'checked' %}
-                  {% set checked_f = '' %}
-                {% else %}
-                  {% set checked_m = '' %}
-                  {% set checked_f = 'checked' %}
-                {% endif %}
-              {% endif %}
-              <div class="form__checkbox__container form__checkbox__container_dib" >
-                <input class="form__checkbox" type="radio" {{ disable }} {{ checked_m }} value="Y"
-                       name="registration_form[ismale]"
-                       id="male" >
-                <label class="form__checkbox-text form__checkbox-text_type_male" for="male" >М</label >
-              </div >
-              <div class="form__checkbox__container form__checkbox__container_dib" >
-                <input class="form__checkbox" type="radio" {{ disable }} {{ checked_f }} value="N"
-                       name="registration_form[ismale]"
-                       id="female" >
-                <label class="form__checkbox-text form__checkbox-text_type_male" for="female" >Ж </label >
-              </div >
-            </div >
-          </div >
-          <div class="form__row" >
-            <div class="form__box form__box_width_half" >
-              <label class="form__label" for="region" >Регион*</label >
-              {% if user.getregionguid() is defined and user.getregionguid() != '' %}
-                <select class="form__select" id="region" name="registration_form[regionguid]" >
-
-                </select >
-                <input id="region_text" type="hidden" name="registration_form[region]" required="" >
-              {% else %}
-                {% set disable = '' %}
-                {% if user.getregion() is defined and user.getregion() != '' %}
-                  {% set disable = 'disabled' %}
-                  <input id="region" type="text" class="form__input" name="registration_form[region]"
-                         required="" {{ disable }} value="{{ user.getregion() }}" >
-                {% else %}
-                  <select class="form__select" id="region" name="registration_form[regionguid]" >
-
-                  </select >
-                  <input id="region_text" type="hidden" name="registration_form[region]" required="" >
-                {% endif %}
-
-              {% endif %}
-            </div >
-            <div class="form__box form__box_width_half" >
-              <label class="form__label" for="city" >Город*</label >
-              {% if user.getcityguid() is defined and user.getcityguid() %}
-                <select class="form__select" id="city" name="registration_form[cityguid]" >
-
-                </select >
-                <input id="city_text" type="hidden" name="registration_form[city]" required="" >
-              {% else %}
-                {% set disable = '' %}
-                {% if user.getcity() is defined and user.getcity() != '' %}
-                  {% set disable = 'disabled' %}
-                  <input id="city" type="text" class="form__input" name="registration_form[city]"
-                         required="" {{ disable }} value="{{ user.getcity() }}" >
-                {% else %}
-                  <select class="form__select" id="city" name="registration_form[cityguid]" >
-
-                  </select >
-                  <input id="city_text" type="hidden" name="registration_form[city]" required="" >
-                {% endif %}
-
-              {% endif %}
-            </div >
-          </div >
-
-          {#<div class="form__row">#}
-          {#<div class="form__box form__box_width_half">#}
-          {#<label class="form__label" for="password_old">Старый пароль</label>#}
-          {#<input class="form__input" type="password" id="password_old" name="password_old"#}
-          {#placeholder="Текущий пароль">#}
-          {#</div>#}
-          {#<div class="form__box form__box_width_half">#}
-          {#<label class="form__label" for="password_new">Новый пароль</label>#}
-          {#<input class="form__input" type="password" id="password_new" name="password_new"#}
-          {#placeholder="Новый пароль">#}
-          {#</div>#}
-          {#</div>#}
           <div class="form__row" >
             <div class="form__box form__box_button" >
-              <button class="button" type="submit" ><span class="button__text" >Отправить</span ></button >
+              <button class="button button_width_full" type="submit" ><span class="button__text" >Ок</span ></button >
             </div >
           </div >
         </form >
       </div >
     </div >
-    <div class="popup" id="mobileMoney" >
-      <div class="popup__close arcticmodal-close" >X</div >
-      <h2 class="popup__title" >Поздравляем!</h2 >
-      <div class="popup__wrap" >
-        <p class="popup__text popup__text_size_limit" >Вы выиграли Ежедневный приз – 50 р на телефон!</p >
-        <p class="popup__text popup__text_size_limit" >
-          Пожалуйста, укажите номер телефона, на счет которого мы перечислим приз:
-        </p >
-        <div class="popup__form-wrap" >
-          <form class="form jsMoney" id="jsMoney" action="#" >
-            <div class="form__row" >
-              <div class="form__box" >
-                <label class="jsMoney_label_error" for="phone" style="font-size: 19px;color: #ad0000;" ></label >
-                <input class="form__input form__input_type_phone" type="text" id="phone"
-                       name="mobilephone" >
-              </div >
-            </div >
-            <div class="form__row" >
-              <div class="form__box form__box_button" >
-                <button class="button" type="submit" >
-                  <span class="button__text" >Отправить</span >
-                </button >
-              </div >
-            </div >
-          </form >
+  </div >
+  <div class="popup" id="updateModal" >
+    <div class="popup__close arcticmodal-close" >X</div >
+    <h2 class="popup__title" >Дозаполнение профиля</h2 >
+
+
+    <div class="popup__wrap popup__wrap_width_big" >
+      <form class="form" action="#" id="update_form" method="post" >
+        <div class="form__row" >
+          <label class="form__label" style="text-align: center; font-size: 15px; margin-bottom: 1em" >
+            Пожалуйста, заполните недостающую информацию о себе, чтобы участвовать в Акции
+          </label >
         </div >
+        <div class="form__row" >
+          <div class="form__box form__box_width_half" >
+            <label class="form__label" for="lastname" >Фамилия*</label >
+            <input class="form__input" type="text" id="lastname" name="registration_form[lastname]"
+                   placeholder="Фамилия"
+                   value="{{ user.getlastname() }}" {% if (user.getlastname()!='') %} disabled {% endif %}
+                   onkeyup="Ru(this);" >
+          </div >
+          <div class="form__box form__box_width_half" >
+            <label class="form__label" for="firstname" >Имя*</label >
+            <input class="form__input" type="text" id="firstname" name="registration_form[firstname]"
+                   placeholder="Имя"
+                   value="{{ user.getfirstname() }}" {% if (user.getfirstname()!='') %} disabled {% endif %}
+                   onkeyup="Ru(this);" >
+          </div >
+        </div >
+        <div class="form__row" >
+          <div class="form__box form__box_width_half" >
+            <label class="form__label" for="secname" >Отчество</label >
+            <input class="form__input" type="text" id="secname" name="registration_form[secname]"
+                   placeholder="Отчество"
+                   value="{% if user.getsecname() is defined %} {{ user.getsecname() }} {% endif %}" {% if (user.getsecname()!='') %} disabled {% endif %}
+                   onkeyup="Ru(this);" >
+          </div >
+          <div class="form__box form__box_width_half" >
+            <label class="form__label" for="birthdate" >Дата рождения*</label >
+            {% set disable = '' %}
+            {% set birthdate = '' %}
+            {% if user.getbirthdate() is defined %}
+              {% set disable = 'disabled' %}
+              {% set birthdate = user.getbirthdate() %}
+            {% endif %}
+            <input class="form__input form__input_type_date" type="text" placeholder="01.01.1990" {{ disable }}
+                   value="{{ birthdate }}" id="birthdate" name="registration_form[birthdate]" >
+          </div >
+        </div >
+        <div class="form__row" >
+          <div class="form__box form__box_width_half" >
+            <label class="form__label" for="email" >Email*</label >
+            <input class="form__input"
+                   value="{{ user.getemail() }}" {% if (user.getemail()!='') %} disabled {% endif %}
+                   type="email" id="email" placeholder="email@email.com" name="registration_form[email]" >
+          </div >
+          <div class="form__box form__box_width_half" >
+            <label class="form__label" for="ismale" >Пол*</label >
+            {% set disable = '' %}
+            {% if user.getismale() is defined %}
+              {% set disable = 'disabled' %}
+              {% if user.getismale() == 'Y' %}
+                {% set checked_m = 'checked' %}
+                {% set checked_f = '' %}
+              {% else %}
+                {% set checked_m = '' %}
+                {% set checked_f = 'checked' %}
+              {% endif %}
+            {% endif %}
+            <div class="form__checkbox__container form__checkbox__container_dib" >
+              <input class="form__checkbox" type="radio" {{ disable }} {{ checked_m }} value="Y"
+                     name="registration_form[ismale]"
+                     id="male" >
+              <label class="form__checkbox-text form__checkbox-text_type_male" for="male" >М</label >
+            </div >
+            <div class="form__checkbox__container form__checkbox__container_dib" >
+              <input class="form__checkbox" type="radio" {{ disable }} {{ checked_f }} value="N"
+                     name="registration_form[ismale]"
+                     id="female" >
+              <label class="form__checkbox-text form__checkbox-text_type_male" for="female" >Ж </label >
+            </div >
+          </div >
+        </div >
+        <div class="form__row" >
+          <div class="form__box form__box_width_half" >
+            <label class="form__label" for="region" >Регион*</label >
+            {% if user.getregionguid() is defined and user.getregionguid() != '' %}
+              <select class="form__select" id="region" name="registration_form[regionguid]" >
+
+              </select >
+              <input id="region_text" type="hidden" name="registration_form[region]" required="" >
+            {% else %}
+              {% set disable = '' %}
+              {% if user.getregion() is defined and user.getregion() != '' %}
+                {% set disable = 'disabled' %}
+                <input id="region" type="text" class="form__input" name="registration_form[region]"
+                       required="" {{ disable }} value="{{ user.getregion() }}" >
+              {% else %}
+                <select class="form__select" id="region" name="registration_form[regionguid]" >
+
+                </select >
+                <input id="region_text" type="hidden" name="registration_form[region]" required="" >
+              {% endif %}
+
+            {% endif %}
+          </div >
+          <div class="form__box form__box_width_half" >
+            <label class="form__label" for="city" >Город*</label >
+            {% if user.getcityguid() is defined and user.getcityguid() %}
+              <select class="form__select" id="city" name="registration_form[cityguid]" >
+
+              </select >
+              <input id="city_text" type="hidden" name="registration_form[city]" required="" >
+            {% else %}
+              {% set disable = '' %}
+              {% if user.getcity() is defined and user.getcity() != '' %}
+                {% set disable = 'disabled' %}
+                <input id="city" type="text" class="form__input" name="registration_form[city]"
+                       required="" {{ disable }} value="{{ user.getcity() }}" >
+              {% else %}
+                <select class="form__select" id="city" name="registration_form[cityguid]" >
+
+                </select >
+                <input id="city_text" type="hidden" name="registration_form[city]" required="" >
+              {% endif %}
+
+            {% endif %}
+          </div >
+        </div >
+
+        {#<div class="form__row">#}
+        {#<div class="form__box form__box_width_half">#}
+        {#<label class="form__label" for="password_old">Старый пароль</label>#}
+        {#<input class="form__input" type="password" id="password_old" name="password_old"#}
+        {#placeholder="Текущий пароль">#}
+        {#</div>#}
+        {#<div class="form__box form__box_width_half">#}
+        {#<label class="form__label" for="password_new">Новый пароль</label>#}
+        {#<input class="form__input" type="password" id="password_new" name="password_new"#}
+        {#placeholder="Новый пароль">#}
+        {#</div>#}
+        {#</div>#}
+        <div class="form__row" >
+          <div class="form__box form__box_button" >
+            <button class="button" type="submit" ><span class="button__text" >Отправить</span ></button >
+          </div >
+        </div >
+      </form >
+    </div >
+  </div >
+  <div class="popup" id="mobileMoney" >
+    <div class="popup__close arcticmodal-close" >X</div >
+    <h2 class="popup__title" >Поздравляем!</h2 >
+    <div class="popup__wrap" >
+      <p class="popup__text popup__text_size_limit" >Вы выиграли Ежедневный приз – 50 р на телефон!</p >
+      <p class="popup__text popup__text_size_limit" >
+        Пожалуйста, укажите номер телефона, на счет которого мы перечислим приз:
+      </p >
+      <div class="popup__form-wrap" >
+        <form class="form jsMoney" id="jsMoney" action="#" >
+          <div class="form__row" >
+            <div class="form__box" >
+              <label class="jsMoney_label_error" for="phone" style="font-size: 19px;color: #ad0000;" ></label >
+              <input class="form__input form__input_type_phone" type="text" id="phone"
+                     name="mobilephone" >
+            </div >
+          </div >
+          <div class="form__row" >
+            <div class="form__box form__box_button" >
+              <button class="button" type="submit" >
+                <span class="button__text" >Отправить</span >
+              </button >
+            </div >
+          </div >
+        </form >
       </div >
     </div >
-  {% endblock %}
+  </div >
+{% endblock %}
 
 {% block stylesheets %}
   {{ parent() }}
@@ -387,343 +731,3 @@
     }
   </style >
 {% endblock %}
-
-  {% block javascripts %}
-    {{ parent() }}
-    <script >
-      // Список регионов теперь динамический
-      window.regions = {{ banned_listener.regions()|json_encode|raw }};
-      window.cities = {{ banned_listener.cities(user.getregionguid())|json_encode|raw }};
-      window.reg_errors = {};
-    </script >
-    <script >
-      $(function () {
-        $('.form__input_type_date').datetimepicker({
-          lang: "ru",
-          timepicker: false,
-          format: 'd.m.Y',
-          maxDate: '+1970/01/01',
-        });
-
-
-        // jsMoney
-        var optionsCode = {
-          beforeSubmit: showRequestCode,  // pre-submit callback
-          success: showResponseCode,  // post-submit callback
-          url: '{{ path('mobile_code') }}',         // override for form's 'action' attribute
-          type: 'post',        // 'get' or 'post', override for form's 'method' attribute
-          dataType: 'json',        // 'xml', 'script', or 'json' (expected server response type)
-          clearForm: false,       // clear all form fields after successful submit
-          resetForm: false        // reset the form after successful submit
-        };
-
-        $('.form-code').ajaxForm(optionsCode);
-
-        function showRequestCode(formData, jqForm, options) {
-          $('.code-helper').text('');
-          $('.code-helper').css('display', 'none');
-        }
-
-        function showResponseCode(responseText, statusText, xhr, $form) {
-          if (responseText.status === 200) {
-            dataLayer.push({
-              'event': 'Prizes',
-              'eventCategory': 'Prizing',
-              'eventAction': 'CorrectConfimCode',
-            });
-            window.location.reload(true);
-            $.arcticmodal('close');
-          } else {
-            dataLayer.push({
-              'event': 'Prizes',
-              'eventCategory': 'Prizing',
-              'eventAction': 'UncorrectConfimCode',
-            });
-            $('.code-helper').text(responseText.errors);
-            $('.code-helper').css('display', 'block');
-          }
-        }
-
-        $('.jsMoneySend').on('click', function () {
-          console.log('jsMoneySend');
-          {% if user.getisphoneactivated()=='Y' %}
-          $.ajax({
-            url: '{{ path('send_money') }}',
-            data: { guid: $(this).data('id') },
-          }).done(function (json) {
-            console.log(json);
-          });
-          {% else %}
-          $.arcticmodal('close');
-          $('#enterCode').arcticmodal(favSyr.popup.options);
-          {% endif %}
-          return false;
-        });
-        $('.jsMoneyMobile').on('click', function () {
-          console.log('jsMoneyMobile');
-          $.arcticmodal('close');
-          $('#mobileMoney').arcticmodal(favSyr.popup.options);
-          return false;
-        });
-
-        // Вешаем маски
-//          $('#mobilephone').mask('79999999999');
-//          $('#birthdate').mask('99.99.9999');
-
-        //Сбрасываем селекты
-        var select = $("select#region");
-        var selectC = $("select#city");
-        select.html('');
-        selectC.html('');
-        select.append('<option value=""></option>');
-        // Закинем данные юзероа
-        var regionguid = "{{ user.getregionguid() }}";
-
-        var cityguid = "{{ user.getcityguid() }}";
-
-        var s = '';
-        for (var key in regions) {
-          if (regions.hasOwnProperty(key)) {
-            s = regions[ key ] === regionguid ? ' selected ' : ' ';
-            select.append('<option value="' + regions[ key ] + '" ' + s + ' >' + key + '</option>');
-          }
-        }
-
-        {% if(user.getregionguid()!='' and user.getregionguid()!='q') %}
-        $(select).val('{{ user.getregionguid() }}').change();
-        $("#region_text").val($("#region option:selected").text());
-        console.log('region change');
-        {#loadCities({ region: '{{ user.regionguid }}' });#}
-        loadJsonCities(cities);
-        $(select).attr('disabled', 'disabled');
-        $("#region_text").attr('disabled', 'disabled');
-        {% endif %}
-
-        selectC.on('change', function () {
-          $("#city_text").val($("#city option:selected").text());
-        });
-
-        select.on('change', function () {
-          $("#region_text").val($("#region option:selected").text());
-
-          selectC.html('');
-          selectC.attr('disabled', 'disabled');
-          $("#city_text").removeAttr('disabled', 'disabled');
-          selectC.append('<option value="">Зарузка...</option>');
-          var data = { region: select.val() };
-          loadCities(data);
-        });
-        var reg_helper = $('.reg-helper');
-        var show_reg_errors = function () {
-          reg_helper.html("");
-          for (var key in reg_errors) {
-            if (reg_errors.hasOwnProperty(key)) {
-              console.log(key, reg_errors[ key ]);
-              reg_helper.append("<span>" + reg_errors[ key ] + "</span><br/>");
-            }
-          }
-        };
-
-        function loadJsonCities(json) {
-          var s;
-          selectC.html('');
-          for (var key in json) {
-            if (json.hasOwnProperty(key)) {
-              s = (json[ key ] === cityguid ? "selected" : "");
-              selectC.append('<option value="' + json[ key ] + '" ' + s + ' >' + key + '</option>');
-            }
-          }
-          selectC.removeAttr('disabled', 'disabled');
-          $("#city_text").removeAttr('disabled', 'disabled');
-          {% if(user.getcityguid()!='' and user.getcityguid()!='q') %}
-          $(selectC).val('{{ user.getcityguid() }}').change();
-          $("#city_text").val($("#city option:selected").text());
-          console.log('city change');
-          $(selectC).attr('disabled', 'disabled');
-          $("#city_text").attr('disabled', 'disabled');
-          {% endif %}
-        }
-
-        function loadCities(data) {
-          $.ajax({
-            url: '{{ path('cities_json') }}',
-            type: 'post',
-            data: data,
-            success: loadJsonCities,
-          });
-        }
-
-//      $('input#password,input#password_confirm').on('keyup', function () {
-//        if ($('input#password').val() !== $('input#password_confirm').val()) {
-//          reg_errors[ 'psw' ] = "Пароли должны совпадать";
-//        } else {
-//          delete reg_errors[ 'psw' ]
-//        }
-//        show_reg_errors();
-//      });
-
-        $('input#email').on('keyup', function () {
-          if (!validateEmail($('input#email').val())) {
-            reg_errors[ 'email' ] = "Введите корректный емейл";
-          } else {
-            console.log('email1');
-            delete reg_errors[ 'email' ];
-          }
-          show_reg_errors();
-        });
-
-        // jsMoney
-        var optionsjsMoney = {
-          beforeSubmit: showRequestjsMoney,  // pre-submit callback
-          success: showResponsejsMoney,  // post-submit callback
-          url: '{{ path('mobile_u_json_page') }}',         // override for form's 'action' attribute
-          type: 'post',        // 'get' or 'post', override for form's 'method' attribute
-          dataType: 'json',        // 'xml', 'script', or 'json' (expected server response type)
-          clearForm: false,       // clear all form fields after successful submit
-          resetForm: false        // reset the form after successful submit
-        };
-
-        $('form#jsMoney').ajaxForm(optionsjsMoney);
-
-        function showRequestjsMoney(formData, jqForm, options) {
-
-          console.log(formData);
-        }
-
-        function showResponsejsMoney(responseText, statusText, xhr, $form) {
-          console.log(responseText);
-          if (responseText.status === 200) {
-            dataLayer.push({
-              'event': 'Prizes',
-              'eventCategory': 'Prizing',
-              'eventAction': 'PhoneNumberSent',
-            });
-            $.arcticmodal('close');
-            $('#enterCode').arcticmodal(favSyr.popup.options);
-          }
-          else if (responseText.status === 201) {
-            window.location.reload();
-          }
-          else {
-            dataLayer.push({
-              'event': 'Prizes',
-              'eventCategory': 'Prizing',
-              'eventAction': 'PhoneNumberFail',
-            });
-            $('.jsMoney_label_error').text(responseText.errors);
-          }
-        }
-
-        // update user
-
-        var optionsU = {
-          beforeSubmit: showRequestU,  // pre-submit callback
-          success: showResponseU,  // post-submit callback
-          url: '{{ path('registration_u_json_page') }}',         // override for form's 'action' attribute
-          type: 'post',        // 'get' or 'post', override for form's 'method' attribute
-          dataType: 'json',        // 'xml', 'script', or 'json' (expected server response type)
-          clearForm: false,       // clear all form fields after successful submit
-          resetForm: false        // reset the form after successful submit
-        };
-
-        $('form#update_form').ajaxForm(optionsU);
-
-        function showRequestU(formData, jqForm, options) {
-          console.log('showRequestU');
-          var valid = true;
-
-          if (!$('#firstname').prop("disabled") && $('#firstname').val().length < 2) {
-            reg_errors[ 'firstname' ] = "Введите имя";
-            valid = false;
-          } else {
-            delete reg_errors[ 'firstname' ];
-          }
-          if (!$('#lastname').prop("disabled") && $('#lastname').val().length < 2) {
-            reg_errors[ 'lastname' ] = "Введите фамилию";
-            valid = false;
-          } else {
-            delete reg_errors[ 'lastname' ];
-          }
-          if (!$('#region').prop("disabled") && $('#region').val().length < 2) {
-            reg_errors[ 'region' ] = "Выберите регион";
-            valid = false;
-          } else {
-            delete reg_errors[ 'region' ];
-          }
-
-          if (!$('#city').prop("disabled") && $('#city').val().length < 2) {
-            reg_errors[ 'city' ] = "Выберите город";
-            valid = false;
-          } else {
-            delete reg_errors[ 'city' ];
-          }
-          $("#city_text").val($("#city option:selected").text());
-//        if ($('#mobilephone').val().length < 2) {
-//          reg_errors['mobilephone'] = "Введите номер телефона";
-//          valid = false;
-//        } else {
-//          delete reg_errors['mobilephone'];
-//        }
-          if (!$('#birthdate').prop("disabled") && $('#birthdate').val().length !== 10) {
-            reg_errors[ 'birthdate' ] = "Введите дату рождения";
-            valid = false;
-          } else if (moment($('#birthdate').val(), 'DD.MM.YYYY').toDate() === 'Invalid Date') {
-            reg_errors[ 'birthdate' ] = "Введите дату рождения";
-            valid = false;
-          } else {
-            delete reg_errors[ 'birthdate' ];
-            if (_calculateAge(moment($('#birthdate').val(), 'DD.MM.YYYY').toDate()) < 18) {
-              reg_errors[ 'birthdate' ] = "Возраст менее 18 лет";
-              valid = false;
-            } else {
-              delete reg_errors[ 'birthdate' ];
-            }
-          }
-          if (!$('#email').prop("disabled")) {
-            if (!validateEmail($('input#email').val())) {
-              reg_errors[ 'email' ] = "Введите корректный емейл";
-              valid = false;
-            } else {
-              console.log('email3');
-              delete reg_errors[ 'email' ];
-            }
-          }
-          show_reg_errors();
-          if ($('#update_form').serialize() === "") {
-            $('#updateModal').arcticmodal('close');
-            return false;
-          }
-          return valid;
-        }
-
-        function showResponseU(responseText, statusText, xhr, $form) {
-          console.log('showResponseU');
-          var helper = $('.reg-helper');
-
-          if (responseText.status === 200) {
-            window.location = '{{ path('personal_page') }}';
-            $('#editProfile').arcticmodal('close');
-          } else {
-            console.log(responseText.errors);
-            helper.html(responseText.errors);
-            if (responseText.errors.length === 1) {
-              console.log(1);
-              console.log(responseText.errors[ 0 ]);
-              if (responseText.errors[ 0 ] === "Participant with this email/phone/social account is already registered") {
-                $('#editProfile').arcticmodal('close');
-              } else {
-              }
-            }
-            helper.css('display', 'inline-block');
-          }
-        }
-      });
-    </script >
-    <script >
-      {% if not banned_listener.isSms(user.getid()) and show_money == 1 %}
-      $(function () {
-
-      });
-      {% endif %}
-    </script >
-  {% endblock %}

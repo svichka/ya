@@ -19,6 +19,6 @@
     
     public function phoneFilter($num)
     {
-      return ($num) ? '+7 (' . substr($num, 1, 3) . ') ' . substr($num, 4, 3) . '-' . substr($num, 7, 2) . '-' . substr($num, 9, 2) : '&nbsp-&nbsp';
+      return ($num) ? '+7 (' . substr($num, 1, 3) . ') ' . substr($num, 4, 3) . '-' . substr($num, 7, 2) . '-' . substr($num, 9, 2) : '-';
     }
   }

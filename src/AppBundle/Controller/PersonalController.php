@@ -465,38 +465,38 @@
         $this->get('logger')->error("ERROR update NotCorrectDataException e2 " . $e2->getMessage());
         if ($e2->getMessage() == 'Participant with this email/phone/social account is already registered')
         {
-//          return new JsonResponse([
-//            "status" => 400,
-//            'errors' => "Номер уже привязан к другой учётной записи. Обратитесь в обратную связь.",
-//          ]);
-          $fields = ['lastname', 'firstname', 'secname', 'region', 'city', 'regionguid', 'cityguid', 'birthdate', 'email', 'ismale', 'mobilephone', 'isphoneactivated'];
-          $p_o = $participantApi->getById($user->id, $fields);
-          if ($p_o->getMobilephone() == $mobilephone)
-          {
-            if ($p_o->getIsphoneactivated() == 'Y')
-            {
-              $uI = $this->getDoctrine()->getRepository('AppBundle:User')->find($user->id);
-              $uI->setMobileFilled(1);
-              $uI->setMobileActivated(1);
-              $this->getDoctrine()->getManager()->merge($uI);
-              $this->getDoctrine()->getManager()->flush();
-              
-              return new JsonResponse([
-                "status" => 201,
-              ]);
-            }
-            else
-            {
-              // Nop идём на отправку смс активации
-            }
-          }
-          else
-          {
-            return new JsonResponse([
-              "status" => 400,
-              'errors' => "Номер уже привязан к другой учётной записи. Обратитесь в обратную связь.",
-            ]);
-          }
+          return new JsonResponse([
+            "status" => 205,
+            'errors' => "Номер уже привязан к другой учётной записи. Обратитесь в обратную связь.",
+          ]);
+//          $fields = ['lastname', 'firstname', 'secname', 'region', 'city', 'regionguid', 'cityguid', 'birthdate', 'email', 'ismale', 'mobilephone', 'isphoneactivated'];
+//          $p_o = $participantApi->getById($user->id, $fields);
+//          if ($p_o->getMobilephone() == $mobilephone)
+//          {
+//            if ($p_o->getIsphoneactivated() == 'Y')
+//            {
+//              $uI = $this->getDoctrine()->getRepository('AppBundle:User')->find($user->id);
+//              $uI->setMobileFilled(1);
+//              $uI->setMobileActivated(1);
+//              $this->getDoctrine()->getManager()->merge($uI);
+//              $this->getDoctrine()->getManager()->flush();
+//
+//              return new JsonResponse([
+//                "status" => 201,
+//              ]);
+//            }
+//            else
+//            {
+//              // Nop идём на отправку смс активации
+//            }
+//          }
+//          else
+//          {
+//            return new JsonResponse([
+//              "status" => 400,
+//              'errors' => "Номер уже привязан к другой учётной записи. Обратитесь в обратную связь.",
+//            ]);
+//          }
         }
         else
         {
