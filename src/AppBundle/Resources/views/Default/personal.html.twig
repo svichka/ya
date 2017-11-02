@@ -205,22 +205,12 @@
 
       $('.jsMoneySend').on('click', function () {
         console.log('jsMoneySend');
-        {% if user.getisphoneactivated()=='Y' %}
-        $.ajax({
-          url: '{{ path('send_money') }}',
-          data: { guid: $(this).data('id') },
-        }).done(function (json) {
-          console.log(json);
-        });
-        {% else %}
-        $.arcticmodal('close');
         $('#enterCode').arcticmodal(favSyr.popup.options);
-        {% endif %}
+
         return false;
       });
       $('.jsMoneyMobile').on('click', function () {
         console.log('jsMoneyMobile');
-        $.arcticmodal('close');
         $('#mobileMoney').arcticmodal(favSyr.popup.options);
         return false;
       });
