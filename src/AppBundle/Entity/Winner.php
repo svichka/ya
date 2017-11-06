@@ -77,7 +77,11 @@
      * @ORM\Column(type="string", nullable=true)
      */
     private $promocode_participant_prize;
-    
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $win_date;
+  
     /**
      * @return mixed
      */
@@ -300,6 +304,22 @@
     public function setPromocodeParticipantPhone($promocode_participant_phone)
     {
       $this->promocode_participant_phone = $promocode_participant_phone;
+    }
+  
+    /**
+     * @return mixed
+     */
+    public function getWinDate()
+    {
+      return $this->win_date;
+    }
+  
+    /**
+     * @param mixed $win_date
+     */
+    public function setWinDate($win_date)
+    {
+      $this->win_date = $win_date;
     }
   
   

@@ -46,6 +46,10 @@
      * @ORM\Column(type="integer")
      */
     private $mobile_activated;
+    /**
+     * @ORM\Column(type="datetime", columnDefinition="DATETIME on update CURRENT_TIMESTAMP")
+     */
+    private $updated;
     
     /**
      * @return integer
@@ -134,7 +138,7 @@
     {
       $this->mobile_activated = $mobile_activated;
     }
-  
+    
     /**
      * @return mixed
      */
@@ -142,12 +146,28 @@
     {
       return $this->pre_mobile_status;
     }
-  
+    
     /**
      * @param mixed $pre_mobile_status
      */
     public function setPreMobileStatus($pre_mobile_status)
     {
       $this->pre_mobile_status = $pre_mobile_status;
+    }
+    
+    /**
+     * @return mixed
+     */
+    public function getUpdated()
+    {
+      return $this->updated;
+    }
+    
+    /**
+     * @param mixed $updated
+     */
+    public function setUpdated($updated)
+    {
+      $this->updated = $updated;
     }
   }

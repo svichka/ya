@@ -14,6 +14,6 @@
   {
     public function findAll()
     {
-      return $this->findBy(array(), array('promocode_participant_date' => 'ASC'));
+      return $this->findBy(array(), array('win_date' => 'ASC'));
     }
   }

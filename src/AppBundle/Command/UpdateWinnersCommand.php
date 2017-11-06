@@ -97,6 +97,7 @@
                 $win_object->setPromocodeParticipantPrize(1);
                 // Data по чеку
                 $win_object->setPromocodeParticipantDate(date('d.m.Y', strtotime($application->getReceipt()['registration_time'])));
+                $win_object->setWinDate(new \DateTime(date('d.m.Y', strtotime($application->getReceipt()['registration_time']))));
                 // guid чека для
                 $win_object->setReceiptGuid($application->getReceipt()['guid']);
                 
@@ -198,6 +199,7 @@
                     $win_object->setPromocodeParticipantCrmData(serialize($promocode['participant']['crm_data']));
 // Для списка
                     $win_object->setPromocodeParticipantDate(date('d.m.Y', strtotime($lottery['run_time'])));
+                    $win_object->setWinDate(new \DateTime(date('d.m.Y', strtotime($lottery['run_time']))));
                     $win_object->setPromocodeParticipantPrize($promo['slug'] == "ya_lottery" ? 3 : 2);
                     
                     $pApi = new ParticipantApiController();
