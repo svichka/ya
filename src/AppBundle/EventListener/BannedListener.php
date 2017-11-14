@@ -80,7 +80,7 @@
             }
             else
             {
-              if ((new \DateTime())->format("Y-m-d H:i:s") > "2017-11-05 23:59:59")
+              if ((new \DateTime())->format("Y-m-d H:i:s") > "2017-11-15 23:59:59")
               {
                 $this->action = '#eolModal';
                 

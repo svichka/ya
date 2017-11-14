@@ -188,6 +188,7 @@
                     {
                       $win_object = new Winner();
                     }
+                    
                     $win_object->setIsActive($winner['is_active']);
                     $win_object->setIsWinner($winner['is_winner']);
                     $win_object->setId($winner['id']);
@@ -198,8 +199,16 @@
                     $win_object->setPromocodeParticipantGuid($promocode['participant']['guid']);
                     $win_object->setPromocodeParticipantCrmData(serialize($promocode['participant']['crm_data']));
 // Для списка
-                    $win_object->setPromocodeParticipantDate(date('d.m.Y', strtotime($lottery['run_time'])));
-                    $win_object->setWinDate(new \DateTime(date('d.m.Y', strtotime($lottery['run_time']))));
+                    if (isset($winner['prize_application']['application_date']))
+                    {
+                      $win_object->setPromocodeParticipantDate(date('d.m.Y', strtotime($winner['prize_application']['application_date'])));
+                      $win_object->setWinDate(new \DateTime(date('d.m.Y', strtotime($winner['prize_application']['application_date']))));
+                    }
+                    else
+                    {
+                      $win_object->setPromocodeParticipantDate(date('d.m.Y', strtotime($lottery['run_time'])));
+                      $win_object->setWinDate(new \DateTime(date('d.m.Y', strtotime($lottery['run_time']))));
+                    }
                     $win_object->setPromocodeParticipantPrize($promo['slug'] == "ya_lottery" ? 3 : 2);
                     
                     $pApi = new ParticipantApiController();
