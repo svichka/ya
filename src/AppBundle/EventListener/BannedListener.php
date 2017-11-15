@@ -72,11 +72,14 @@
         $this->logger->info("onKernelController");
         if ($this->action == null)
         {
+          $this->action = '#eolModal';
+          return;
           try
           {
             if (!$controller[0]->get('security.context')->isGranted('ROLE_USER'))
             {
               $this->action = '#authModal';
+              return;
             }
             else
             {

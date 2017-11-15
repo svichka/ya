@@ -517,11 +517,11 @@
   </script>
   {% endif %}
   <script>
-    {% if action == "#eolMModal" and route == 'index_page' %}
+    {% if action == "#eolModal" and route == 'index_page' %}
     $(function () {
       var showprefinal = Cookies.get('eolMModal');
       if (showprefinal === undefined) {
-        $('#lkModal').arcticmodal();
+        $('#eolMModal').arcticmodal();
         var inFifteenMinutes = new Date(new Date().getTime() + 3 * 60 * 60 * 1000);
         Cookies.set('eolMModal', '1', { expires: inFifteenMinutes });
       }
