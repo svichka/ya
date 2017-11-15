@@ -500,14 +500,25 @@
   {{ parent() }}
   <!-- Злоебучий попап в лк -->
   <div class="popup" id="lkModal">
-    <div class="popup__close arcticmodal-close">X</div>
-    <h2 class="popup__title">УВАЖАЕМЫЙ УЧАСТНИК</h2>
-    <div class="popup__wrap">
-      <div class="popup__form-wrap">
-        <div class="form__row">
-          <label class="form__label" style="text-align: center; font-size: 15px; margin-bottom: 1em">Злоебучий попап в лк</label>
-        </div>
-      </div>
+    {#<div class="popup__close arcticmodal-close">X</div>#}
+    <h2 class="popup__title">УВАЖАЕМЫЙ УЧАСТНИК!</h2>
+    <div class="popup__wrap" style="max-width: 900px;">
+          <p class="popup__text free-text">
+            Акция завершилась, спасибо, что приняли в ней участие!<br>
+            <br>
+            Выдача призов осуществляется до 31 декабря 2017 г. Торопитесь!<br>
+            Если Вы все еще не получили Гарантированный приз, то необходимо совершить следующие действия:<br>
+            1. В Личном кабинете нажать кнопку «Получить».<br>
+            2. В всплывающем окне ввести номер телефона, на счет которого будет перечислен приз.<br>
+            3. На указанный номер придет смс с кодом для подтверждения номера, который надо ввести в следующем всплывающем окне на сайте Акции.<br>
+            <br>
+            Если Вы ранее участвовали в акциях PepsiCo, то Ваш номер может быть привязан к другой учетной записи. Чтобы получить приз, укажите иной номер телефона или направьте запрос в
+            <a href="{{ path('feedback_page') }}" style="color: #000; text-decoration: none">Обратную связь</a>
+            с указанием текущего номера телефона и просьбой привязать его к Вашей учетной записи.<br>
+            <br>
+            <br>
+            <button class="button arcticmodal-close" style="margin: auto;display: block;" ><span class="button__text">OK</span></button>
+          </p>
     </div>
   </div>
 
