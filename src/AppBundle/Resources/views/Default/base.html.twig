@@ -296,9 +296,18 @@
           </div>
         </div>
       {% endif %}
+      <!-- Злоебучий попап нажатия на кнопку зарегать чек -->
       <div class="popup" id="eolModal">
         <div class="popup__close arcticmodal-close">X</div>
-        <h2 class="popup__title free-text-h">уважаемый участник</h2>
+        <h2 class="popup__title free-text-h">Уважаемый участник!</h2>
+        <div class="popup__wrap">
+          <p class="popup__text free-text">Акция завершена.</p>
+        </div>
+      </div>
+      <!-- Злоебучий попап бесящий при каждом входе на главную -->
+      <div class="popup" id="eolMModal">
+        <div class="popup__close arcticmodal-close">X</div>
+        <h2 class="popup__title free-text-h">Уважаемый участник!</h2>
         <div class="popup__wrap">
           <p class="popup__text free-text">Акция завершена!</p>
         </div>
@@ -337,6 +346,7 @@
   <script src="{{ asset('js/jquery.maskedinput.js') }}"></script>
   <script src="{{ asset('js/jquery.form.min.js') }}"></script>
   <script src="{{ asset('js/moment.js') }}"></script>
+  <script src="{{ asset('js/js.cookie-2.2.0.min.js') }}"></script>
   <script src="{{ asset('js/moment-with-locales.js') }}"></script>
 
   <script src="{{ asset('js/main.js') }}?{{ content_version }}"></script>
@@ -506,6 +516,18 @@
     });
   </script>
   {% endif %}
+  <script>
+    {% if action == "#eolMModal" and route == 'index_page' %}
+    $(function () {
+      var showprefinal = Cookies.get('eolMModal');
+      if (showprefinal === undefined) {
+        $('#lkModal').arcticmodal();
+        var inFifteenMinutes = new Date(new Date().getTime() + 3 * 60 * 60 * 1000);
+        Cookies.set('eolMModal', '1', { expires: inFifteenMinutes });
+      }
+    });
+    {% endif %}
+  </script>
 {% endblock %}
 {#Эммитим#}
 {% for label, messages in app.session.flashbag.all %}

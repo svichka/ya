@@ -7,99 +7,99 @@
 {% set user = participant %}
 {% set show_money = 0 %}
 {% block body %}
-  <main class="main" id="main" >
-    <div class="main__content main__content_with_full" >
-      <h1 class="title" >Личный кабинет</h1 >
-      <div class="profile" >
-        <div class="profile__content" >
-          <div class="profile__left" >
-            <div class="profile__data" >
-              <div class="profile__name" data-id="{{ user.getId() }}" >{{ user.getfirstname() }}
-                <br >{% if user.getsecname() is defined %} {{ user.getsecname() }} {% endif %} {{ user.getlastname() }}
-              </div >
-              <div class="profile__city" >
+  <main class="main" id="main">
+    <div class="main__content main__content_with_full">
+      <h1 class="title">Личный кабинет</h1>
+      <div class="profile">
+        <div class="profile__content">
+          <div class="profile__left">
+            <div class="profile__data">
+              <div class="profile__name" data-id="{{ user.getId() }}">{{ user.getfirstname() }}
+                <br>{% if user.getsecname() is defined %} {{ user.getsecname() }} {% endif %} {{ user.getlastname() }}
+              </div>
+              <div class="profile__city">
                 {% if user.getregion() != '' and user.getcity()!='' %}
                   {{ user.getregion() }}, {{ user.getcity() }}
                 {% else %}
                   {{ user.getregion() }} {{ user.getcity() }}
                 {% endif %}
-              </div >
-              <div class="profile__email" >{{ user.getemail() }}</div >
-              <br >
-              <div class="profile__email" >Номер для получения приза:<br >{{ user.getMobilephone()|phone }}</div >
-            </div >
-            <div class="profile__edit" ><a class="profile__link-edit" href="#!" >Изменить</a ></div >
-          </div >
-          <div class="profile__right" >
-            <div class="profile__button" ><a class="button button_big button_regcheck" href="#!" > <span
-                    class="button__text" >Зарегистрировать чек</span ></a ></div >
-          </div >
-        </div >
-      </div >
-      <div class="table" >
-        <div class="table__head" >
-          <div class="table__box" >
-            <div class="table__head-text" >Номер чека</div >
-          </div >
-          <div class="table__box" >
-            <div class="table__head-text" >Дата загрузки</div >
-          </div >
-          <div class="table__box" >
-            <div class="table__head-text" >Фото чека</div >
-          </div >
-          <div class="table__box" >
-            <div class="table__head-text" >Статус чека</div >
-          </div >
-          <div class="table__box" >
-            <div class="table__head-text" >Результат</div >
-          </div >
-        </div >
-        <div class="table__content" id="jsScrollContent" >
-          <div class="table__list table__list_items_5" >
+              </div>
+              <div class="profile__email">{{ user.getemail() }}</div>
+              <br>
+              <div class="profile__email">Номер для получения приза:<br>{{ user.getMobilephone()|phone }}</div>
+            </div>
+            <div class="profile__edit"><a class="profile__link-edit" href="#!">Изменить</a></div>
+          </div>
+          <div class="profile__right">
+            <div class="profile__button"><a class="button button_big button_regcheck" href="#!"> <span
+                    class="button__text">Зарегистрировать чек</span></a></div>
+          </div>
+        </div>
+      </div>
+      <div class="table">
+        <div class="table__head">
+          <div class="table__box">
+            <div class="table__head-text">Номер чека</div>
+          </div>
+          <div class="table__box">
+            <div class="table__head-text">Дата загрузки</div>
+          </div>
+          <div class="table__box">
+            <div class="table__head-text">Фото чека</div>
+          </div>
+          <div class="table__box">
+            <div class="table__head-text">Статус чека</div>
+          </div>
+          <div class="table__box">
+            <div class="table__head-text">Результат</div>
+          </div>
+        </div>
+        <div class="table__content" id="jsScrollContent">
+          <div class="table__list table__list_items_5">
             {% if receipts is defined %}
               {% for key,value in receipts %}
-                <div class="table__item" >
-                  <div class="table__item-content table__item-content_font_small" >
-                    <div class="table__box" >
-                      <div class="table__text" >{{ value.id }}</div >
-                    </div >
-                    <div class="table__box" >
-                      <div class="table__date" >{{ value.registration_time|date("d.m.y") }}</div >
-                    </div >
-                    <div class="table__box" >
-                      <div class="table__check" >
+                <div class="table__item">
+                  <div class="table__item-content table__item-content_font_small">
+                    <div class="table__box">
+                      <div class="table__text">{{ value.id }}</div>
+                    </div>
+                    <div class="table__box">
+                      <div class="table__date">{{ value.registration_time|date("d.m.y") }}</div>
+                    </div>
+                    <div class="table__box">
+                      <div class="table__check">
                         {% if( value.photos|length > 1) %}
                           <span class="receipt_image" style="cursor: pointer" data-toggle="popover"
                                 title="Изображения чека" data-html="true" data-placement="top"
-                                data-content='{% for link in value.photos %}<a href="{{ link }}" target="_blank" class="receipt_image"><img src="{{ asset('images/check-photo.png') }}" style="margin: 0.2rem;"></a>{% endfor %}' >
-                          <img class="table__img" src="{{ asset('images/check-photo.png') }}" alt="" >
-                          </span >
+                                data-content='{% for link in value.photos %}<a href="{{ link }}" target="_blank" class="receipt_image"><img src="{{ asset('images/check-photo.png') }}" style="margin: 0.2rem;"></a>{% endfor %}'>
+                          <img class="table__img" src="{{ asset('images/check-photo.png') }}" alt="">
+                          </span>
                         {% else %}
-                          <a href='{{ value.photos[0] }}' target="_blank" class="receipt_image" >
-                            <img class="table__img" src="{{ asset('images/check-photo.png') }}" alt="" >
-                          </a >
+                          <a href='{{ value.photos[0] }}' target="_blank" class="receipt_image">
+                            <img class="table__img" src="{{ asset('images/check-photo.png') }}" alt="">
+                          </a>
                         {% endif %}
-                      </div >
-                    </div >
-                    <div class="table__box" >
-                      <div class="table__text" >
-                        <div class="table__status" >{{ value.status|trans }}</div >
+                      </div>
+                    </div>
+                    <div class="table__box">
+                      <div class="table__text">
+                        <div class="table__status">{{ value.status|trans }}</div>
                         {% if value.status =='REJECTED' %}
                           <div
                               class="table__status-reason" {% if(value.rejection_reason_comment!='') %} data-toggle="tooltip" title="{{ (value.rejection_reason~'_F')|trans }}" {% endif %}>
                             {{ value.rejection_reason|trans }}
-                          </div >
+                          </div>
                         {% endif %}
-                      </div >
-                    </div >
-                    <div class="table__box" >
-                      <div class="table__text" >
+                      </div>
+                    </div>
+                    <div class="table__box">
+                      <div class="table__text">
                         {% if win_receipts[value.guid] is defined %}
                           {% set pr = false %}
                           {% if win_receipts[value.guid]['ya_tel_50_rub'] is defined %}
                             {% set pr = true %}
                             {% set show_money = 1 %}
-                            <img class="table__img" src="{{ asset('images/prize_icon_1.png') }}" alt="" >
+                            <img class="table__img" src="{{ asset('images/prize_icon_1.png') }}" alt="">
                             {% if not banned_listener.isSended(value.guid) %}
                               {% if  banned_listener.isFilled(user.getid()) %}
                                 {% set typeL = "jsMoneySend" %}
@@ -107,17 +107,17 @@
                                 {% set typeL = "jsMoneyMobile" %}
                               {% endif %}
                               {% if  not banned_listener.isSms(user.getid()) %}
-                                <a class="table__link {{ typeL }}" data-id="{{ value.guid }}" href="#!" >Получить</a >
+                                <a class="table__link {{ typeL }}" data-id="{{ value.guid }}" href="#!">Получить</a>
                               {% endif %}
                             {% endif %}
                           {% endif %}
                           {% if win_receipts[value.guid]['ya_certificate_coctail_spain'] is defined %}
                             {% set pr = true %}
-                            <img class="table__img" src="{{ asset('images/prize_icon_2.png') }}" alt="" >
+                            <img class="table__img" src="{{ asset('images/prize_icon_2.png') }}" alt="">
                           {% endif %}
                           {% if win_receipts[value.guid]['ya_certificate_metro'] is defined %}
                             {% set pr = true %}
-                            <img class="table__img" src="{{ asset('images/prize_icon_3.png') }}" alt="" >
+                            <img class="table__img" src="{{ asset('images/prize_icon_3.png') }}" alt="">
                           {% endif %}
                           {% if not pr %}
                             Не выигрышный
@@ -125,25 +125,25 @@
                         {% else %}
                           Не выигрышный
                         {% endif %}
-                      </div >
-                    </div >
-                  </div >
-                </div >
+                      </div>
+                    </div>
+                  </div>
+                </div>
               {% else %}
-                <div class="table__item" >
-                  <div class="table__item-content table__item-content_font_small" >
-                    <div class="table__box" style="margin: auto;" >
+                <div class="table__item">
+                  <div class="table__item-content table__item-content_font_small">
+                    <div class="table__box" style="margin: auto;">
                       Чеков не зарегистрировано
-                    </div >
-                  </div >
-                </div >
+                    </div>
+                  </div>
+                </div>
               {% endfor %}
             {% endif %}
-          </div >
-        </div >
-      </div >
-    </div >
-  </main >
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
 
 {% endblock %}
 
@@ -482,84 +482,111 @@
     });
     {% endif %}
   </script>
+
+  <script>
+    {% if action == "#eolModal" %}
+    $(function () {
+      var showprefinal = Cookies.get('eolModal');
+      if (showprefinal === undefined) {
+        $('#lkModal').arcticmodal();
+        Cookies.set('eolModal', '1');
+      }
+    });
+    {% endif %}
+  </script>
 {% endblock %}
 
 {% block modals %}
   {{ parent() }}
+  <!-- Злоебучий попап в лк -->
+  <div class="popup" id="lkModal">
+    <div class="popup__close arcticmodal-close">X</div>
+    <h2 class="popup__title">Хуй</h2>
+    <div class="popup__wrap">
+      <div class="popup__form-wrap">
+        <div class="form__row">
+          <label class="form__label" style="text-align: center; font-size: 15px; margin-bottom: 1em">Хуй</label>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <div class="popup" id="showEditPP" >
-    <div class="popup__close arcticmodal-close" >X</div >
-    <div class="popup__wrap" >
-      <div class="popup__form-wrap" >
-        <div class="form__row" >
-          <label class="form__label" style="text-align: center; font-size: 15px; margin-bottom: 1em" >Если Вы хотите
+
+
+  <div class="popup" id="showEditPP">
+    <div class="popup__close arcticmodal-close">X</div>
+    <div class="popup__wrap">
+      <div class="popup__form-wrap">
+        <div class="form__row">
+          <label class="form__label" style="text-align: center; font-size: 15px; margin-bottom: 1em">Если Вы хотите
             изменить личную информацию, пожалуйста, воспользуйтесь
             <a href="{{ path('feedback_page') }}"
-               class="form_to_feedback_link" >формой&nbsp;обратной&nbsp;связи</a ></label >
-        </div >
-      </div >
-    </div >
-  </div >
-
-  <div class="popup" id="enterCode" >
-    <div class="popup__close arcticmodal-close" >X</div >
-    <div class="popup__wrap" >
-      <div class="popup__form-wrap popup__form-wrap_width_min" >
-        <form class="form form-code" action="#" id="code" method="post" >
-          <div class="form__row" >
-            <div class="form__box" >
-              <label class="form__label" for="code" >Введите код:</label >
-              <input class="form__input" type="text" id="code" name="code" >
-              <label class="form__label code-helper" ></label >
-            </div >
-          </div >
-          <div class="form__row" >
-            <div class="form__box form__box_button" >
-              <button class="button button_width_full" type="submit" ><span class="button__text" >Ок</span ></button >
-            </div >
-          </div >
-        </form >
-      </div >
-    </div >
-  </div >
-  <div class="popup" id="updateModal" >
-    <div class="popup__close arcticmodal-close" >X</div >
-    <h2 class="popup__title" >Дозаполнение профиля</h2 >
+               class="form_to_feedback_link">формой&nbsp;обратной&nbsp;связи</a></label>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
-    <div class="popup__wrap popup__wrap_width_big" >
-      <form class="form" action="#" id="update_form" method="post" >
-        <div class="form__row" >
-          <label class="form__label" style="text-align: center; font-size: 15px; margin-bottom: 1em" >
+  <div class="popup" id="enterCode">
+    <div class="popup__close arcticmodal-close">X</div>
+    <div class="popup__wrap">
+      <div class="popup__form-wrap popup__form-wrap_width_min">
+        <form class="form form-code" action="#" id="code" method="post">
+          <div class="form__row">
+            <div class="form__box">
+              <label class="form__label" for="code">Введите код:</label>
+              <input class="form__input" type="text" id="code" name="code">
+              <label class="form__label code-helper"></label>
+            </div>
+          </div>
+          <div class="form__row">
+            <div class="form__box form__box_button">
+              <button class="button button_width_full" type="submit"><span class="button__text">Ок</span></button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="popup" id="updateModal">
+    <div class="popup__close arcticmodal-close">X</div>
+    <h2 class="popup__title">Дозаполнение профиля</h2>
+
+
+    <div class="popup__wrap popup__wrap_width_big">
+      <form class="form" action="#" id="update_form" method="post">
+        <div class="form__row">
+          <label class="form__label" style="text-align: center; font-size: 15px; margin-bottom: 1em">
             Пожалуйста, заполните недостающую информацию о себе, чтобы участвовать в Акции
-          </label >
-        </div >
-        <div class="form__row" >
-          <div class="form__box form__box_width_half" >
-            <label class="form__label" for="lastname" >Фамилия*</label >
+          </label>
+        </div>
+        <div class="form__row">
+          <div class="form__box form__box_width_half">
+            <label class="form__label" for="lastname">Фамилия*</label>
             <input class="form__input" type="text" id="lastname" name="registration_form[lastname]"
                    placeholder="Фамилия"
                    value="{{ user.getlastname() }}" {% if (user.getlastname()!='') %} disabled {% endif %}
-                   onkeyup="Ru(this);" >
-          </div >
-          <div class="form__box form__box_width_half" >
-            <label class="form__label" for="firstname" >Имя*</label >
+                   onkeyup="Ru(this);">
+          </div>
+          <div class="form__box form__box_width_half">
+            <label class="form__label" for="firstname">Имя*</label>
             <input class="form__input" type="text" id="firstname" name="registration_form[firstname]"
                    placeholder="Имя"
                    value="{{ user.getfirstname() }}" {% if (user.getfirstname()!='') %} disabled {% endif %}
-                   onkeyup="Ru(this);" >
-          </div >
-        </div >
-        <div class="form__row" >
-          <div class="form__box form__box_width_half" >
-            <label class="form__label" for="secname" >Отчество</label >
+                   onkeyup="Ru(this);">
+          </div>
+        </div>
+        <div class="form__row">
+          <div class="form__box form__box_width_half">
+            <label class="form__label" for="secname">Отчество</label>
             <input class="form__input" type="text" id="secname" name="registration_form[secname]"
                    placeholder="Отчество"
                    value="{% if user.getsecname() is defined %} {{ user.getsecname() }} {% endif %}" {% if (user.getsecname()!='') %} disabled {% endif %}
-                   onkeyup="Ru(this);" >
-          </div >
-          <div class="form__box form__box_width_half" >
-            <label class="form__label" for="birthdate" >Дата рождения*</label >
+                   onkeyup="Ru(this);">
+          </div>
+          <div class="form__box form__box_width_half">
+            <label class="form__label" for="birthdate">Дата рождения*</label>
             {% set disable = '' %}
             {% set birthdate = '' %}
             {% if user.getbirthdate() is defined %}
@@ -567,18 +594,18 @@
               {% set birthdate = user.getbirthdate() %}
             {% endif %}
             <input class="form__input form__input_type_date" type="text" placeholder="01.01.1990" {{ disable }}
-                   value="{{ birthdate }}" id="birthdate" name="registration_form[birthdate]" >
-          </div >
-        </div >
-        <div class="form__row" >
-          <div class="form__box form__box_width_half" >
-            <label class="form__label" for="email" >Email*</label >
+                   value="{{ birthdate }}" id="birthdate" name="registration_form[birthdate]">
+          </div>
+        </div>
+        <div class="form__row">
+          <div class="form__box form__box_width_half">
+            <label class="form__label" for="email">Email*</label>
             <input class="form__input"
                    value="{{ user.getemail() }}" {% if (user.getemail()!='') %} disabled {% endif %}
-                   type="email" id="email" placeholder="email@email.com" name="registration_form[email]" >
-          </div >
-          <div class="form__box form__box_width_half" >
-            <label class="form__label" for="ismale" >Пол*</label >
+                   type="email" id="email" placeholder="email@email.com" name="registration_form[email]">
+          </div>
+          <div class="form__box form__box_width_half">
+            <label class="form__label" for="ismale">Пол*</label>
             {% set disable = '' %}
             {% if user.getismale() is defined %}
               {% set disable = 'disabled' %}
@@ -590,66 +617,66 @@
                 {% set checked_f = 'checked' %}
               {% endif %}
             {% endif %}
-            <div class="form__checkbox__container form__checkbox__container_dib" >
+            <div class="form__checkbox__container form__checkbox__container_dib">
               <input class="form__checkbox" type="radio" {{ disable }} {{ checked_m }} value="Y"
                      name="registration_form[ismale]"
-                     id="male" >
-              <label class="form__checkbox-text form__checkbox-text_type_male" for="male" >М</label >
-            </div >
-            <div class="form__checkbox__container form__checkbox__container_dib" >
+                     id="male">
+              <label class="form__checkbox-text form__checkbox-text_type_male" for="male">М</label>
+            </div>
+            <div class="form__checkbox__container form__checkbox__container_dib">
               <input class="form__checkbox" type="radio" {{ disable }} {{ checked_f }} value="N"
                      name="registration_form[ismale]"
-                     id="female" >
-              <label class="form__checkbox-text form__checkbox-text_type_male" for="female" >Ж </label >
-            </div >
-          </div >
-        </div >
-        <div class="form__row" >
-          <div class="form__box form__box_width_half" >
-            <label class="form__label" for="region" >Регион*</label >
+                     id="female">
+              <label class="form__checkbox-text form__checkbox-text_type_male" for="female">Ж </label>
+            </div>
+          </div>
+        </div>
+        <div class="form__row">
+          <div class="form__box form__box_width_half">
+            <label class="form__label" for="region">Регион*</label>
             {% if user.getregionguid() is defined and user.getregionguid() != '' %}
-              <select class="form__select" id="region" name="registration_form[regionguid]" >
+              <select class="form__select" id="region" name="registration_form[regionguid]">
 
-              </select >
-              <input id="region_text" type="hidden" name="registration_form[region]" required="" >
+              </select>
+              <input id="region_text" type="hidden" name="registration_form[region]" required="">
             {% else %}
               {% set disable = '' %}
               {% if user.getregion() is defined and user.getregion() != '' %}
                 {% set disable = 'disabled' %}
                 <input id="region" type="text" class="form__input" name="registration_form[region]"
-                       required="" {{ disable }} value="{{ user.getregion() }}" >
+                       required="" {{ disable }} value="{{ user.getregion() }}">
               {% else %}
-                <select class="form__select" id="region" name="registration_form[regionguid]" >
+                <select class="form__select" id="region" name="registration_form[regionguid]">
 
-                </select >
-                <input id="region_text" type="hidden" name="registration_form[region]" required="" >
+                </select>
+                <input id="region_text" type="hidden" name="registration_form[region]" required="">
               {% endif %}
 
             {% endif %}
-          </div >
-          <div class="form__box form__box_width_half" >
-            <label class="form__label" for="city" >Город*</label >
+          </div>
+          <div class="form__box form__box_width_half">
+            <label class="form__label" for="city">Город*</label>
             {% if user.getcityguid() is defined and user.getcityguid() %}
-              <select class="form__select" id="city" name="registration_form[cityguid]" >
+              <select class="form__select" id="city" name="registration_form[cityguid]">
 
-              </select >
-              <input id="city_text" type="hidden" name="registration_form[city]" required="" >
+              </select>
+              <input id="city_text" type="hidden" name="registration_form[city]" required="">
             {% else %}
               {% set disable = '' %}
               {% if user.getcity() is defined and user.getcity() != '' %}
                 {% set disable = 'disabled' %}
                 <input id="city" type="text" class="form__input" name="registration_form[city]"
-                       required="" {{ disable }} value="{{ user.getcity() }}" >
+                       required="" {{ disable }} value="{{ user.getcity() }}">
               {% else %}
-                <select class="form__select" id="city" name="registration_form[cityguid]" >
+                <select class="form__select" id="city" name="registration_form[cityguid]">
 
-                </select >
-                <input id="city_text" type="hidden" name="registration_form[city]" required="" >
+                </select>
+                <input id="city_text" type="hidden" name="registration_form[city]" required="">
               {% endif %}
 
             {% endif %}
-          </div >
-        </div >
+          </div>
+        </div>
 
         {#<div class="form__row">#}
         {#<div class="form__box form__box_width_half">#}
@@ -663,47 +690,47 @@
         {#placeholder="Новый пароль">#}
         {#</div>#}
         {#</div>#}
-        <div class="form__row" >
-          <div class="form__box form__box_button" >
-            <button class="button" type="submit" ><span class="button__text" >Отправить</span ></button >
-          </div >
-        </div >
-      </form >
-    </div >
-  </div >
-  <div class="popup" id="mobileMoney" >
-    <div class="popup__close arcticmodal-close" >X</div >
-    <h2 class="popup__title" >Поздравляем!</h2 >
-    <div class="popup__wrap" >
-      <p class="popup__text popup__text_size_limit" >Вы выиграли Ежедневный приз – 50 р на телефон!</p >
-      <p class="popup__text popup__text_size_limit" >
+        <div class="form__row">
+          <div class="form__box form__box_button">
+            <button class="button" type="submit"><span class="button__text">Отправить</span></button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="popup" id="mobileMoney">
+    <div class="popup__close arcticmodal-close">X</div>
+    <h2 class="popup__title">Поздравляем!</h2>
+    <div class="popup__wrap">
+      <p class="popup__text popup__text_size_limit">Вы выиграли Ежедневный приз – 50 р на телефон!</p>
+      <p class="popup__text popup__text_size_limit">
         Пожалуйста, укажите номер телефона, на счет которого мы перечислим приз:
-      </p >
-      <div class="popup__form-wrap" >
-        <form class="form jsMoney" id="jsMoney" action="#" >
-          <div class="form__row" >
-            <div class="form__box" >
-              <label class="jsMoney_label_error" for="phone" style="font-size: 19px;color: #ad0000;" ></label >
+      </p>
+      <div class="popup__form-wrap">
+        <form class="form jsMoney" id="jsMoney" action="#">
+          <div class="form__row">
+            <div class="form__box">
+              <label class="jsMoney_label_error" for="phone" style="font-size: 19px;color: #ad0000;"></label>
               <input class="form__input form__input_type_phone" type="text" id="phone"
-                     name="mobilephone" >
-            </div >
-          </div >
-          <div class="form__row" >
-            <div class="form__box form__box_button" >
-              <button class="button" type="submit" >
-                <span class="button__text" >Отправить</span >
-              </button >
-            </div >
-          </div >
-        </form >
-      </div >
-    </div >
-  </div >
+                     name="mobilephone">
+            </div>
+          </div>
+          <div class="form__row">
+            <div class="form__box form__box_button">
+              <button class="button" type="submit">
+                <span class="button__text">Отправить</span>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 {% endblock %}
 
 {% block stylesheets %}
   {{ parent() }}
-  <style >
+  <style>
     .form__input:disabled, .form__select:disabled, .form__textarea:disabled {
       border: 2px solid #ded27c;
     }
@@ -719,5 +746,5 @@
     .form_to_feedback_link {
       color: #000;
     }
-  </style >
+  </style>
 {% endblock %}
