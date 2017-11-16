@@ -310,17 +310,17 @@
       <!-- Злоебучий попап бесящий при каждом входе на главную -->
       <div class="popup" id="eolMModal">
         {#<div class="popup__close arcticmodal-close">X</div>#}
-        <h2 class="popup__title free-text-h">Уважаемый участник, акция завершена!</h2>
-        <div class="popup__wrap">
+        <h2 class="popup__title free-text-h" style='white-space: normal;text-transform: none;'>Уважаемый участник, акция завершена!</h2>
+        <div class="popup__wrap" style="max-width: 510px;">
           <p class="popup__text free-text">
-            <nobr>
-            Выдача призов осуществляется до 31 декабря 2017 г.</nobr><br>
+            
+            Выдача призов осуществляется до 31 декабря <nobr> 2017 г.</nobr><br>
             Информацию по получению призов Вы можете узнать в
             <a href="{{ path('personal_page') }}" style="color: #000; text-decoration: none">Личном кабинете</a>или направив запрос в
             <a href="{{ path('feedback_page') }}" style="color: #000; text-decoration: none">Обратную связь</a>
             <br>
             <br>
-            <button class="button arcticmodal-close" style="margin: auto;display: block;" ><span class="button__text">OK</span></button>
+            <button class="button arcticmodal-close" style="margin: auto;display: block;width: 170px;" ><span class="button__text">OK</span></button>
           </p>
         </div>
       </div>
