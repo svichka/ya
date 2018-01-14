@@ -1,78 +1,14 @@
 {% extends 'AppBundle:Default:base.html.twig' %}
 {% trans_default_domain "auth" %}
 
-{% block title %}{% trans %}Auth Title{% endtrans %}{% endblock %}
+{% block title %}Вход{% endblock %}
 
 {% block body %}
   <main class="main" id="main">
-    <div class="main__content">
-      <h1 class="title title_align_center">Авторизация</h1>
-
-
-      <form class="form" action="{{ path('login') }}" method="post">
-        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-        {% if error %}
-        <div class="form__wrapper form__wrapper_align_center">
-          <div class="form__row">
-            <div class="form__box" style=" max-width: 400px;margin: auto;margin-bottom: 1em;">
-              <label class="form__label" style="color: red;">
-                {{ error.messageKey|trans(error.messageData, 'auth') }}
-              </label>
-            </div>
-          </div>
-          {% endif %}
-          <div class="form__wrapper form__wrapper_align_center">
-            <div class="form__row">
-              <div class="form__box">
-                <label class="form__label" for="email">E-mail *</label>
-                <input class="form__input form__input_height_high form__input_align_center" name="_username"
-                       type="email" id="email" value="{{ last_username }}" placeholder="mail@mail.com" required>
-              </div>
-            </div>
-            <div class="form__row">
-              <div class="form__box">
-                <label class="form__label" for="password">Пароль *</label>
-                <input class="form__input form__input_height_high form__input_align_center" type="password"
-                       id="password" name="_password" placeholder="Пароль" required>
-                <a class="form__link password-reminder" href="#">Забыли пароль?</a>
-              </div>
-            </div>
-            <div class="form__row"
-                 style="margin-bottom: 10px;-webkit-box-pack: center;-ms-flex-pack: center;justify-content: center;">
-              <div class="form__checkbox__container">
-                <input class="form__checkbox" type="checkbox" id="rememberme" name="_remember_me">
-                <label class="form__checkbox-text form__checkbox-text_big" for="rememberme" style="
-                -webkit-box-pack: center;
-                -ms-flex-pack: center;
-                justify-content: center;
-            ">Запомнить
-                  пароль</label>
-              </div>
-            </div>
-            <div class="form__row">
-              <div class="form__box form__box_button form__box_mt_none">
-                <button class="button" type="submit"><span class="button__text">Войти</span></button>
-              </div>
-            </div>
-            <div class="form__row">
-              <div class="form__box"><a class="form__link form__link_big" href="{{ path('registration_page') }}">Регистрация</a>
-              </div>
-            </div>
-          </div>
-      </form>
-    </div>
-
+    Вход
   </main>
 {% endblock %}
 
 {% block stylesheets %}
   {{ parent() }}
-  <style>
-    .bg-danger {
-      font-family: "Bliss Pro";
-      font-size: 16px;
-      color: #fff;
-      max-width: 250px;
-    }
-  </style>
 {% endblock %}

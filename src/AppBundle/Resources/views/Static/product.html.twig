@@ -1,57 +1,9 @@
 {% extends 'AppBundle:Default:base.html.twig' %}
 
-{% block title %}
-  Продукты
-{% endblock %}
+{% block title %}Продукты{% endblock %}
 
 {% block body %}
   <main class="cabinet-block main-content">
-    <style>
-      .product-hide {
-        display: none !important;
-      }
-      .product-logo-top{
-        margin-top: 1em;
-      }
-    </style>
-    <div class="faq-container product-wrap brown">
-      <div class="row">
-        <div class="col-md-16 col-md-push-8">
-          <div class="product-block-r">
-            <div class="product-logo-top text-right">
-              <a href="https://www.utkonos.ru/action/detail/9925?utm_source=dolki&utm_medium=site&utm_campaign=buybutton"
-                 target="_blank">
-                <img src="{{ asset('images/utkonos.png') }}" alt="">
-              </a>
-            </div>
-            <h1 class='up hidden-xs hidden-sm'>В акции участвует</h1>
-            <h2 class='hidden-xs hidden-sm'>Вся палитра вкусов и упаковок наших брендов:</h2>
-            <h1 class='visible-xs visible-sm up'>Продукция, участвующая в акции</h1>
-            <div class="logos-b">
-              <a href="" class='js-product product-link active' data-type='1'>
-                <img src="{{ asset('images/logo1-b.png') }}" alt="">
-              </a>
-              <a href="" class='js-product product-link' data-type='2'>
-                <img src="{{ asset('images/logo2-b.png') }}" alt="">
-              </a>
-              <a href="" class='js-product product-link' data-type='3'>
-                <img src="{{ asset('images/logo3-b.png') }}" alt="">
-              </a>
-              <a href="" class='js-product product-link' data-type='4'>
-                <img src="{{ asset('images/logo4-b.png') }}" alt="">
-              </a>
-            </div>
-            <div class="owl-wrapper">
-              <div class="owl-block js-owl-block">
-
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-8 col-md-pull-16">
-          <div class="static-person" style="background-image: url({{ asset('images/person8.png') }})">&nbsp;</div>
-        </div>
-      </div>
-    </div>
+    Продукты
   </main>
 {% endblock %}

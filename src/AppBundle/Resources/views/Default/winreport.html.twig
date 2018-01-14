@@ -2,57 +2,16 @@
 
 {% trans_default_domain "personal" %}
 
-{% block title %}{% trans %}Победители{% endtrans %}{% endblock %}
+{% block title %}Победители{% endblock %}
 
 {% block body %}
-  <div id="webix-container" style="height: 100%;"></div>
+  Отчет по победителям
 {% endblock %}
 
 {% block stylesheets %}
   {{ parent() }}
-  <link rel="stylesheet" href="{{ asset('codebase/webix.css') }}">
 {% endblock %}
 
 {% block javascripts %}
   {{ parent() }}
-  <script src="{{ asset('codebase/webix.js') }}"></script>
-  <script>
-
-    window.grid = new webix.ui({
-      id: 'webix-container1',
-      view: "datatable",
-      container: 'webix-container',
-      columns: [
-        {
-          id: "fio",
-          header: [ "ФИО", { content: "textFilter" } ],
-          width: 300,
-          sort: 'string',
-          footer: { text: "Итого:", colspan: 8 },
-        },
-        { id: "phone", header: [ "Телефон", { content: "textFilter" } ], width: 100, sort: "string" },
-        { id: "pdate", header: [ "Дата розыгрыша", { content: "selectFilter" } ], sort: 'string' },
-        { id: "user_id", header: [ "id Пользователя", { content: "textFilter" } ], sort: "int" },
-        { id: "user_guid", header: [ "guid Пользователя", { content: "textFilter" } ], width: 300, sort: 'string' },
-        { id: "receipt_guid", header: [ "receipt Чека", { content: "textFilter" } ], width: 300, sort: 'string' },
-        { id: "preactivated", header: [ "preactivated", { content: "selectFilter" } ], sort: "string" },
-        { id: "filled", header: [ "filled (Номер введён)", { content: "selectFilter" } ], width: 50, sort: "int" },
-        {
-          id: "sms",
-          header: [ "sms (Номер подтверждён)", { content: "selectFilter" } ],
-          width: 50,
-          sort: "int",
-          footer: { content: "summColumn", colspan: 2 },
-        },
-        { id: "prize", header: [ "Приз", { content: "selectFilter" } ], sort: "string" },
-      ],
-//      autoConfig:true,
-      url: '{{ path('win_json') }}',
-      height: "500px",
-    });
-    $(window).resize(function ()
-    {
-      window.grid.resize();
-    });
-  </script>
 {% endblock %}

@@ -6,79 +6,8 @@
 
 {% block body %}
   <main class="main" id="main">
-    <div class="about" id="resizeBlock">
-      <div class="about__content">
-        <div class="about__img-wrap"><img class="about__img" src="{{ asset('images/about__img.png') }}" alt="Я - сок">
-        </div>
-        <div class="about__right">
-          <div class="about__title">УЗНАЙ&nbsp;ВКУС&nbsp;НАСЛАЖДЕНИЯ И&nbsp;ВЫИГРЫВАЙ&nbsp;ПРИЗЫ!</div>
-          <div class="about__title about__title_mobile">Регистрируй чек и выигрывай призы!</div>
-          <div class="steps">
-            <div class="steps__wrap">
-              <div class="steps__item">
-                <div class="steps__img-wrap"><img class="steps__img" src="{{ asset('images/step_1.png') }}"
-                                                  alt="Шаг первый"></div>
-                <div class="steps__descr">
-                  <div class="steps__number">1</div>
-                  <div class="steps__text">
-                    <div class="steps__line" style="padding-bottom: 6px;">Купи 2</div>
-                    <div class="steps__line steps__line_small">упаковки сока</div>
-                  </div>
-                </div>
-              </div>
-              <div class="steps__item">
-                <div class="steps__img-wrap"><img class="steps__img" src="{{ asset('images/step_2.png') }}"
-                                                  alt="Шаг первый"></div>
-                <div class="steps__descr">
-                  <div class="steps__number">2</div>
-                  <div class="steps__text">
-                    <div class="steps__line" style="padding-bottom: 6px;">Зарегистрируй</div>
-                    <div class="steps__line steps__line_small">чек</div>
-                  </div>
-                </div>
-              </div>
-              <div class="steps__item">
-                <div class="steps__img-wrap"><img class="steps__img" src="{{ asset('images/step_3.png') }}"
-                                                  alt="Шаг первый"></div>
-                <div class="steps__descr">
-                  <div class="steps__number">3</div>
-                  <div class="steps__text">
-                    <div class="steps__line" style="padding-bottom: 6px;">Участвуй</div>
-                    <a class="steps__line steps__line_small steps__line_link" href="{{ path('prizes_page') }}">в
-                      розыгрыше призов </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>          
-        </div>
-      </div>
-      <div class="about__button-wrap" style="margin-bottom: 40px;">
-            <button class="button button_big-rem button_regcheck"><span class="button__text">Зарегистрировать чек</span>
-            </button>
-          </div>
-    </div>
+    Главная
   </main>
-  <style>
-    .about__img {
-        width: 88%;
-    }    
-      @media (min-width: 800px) {
-    	.about__content {
-    		padding-bottom: 95px;
-    	}
-    	.about__button-wrap {
-    		position: absolute;
-    		bottom: 70px;
-    		margin: 0 !important;
-    		left: 0;
-    		width: 100%;
-    	}
-    	main#main {
-    		position: relative;
-    	}
-    }
-  </style>
   
 {% endblock %}
 

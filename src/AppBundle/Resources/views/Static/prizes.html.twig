@@ -1,59 +1,11 @@
 {% extends 'AppBundle:Default:base.html.twig' %}
 
+{% block title %}Призы{% endblock %}
+
 {% block body %}
   <main class="main" id="main">
-    <div class="prizes" id="resizeBlock">
-      <div class="prizes__content">
-      <div class="prizes__button-wrap btn-lg-h">
-        <button class="button button_big-rem button_regcheck"><span class="button__text">Зарегистрировать чек</span></button>
-      </div>
-        <div class="prizes__list">
-          <div class="prizes__item">
-            <div class="prizes__title">Гарантировано</div>
-            <div class="prizes__img-wrap"><img class="prizes__img" src="{{ asset('images/prizes__img-1.png') }}" alt="">
-            </div>
-            <div class="prizes__title prizes__title_secondary">Ежедневно первым 50 участникам</div>
-          </div>
-          <div class="prizes__item">
-            <div class="prizes__title">ЕЖЕНЕДЕЛЬНО</div>
-            <div class="prizes__img-wrap"><img class="prizes__img" src="{{ asset('images/prizes__img-2.png') }}" alt="">
-            </div>
-            <div class="prizes__title prizes__title_secondary">10 подарочных карт Metro</div>
-          </div>
-          <div class="prizes__item">
-            <div class="prizes__title">ГЛАВНЫЙ ПРИЗ</div>
-            <div class="prizes__img-wrap"><img class="prizes__img" src="{{ asset('images/prizes__img-3.png') }}" alt="">
-            </div>
-            <div class="prizes__title prizes__title_secondary">Коктейльный тур в Испанию!</div>
-          </div>
-        </div>
-      </div>
-      <div class="prizes__button-wrap btn-lg-v">
-        <button class="button button_big-rem button_regcheck"><span class="button__text">Зарегистрировать чек</span></button>
-      </div>
-    </div>
-    <style>
-        @media (min-width: 800px) {
-        	main#main {
-        		position: relative;
-        	}
-        	.prizes__content {
-        		padding-bottom: 142px;
-        	}
-        	.prizes__button-wrap.btn-lg-v {
-        		position: absolute;
-        		bottom: 70px;
-        		margin: 0;
-        		left: 0;
-        		width: 100%;
-        	}
-        }
-    </style>
+    Призы
   </main>
-{% endblock %}
-
-{% block title %}
-  Призы
 {% endblock %}
 
 {% block stylesheets %}
