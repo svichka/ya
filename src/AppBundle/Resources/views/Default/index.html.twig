@@ -1,12 +1,47 @@
 {% extends 'AppBundle:Default:base.html.twig' %}
 
 {% block title %}
-  УЗНАЙ ВКУС НАСЛАЖДЕНИЯ И ВЫИГРЫВАЙ ПРИЗЫ!
+Я
 {% endblock %}
 
 {% block body %}
-  <main class="main" id="main">
-    Главная
+  <main class="main-content">
+    <div class="page-bg">
+      <div class="top-text">
+        <img src="{{ asset('images/text1.png') }}" alt="">
+      </div>
+      <div class="mp-button">
+        <a href="" class="button-purple">Зарегистрировать код</a>
+      </div>
+      <div class="prizes-row">
+        <div class="row">
+          <div class="col-sm-8">
+            <div class="prize-item">
+              <div class="prize-img prize-img-1" style="background-image: url({{ asset('images/prize1.png') }})"></div>
+              <div class="prize-desc">
+                <img src="{{ asset('images/prt1.png') }}" alt="">
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <div class="prize-item prize-item-arrows">
+              <div class="prize-img prize-img-2" style="background-image: url({{ asset('images/prize2.png') }})"></div>
+              <div class="prize-desc">
+                <img src="{{ asset('images/prt2.png') }}" alt="">
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <div class="prize-item">
+              <div class="prize-img prize-img-3" style="background-image: url({{ asset('images/prize3.png') }})"></div>
+              <div class="prize-desc">
+                <img src="{{ asset('images/prt3.png') }}" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
   
 {% endblock %}

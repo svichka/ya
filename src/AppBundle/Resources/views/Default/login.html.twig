@@ -4,11 +4,86 @@
 {% block title %}Вход{% endblock %}
 
 {% block body %}
-  <main class="main" id="main">
-    Вход
+  <main class="main-content">
+    <div class="page-bg page-bg-empty content-center">
+      <h1 class="static-title static-title-lg up">Авторизация</h1>
+      <div class="content-form text-center">
+        <form action="{{ path('login') }}" method="POST">
+          <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+          <div class="form-block">
+            {% if error %}
+              <label for="">{{ error.messageKey|trans(error.messageData, 'auth') }}</label>
+            {% endif %}
+          </div>
+          <div class="form-block">
+            <label for="">Фамилия *</label>
+            <input type="text" name="_username" placeholder="Эл. почта" email="{{ last_username }}">
+          </div>
+          <div class="form-block">
+            <label for="">Пароль *</label>
+            <input type="password" name="_password" placeholder="Пароль">
+          </div>
+          <div class="media-checkbox media-checkbox-sm">
+            <div class="checkbox-wrap">
+              <input id="izmale" type="checkbox" name="_remember_me" value="">
+              <span></span>
+            </div>
+            <div class="checkbox-title">Запомнить пароль</div>
+          </div>
+          <div class="form-block">
+            <div class="captcha-wrap">
+              <div class="g-recaptcha" style="display: inline-block;"
+                   data-sitekey="6LdLP0EUAAAAAJYVwt6pbJ5g1i9WdCNKrOEv_hBo"></div>
+            </div>
+          </div>
+          <button class="gradient-btn" type="submit">Войти</button>
+          <div class="form-link">
+            <a href="" class="up" data-toggle="modal" data-target="#recover">Забыли пароль?</a>
+          </div>
+          <a href="{{ path('registration_page') }}" class='form-link-lg up'>Регистрация</a>
+        </form>
+      </div>
+    </div>
   </main>
 {% endblock %}
 
 {% block stylesheets %}
   {{ parent() }}
+{% endblock %}
+
+{% block modals %}
+  {{ parent() }}
+  <div class="modal fade" id="recover" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body">
+          <div class="modal-static">
+            Если Вы забыли пароль, пожалуйста, <br>
+            введите e-mail, указанный при <br>
+            регистрации.
+            <br><br>
+            Мы вышлем Вам код для восстановления.
+          </div>
+          <div class="modal-reg-form mt20">
+            <form action="">
+              <div class="row">
+                <div class="col-sm-14 col-sm-offset-5 col-xs-offset-0">
+                  <div class="form-block">
+                    <input type="email" class="text-center" placeholder="Введите e-mail">
+                  </div>
+                </div>
+              </div>
+              <div class="form-btn text-center">
+                <button class="gradient-btn xxs-button">ОК</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}

@@ -671,7 +671,7 @@
         $renderParameters['form'] = $form->createView();
       }
       
-      return $this->render('AppBundle:Default:personal.html.twig', $renderParameters);
+      return $this->render('AppBundle:Default:drop_password.html.twig', $renderParameters);
     }
     
     /**

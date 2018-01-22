@@ -8,81 +8,90 @@
   <meta charset="UTF-8"/>
   <title>{% block title %}{% endblock %}</title>
   <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width">
   {% block stylesheets %}
     <link rel="stylesheet" href="{{ apm_css }}"/>
-    <link rel="stylesheet" href="{{ asset('styles/main.css') }}?{{ content_version }}">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/owl.carousel.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/jquery.datetimepicker.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/fonts.css') }}?{{ content_version }}">
+    <link rel="stylesheet" href="{{ asset('css/index.css') }}?{{ content_version }}">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}?{{ content_version }}">
   {% endblock %}
 </head>
 <body>
 {% set route = app.request.attributes.get('_route') %}
-<div class="page">
-  <header class="header" id="header">
-    <div class="header__wrapper clearfix">
-      <div class="header__menu-wrap">
-        <div class="main-menu-wrap clearfix">
-          <div class="mobile-menu-btn" id="menuButton"><span></span></div>
-          <ul class="main-menu" id="mainMenu">
-            <li class="main-menu__item {{ route == 'index_page' ? 'active' }}">
-              <a class="main-menu__link" href="{{ path('index_page') }}">Об акции</a>
-            </li>
-            <li class="main-menu__item {{ route == 'prizes_page' ? 'active' }}">
-              <a class="main-menu__link" href="{{ path('prizes_page') }}">Призы</a>
-            </li>
-            <li class="main-menu__item {{ route == 'winnners_page' ? 'active' }}">
-              <a class="main-menu__link" href="{{ path('winnners_page') }}">Победители</a>
-            </li>
-            <li class="main-menu__item {{ route == 'feedback_page' ? 'active' }}">
-              <a class="main-menu__link" href="{{ path('feedback_page') }}">FAQ</a>
-            </li>
-            {% if(is_granted('ROLE_USER')) %}
-              <li class="main-menu__item {{ route == 'personal_page' ? 'active' }}">
-                <a class="main-menu__link" href="{{ path('personal_page') }}">Личный кабинет</a>
-              </li>
-              <li class="main-menu__item {{ route == 'login' ? 'active' }}">
-                <a class="main-menu__link" href="{{ path('logout') }}">Выход</a>
-              </li>
-            {% else %}
-              <li class="main-menu__item {{ route == 'login' ? 'active' }}">
-                <a class="main-menu__link" href="{{ path('login') }}">Вход</a>
-              </li>
-            {% endif %}
-
-            <li class="main-menu__item main-menu__item_img">
-              <a class="main-menu__link" href="{{ path('metro_redirect') }}" style="border-bottom: none;"
-                 target="_blank">
-                <img class="main-menu__img" src="{{ asset('images/metro-menu.png') }}" alt="Metro">
-              </a>
-            </li>
-          </ul>
+<div class="full-screen container-mp">
+  <header class="page_header">
+    <div class="row header-bg">
+      <div class="col-lg-5">
+        <div class="header-logo">
+          <a href="{{ path('index_page') }}">
+            <img src="{{ asset('images/logo.png') }}" alt="">
+          </a>
         </div>
       </div>
-      <div class="header__logo">
-        <a href="{{ path('index_page') }}">
-          <img class="header__logo-img" src="{{ asset('images/logo.png') }}" alt="Узнай вкус наслаждения">
-        </a>
+      <div class="col-lg-19">
+        <div class="header-menu-wrap">
+          <ul class="up header-menu">
+            <li class="{{ route == 'prizes_page' ? 'active' }}">
+              <a class="{{ route == 'prizes_page' ? 'active' }}" href="{{ path('prizes_page') }}">Призы</a>
+            </li>
+            <li class="{{ route == 'winnners_page' ? 'active' }}">
+              <a class="{{ route == 'winnners_page' ? 'active' }}" href="{{ path('winnners_page') }}">Победители</a>
+            </li>
+            <li class="{{ route == 'faq_page' ? 'active' }}">
+              <a class="{{ route == 'faq_page' ? 'active' }}" href="{{ path('faq_page') }}">Вопрос-ответ</a>
+            </li>
+            <li class="{{ route == 'feedback_page' ? 'active' }}">
+              <a class="{{ route == 'feedback_page' ? 'active' }}" href="{{ path('feedback_page') }}">Обратная свзяь</a>
+            </li>
+            {% if(is_granted('ROLE_USER')) %}
+              <li class="{{ route == 'personal_page' ? 'active' }}">
+                <a class="{{ route == 'personal_page' ? 'active' }}" href="{{ path('personal_page') }}">Личный
+                  кабинет</a>
+              </li>
+              <li>
+                <a href="{{ path('logout') }}">Выход</a>
+              </li>
+            {% else %}
+              <li class="{{ route == 'login' ? 'active' }}">
+                <a href="{{ path('login') }}">Вход</a>
+              </li>
+            {% endif %}
+          </ul>
+        </div>
       </div>
     </div>
   </header>
   {% block body %}{% endblock %}
-  <div class="hidden">
-    {% block modals %}{% endblock %}
-  </div>
+  <footer class='page_footer text-center hidden-xs up'>
+    <div class="page-footer-bg">
+      <a href="" class='up'>Правила акции</a> | <a href="" class='up'>Пользовательское соглашение</a>
+      <div class="">© ВСЕ ПРАВА ЗАЩИЩЕНЫ</div>
+    </div>
+  </footer>
 </div>
+<footer class='page_footer text-center visible-xs'>
+</footer>
+
+{% block modals %}<!--Modals-->{% endblock %}
 
 {% block javascripts %}
-  <script src="{{ asset('js/jquery.min.js') }}"></script>
-  <script src="{{ asset('js/jquery.arcticmodal-0.3.min.js') }}"></script>
+  <script src="{{ asset('js/jquery-2.2.1.min.js') }}"></script>
+  <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
   <script src="{{ asset('js/jquery.datetimepicker.js') }}"></script>
-  <script src="{{ asset('js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
+  <script src="{{ asset('js/bootstrap.min.js') }}"></script>
   <script src="{{ asset('js/jquery.mask.js') }}"></script>
-  <script src="{{ asset('js/jquery.maskedinput.js') }}"></script>
   <script src="{{ asset('js/jquery.form.min.js') }}"></script>
   <script src="{{ asset('js/moment.js') }}"></script>
-  <script src="{{ asset('js/js.cookie-2.2.0.min.js') }}"></script>
   <script src="{{ asset('js/moment-with-locales.js') }}"></script>
+  <script src="{{ asset('js/js.cookie-2.2.0.min.js') }}"></script>
 
-  <script src="{{ asset('js/main.js') }}?{{ content_version }}"></script>
+  <script src="//www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+
+  <script src="{{ asset('js/index.js') }}?{{ content_version }}"></script>
 {% endblock %}
 {% for label, messages in app.session.flashbag.all %}
   {% if label == 'age' %}
