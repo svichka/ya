@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<title>Дольки</title>
+	<meta name="viewport" content="width=device-width">
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="./css/bootstrap.css">
+	<link rel="stylesheet" href="./css/owl.carousel.css">
+	<link rel="stylesheet" href="./css/font-awesome.min.css">    
+	<link rel="stylesheet" href="./css/jquery.datetimepicker.css">  
+	<link rel="stylesheet" href="./css/fonts.css">  
+	<link rel="stylesheet" href="./css/index.css">   
+	<link rel="stylesheet" href="./css/main.css">   
+	<script type="text/javascript" src="./js/jquery-2.2.1.min.js" charset="utf-8"></script>
+	<script src="./js/owl.carousel.min.js"></script>
+	<script src="./js/jquery.datetimepicker.js"></script>
+	<script src="./js/bootstrap.min.js"></script>
+	<script src="./js/index.js"></script>
+	<script src='https://www.google.com/recaptcha/api.js'></script>
+</head>
+<body>	
+	<div class="full-screen container-mp">
+		<header class="page_header">
+			<div class="row header-bg">
+				<div class="col-lg-5">
+					<div class="header-logo">
+						<a href="">
+							<img src="images/logo.png" alt="">
+						</a>
+					</div>
+				</div>
+				<div class="col-lg-19">
+					<div class="header-menu-wrap">
+						<ul class="up header-menu">
+							<li>
+								<a href="">Призы</a>
+							</li>
+							<li>
+								<a href="">Победители</a>
+							</li>
+							<li>
+								<a href="">Вопрос-ответ</a>
+							</li>
+							<li>
+								<a href="">Обратная свзяь</a>
+							</li>
+							<li>
+								<a href="">Вход</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</header>
+		<main class="main-content">
+			<div class="page-bg page-bg-empty content-center">
+				<h1 class="static-title static-title-lg up">Авторизация</h1>
+				<div class="content-form text-center">
+					<form action="" method="POST">
+						<div class="form-block">
+							<label for="">Фамилия *</label>
+							<input type="text" placeholder="Фамилия">
+						</div>
+						<div class="form-block">
+							<label for="">Пароль *</label>
+							<input type="password" placeholder="Пароль">
+						</div>
+						<div class="media-checkbox media-checkbox-sm">
+							<div class="checkbox-wrap">
+								<input id="izmale" type="checkbox" name="" value="">
+								<span></span>
+							</div>
+							<div class="checkbox-title">Запомнить пароль</div>
+						</div>
+						<div class="form-block">
+							<div class="captcha-wrap">
+								<div class="g-recaptcha" style="display: inline-block;" data-sitekey="6LdLP0EUAAAAAJYVwt6pbJ5g1i9WdCNKrOEv_hBo"></div>
+							</div>
+						</div>
+						<button class="gradient-btn">Войти</button>
+						<div class="form-link">
+							<a href="" class="up" data-toggle="modal" data-target="#recover">Забыли пароль?</a>
+						</div>								
+						<a href="" class='form-link-lg up'>Регистрация</a>
+					</form>
+				</div>
+			</div>
+		</main>
+		<footer class='page_footer text-center hidden-xs up'>
+			<div class="page-footer-bg">
+				<a href="" class='up'>Правила акции</a> | <a href="" class='up'>Пользовательское соглашение</a>				
+				<div class="">© ВСЕ ПРАВА ЗАЩИЩЕНЫ</div>
+			</div>
+		</footer>
+	</div>
+	<footer class='page_footer text-center visible-xs'>
+	</footer>
+
+	<!-- Modal -->
+	<div class="modal fade" id="recover" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				</div>
+				<div class="modal-body">
+					<div class="modal-static">
+						Если Вы забыли пароль, пожалуйста, <br> 
+						введите e-mail, указанный при <br>
+						регистрации. 
+						<br><br>
+						Мы вышлем Вам код для восстановления.
+					</div>
+					<div class="modal-reg-form mt20">
+						<form action="">
+							<div class="row">
+								<div class="col-sm-14 col-sm-offset-5 col-xs-offset-0">
+									<div class="form-block">
+										<input type="email" class="text-center" placeholder="Введите e-mail">
+									</div>
+								</div>								
+							</div>
+							<div class="form-btn text-center">
+								<button class="gradient-btn xxs-button">ОК</button>
+							</div>
+						</form>
+					</div>
+				</div>			
+			</div>
+		</div>
+	</div>
+	
+</body>
+</html>

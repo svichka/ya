@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('css/owl.carousel.css') }}">
     <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/scroll.css') }}">
     <link rel="stylesheet" href="{{ asset('css/jquery.datetimepicker.css') }}">
     <link rel="stylesheet" href="{{ asset('css/fonts.css') }}?{{ content_version }}">
     <link rel="stylesheet" href="{{ asset('css/index.css') }}?{{ content_version }}">
@@ -49,12 +50,11 @@
             </li>
             {% if(is_granted('ROLE_USER')) %}
               <li class="{{ route == 'personal_page' ? 'active' }}">
-                <a class="{{ route == 'personal_page' ? 'active' }}" href="{{ path('personal_page') }}">Личный
-                  кабинет</a>
+                <a class="{{ route == 'personal_page' ? 'active' }}" href="{{ path('personal_page') }}">Кабинет</a>
               </li>
-              <li>
-                <a href="{{ path('logout') }}">Выход</a>
-              </li>
+              {#<li>#}
+                {#<a href="{{ path('logout') }}">Выход</a>#}
+              {#</li>#}
             {% else %}
               <li class="{{ route == 'login' ? 'active' }}">
                 <a href="{{ path('login') }}">Вход</a>
@@ -76,11 +76,35 @@
 <footer class='page_footer text-center visible-xs'>
 </footer>
 
-{% block modals %}<!--Modals-->{% endblock %}
+{% block modals %}
+  <!--Modals-->
+
+  <!-- Modal -->
+  <div class="modal fade" id="modalMessage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body">
+          <div class="modal-static" id="modalMessage-text">
+
+          </div>
+          <div class="form-btn text-center">
+            <button class="gradient-btn xxs-button" data-dismiss="modal">ОК</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+<!--Modals end-->
 
 {% block javascripts %}
   <script src="{{ asset('js/jquery-2.2.1.min.js') }}"></script>
   <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
+  <script src='{{ asset('js/jquery.slimscroll.min.js') }}'></script>
   <script src="{{ asset('js/jquery.datetimepicker.js') }}"></script>
   <script src="{{ asset('js/bootstrap.min.js') }}"></script>
   <script src="{{ asset('js/jquery.mask.js') }}"></script>
@@ -90,6 +114,12 @@
   <script src="{{ asset('js/js.cookie-2.2.0.min.js') }}"></script>
 
   <script src="//www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+  <script>
+    function showMessage(text) {
+      $('#modalMessage-text').text(text);
+      $('#modalMessage').modal('show');
+    }
+  </script>
 
   <script src="{{ asset('js/index.js') }}?{{ content_version }}"></script>
 {% endblock %}

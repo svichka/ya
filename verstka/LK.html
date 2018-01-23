@@ -1,11 +1,60 @@
-{% extends 'AppBundle:Default:base.html.twig' %}
+<!DOCTYPE html>
 
-{% trans_default_domain "personal" %}
-
-{% block title %}Личный кабинет{% endblock %}
-
-{% set user = participant %}
-{% block body %}
+<html>
+<head>
+  <title>Дольки</title>
+  <meta name="viewport" content="width=device-width">
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="./css/bootstrap.css">
+  <link rel="stylesheet" href="./css/owl.carousel.css">
+  <link rel="stylesheet" href="./css/font-awesome.min.css">
+  <link rel="stylesheet" href="./css/scroll.css">
+  <link rel="stylesheet" href="./css/jquery.datetimepicker.css">
+  <link rel="stylesheet" href="./css/fonts.css">
+  <link rel="stylesheet" href="./css/index.css">
+  <link rel="stylesheet" href="./css/main.css">
+  <script type="text/javascript" src="./js/jquery-2.2.1.min.js" charset="utf-8"></script>
+  <script src="./js/owl.carousel.min.js"></script>
+  <script src='./js/jquery.slimscroll.min.js'></script>
+  <script src="./js/jquery.datetimepicker.js"></script>
+  <script src="./js/bootstrap.min.js"></script>
+  <script src="./js/index.js"></script>
+  <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+</head>
+<body>
+<div class="full-screen container-mp">
+  <header class="page_header">
+    <div class="row header-bg">
+      <div class="col-lg-5">
+        <div class="header-logo">
+          <a href="">
+            <img src="images/logo.png" alt="">
+          </a>
+        </div>
+      </div>
+      <div class="col-lg-19">
+        <div class="header-menu-wrap">
+          <ul class="up header-menu">
+            <li>
+              <a href="">Призы</a>
+            </li>
+            <li>
+              <a href="">Победители</a>
+            </li>
+            <li>
+              <a href="">Вопрос-ответ</a>
+            </li>
+            <li>
+              <a href="">Обратная свзяь</a>
+            </li>
+            <li>
+              <a href="">Вход</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
   <main class="main-content">
     <div class="page-bg page-bg-empty">
       <h1 class="static-title up">Личный кабинет</h1>
@@ -14,12 +63,11 @@
           <div class="col-sm-5">
             <div class="personal-info-block">
               <div class="personal-name up">
-                {% set user = app.user.participant %}
-                {{ user.getfirstname }} <br>
-                {{ user.getlastname }} {{ user.getsecname }}
+                {{ us }} <br>
+                Евгений Игоревич
               </div>
               <div class="address up">
-                {{ banned_listener.getRegion(user.getregionguid) }}, {{ banned_listener.getCity(user.getcityguid) }}
+                Московский, Москва
               </div>
               <div class="persoanl-link">
                 <a href="" data-toggle="modal" data-target="#regModal">Изменить</a>
@@ -59,7 +107,7 @@
                   <span>Сертификат <br> 3000 Р</span>
                 </div>
                 <div class="week-cell">
-                  <img src="{{ asset('images/yr.png') }}" alt="">
+                  <img src="images/yr.png" alt="">
                   <a href="" class='table-get-link js-get-code'>
                     Получить
                     <span class='js-code'>2c9WERL6</span>
@@ -69,45 +117,53 @@
               <div class="week-row">
                 <div class="week-cell">1232 4568 9465 35798</div>
                 <div class="week-cell">05.02.2018</div>
-                <div class="week-cell">Не принят <div class='table-xs-text'>дубль</div> </div>
+                <div class="week-cell">Не принят
+                  <div class='table-xs-text'>дубль</div>
+                </div>
                 <div class="week-cell">
                   Не выигрышный
                 </div>
                 <div class="week-cell">
-                  <img src="{{ asset('images/yr.png') }}" alt="">
+                  <img src="images/yr.png" alt="">
                 </div>
               </div>
               <div class="week-row">
                 <div class="week-cell">1232 4568 9465 35798</div>
                 <div class="week-cell">05.02.2018</div>
-                <div class="week-cell">Не принят <div class='table-xs-text'>дубль</div> </div>
+                <div class="week-cell">Не принят
+                  <div class='table-xs-text'>дубль</div>
+                </div>
                 <div class="week-cell">
                   Не выигрышный
                 </div>
                 <div class="week-cell">
-                  <img src="{{ asset('images/yr.png') }}" alt="">
+                  <img src="images/yr.png" alt="">
                 </div>
               </div>
               <div class="week-row">
                 <div class="week-cell">1232 4568 9465 35798</div>
                 <div class="week-cell">05.02.2018</div>
-                <div class="week-cell">Не принят <div class='table-xs-text'>дубль</div> </div>
+                <div class="week-cell">Не принят
+                  <div class='table-xs-text'>дубль</div>
+                </div>
                 <div class="week-cell">
                   Не выигрышный
                 </div>
                 <div class="week-cell">
-                  <img src="{{ asset('images/yr.png') }}" alt="">
+                  <img src="images/yr.png" alt="">
                 </div>
               </div>
               <div class="week-row">
                 <div class="week-cell">1232 4568 9465 35798</div>
                 <div class="week-cell">05.02.2018</div>
-                <div class="week-cell">Не принят <div class='table-xs-text'>дубль</div> </div>
+                <div class="week-cell">Не принят
+                  <div class='table-xs-text'>дубль</div>
+                </div>
                 <div class="week-cell">
                   Не выигрышный
                 </div>
                 <div class="week-cell">
-                  <img src="{{ asset('images/yr.png') }}" alt="">
+                  <img src="images/yr.png" alt="">
                 </div>
               </div>
             </div>
@@ -140,7 +196,7 @@
                   <span>Сертификат <br> 3000 Р</span>
                 </div>
                 <div class="week-cell">
-                  <img src="{{ asset('images/yr.png') }}" alt="">
+                  <img src="images/yr.png" alt="">
                   <a href="" class='table-get-link js-get-code'>
                     Получить
                     <span class='js-code'>2c9WERL6</span>
@@ -150,45 +206,53 @@
               <div class="week-row">
                 <div class="week-cell">1232 4568 9465 35798</div>
                 <div class="week-cell">05.02.2018</div>
-                <div class="week-cell">Не принят <div class='table-xs-text'>дубль</div> </div>
+                <div class="week-cell">Не принят
+                  <div class='table-xs-text'>дубль</div>
+                </div>
                 <div class="week-cell">
                   Не выигрышный
                 </div>
                 <div class="week-cell">
-                  <img src="{{ asset('images/yr.png') }}" alt="">
+                  <img src="images/yr.png" alt="">
                 </div>
               </div>
               <div class="week-row">
                 <div class="week-cell">1232 4568 9465 35798</div>
                 <div class="week-cell">05.02.2018</div>
-                <div class="week-cell">Не принят <div class='table-xs-text'>дубль</div> </div>
+                <div class="week-cell">Не принят
+                  <div class='table-xs-text'>дубль</div>
+                </div>
                 <div class="week-cell">
                   Не выигрышный
                 </div>
                 <div class="week-cell">
-                  <img src="{{ asset('images/yr.png') }}" alt="">
+                  <img src="images/yr.png" alt="">
                 </div>
               </div>
               <div class="week-row">
                 <div class="week-cell">1232 4568 9465 35798</div>
                 <div class="week-cell">05.02.2018</div>
-                <div class="week-cell">Не принят <div class='table-xs-text'>дубль</div> </div>
+                <div class="week-cell">Не принят
+                  <div class='table-xs-text'>дубль</div>
+                </div>
                 <div class="week-cell">
                   Не выигрышный
                 </div>
                 <div class="week-cell">
-                  <img src="{{ asset('images/yr.png') }}" alt="">
+                  <img src="images/yr.png" alt="">
                 </div>
               </div>
               <div class="week-row">
                 <div class="week-cell">1232 4568 9465 35798</div>
                 <div class="week-cell">05.02.2018</div>
-                <div class="week-cell">Не принят <div class='table-xs-text'>дубль</div> </div>
+                <div class="week-cell">Не принят
+                  <div class='table-xs-text'>дубль</div>
+                </div>
                 <div class="week-cell">
                   Не выигрышный
                 </div>
                 <div class="week-cell">
-                  <img src="{{ asset('images/yr.png') }}" alt="">
+                  <img src="images/yr.png" alt="">
                 </div>
               </div>
             </div>
@@ -221,7 +285,7 @@
                   <span>Сертификат <br> 3000 Р</span>
                 </div>
                 <div class="week-cell">
-                  <img src="{{ asset('images/yr.png') }}" alt="">
+                  <img src="images/yr.png" alt="">
                   <a href="" class='table-get-link js-get-code'>
                     Получить
                     <span class='js-code'>2c9WERL6</span>
@@ -231,45 +295,53 @@
               <div class="week-row">
                 <div class="week-cell">1232 4568 9465 35798</div>
                 <div class="week-cell">05.02.2018</div>
-                <div class="week-cell">Не принят <div class='table-xs-text'>дубль</div> </div>
+                <div class="week-cell">Не принят
+                  <div class='table-xs-text'>дубль</div>
+                </div>
                 <div class="week-cell">
                   Не выигрышный
                 </div>
                 <div class="week-cell">
-                  <img src="{{ asset('images/yr.png') }}" alt="">
+                  <img src="images/yr.png" alt="">
                 </div>
               </div>
               <div class="week-row">
                 <div class="week-cell">1232 4568 9465 35798</div>
                 <div class="week-cell">05.02.2018</div>
-                <div class="week-cell">Не принят <div class='table-xs-text'>дубль</div> </div>
+                <div class="week-cell">Не принят
+                  <div class='table-xs-text'>дубль</div>
+                </div>
                 <div class="week-cell">
                   Не выигрышный
                 </div>
                 <div class="week-cell">
-                  <img src="{{ asset('images/yr.png') }}" alt="">
+                  <img src="images/yr.png" alt="">
                 </div>
               </div>
               <div class="week-row">
                 <div class="week-cell">1232 4568 9465 35798</div>
                 <div class="week-cell">05.02.2018</div>
-                <div class="week-cell">Не принят <div class='table-xs-text'>дубль</div> </div>
+                <div class="week-cell">Не принят
+                  <div class='table-xs-text'>дубль</div>
+                </div>
                 <div class="week-cell">
                   Не выигрышный
                 </div>
                 <div class="week-cell">
-                  <img src="{{ asset('images/yr.png') }}" alt="">
+                  <img src="images/yr.png" alt="">
                 </div>
               </div>
               <div class="week-row">
                 <div class="week-cell">1232 4568 9465 35798</div>
                 <div class="week-cell">05.02.2018</div>
-                <div class="week-cell">Не принят <div class='table-xs-text'>дубль</div> </div>
+                <div class="week-cell">Не принят
+                  <div class='table-xs-text'>дубль</div>
+                </div>
                 <div class="week-cell">
                   Не выигрышный
                 </div>
                 <div class="week-cell">
-                  <img src="{{ asset('images/yr.png') }}" alt="">
+                  <img src="images/yr.png" alt="">
                 </div>
               </div>
             </div>
@@ -278,105 +350,98 @@
       </div>
     </div>
   </main>
-{% endblock %}
+  <footer class='page_footer text-center hidden-xs up'>
+    <div class="page-footer-bg">
+      <a href="" class='up'>Правила акции</a> | <a href="" class='up'>Пользовательское соглашение</a>
+      <div class="">© ВСЕ ПРАВА ЗАЩИЩЕНЫ</div>
+    </div>
+  </footer>
+</div>
+<footer class='page_footer text-center visible-xs'>
+</footer>
 
-{% block javascripts %}
-  {{ parent() }}
-  <script>
-    // Список регионов теперь динамический
-    window.regions = {{ banned_listener.regions()|json_encode|raw }};
-    window.cities = {{ banned_listener.cities(user.getregionguid())|json_encode|raw }};
-    window.reg_errors = {};
-  </script>
-{% endblock %}
-
-{% block modals %}
-  {{ parent() }}
-  <!-- Modal -->
-  <div class="modal fade" id="regModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title up" id="myModalLabel">
-            Профиль
-          </h4>
-        </div>
-        <div class="modal-body">
-          <div class="modal-reg-form">
-            <form action="" method="POST">
-              <div class="row">
-                <div class="col-xs-11">
-                  <div class="form-block">
-                    <label for="">Фамилия *</label>
-                    <input type="text" placeholder="Фамилия">
-                  </div>
-                  <div class="form-block">
-                    <label for="">Имя *</label>
-                    <input type="text" placeholder="Имя">
-                  </div>
-                  <div class="form-block">
-                    <label for="">Дата рождения *</label>
-                    <input type="text" placeholder="18.08.1988" class="js-date">
-                  </div>
-                  <div class="form-block">
-                    <label for="">Email *</label>
-                    <input type="email" placeholder="email334@email.com">
-                  </div>
+<!-- Modal -->
+<div class="modal fade" id="regModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title up" id="myModalLabel">
+          Профиль
+        </h4>
+      </div>
+      <div class="modal-body">
+        <div class="modal-reg-form">
+          <form action="" method="POST">
+            <div class="row">
+              <div class="col-xs-11">
+                <div class="form-block">
+                  <label for="">Фамилия *</label>
+                  <input type="text" placeholder="Фамилия">
                 </div>
-                <div class="col-xs-2"></div>
-                <div class="col-xs-11">
-                  <div class="form-block">
-                    <label for="">Регион *</label>
-                    <input type="text" placeholder="Регион">
-                  </div>
-                  <div class="form-block">
-                    <label for="">Город *</label>
-                    <input type="text" placeholder="Город">
-                  </div>
-                  <div class="form-block">
-                    <label for="">Пол *</label>
-                    <div class="checkbox-wrap">
-                      <input id="izmaleY" type="radio" name="registration_form[ismale]" value="Y">
-                      <span></span>
-                    </div>
-                    <div class="checkbox-title">М</div>
-                    <div class="checkbox-wrap">
-                      <input id="izmaleN" type="radio" name="registration_form[ismale]" value="N">
-                      <span></span>
-                    </div>
-                    <div class="checkbox-title">Ж</div>
-                  </div>
+                <div class="form-block">
+                  <label for="">Имя *</label>
+                  <input type="text" placeholder="Имя">
+                </div>
+                <div class="form-block">
+                  <label for="">Дата рождения *</label>
+                  <input type="text" placeholder="18.08.1988" class="js-date">
+                </div>
+                <div class="form-block">
+                  <label for="">Email *</label>
+                  <input type="email" placeholder="email334@email.com">
                 </div>
               </div>
-              <div class="row">
+              <div class="col-xs-2"></div>
+              <div class="col-xs-11">
+                <div class="form-block">
+                  <label for="">Регион *</label>
+                  <input type="text" placeholder="Регион">
+                </div>
+                <div class="form-block">
+                  <label for="">Город *</label>
+                  <input type="text" placeholder="Город">
+                </div>
+                <div class="form-block">
+                  <label for="">Пол *</label>
+                  <div class="checkbox-wrap">
+                    <input id="izmale" type="radio" name="registration_form[ismale]" value="Y">
+                    <span></span>
+                  </div>
+                  <div class="checkbox-title">М</div>
+                  <div class="checkbox-wrap">
+                    <input id="izmale" type="radio" name="registration_form[ismale]" value="N">
+                    <span></span>
+                  </div>
+                  <div class="checkbox-title">Ж</div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
 
-                <div class="col-xs-11">
-                  <div class="form-block">
-                    <label for="">Пароль *</label>
-                    <input type="password" placeholder="Пароль">
-                  </div>
-                </div>
-                <div class="col-xs-2"></div>
-                <div class="col-xs-11">
-                  <div class="form-block">
-                    <label for="">Повторите пароль *</label>
-                    <input type="password" placeholder="Повторите пароль">
-                  </div>
+              <div class="col-xs-11">
+                <div class="form-block">
+                  <label for="">Пароль *</label>
+                  <input type="password" placeholder="Пароль">
                 </div>
               </div>
-              <div class="form-btn text-center">
-                <button class="gradient-btn xs-button">Сохранить</button>
+              <div class="col-xs-2"></div>
+              <div class="col-xs-11">
+                <div class="form-block">
+                  <label for="">Повторите пароль *</label>
+                  <input type="password" placeholder="Повторите пароль">
+                </div>
               </div>
-            </form>
-          </div>
+            </div>
+            <div class="form-btn text-center">
+              <button class="gradient-btn xs-button">Сохранить</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
   </div>
-
-{% endblock %}
-
-{% block stylesheets %}
-  {{ parent() }}
-{% endblock %}
+</div>
+</body>
+</html>

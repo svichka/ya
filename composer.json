@@ -18,13 +18,13 @@
   },
   "repositories": [
     {
-      "type": "vcs",
-      "url": "git@git.dalee.ru:pepsico/PEPUWSClientBundle.git"
+      "type": "composer",
+      "url": "http://packages.dev.dalee.ru"
     }
   ],
   "require": {
     "php": ">=7.0.0",
-    "dalee/pepuwsclientbundle": "dev-master",
+    "dalee/pepuwsclientbundle": "~1.0",
     "doctrine/doctrine-bundle": "~1.4",
     "doctrine/orm": "^2.4.8",
     "google/recaptcha": "~1.1",
@@ -40,6 +40,7 @@
     "symfony/swiftmailer-bundle": "~2.3,>=2.3.10",
     "symfony/symfony": "2.8.*",
     "symfony/twig-bridge": "^3.3",
+    "symfony/form": "~2.8|3.3",
     "twig/twig": "^2.0"
   },
   "require-dev": {
@@ -64,7 +65,8 @@
   },
   "config": {
     "bin-dir": "bin",
-    "sort-packages": true
+    "sort-packages": true,
+    "secure-http": false
   },
   "extra": {
     "symfony-app-dir": "app",

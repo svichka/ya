@@ -12,12 +12,12 @@
           <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
           <div class="form-block">
             {% if error %}
-              <label for="">{{ error.messageKey|trans(error.messageData, 'auth') }}</label>
+              <label for="">{{ error.messageKey|trans(error.messageData) }}</label>
             {% endif %}
           </div>
           <div class="form-block">
             <label for="">Фамилия *</label>
-            <input type="text" name="_username" placeholder="Эл. почта" email="{{ last_username }}">
+            <input type="text" name="_username" placeholder="Эл. почта" value="{{ last_username }}">
           </div>
           <div class="form-block">
             <label for="">Пароль *</label>
@@ -39,6 +39,7 @@
           <button class="gradient-btn" type="submit">Войти</button>
           <div class="form-link">
             <a href="" class="up" data-toggle="modal" data-target="#recover">Забыли пароль?</a>
+            <a href="" class="up" data-toggle="modal" data-target="#restore">Ввести код</a>
           </div>
           <a href="{{ path('registration_page') }}" class='form-link-lg up'>Регистрация</a>
         </form>
@@ -62,6 +63,7 @@
         </div>
         <div class="modal-body">
           <div class="modal-static">
+            <span id="recover_result"></span>
             Если Вы забыли пароль, пожалуйста, <br>
             введите e-mail, указанный при <br>
             регистрации.
@@ -69,11 +71,12 @@
             Мы вышлем Вам код для восстановления.
           </div>
           <div class="modal-reg-form mt20">
-            <form action="">
+            <form action="{{ path('recover_password_page') }}" id="form_pass_recover" method="post"
+                  enctype="multipart/form-data">
               <div class="row">
                 <div class="col-sm-14 col-sm-offset-5 col-xs-offset-0">
                   <div class="form-block">
-                    <input type="email" class="text-center" placeholder="Введите e-mail">
+                    <input type="email" class="text-center" placeholder="Введите e-mail" name="email">
                   </div>
                 </div>
               </div>
@@ -86,4 +89,96 @@
       </div>
     </div>
   </div>
+  <div class="modal fade" id="restore" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body">
+          <div class="modal-static">
+            <span id="restore_result"></span>
+          </div>
+          <div class="modal-reg-form mt20">
+            <form action="{{ path('drop_password_page') }}" id="form_pass_restore" method="post"
+                  enctype="multipart/form-data">
+              <div class="row">
+                <div class="col-sm-14 col-sm-offset-5 col-xs-offset-0">
+                  <div class="form-block">
+                    <input type="text" class="text-center" placeholder="Введите код" name="email">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-14 col-sm-offset-5 col-xs-offset-0">
+                  <div class="form-block">
+                    <input type="password" class="text-center" placeholder="Пароль" name="password1">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-14 col-sm-offset-5 col-xs-offset-0">
+                  <div class="form-block">
+                    <input type="password" class="text-center" placeholder="Повтор пароля" name="password2">
+                  </div>
+                </div>
+              </div>
+              <div class="form-btn text-center">
+                <button class="gradient-btn xxs-button">ОК</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  <script>
+    $(function () {
+      var options = {
+        target: '#recover_result',   // target element(s) to be updated with server response
+        dataType: 'json',
+        beforeSubmit: function (formData, jqForm, options) {
+          var queryString = $.param(formData);
+          console.log(queryString);
+          return true;
+        },
+        success: function showResponse(responseText, statusText, xhr, $form) {
+          console.log(responseText);
+          if(responseText.status === 200){
+            showMessage("На почту выслано письмо для востановления пароля");
+
+          }else{
+            $('#recover_result').text(responseText.error);
+          }
+        },
+      };
+      $('#form_pass_recover').ajaxForm(options);
+    });
+    $(function () {
+      var options = {
+        target: '#restore_result',   // target element(s) to be updated with server response
+        dataType: 'json',
+        beforeSubmit: function (formData, jqForm, options) {
+          var queryString = $.param(formData);
+          console.log(queryString);
+          return true;
+        },
+        success: function showResponse(responseText, statusText, xhr, $form) {
+          console.log(responseText);
+          if(responseText.status === 200){
+            showMessage("Пароль установлен выполните вход");
+
+          }else{
+            $('#restore_result').text(responseText.error);
+          }
+        },
+      };
+      $('#form_pass_restore').ajaxForm(options);
+    });
+  </script>
 {% endblock %}

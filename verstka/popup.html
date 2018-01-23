@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<title>Дольки</title>
+	<meta name="viewport" content="width=device-width">
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="./css/bootstrap.css">
+	<link rel="stylesheet" href="./css/owl.carousel.css">
+	<link rel="stylesheet" href="./css/font-awesome.min.css">    
+	<link rel="stylesheet" href="./css/jquery.datetimepicker.css">  
+	<link rel="stylesheet" href="./css/fonts.css">  
+	<link rel="stylesheet" href="./css/index.css">   
+	<link rel="stylesheet" href="./css/main.css">   
+	<script type="text/javascript" src="./js/jquery-2.2.1.min.js" charset="utf-8"></script>
+	<script src="./js/owl.carousel.min.js"></script>
+	<script src="./js/jquery.datetimepicker.js"></script>
+	<script src="./js/bootstrap.min.js"></script>
+	<script src="./js/index.js"></script>
+	<script src='https://www.google.com/recaptcha/api.js'></script>
+</head>
+<body>	
+	<div class="full-screen container-mp">
+		<header class="page_header">
+			<div class="row header-bg">
+				<div class="col-lg-5">
+					<div class="header-logo">
+						<a href="">
+							<img src="images/logo.png" alt="">
+						</a>
+					</div>
+				</div>
+				<div class="col-lg-19">
+					<div class="header-menu-wrap">
+						<ul class="up header-menu">
+							<li>
+								<a href="">Призы</a>
+							</li>
+							<li>
+								<a href="">Победители</a>
+							</li>
+							<li>
+								<a href="">Вопрос-ответ</a>
+							</li>
+							<li>
+								<a href="">Обратная свзяь</a>
+							</li>
+							<li>
+								<a href="">Вход</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</header>
+		<main class="main-content">
+			<div class="page-bg page-bg-reg">
+				<div><a href="" data-toggle="modal" data-target="#lamoda">Гарант ламода</a></div>
+				<div><a href="" data-toggle="modal" data-target="#ended">Акция завершена</a></div>
+				<div><a href="" data-toggle="modal" data-target="#codes">100 кодов</a></div>
+				<div><a href="" data-toggle="modal" data-target="#sixhours">6 часов</a></div>
+				<div><a href="" data-toggle="modal" data-target="#notstarted">Не началась</a></div>
+				<div><a href="" data-toggle="modal" data-target="#choise">Выбор приза</a></div>
+				<div><a href="" data-toggle="modal" data-target="#success">Успешная рега</a></div>
+				<div><a href="" data-toggle="modal" data-target="#exists">Данные существуют</a></div>
+				<div><a href="" data-toggle="modal" data-target="#age">18 лет</a></div>
+				<div><a href="" data-toggle="modal" data-target="#feedback">Обратная связь</a></div>
+				<div><a href="" data-toggle="modal" data-target="#prize">Выбор приза</a></div>
+			</div>
+		</main>
+		<footer class='page_footer text-center hidden-xs up'>
+			<div class="page-footer-bg">
+				<a href="" class='up'>Правила акции</a> | <a href="" class='up'>Пользовательское соглашение</a>				
+				<div class="">© ВСЕ ПРАВА ЗАЩИЩЕНЫ</div>
+			</div>
+		</footer>
+	</div>
+	<footer class='page_footer text-center visible-xs'>
+	</footer>
+
+	<!-- Modal -->
+	<div class="modal fade" id="age" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				</div>
+				<div class="modal-body">
+					<div class="modal-static">
+						К сожалению, согласно правилам,<br> 
+						принять участие в Акции могут только <br> 
+						лица, достигшие 18 лет. 
+					</div>
+					<div class="form-btn text-center">
+						<button class="gradient-btn xxs-button" data-dismiss="modal">ОК</button>
+					</div>
+				</div>			
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="lamoda" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title up" id="myModalLabel">
+						Код успешно принят!
+					</h4>
+				</div>
+				<div class="modal-body">
+					<div class="modal-static">
+						<p>
+							Поздравляем, Вы получаете <br>
+							гарантированный приз  — <br>
+							код на скидку в интернет-магазине 
+							<img src="images/lamoda.png" class="modal-single-img" alt="">
+							Розыгрыш еженедельного приза <br> 
+							состоится ХХ марта 2018
+						</p>
+						<div class="form-btn text-center">
+							<button class="gradient-btn xxs-button" data-dismiss="modal">Отправить</button>
+						</div>
+					</div>				
+				</div>			
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="ended" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title up" id="myModalLabel">
+						Уважаемый участник!
+					</h4>
+				</div>
+				<div class="modal-body">
+					<div class="modal-static">
+						<p>Акция завершена!</p>
+						<p>
+							Выдача призов осуществляется <br>
+							до 31 августа 2018 г. <br>
+							Информацию по получению призов <br>
+							Вы можете узнать в <a href="">Личном кабинете</a><br> 
+							или направив запрос в <a href="">Обратную связь.</a>
+						</p>
+					</div>				
+				</div>			
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="codes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title up" id="myModalLabel">
+						Уважаемый участник!
+					</h4>
+				</div>
+				<div class="modal-body">
+					<div class="modal-static">
+						<p>
+							Согласно Правилам Акции <br>
+							Вы не можете зарегистрировать <br>
+							более 100 кодов <br>
+							за весь период акции. 
+						</p>
+					</div>				
+				</div>			
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="sixhours" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title up" id="myModalLabel">
+						Уважаемый участник!
+					</h4>
+				</div>
+				<div class="modal-body">
+					<div class="modal-static">
+						<p>
+							Вы заблокированы на 6 часов <br>
+							в связи с множественным вводом <br>
+							некорректных кодов.
+						</p>
+					</div>				
+				</div>			
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="notstarted" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title up" id="myModalLabel">
+						Уважаемый участник!
+					</h4>
+				</div>
+				<div class="modal-body">
+					<div class="modal-static">
+						<p>Акция еще не началась!</p>
+						<p>
+							Ваш первый код Вы сумеете загрузить <br> уже 01 марта 2018. <br>
+							С правилами акции можете <br>
+							ознакомиться перейдя по <a href="">ссылке</a>. 
+						</p>
+					</div>				
+				</div>			
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="age" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				</div>
+				<div class="modal-body">
+					<div class="modal-static">
+						К сожалению, согласно правилам,<br> 
+						принять участие в Акции могут только <br> 
+						лица, достигшие 18 лет. 
+					</div>
+					<div class="form-btn text-center">
+						<button class="gradient-btn xxs-button" data-dismiss="modal">ОК</button>
+					</div>
+				</div>			
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="exists" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title up" id="myModalLabel">
+						Уважаемый участник!
+					</h4>
+				</div>
+				<div class="modal-body">
+					<div class="modal-static">
+						<p>
+							Введенные  Вами данные уже <br> существуют. 
+						</p>
+						<p>
+							Если Вы участвовали в других акциях <br> группы Компании <a href="">PepsiCo Россия</a>, 
+							то <br> можете использовать прежний логин и <br>пароль для <a href="">авторизации</a> на сайт. <br>
+							Если необходимо восстановить пароль, <br> воспользуйтесь формой <br> 
+							<a href="">восстановления пароля</a>.
+						</p>
+					</div>				
+				</div>			
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="success" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title up" id="myModalLabel">
+						Уважаемый участник!
+					</h4>
+				</div>
+				<div class="modal-body">
+					<div class="modal-static">
+						Вы успешно зарегистрировались. <br>
+						Для подтверждения адреса <br> 
+						электронной почты на указанный Вами <br> 
+						e-mail отправлено письмо.
+						<p class="modal-xs-text">
+							*Если письмо не пришло – проверьте папку «Спам» <br> или обратитесь в <a href="">обратную связь</a>.
+						</p>
+					</div>				
+				</div>			
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="feedback" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				</div>
+				<div class="modal-body">
+					<div class="modal-static">
+						Спасибо, мы получили Ваш вопрос, <br> 
+						вернемся с ответом после <br>
+						его обработки. 
+					</div>
+				</div>			
+			</div>
+		</div>
+	</div>
+	<!--Modals End-->
+
+	<!-- Modal -->
+	<div class="modal fade" id="prize" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title up" id="myModalLabel">
+						Регистрация кода
+					</h4>
+				</div>
+				<div class="modal-body">
+					<div class="modal-pre-title up">
+						Получи гарантированный приз
+					</div>		
+					<div class="modal-post-title">
+						Выберите скидку:
+					</div>
+					<div class="prize-select-row">
+						<div class="row">
+							<div class="col-sm-8 prize-select-block">
+								<div class="img-choise-prize" style="background-image: url(images/yr.png)"></div>
+								<input type="radio" name="prize-garant">
+								<img src="images/t.png" alt="">
+								<img src="images/t1.png" alt="">
+							</div>
+							<div class="col-sm-8 prize-select-block">
+								<div class="img-choise-prize" style="background-image: url(images/lamoda.png)"></div>
+								<input type="radio" name="prize-garant">
+								<img src="images/t.png" alt="">
+								<img src="images/t1.png" alt="">
+							</div>
+							<div class="col-sm-8 prize-select-block">
+								<div class="img-choise-prize" style="background-image: url(images/ll.png)"></div>
+								<input type="radio" name="prize-garant">
+								<img src="images/t.png" alt="">
+								<img src="images/t1.png" alt="">
+							</div>
+						</div>
+					</div>
+					<div class="modal-hr text-center">
+						<img src="images/hr.png" alt="">
+					</div>
+					<div class="modal-pre-title up">
+						УЧАСТВУЙ В ЕЖЕНЕДЕЛЬНОМ РОЗЫГРЫШЕ 
+					</div>		
+					<div class="modal-post-title">
+						Выберите сертификат:
+					</div>
+					<div class="prize-select-row">
+						<div class="row">
+							<div class="col-sm-8 prize-select-block">
+								<div class="img-choise-prize" style="background-image: url(images/yr.png)"></div>
+								<input type="radio" name="prize-daily">
+								<img src="images/t.png" alt="">
+								<img src="images/t1.png" alt="">
+							</div>
+							<div class="col-sm-8 prize-select-block">
+								<div class="img-choise-prize" style="background-image: url(images/lamoda.png)"></div>
+								<input type="radio" name="prize-daily">
+								<img src="images/t.png" alt="">
+								<img src="images/t1.png" alt="">
+							</div>
+							<div class="col-sm-8 prize-select-block">
+								<div class="img-choise-prize" style="background-image: url(images/ll.png)"></div>
+								<input type="radio" name="prize-daily">
+								<img src="images/t.png" alt="">
+								<img src="images/t1.png" alt="">
+							</div>
+						</div>
+					</div>
+					<div class="mf-row">
+						<form action="" class="modal-reg-form">
+							<div class="row">
+								<div class="col-sm-6"></div>
+								<div class="col-sm-7">
+									<div class="form-block">
+										<input type="text" class='text-center modal-custum-input' placeholder="Введите код">
+									</div>
+								</div>
+								<div class="col-sm-1"></div>
+								<div class="col-sm-10">
+								<button class="gradient-btn xxs-button" data-dismiss="modal" disabled="">ОК</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>			
+			</div>
+		</div>
+	</div>
+
+
+
+</body>
+</html>

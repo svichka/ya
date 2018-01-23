@@ -107,10 +107,12 @@
       $participant = $user->getParticipant();
       
       $this->get('logger')->info('passed checkParticipantRequiredFields');
-      if (!$this->get('app.users.banned_listener')->checkParticipantAgreement($participant))
-      {
-        return $this->redirectToRoute('index_page', ['show' => 'agree']);
-      }
+      
+      // TODO: Включить проверку на локальное согласие
+//      if (!$this->get('app.users.banned_listener')->checkParticipantAgreement($participant))
+//      {
+//        return $this->redirectToRoute('index_page', ['show' => 'agree']);
+//      }
       
       if (!$this->get('app.users.banned_listener')->checkParticipantAge($participant))
       {

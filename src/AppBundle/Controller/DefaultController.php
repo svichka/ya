@@ -586,8 +586,17 @@
       $error = $authenticationUtils->getLastAuthenticationError();
       
       $lastUsername = $authenticationUtils->getLastUsername();
+      if ($this->get('security.context')->isGranted('ROLE_USER'))
+      {
+        return JsonResponse::create(
+          [
+            'status'        => 400,
+            'last_username' => $lastUsername,
+            'error'         => "Вы уже вошли",
+          ]);
+      }
       
-      $login = $request->request->get('login');
+      $login = $request->request->get('email');
       if ($login == '')
       {
         $error = ['messageKey' => 'Введите емейл'];
@@ -602,9 +611,9 @@
       $participantApi = new ParticipantApiController();
       try
       {
-        $this->get('logger')->error("Login: " . $login);
-//          $participantApi->recoverPassword($formData['login']);
-        $participantApi->dropPassword($login);
+        $this->get('logger')->debug("Login: " . $login);
+        $participantApi->recoverPassword($login, ["channel" => "S"]);
+//        $participantApi->dropPassword($login);
         $this->messages[] = 'Success recover';
       }
       catch (NotCorrectDataException $e)
@@ -631,47 +640,58 @@
     public
     function dropPasswordAction(Request $request)
     {
-      if ($this->get('security.context')->isGranted('ROLE_USER'))
-      {
-        return $this->redirectToRoute('personal_page');
-      }
-      
       $authenticationUtils = $this->get('security.authentication_utils');
       $error = $authenticationUtils->getLastAuthenticationError();
       
       $lastUsername = $authenticationUtils->getLastUsername();
-      
-      $formBuilder = $this->createFormBuilder([], ['translation_domain' => 'personal'])
-        ->add('login', EmailType::class, ['data' => $lastUsername, 'constraints' => new Assert\Email()])
-        ->add('save', SubmitType::class, ['label' => $this->get('translator')->trans('Drop password submit')]);
-      
-      $form = $formBuilder->getForm();
-      
-      $form->handleRequest($request);
-      if ($form->isSubmitted() && $form->isValid())
+      if ($this->get('security.context')->isGranted('ROLE_USER'))
       {
-        $formData = $form->getData();
-        $participantApi = new ParticipantApiController();
-        try
-        {
-          $participant = $participantApi->dropPassword($formData['login']);
-          $this->messages[] = 'Success drop';
-        }
-        catch (NotCorrectDataException $e)
-        {
+        return JsonResponse::create(
+          [
+            'status'        => 400,
+            'last_username' => $lastUsername,
+            'error'         => "Вы уже вошли",
+          ]);
+      }
+      
+      $login = $request->request->get('email');
+      $password1 = $request->request->get('password1');
+      $password2 = $request->request->get('password2');
+      if ($password1 != $password2)
+      {
+        return JsonResponse::create(
+          [
+            'status'        => 400,
+            'last_username' => $lastUsername,
+            'error'         => "Пароли не совпадают",
+          ]);
+      }
+      $participantApi = new ParticipantApiController();
+      try
+      {
+        $participant = $participantApi->dropPassword($login, true, $password1, "S");
+        $this->messages[] = 'Пароль успешно установлен';
+        
+        return JsonResponse::create(
+          [
+            'status' => 200,
+          ]);
+      }
+      catch (NotCorrectDataException $e)
+      {
+        if($e->getMessage()=="User not found"){
+          $this->errors[] = "Пользователь не найден";
+        }else{
           $this->errors[] = $e->getMessage();
         }
       }
-      $renderParameters = [
-        'messages' => $this->messages,
-        'errors'   => $this->errors,
-      ];
-      if (count($this->messages) == 0)
-      {
-        $renderParameters['form'] = $form->createView();
-      }
       
-      return $this->render('AppBundle:Default:drop_password.html.twig', $renderParameters);
+      return JsonResponse::create(
+        [
+          'status'        => 400,
+          'last_username' => $lastUsername,
+          'error'         => implode(", ", $this->errors),
+        ]);
     }
     
     /**
