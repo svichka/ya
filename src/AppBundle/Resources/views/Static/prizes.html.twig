@@ -3,8 +3,106 @@
 {% block title %}Призы{% endblock %}
 
 {% block body %}
-  <main class="main" id="main">
-    Призы
+  <main class="main-content">
+    <div class="page-bg page-bg-empty">
+      <h1 class='adventure-title'>Выигрывай модные призы!</h1>
+      <div class="static-prize-blocks">
+        <div class="row">
+          <div class="col-sm-8">
+            <div class="static-prize">
+              <div class="static-prize-title up">Гарантированно</div>
+              <div class="static-prize-img" style="background-image: url({{ asset('images/stpr1.png') }})"></div>
+              <div class="static-prize-row row">
+                <div class="col-xs-12">
+                  <img src="{{ asset('images/lamoda.png') }}" alt="">
+                </div>
+                <div class="col-sm-6"></div>
+                <div class="col-xs-6">
+                  <div class="static-prize-price">600 P</div>
+                  <div class="static-prize-post-price">от 3000 Р</div>
+                </div>
+              </div>
+              <div class="static-prize-row row">
+                <div class="col-xs-12">
+                  <img src="{{ asset('images/yr.png') }}" class="img-yr img-m15" alt="">
+                </div>
+                <div class="col-sm-6"></div>
+                <div class="col-xs-6">
+                  <div class="static-prize-price">500 P</div>
+                  <div class="static-prize-post-price">от 3000 Р</div>
+                </div>
+              </div>
+              <div class="static-prize-row row">
+                <div class="col-xs-12">
+                  <img src="{{ asset('images/ll.png') }}" class="img-m15" alt="">
+                </div>
+                <div class="col-sm-6"></div>
+                <div class="col-xs-6">
+                  <div class="static-prize-price">30%</div>
+                  <div class="static-prize-post-price">на все виды маникюра</div>
+                </div>
+              </div>
+              <div class="static-prize-text">
+                Скидка у одного <br>
+                из партнеров
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <div class="static-prize static-prize-middle">
+              <div class="static-prize-title up">Еженедельно</div>
+              <div class="static-prize-img static-prize-img-s" style="background-image: url({{ asset('images/stpr2.png') }})"></div>
+              <div class="static-prize-row row">
+                <div class="col-xs-11">
+                  <img src="{{ asset('images/lamoda.png') }}" alt="">
+                </div>
+                <div class="col-sm-1"></div>
+                <div class="col-xs-12">
+                  <div class="static-prize-price nowrap">4000 P - <span>6 шт</span></div>
+                </div>
+              </div>
+              <div class="static-prize-row row">
+                <div class="col-xs-11">
+                  <img src="{{ asset('images/yr.png') }}" class="img-yr" alt="">
+                </div>
+                <div class="col-sm-1"></div>
+                <div class="col-xs-12">
+                  <div class="static-prize-price nowrap">3000 P - <span>6 шт</span></div>
+                </div>
+              </div>
+              <div class="static-prize-row row">
+                <div class="col-xs-11">
+                  <img src="{{ asset('images/ll.png') }}" alt="">
+                </div>
+                <div class="col-sm-1"></div>
+                <div class="col-xs-12">
+                  <div class="static-prize-price nowrap">3000 P - <span>6 шт</span></div>
+                </div>
+              </div>
+              <div class="static-prize-text">
+                Розыгрыш <br>
+                сертификатов
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <div class="static-prize static-prize-middle">
+              <div class="static-prize-title up">Главный приз</div>
+              <div class="static-prize-title-av">
+                Шопинг в Милане <br> на 200 000 Р с А. Роговым!
+              </div>
+              <div class="static-prize-img static-prize-img-r" style="background-image: url({{ asset('images/prize3.png') }})"></div>
+              <div class="static-prize-text">
+                И участие в программе <br> «Успеть за 24 часа»!
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center">
+        <a href="" class="button-purple">Зарегистрировать код</a>
+      </div>
+    </div>
   </main>
 {% endblock %}
 

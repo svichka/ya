@@ -7,8 +7,106 @@
 {% endblock %}
 
 {% block body %}
-  <main class="main" id="main">
-    Регистрация
+  <main class="main-content">
+    <div class="page-bg page-bg-reg">
+      <h1 class="static-title up">Регистрация</h1>
+      <div class="reg-form">
+        <form action="" method="POST">
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="form-block">
+                <label for="">Фамилия *</label>
+                <input type="text" placeholder="Фамилия">
+              </div>
+              <div class="form-block">
+                <label for="">Имя *</label>
+                <input type="text" placeholder="Имя">
+              </div>
+              <div class="form-block">
+                <label for="">Дата рождения *</label>
+                <input type="text" placeholder="18.08.1988" class="js-date">
+              </div>
+              <div class="form-block">
+                <label for="">Email *</label>
+                <input type="email" placeholder="email334@email.com">
+              </div>
+            </div>
+            <div class="col-xs-12">
+              <div class="form-block">
+                <label for="">Регион *</label>
+                <input type="text" placeholder="Регион">
+              </div>
+              <div class="form-block">
+                <label for="">Город *</label>
+                <input type="text" placeholder="Город">
+              </div>
+              <div class="form-block">
+                <label for="">Пол *</label>
+                <div class="checkbox-wrap">
+                  <input id="izmaleY" type="radio" name="registration_form[ismale]" value="Y">
+                  <span></span>
+                </div>
+                <div class="checkbox-title">М</div>
+                <div class="checkbox-wrap">
+                  <input id="izmaleN" type="radio" name="registration_form[ismale]" value="N">
+                  <span></span>
+                </div>
+                <div class="checkbox-title">Ж</div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="form-block">
+                <label for="">Пароль *</label>
+                <input type="password" placeholder="Пароль">
+              </div>
+            </div>
+            <div class="col-xs-12">
+              <div class="form-block">
+                <label for="">Повторите пароль *</label>
+                <input type="password" placeholder="Повторите пароль">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="form-block">
+                <div class="media-checkbox">
+                  <div class="checkbox-wrap">
+                    <input id="izmale" type="checkbox" name="" value="">
+                    <span></span>
+                  </div>
+                  <div class="checkbox-title">
+                    Я подтверждаю, что мне исполнилось 18 лет на момент участия в Акции
+                  </div>
+                </div>
+                <div class="media-checkbox">
+                  <div class="checkbox-wrap">
+                    <input id="izmale" type="checkbox" name="" value="">
+                    <span></span>
+                  </div>
+                  <div class="checkbox-title">
+                    Я согласен с правилами акции и пользовательским <br>
+                    соглашением, а также на обработку моих данных
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12">
+              <div class="form-block">
+                <div class="captcha-wrap">
+                  <div class="g-recaptcha" data-sitekey="6LdLP0EUAAAAAJYVwt6pbJ5g1i9WdCNKrOEv_hBo"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-btn text-center">
+            <button class='gradient-btn'>Зарегистрироваться</button>
+          </div>
+        </form>
+      </div>
+    </div>
   </main>
 {% endblock %}
 

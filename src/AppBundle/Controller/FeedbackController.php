@@ -42,7 +42,7 @@
       {
         $formInputData['user_id'] = $user->getParticipant()->id;
         $formInputData['email'] = $user->getParticipant()->email;
-        $formInputData['agree'] = 'Y';
+        $formInputData['agree'] = true;
         $form = $this->createForm(AuthorizedUserFormType::class, $formInputData);
       }
       else
