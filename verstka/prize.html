@@ -11,7 +11,7 @@
 	<link rel="stylesheet" href="./css/jquery.datetimepicker.css">  
 	<link rel="stylesheet" href="./css/fonts.css">  
 	<link rel="stylesheet" href="./css/index.css">   
-	<link rel="stylesheet" href="./css/main.css">   
+	<link rel="stylesheet" href="./css/media.css">   
 	<script type="text/javascript" src="./js/jquery-2.2.1.min.js" charset="utf-8"></script>
 	<script src="./js/owl.carousel.min.js"></script>
 	<script src="./js/jquery.datetimepicker.js"></script>
@@ -23,14 +23,19 @@
 	<div class="full-screen container-mp">
 		<header class="page_header">
 			<div class="row header-bg">
-				<div class="col-lg-5">
+				<div class="col-xs-24 col-sm-5">
 					<div class="header-logo">
 						<a href="">
 							<img src="images/logo.png" alt="">
 						</a>
 					</div>
 				</div>
-				<div class="col-lg-19">
+				<div class="col-xs-19">
+					<div class="mobile-menu js-menu-toggler visible-xs">
+						<div></div>
+						<div></div>
+						<div></div>
+					</div>
 					<div class="header-menu-wrap">
 						<ul class="up header-menu">
 							<li>
@@ -55,10 +60,14 @@
 		</header>
 		<main class="main-content">
 			<div class="page-bg page-bg-empty">
+				<h2 class="static-title visible-xs up">Призы</h2>
 				<h1 class='adventure-title'>Выигрывай модные призы!</h1>
+				<div class="text-center visible-xs">
+					<a href="" class="button-purple">Зарегистрировать код</a>
+				</div>
 				<div class="static-prize-blocks">
 					<div class="row">
-						<div class="col-sm-8">
+						<div class="col-md-8 col-sm-12 col-xs-24 ">
 							<div class="static-prize">
 								<div class="static-prize-title up">Гарантированно</div>
 								<div class="static-prize-img" style="background-image: url(images/stpr1.png)"></div>
@@ -66,8 +75,8 @@
 									<div class="col-xs-12">
 										<img src="images/lamoda.png" alt="">
 									</div>
-									<div class="col-sm-6"></div>
-									<div class="col-xs-6">
+									<div class="col-lg-6 col-xs-4"></div>
+									<div class="col-lg-6 col-xs-8">
 										<div class="static-prize-price">600 P</div>
 										<div class="static-prize-post-price">от 3000 Р</div>
 									</div>
@@ -76,8 +85,8 @@
 									<div class="col-xs-12">
 										<img src="images/yr.png" class="img-yr img-m15" alt="">
 									</div>
-									<div class="col-sm-6"></div>
-									<div class="col-xs-6">
+									<div class="col-lg-6 col-xs-4"></div>
+									<div class="col-lg-6 col-xs-8">
 										<div class="static-prize-price">500 P</div>
 										<div class="static-prize-post-price">от 3000 Р</div>
 									</div>
@@ -86,8 +95,8 @@
 									<div class="col-xs-12">
 										<img src="images/ll.png" class="img-m15" alt="">
 									</div>
-									<div class="col-sm-6"></div>
-									<div class="col-xs-6">
+									<div class="col-lg-6 col-xs-4"></div>
+									<div class="col-lg-6 col-xs-8">
 										<div class="static-prize-price">30%</div>
 										<div class="static-prize-post-price">на все виды маникюра</div>
 									</div>
@@ -98,7 +107,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-sm-8">
+						<div class="col-md-8 col-sm-12 col-xs-24 ">
 							<div class="static-prize static-prize-middle">
 								<div class="static-prize-title up">Еженедельно</div>
 								<div class="static-prize-img static-prize-img-s" style="background-image: url(images/stpr2.png)"></div>
@@ -135,7 +144,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-sm-8">
+						<div class="col-md-8 col-sm-12 col-xs-24 col-sm-offset-6 col-md-offset-0">
 							<div class="static-prize static-prize-middle">
 								<div class="static-prize-title up">Главный приз</div>
 								<div class="static-prize-title-av">
@@ -149,20 +158,18 @@
 						</div>
 					</div>
 				</div>
-				<div class="text-center">
+				<div class="text-center hidden-xs">
 					<a href="" class="button-purple">Зарегистрировать код</a>
 				</div>
 			</div>
 		</main>
-		<footer class='page_footer text-center hidden-xs up'>
+		<footer class='page_footer text-center up'>
 			<div class="page-footer-bg">
 				<a href="" class='up'>Правила акции</a> | <a href="" class='up'>Пользовательское соглашение</a>				
 				<div class="">© ВСЕ ПРАВА ЗАЩИЩЕНЫ</div>
 			</div>
 		</footer>
 	</div>
-	<footer class='page_footer text-center visible-xs'>
-	</footer>
 
 
 

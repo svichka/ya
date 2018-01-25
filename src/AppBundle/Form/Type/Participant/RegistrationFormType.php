@@ -22,8 +22,8 @@
         ->add('email', EmailType::class, ['label' => "Email*", 'attr' => ["placeholder" => "email@email.com"]])
         ->add('firstname', TextType::class, ['label' => "Имя*", 'attr' => ["placeholder" => "Имя", 'onkeyup' => 'Ru(this)']])// ,"onkeyup"=>"Ru(this);"
         ->add('lastname', TextType::class, ['label' => "Фамилия*", 'attr' => ["placeholder" => "Фамилия", 'onkeyup' => 'Ru(this)']])// ,"onkeyup"=>"Ru(this);"
-        ->add('secname', TextType::class, ['label' => "Отчество", 'required' => false, 'attr' => ["placeholder" => "Отчество", 'onkeyup' => 'Ru(this)']])// ,"onkeyup"=>"Ru(this);"
-        ->add('birthdate', TextType::class, ['label' => 'Дата рождения*', 'attr' => ['class' => 'form__input_type_date', "placeholder" => "01.01.1990"]])
+//        ->add('secname', TextType::class, ['label' => "Отчество", 'required' => false, 'attr' => ["placeholder" => "Отчество", 'onkeyup' => 'Ru(this)']])// ,"onkeyup"=>"Ru(this);"
+        ->add('birthdate', TextType::class, ['label' => 'Дата рождения*', 'attr' => ['class' => 'js-date', "placeholder" => "18.08.1988"]])
         ->add('password', PasswordType::class, ['label' => 'Пароль*', 'mapped' => false, 'attr' => ['plaseholder' => 'Пароль']])
         ->add('confirm_password', PasswordType::class, ['label' => 'Повторите пароль*', 'mapped' => false, 'attr' => ['plaseholder' => 'Повторите пароль']])
         ->add('countrycode', ChoiceType::class, ['label' => 'Страна'])
@@ -47,7 +47,8 @@
           ],
         ])
         ->add('isageagreed', CheckboxType::class, ['required' => false, 'value' => 'Y', 'label' => 'Я подтверждаю, что мне исполнилось 18 лет на момент участия в Акции', 'attr' => ['class' => 'form__checkbox']])
-        ->add('ispdagreed', CheckboxType::class, ['required' => false, 'value' => 'Y', 'label' => 'Я согласен с правилами акции и поьзовательским соглашением, а так же на обработку моих данных', 'attr' => ['class' => 'form__checkbox']]);
+        ->add('ispdagreed', CheckboxType::class, ['required' => false, 'value' => 'Y', 'label' => 'Я согласен с правилами акции и пользовательским
+соглашением, а также на обработку моих данных', 'attr' => ['class' => 'form__checkbox']]);
       
       $builder->addEventListener(FormEvents::PRE_SET_DATA, [$this, 'callbackGeoFields']);
       $builder->addEventListener(FormEvents::PRE_SUBMIT, [$this, 'callbackGeoFields']);

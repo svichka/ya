@@ -11,11 +11,12 @@
 	<link rel="stylesheet" href="./css/jquery.datetimepicker.css">  
 	<link rel="stylesheet" href="./css/fonts.css">  
 	<link rel="stylesheet" href="./css/index.css">   
-	<link rel="stylesheet" href="./css/main.css">   
+	<link rel="stylesheet" href="./css/media.css">   
 	<script type="text/javascript" src="./js/jquery-2.2.1.min.js" charset="utf-8"></script>
 	<script src="./js/owl.carousel.min.js"></script>
 	<script src="./js/jquery.datetimepicker.js"></script>
 	<script src="./js/bootstrap.min.js"></script>
+	<script src="./js/suggest.js"></script>
 	<script src="./js/index.js"></script>
 	<script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
@@ -113,15 +114,19 @@
 					<div class="modal-static">
 						<p>
 							Поздравляем, Вы получаете <br>
-							гарантированный приз  — <br>
-							код на скидку в интернет-магазине 
+							гарантированный приз  — код на скидку <br>
+							в интернет-магазине 
 							<img src="images/lamoda.png" class="modal-single-img" alt="">
+							Также Ваш код будет участвовать  <br>
+							в розыгрыше еженедельного <br>
+							приза – сертификат
+							<img src="images/lamoda.png" class="modal-single-img" alt="">
+							и в розыгрыше главного приза <br><br>
+
 							Розыгрыш еженедельного приза <br> 
-							состоится ХХ марта 2018
+							состоится 01.01.2025
 						</p>
-						<div class="form-btn text-center">
-							<button class="gradient-btn xxs-button" data-dismiss="modal">Отправить</button>
-						</div>
+						
 					</div>				
 				</div>			
 			</div>
@@ -307,9 +312,12 @@
 				</div>
 				<div class="modal-body">
 					<div class="modal-static">
-						Спасибо, мы получили Ваш вопрос, <br> 
-						вернемся с ответом после <br>
-						его обработки. 
+						<p>
+							Спасибо! <br><br>					
+							Ваш вопрос отправлен Оператору Акции. <br>
+							Мы вернемся к Вам с ответом <br>
+							в течение 24 часов.
+						</p>
 					</div>
 				</div>			
 			</div>
@@ -336,19 +344,19 @@
 					</div>
 					<div class="prize-select-row">
 						<div class="row">
-							<div class="col-sm-8 prize-select-block">
+							<div class="col-xs-8 prize-select-block">
 								<div class="img-choise-prize" style="background-image: url(images/yr.png)"></div>
 								<input type="radio" name="prize-garant">
 								<img src="images/t.png" alt="">
 								<img src="images/t1.png" alt="">
 							</div>
-							<div class="col-sm-8 prize-select-block">
+							<div class="col-xs-8 prize-select-block">
 								<div class="img-choise-prize" style="background-image: url(images/lamoda.png)"></div>
 								<input type="radio" name="prize-garant">
 								<img src="images/t.png" alt="">
 								<img src="images/t1.png" alt="">
 							</div>
-							<div class="col-sm-8 prize-select-block">
+							<div class="col-xs-8 prize-select-block">
 								<div class="img-choise-prize" style="background-image: url(images/ll.png)"></div>
 								<input type="radio" name="prize-garant">
 								<img src="images/t.png" alt="">
@@ -367,19 +375,19 @@
 					</div>
 					<div class="prize-select-row">
 						<div class="row">
-							<div class="col-sm-8 prize-select-block">
+							<div class="col-xs-8 prize-select-block">
 								<div class="img-choise-prize" style="background-image: url(images/yr.png)"></div>
 								<input type="radio" name="prize-daily">
 								<img src="images/t.png" alt="">
 								<img src="images/t1.png" alt="">
 							</div>
-							<div class="col-sm-8 prize-select-block">
+							<div class="col-xs-8 prize-select-block">
 								<div class="img-choise-prize" style="background-image: url(images/lamoda.png)"></div>
 								<input type="radio" name="prize-daily">
 								<img src="images/t.png" alt="">
 								<img src="images/t1.png" alt="">
 							</div>
-							<div class="col-sm-8 prize-select-block">
+							<div class="col-xs-8 prize-select-block">
 								<div class="img-choise-prize" style="background-image: url(images/ll.png)"></div>
 								<input type="radio" name="prize-daily">
 								<img src="images/t.png" alt="">
@@ -397,8 +405,8 @@
 									</div>
 								</div>
 								<div class="col-sm-1"></div>
-								<div class="col-sm-10">
-								<button class="gradient-btn xxs-button" data-dismiss="modal" disabled="">ОК</button>
+								<div class="col-sm-10 col-xs-text-center">
+									<button class="gradient-btn xxs-button" data-dismiss="modal" disabled="">ОК</button>
 								</div>
 							</div>
 						</form>

@@ -5,107 +5,60 @@
 {% block title %}
   Регистрация
 {% endblock %}
-
+{% form_theme form 'AppBundle:Forms:form_div_layout.html.twig' %}
 {% block body %}
   <main class="main-content">
     <div class="page-bg page-bg-reg">
       <h1 class="static-title up">Регистрация</h1>
       <div class="reg-form">
-        <form action="" method="POST">
-          <div class="row">
-            <div class="col-xs-12">
-              <div class="form-block">
-                <label for="">Фамилия *</label>
-                <input type="text" placeholder="Фамилия">
-              </div>
-              <div class="form-block">
-                <label for="">Имя *</label>
-                <input type="text" placeholder="Имя">
-              </div>
-              <div class="form-block">
-                <label for="">Дата рождения *</label>
-                <input type="text" placeholder="18.08.1988" class="js-date">
-              </div>
-              <div class="form-block">
-                <label for="">Email *</label>
-                <input type="email" placeholder="email334@email.com">
-              </div>
-            </div>
-            <div class="col-xs-12">
-              <div class="form-block">
-                <label for="">Регион *</label>
-                <input type="text" placeholder="Регион">
-              </div>
-              <div class="form-block">
-                <label for="">Город *</label>
-                <input type="text" placeholder="Город">
-              </div>
-              <div class="form-block">
-                <label for="">Пол *</label>
-                <div class="checkbox-wrap">
-                  <input id="izmaleY" type="radio" name="registration_form[ismale]" value="Y">
-                  <span></span>
-                </div>
-                <div class="checkbox-title">М</div>
-                <div class="checkbox-wrap">
-                  <input id="izmaleN" type="radio" name="registration_form[ismale]" value="N">
-                  <span></span>
-                </div>
-                <div class="checkbox-title">Ж</div>
-              </div>
+        {{ form_start(form) }}
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-block">
+              {% for error in errors %}
+                <label style="margin-bottom: 15px; padding: 15px;">{{ error|trans }}</label>
+              {% endfor %}
             </div>
           </div>
-          <div class="row">
-            <div class="col-xs-12">
-              <div class="form-block">
-                <label for="">Пароль *</label>
-                <input type="password" placeholder="Пароль">
-              </div>
-            </div>
-            <div class="col-xs-12">
-              <div class="form-block">
-                <label for="">Повторите пароль *</label>
-                <input type="password" placeholder="Повторите пароль">
-              </div>
-            </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            {{ form_row(form.lastname) }}
+            {{ form_row(form.firstname) }}
+            {{ form_row(form.birthdate) }}
+            {{ form_row(form.email) }}
+
           </div>
-          <div class="row">
-            <div class="col-xs-12">
-              <div class="form-block">
-                <div class="media-checkbox">
-                  <div class="checkbox-wrap">
-                    <input id="izmale" type="checkbox" name="" value="">
-                    <span></span>
-                  </div>
-                  <div class="checkbox-title">
-                    Я подтверждаю, что мне исполнилось 18 лет на момент участия в Акции
-                  </div>
-                </div>
-                <div class="media-checkbox">
-                  <div class="checkbox-wrap">
-                    <input id="izmale" type="checkbox" name="" value="">
-                    <span></span>
-                  </div>
-                  <div class="checkbox-title">
-                    Я согласен с правилами акции и пользовательским <br>
-                    соглашением, а также на обработку моих данных
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xs-12">
-              <div class="form-block">
-                <div class="captcha-wrap">
-                  <div class="g-recaptcha" data-sitekey="6LdLP0EUAAAAAJYVwt6pbJ5g1i9WdCNKrOEv_hBo"></div>
-                </div>
-              </div>
-            </div>
+          <div class="col-sm-12">
+            {{ form_row(form.regionguid) }}
+            {{ form_row(form.cityguid) }}
+            {{ form_row(form.ismale) }}
           </div>
-          <div class="form-btn text-center">
-            <button class='gradient-btn'>Зарегистрироваться</button>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            {{ form_row(form.password) }}
           </div>
-        </form>
+          <div class="col-sm-12">
+            {{ form_row(form.confirm_password) }}
+          </div>
+        </div>
       </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="form-block">
+            {{ form_row(form.isageagreed) }}
+            {{ form_row(form.ispdagreed) }}
+          </div>
+        </div>
+        <div class="col-sm-12">
+          {{ form_row(form.recaptcha) }}
+        </div>
+      </div>
+      <div class="form-btn text-center">
+        <button class='gradient-btn'>Зарегистрироваться</button>
+      </div>
+      {{ form_end(form) }}
     </div>
   </main>
 {% endblock %}
@@ -116,8 +69,121 @@
 
 {% block modals %}
   {{ parent() }}
+  <!-- Modal -->
+  <div class="modal fade" id="age" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body">
+          <div class="modal-static">
+            К сожалению, согласно правилам,<br>
+            принять участие в Акции могут только <br>
+            лица, достигшие 18 лет.
+          </div>
+          <div class="form-btn text-center">
+            <button class="gradient-btn xxs-button" data-dismiss="modal">ОК</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exists" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title up" id="myModalLabel">
+            Уважаемый участник!
+          </h4>
+        </div>
+        <div class="modal-body">
+          <div class="modal-static">
+            <p>
+              Введенные Вами данные уже <br> существуют.
+            </p>
+            <p>
+              Если Вы участвовали в других акциях <br> группы Компании <a href="">PepsiCo Россия</a>,
+              то <br> можете использовать прежний логин и <br>пароль для <a href="">авторизации</a> на сайт. <br>
+              Если необходимо восстановить пароль, <br> воспользуйтесь формой <br> 
+              <a href="">восстановления пароля</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="success" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title up" id="myModalLabel">
+            Уважаемый участник!
+          </h4>
+        </div>
+        <div class="modal-body">
+          <div class="modal-static">
+            Вы успешно зарегистрировались. <br>
+            Для подтверждения адреса <br>
+            электронной почты на указанный Вами <br>
+            e-mail отправлено письмо.
+            <p class="modal-xs-text">
+              *Если письмо не пришло – проверьте папку «Спам» <br> или обратитесь в <a href="">обратную связь</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 {% endblock %}
 
 {% block javascripts %}
   {{ parent() }}
+  <script>
+    $(function () {
+      regions = {{ banned_listener.regions()|json_encode|raw }};
+      select = $("select#registration_form_regionguid");
+      selectC = $("select#registration_form_cityguid");
+
+      select.on('change', function () {
+        selectC.html('');
+        selectC.attr('disabled', 'disabled');
+        selectC.append('<option value="">Зарузка...</option>');
+        var data = { region: select.val() };
+        loadCities(data);
+      });
+
+      function loadCities(data) {
+        $.ajax({
+          url: '{{ path('cities_json') }}',
+          type: 'post',
+          data: data,
+          success: function (json) {
+            var s;
+            selectC.html('');
+            selectC.append('<option value="">Выберите город</option>');
+            for (var key in json) {
+              if (json.hasOwnProperty(key)) {
+                selectC.append('<option value="' + json[ key ] + '">' + key + '</option>');
+              }
+            }
+            selectC.removeAttr('disabled', 'disabled');
+          },
+        });
+      }
+    });
+
+
+  </script>
 {% endblock %}

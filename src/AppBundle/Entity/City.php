@@ -139,4 +139,8 @@
     {
       $this->short_name = $short_name;
     }
+  
+    public function __toString() {
+      return $this->name;
+    }
   }

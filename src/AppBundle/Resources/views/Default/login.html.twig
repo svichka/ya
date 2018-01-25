@@ -95,37 +95,29 @@
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                 aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title up" id="myModalLabel">
+            Изменение пароля
+          </h4>
         </div>
         <div class="modal-body">
-          <div class="modal-static">
-            <span id="restore_result"></span>
-          </div>
           <div class="modal-reg-form mt20">
             <form action="{{ path('drop_password_page') }}" id="form_pass_restore" method="post"
                   enctype="multipart/form-data">
+              <input type="hidden" name="email" value="{{ code }}">
               <div class="row">
                 <div class="col-sm-14 col-sm-offset-5 col-xs-offset-0">
                   <div class="form-block">
-                    <input type="text" class="text-center" placeholder="Введите код" name="email">
+                    <label for="">Новый пароль</label>
+                    <input type="password" name="password1" class="text-center" placeholder="Пароль">
                   </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-14 col-sm-offset-5 col-xs-offset-0">
                   <div class="form-block">
-                    <input type="password" class="text-center" placeholder="Пароль" name="password1">
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-14 col-sm-offset-5 col-xs-offset-0">
-                  <div class="form-block">
-                    <input type="password" class="text-center" placeholder="Повтор пароля" name="password2">
+                    <label for="">Повторите новый пароль</label>
+                    <input type="password" name="password2" class="text-center" placeholder="Пароль">
                   </div>
                 </div>
               </div>
               <div class="form-btn text-center">
-                <button class="gradient-btn xxs-button">ОК</button>
+                <button class="gradient-btn xxs-button">Сохранить</button>
               </div>
             </form>
           </div>
@@ -149,10 +141,10 @@
         },
         success: function showResponse(responseText, statusText, xhr, $form) {
           console.log(responseText);
-          if(responseText.status === 200){
+          if (responseText.status === 200) {
+            $('#recover').modal('hide')
             showMessage("На почту выслано письмо для востановления пароля");
-
-          }else{
+          } else {
             $('#recover_result').text(responseText.error);
           }
         },
@@ -170,15 +162,22 @@
         },
         success: function showResponse(responseText, statusText, xhr, $form) {
           console.log(responseText);
-          if(responseText.status === 200){
+          if (responseText.status === 200) {
+            $.modal.close();
+            $('#restore').modal('hide');
             showMessage("Пароль установлен выполните вход");
 
-          }else{
+          } else {
             $('#restore_result').text(responseText.error);
           }
         },
       };
       $('#form_pass_restore').ajaxForm(options);
     });
+  </script>
+  <script>
+    {% if code %}
+    $('#restore').modal();
+    {% endif %}
   </script>
 {% endblock %}

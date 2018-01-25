@@ -85,20 +85,20 @@
         
         foreach ($cities as $city)
         {
+          $output->writeln(print_r($city->getTitle(), true));
           $title = $city->getTitle();
-          
           $c = new City();
           $c->setRegiongiud($r->getGuid());
           $c->setGuid($city->getGuid());
           $c->setName($title);
           $c->setShortname($city->getShortname());
-          
+          $output->writeln(print_r($c, true));
           $em->merge($c);
-          
+          $em->flush();
         }
       }
       
-      $em->flush();
+      
       
       
       $output->writeln('Whoa!');

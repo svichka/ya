@@ -142,11 +142,11 @@
         $participantApi = new ParticipantApiController();
         try
         {
-          $recaptcha = $this->container->get('app.recaptcha');
-          if (!$recaptcha->isSuccess($request))
-          {
-            throw new NotCorrectDataException('Not correct recaptcha');
-          }
+//          $recaptcha = $this->container->get('app.recaptcha');
+//          if (!$recaptcha->isSuccess($request))
+//          {
+//            throw new NotCorrectDataException('Not correct recaptcha');
+//          }
           if ($form->get('password')->getData() != $form->get('confirm_password')->getData())
           {
             throw new NotCorrectDataException('Confirm password does not match the password');
@@ -179,14 +179,7 @@
           {
             throw new NotCorrectDataException("Введите верную дату рождения");
           }
-//          if ($m > 12)
-//          {
-//            throw new NotCorrectDataException("Введите верную дату рождения");
-//          }
-//          if ($d = 31 && in_array($m, [2, 4, 6, 9, 11]))
-//          {
-//            throw new NotCorrectDataException("Введите верную дату рождения");
-//          }
+
           
           $age = \DateTime::createFromFormat('d.m.Y', $formData->birthdate)
             ->diff(new \DateTime('now'))

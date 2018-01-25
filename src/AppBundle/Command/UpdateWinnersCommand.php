@@ -52,8 +52,20 @@
         '============',
         '',
       ]);
-  
-      $output->writeln('Тут будет новая логика!');
+      $lotteryApi = new PromoLotteryApiController();
+      foreach (["moda_lamoda_weekly", "moda_yves_rocher_weekly", "moda_lenina_weekly", "moda_dream"] as $promo_slug)
+      {
+        $lotteries = $lotteryApi->getLotteries($promo_slug);
+        foreach ($lotteries as $lottery)
+        {
+          if ($lottery['is_ready'])
+          {
+            $winners = $lotteryApi->getLotteryWinners($promo_slug, $lottery['id']);
+            $this->updateWinners($winners, $lottery);
+          }
+        }
+      }
+      
       
       $output->writeln('Whoa!');
     }

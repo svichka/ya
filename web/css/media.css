@@ -1,0 +1,660 @@
+@media (max-width:1400px){
+	.header-logo img {
+		width: 216px;
+	}
+	.page_header {
+		height: 104px;
+	}
+	.header-menu li a {
+		font-size: 16px;
+	}
+
+	.header-menu {
+		margin-top: 19px;
+	}
+	.top-text img {
+		margin-top: 20px;
+	}
+	.prize-img {
+		height: 245px;
+	}
+
+	.prize-img-1 {
+		background-size:  125px;
+	}
+
+	.prize-img-2 {
+		background-size: 148px;
+		background-position-y: 60px;
+	}
+
+	.prize-img-3 {
+		background-size: 185px;
+		background-position-y: 63px;
+	}
+	.prize-desc img {
+		width: 54%;
+	}
+	.prizes-row {
+		margin-top: 28px;
+	}
+	.page-bg:after {
+		width: 290px;
+	}
+	.static-title {
+		font-size: 21px;
+	}
+
+	.faq-title {
+		font-size: 17px;
+		margin-bottom: 7px;
+	}
+
+	.faq-item {
+		margin-bottom:  6px;
+	}
+	.js-faq-wrapper {
+		height: 470px;
+	}
+	.page-bg.page-bg-faq:after {
+		background-size: 80%;
+	}
+	.page-bg.page-bg-empty {
+		padding-left: 40px;
+		padding-right: 40px;
+	}
+	.static-prize-title {
+		font-size: 21px;
+	}
+
+	.static-prize-img {
+		height: 92px;
+	}
+
+	.static-prize-img.static-prize-img-s {
+		background-size: 119px;
+	}
+
+	.static-prize-row img {
+		width: 90px;
+	}
+
+	.static-prize-price {
+		font-size: 20px;
+	}
+
+	.static-prize-middle .static-prize-price {
+		text-align: center;
+	}
+
+	.static-prize-text {
+		font-size: 18px;
+	}
+	
+	.static-prize-img.static-prize-img-r {
+		height: 216px;
+		background-size:  220px;
+	}
+
+	.static-prize {
+		height: 445px;
+	}
+	.static-prize-title-av {
+		font-size: 22px;
+	}
+	.adventure-title {
+		font-size: 53px;
+		margin: 30px auto;
+	}
+	.form-block textarea {
+		height: 200px;
+	}
+	.static-prize {
+		border-radius: 80px;
+	}
+
+	.static-prize-title {
+		font-size: 20px;
+	}
+
+	.static-prize-middle .static-prize-price {
+		margin-bottom: 0;
+		margin-top:  7px;
+	}
+
+	.static-prize-row {
+		height: 40px;
+	}
+
+	.static-prize-row img {
+		width: 70px;
+	}
+
+	.static-prize-row img.img-yr {
+		width: 100px;
+	}
+
+	.static-prize-price {
+		font-size: 18px;
+	}
+
+	.static-prize-post-price {
+		line-height: 12px;
+	}
+
+	.static-prize-text {
+		margin-top:  28px;
+		font-size: 16px;
+	}
+
+	.static-prize-title-av {
+		font-size: 20px;
+	}
+
+	.static-prize-img.static-prize-img-r {
+		height: 187px;
+		background-size: 187px;
+		margin: 0;
+	}
+	.form-block label {
+		font-size: 15px;
+	}
+	.form-block input , .form-block select {
+		font-size: 14px;
+	}
+	.page-bg.page-bg-empty.content-center {
+		padding: 40px;
+	}
+	.week-title {
+		font-size: 18px;
+	}
+	.week-cell {
+		font-size: 13px;
+	}
+}
+@media (max-width:1200px){
+	.header-logo img {
+		width: 230px;
+	}
+	.header-bg {
+		padding-top: 26px;
+		background-size: auto 23px;
+	}
+	.header-menu li a {
+		font-size: 15px;
+	}
+	.page_header {
+		height: 94px;
+	}
+	.form-block {
+		margin-bottom: 13px;
+	}
+	.page-bg {
+		padding-top: 15px;
+		padding-left: 290px;
+		padding-bottom: 35px;
+		padding-right: 30px;
+	}
+	.page-bg:after {
+		width: 280px;
+		border-top: 30px solid transparent;
+	}
+	.header-menu li {
+		margin: 0 18px;
+	}
+	.static-prize-title-av {
+		font-size: 19px;
+	}
+	.media-checkbox .checkbox-title {
+		font-size: 11px;
+		font-family: 'Conv_agavalanchec';
+	}
+	.personal-info-block {
+		float: right;
+	}
+}
+
+@media (max-width:992px){
+	.header-logo img {
+		width: 150px;
+	}
+	.header-menu li {
+		margin: 0 10px;
+	}
+
+	.header-menu li a {
+		font-size: 14px;
+	}
+
+	.page_header {
+		height: 75px;
+	}
+	.page-bg {
+		padding-left:  30px;
+		padding-bottom: 290px;
+	}
+	.page-bg:after {
+		width: 200px;
+		height: 280px;
+		border-top: none;
+		background-position: center bottom;
+		top: auto;
+		left: 50%;
+		margin-left: -100px;
+		background-image: url(../images/girl-sm.png);
+	}
+	.top-text img {
+		width: 90%;
+		margin: 0 auto 0;
+		display: block;
+	}
+	.button-purple {
+		font-size: 17px;
+		padding: 12px 30px;
+	}
+	.mp-button {
+		margin-top: 10px;
+	}
+	.prize-img {
+		height: 200px;
+	}
+	.prize-img-1 {
+		background-size: 100px;
+	}
+	.prize-img-2 {
+		background-size: 127px;
+		background-position-y: 48px;
+	}
+	.prize-img-3 {
+		background-size: 150px;
+		background-position-y: 51px;
+	}
+	.prize-desc img {
+		width: 69%;
+	}
+	.prize-desc {
+		margin-top: 10px;
+	}
+	.header-menu {
+		text-align: right;
+		margin-top: 2px;
+	}
+	.page-bg.page-bg-faq:after, .page-bg.page-bg-reg:after , .page-bg-feedback:after {
+		display: none;
+	}
+	.static-prize {
+		margin-bottom: 20px;
+	}
+	.adventure-title {
+		font-size: 39px;
+	}
+	.week-cell {
+		font-size: 12px;
+		padding: 10px 0;
+	}
+	.page-bg:before {
+		-webkit-background-size: 90%;
+		background-size: 90%;
+	}
+	.date-input {
+		width: 200px;
+	}
+
+	.seacrh-wrap {
+		margin-right: 15px;
+	}
+
+	.seacrh-wrap input {
+		width: 250px;
+		padding: 4px 8px 5px;
+	}
+}
+@media (max-width:870px){
+	.header-menu li {
+		margin: 0 6px;
+	}
+	.header-menu li a{
+		font-size: 13px;
+	}
+}
+@media (max-width:768px){
+	.static-title {
+		padding-left: 50px;
+		font-size: 16px;
+		margin-top: -44px;
+	}
+	.modal-title {
+		font-size: 25px;
+	}
+	.modal-body {
+		padding-bottom: 10px;
+	}
+	button.close {
+		right: -15px;
+		top: -20px;
+	}
+	.modal-static p.modal-xs-text {
+		margin-bottom: 10px;
+	}
+	.col-xs-text-center {
+		text-align: center;
+	}
+	.modal-static, .modal-static p, .modal-static a {
+		font-size: 14px;
+	}
+	.modal-header {
+		padding-top: 15px;
+	}
+	.page-bg.page-bg-empty.content-center {
+		vertical-align: text-bottom;
+		padding: 33px 15px;
+	}
+	h1.static-title.static-title-lg {
+		font-size: 18px;
+		margin-top: -63px;
+	}
+	.page-bg {
+		background: #0c2608;
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+	.header-menu {
+		display: none;
+		position: fixed;
+		top: 73px;
+		background: #164a1c;
+		left: 0;
+		width: 100%;
+		margin: 0;
+		z-index: 10;
+		text-align: left;
+		padding: 60px 24px 20px;
+		height: 100%;
+	}
+	.visible-menu .header-menu{
+		display: block;
+	}
+	body.visible-menu {
+		overflow: hidden;
+		position: fixed;
+		width: 100%;
+	}	
+	.header-menu li {
+		display: block;
+		margin-bottom:  28px;
+	}
+
+	.header-menu li a {
+		font-size: 21px;
+	}
+
+	.top-text img {
+		width: auto;
+		max-width: 100%;
+	}
+	.mp-button {
+		margin-top: 20px;
+	}
+	.top-text img {
+		width: auto;
+		max-width: 100%;
+	}
+	.prize-desc img {
+		width: 180px;
+	}
+	.prize-img {
+		height: 170px;
+		background-position-y:  center;
+		background-position-x:  center;
+		background-size:  contain;
+	}
+	.prize-item-arrows {
+		padding: 65px 0;
+	}
+	.prize-item-arrows:before, .prize-item-arrows:after {
+		top: auto;
+		bottom: auto;
+		left: 50%;
+		margin-left:  -25px;
+		-webkit-transform: rotate(90deg);
+		-ms-transform: rotate(90deg);
+		-o-transform: rotate(90deg);
+		transform: rotate(90deg);
+	}
+	.prize-item-arrows:after {
+		bottom: 0;
+	}
+	.header-logo img {
+		width: 140px;
+	}
+	.header-bg {
+		padding: 32px 20px 0;
+		background-size: auto 28px;
+		background-position-x: right;
+	}
+	.mobile-menu div {
+		height: 4px;
+		background: #e2d16b;
+		margin-bottom: 7px;
+		border-radius: 4px;
+	}
+
+	.mobile-menu {
+		width: 33px;
+		margin-top: 10px;
+		width: 33px;
+		margin-top: 10px;
+		z-index: 11;
+		position: relative;
+	}
+	.page-bg:before {
+		display: none;
+	}
+	.button-purple {
+		font-size: 15px;
+	}
+	.page-footer-bg, .page-footer-bg a, .page-footer-bg div {
+		font-size: 12px;
+	}
+	.page-footer-bg {
+		height: 100%;
+		padding: 10px 6px;
+	}
+	.form-link-lg {
+		text-decoration: none;
+		font-size: 19px;
+	}
+	.page_footer {
+		height: 80px;
+	}
+	.faq-title {
+		font-size: 13px;
+	}
+	.faq-body {
+		min-height: auto;
+		padding-bottom: 18px;
+	}
+	.js-faq-wrapper {
+		height: auto;
+	}
+	.static-prize-blocks {
+		width: 280px;
+		margin: 40px auto 0;
+	}
+
+	.static-prize {
+		border-radius: 29px;
+		height: auto;
+	}
+
+	.static-prize-title {
+		font-size: 16px;
+	}
+
+	.static-prize-img {
+		height: 78px;
+		background-size: 100px !important;
+	}
+
+	.static-prize-price {
+		font-size: 17px;
+	}
+
+	.static-prize-row img.img-yr {
+		width: 82px;
+	}
+	.adventure-title {
+		font-size: 24px;
+	}
+	.page-bg.page-bg-empty {
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+	.static-prize-img.static-prize-img-r {
+		background-size: 180px !important;
+	}
+	.form-block input , .form-block select {
+		width: 100%;
+		border-radius: 9px;
+	}
+	button.gradient-btn {
+		font-size: 15px;
+	}
+	.captcha-wrap {
+		text-align: center;
+	}
+	.g-recaptcha {
+		display: inline-block;
+		-webkit-transform: scale(0.7);
+		-ms-transform: scale(0.7);
+		-o-transform: scale(0.7);
+		transform: scale(0.7);
+	}
+	.full-screen {
+		background: #0c2608;
+	}
+	.upload-line {
+		text-align: center;
+	}
+	.media-checkbox.media-checkbox-middle {
+		text-align: center;
+	}
+	.form-block textarea {
+		height: 150px;
+	}
+	.media-checkbox.media-checkbox-middle .checkbox-title {
+		text-align: left;
+		margin-left: 7px;
+		width: auto;
+	}
+	.seacrh-wrap label {
+		display: none;
+	}
+
+	.seacrh-wrap {
+		display: block;
+		margin: 0 0 20px;
+	}
+
+	.searching-winner-line {
+		margin-bottom: 25px;
+	}
+	.week-title , .week-title * {
+		text-align: center;
+	}
+
+	.week-title {
+		font-size: 13px;
+		height: 49px;
+	}
+
+	.week-item-current{
+		padding: 9px 0 0;
+	}
+	.week-table .week-row:first-child {
+		display: none;
+	}
+
+	.week-row {
+		display: block;
+		font-size: 0;
+		text-align: center;
+		position: relative;
+		padding-top: 37px;
+		padding-bottom: 12px;
+	}
+
+	.week-cell {
+		display: inline-block;
+		min-width: 50%;
+		padding: 5px 0;
+	}
+
+	.week-row:after {
+		bottom: 0;
+		background-size: contain;
+	}
+	.js-week-table-scroll {
+		height: auto;
+		padding-right: 0;
+	}
+	.week-row .week-cell.move-xs {
+		position: absolute;
+		top: 7px;
+		left: 0;
+		width: 100%;
+		text-align: center;
+	}
+	.week-item {
+		padding-left: 0;
+	}
+
+	.week-toggler {
+		left: 16px;
+		font-size: 35px;
+		top: 9px;
+	}
+	.week-toggle-block {
+		width: 98%;
+	}
+	.personal-info-block {
+		float: none;
+		text-align: center;
+		display: block;
+	}
+
+	.persoanl-link {
+		text-align: center;
+		font-size: 16px;
+	}
+}
+@media (max-width:500px){
+	.media-checkbox .checkbox-title {
+		margin-right: 0;
+		font-size: 10px;
+		width: 230px;
+	}
+	.checkbox-title {
+		margin-left: 20px;
+	}
+	.modal-pre-title {
+		font-size: 14px;
+	}
+	.modal-post-title {
+		font-size: 14px;
+		margin: 4px 0 11px;
+	}
+	.prize-select-block img {
+		width: 30px;
+	}
+	.img-choise-prize {
+		height: 26px;
+		width: 66px;
+	}
+}
+@media only screen 
+and (orientation : landscape) {
+	.header-menu li {
+		margin-bottom: 12px;
+	}
+}

@@ -1,0 +1,1704 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="0205ca8c-99dc-4958-820d-622084d2bb6e" name="Default" comment="Перенёс базовую вёрстку. Можно начинать оживлять">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/libs.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/suggest.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Command/UpdateFiasCommand.php" afterPath="$PROJECT_DIR$/src/AppBundle/Command/UpdateFiasCommand.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/SecurityController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/SecurityController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/City.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/City.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/User.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/User.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Form/Type/Participant/RegistrationFormType.php" afterPath="$PROJECT_DIR$/src/AppBundle/Form/Type/Participant/RegistrationFormType.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Resources/views/Default/base.html.twig" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/views/Default/base.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Resources/views/Default/feedback.html.twig" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/views/Default/feedback.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Resources/views/Default/login.html.twig" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/views/Default/login.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Resources/views/Default/registration.html.twig" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/views/Default/registration.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Resources/views/Forms/form_div_layout.html.twig" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/views/Forms/form_div_layout.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/verstka/LK.html" afterPath="$PROJECT_DIR$/verstka/LK.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/verstka/auth.html" afterPath="$PROJECT_DIR$/verstka/auth.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/verstka/css/index.css" afterPath="$PROJECT_DIR$/verstka/css/index.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/verstka/faq.html" afterPath="$PROJECT_DIR$/verstka/faq.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/verstka/feedback.html" afterPath="$PROJECT_DIR$/verstka/feedback.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/verstka/index.html" afterPath="$PROJECT_DIR$/verstka/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/verstka/js/index.js" afterPath="$PROJECT_DIR$/verstka/js/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/verstka/popup.html" afterPath="$PROJECT_DIR$/verstka/popup.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/verstka/prize.html" afterPath="$PROJECT_DIR$/verstka/prize.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/verstka/reg.html" afterPath="$PROJECT_DIR$/verstka/reg.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/verstka/winners.html" afterPath="$PROJECT_DIR$/verstka/winners.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/css/index.css" afterPath="$PROJECT_DIR$/web/css/index.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/index.js" afterPath="$PROJECT_DIR$/web/js/index.js" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
+    <executablePath>composer</executablePath>
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_TABLE_DETAILS" value="true" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <expand />
+    <select />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="registration.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Default/registration.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="18" column="92" lean-forward="false" selection-start-line="18" selection-start-column="92" selection-end-line="18" selection-end-column="92" />
+              <folding>
+                <element signature="e#156#197#0#Twig" expanded="true" />
+                <element signature="e#558#601#0#HTML" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DefaultController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="506">
+              <caret line="145" column="15" lean-forward="false" selection-start-line="145" selection-start-column="15" selection-end-line="145" selection-end-column="15" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="User.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/User.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="234">
+              <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="43" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RecaptchaService.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Service/RecaptchaService.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="321">
+              <caret line="59" column="18" lean-forward="false" selection-start-line="59" selection-start-column="18" selection-end-line="59" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>reload</find>
+      <find>freeModal</find>
+      <find>registra</find>
+      <find>mobile_</find>
+      <find>mobile_u</find>
+      <find>Внутренняя ошибка запроса активации номера</find>
+      <find>201</find>
+      <find>mobileMoney</find>
+      <find>mobile_co</find>
+      <find>mobile_u_json_page</find>
+      <find>jsMoney</find>
+      <find>&lt;script &gt;</find>
+      <find>jsMoneySend</find>
+      <find>enterCode</find>
+      <find>preFinModal</find>
+      <find>updat</find>
+      <find>eolModal</find>
+      <find>-edit</find>
+      <find>button_regcheck</find>
+      <find>eolM</find>
+      <find>drop_password_page</find>
+      <find>'</find>
+      <find>drop</find>
+      <find>recover_password_page</find>
+      <find>izmal</find>
+      <find>regis</find>
+      <find>/regis</find>
+      <find>form__box form__box_width_half</find>
+      <find>col-xs-12</find>
+      <find>pre_mobile_status</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>png') }}</replace>
+      <replace>емейл</replace>
+      <replace>=&gt;</replace>
+      <replace>&quot; =&gt;</replace>
+      <replace>$('body').prepend</replace>
+      <replace>&quot;{{ asset('images/prize_icon_3.png') }}&quot;</replace>
+      <replace>&lt;script&gt;</replace>
+      <replace>&quot;</replace>
+      <replace>col-sm-12</replace>
+    </replaceStrings>
+    <dirStrings>
+      <dir>$PROJECT_DIR$/src/AppBundle</dir>
+      <dir>$PROJECT_DIR$/src/AppBundle/Resources/views/Default</dir>
+      <dir>$PROJECT_DIR$/src/AppBundle/Resources</dir>
+      <dir>$PROJECT_DIR$/favorite_syrup/build</dir>
+      <dir>$PROJECT_DIR$/vendor/dalee</dir>
+      <dir>$PROJECT_DIR$/src/AppBundle/Resources/translations</dir>
+      <dir>$PROJECT_DIR$</dir>
+      <dir>$PROJECT_DIR$/vendor/dalee/pepuwsclientbundle</dir>
+      <dir>$PROJECT_DIR$/src/AppBundle/Resources/views</dir>
+      <dir>$PROJECT_DIR$/src</dir>
+      <dir>$PROJECT_DIR$/src/AppBundle/Controller</dir>
+    </dirStrings>
+  </component>
+  <component name="FrameworkRootSettings" id="Symfony2">
+    <option name="typedPaths">
+      <list>
+        <element elementPath="$PROJECT_DIR$/app" typeId="app_directory" />
+        <element elementPath="$PROJECT_DIR$/vendor" typeId="vendor_directory" />
+        <element elementPath="$PROJECT_DIR$/web" typeId="web_directory" />
+      </list>
+    </option>
+    <option name="myTypedPaths">
+      <list>
+        <element elementPath="$PROJECT_DIR$/app" typeId="app_directory" />
+        <element elementPath="$PROJECT_DIR$/vendor" typeId="vendor_directory" />
+        <element elementPath="$PROJECT_DIR$/web" typeId="web_directory" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <push-targets>
+      <push-target-info target-remote="ww" target-branch="master" repo="$PROJECT_DIR$" source="master" />
+    </push-targets>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/vendor/dalee/pepuwsclientbundle/Controller/PromoLotteryApiController.php" />
+        <option value="$PROJECT_DIR$/vendor/dalee/pepuwsclientbundle/Controller/ClientApiController.php" />
+        <option value="$PROJECT_DIR$/app/AppKernel.php" />
+        <option value="$PROJECT_DIR$/app/config/assets.json" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Controller/WinnersController.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Form/Type/Participant/PersonalProfileFormType.php" />
+        <option value="$PROJECT_DIR$/app/config/parameters_dev.yml" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Resources/translations/personal.ru.yml" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Entity/Receipt.php" />
+        <option value="$PROJECT_DIR$/app/config/security.yml" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Security/User/WebserviceUser.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Security/User/WebserviceUserProvider.php" />
+        <option value="$PROJECT_DIR$/app/config/services.yml" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Twig/AppExtension.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Entity/Winner.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Repository/WinnerRepository.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/EventListener/BannedListener.php" />
+        <option value="$PROJECT_DIR$/web/.htaccess" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Command/UpdateWinnersCommand.php" />
+        <option value="$PROJECT_DIR$/web/js/main.js" />
+        <option value="$PROJECT_DIR$/web/styles/main.css" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Default/winreport.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Static/product.html.twig" />
+        <option value="$PROJECT_DIR$/app/config/parameters.yml" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Default/drop_password.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Default/index.html.twig" />
+        <option value="$PROJECT_DIR$/composer.json" />
+        <option value="$PROJECT_DIR$/app/config/config.yml" />
+        <option value="$PROJECT_DIR$/vendor/sema/minifier-bundle/Sema/Bundle/MinifierBundle/Twig/Node/MinifyHTMLNode.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Controller/PersonalController.php" />
+        <option value="$PROJECT_DIR$/verstka/LK.html" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Default/personal.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Static/prizes.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Static/faq.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Form/Type/Feedback/NotAuthorizedUserFormType.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Form/Type/Feedback/AuthorizedUserFormType.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Controller/FeedbackController.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Default/winners.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Controller/SecurityController.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Command/UpdateFiasCommand.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Entity/City.php" />
+        <option value="$PROJECT_DIR$/verstka/index.html" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Default/feedback.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Default/login.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Form/Type/Participant/RegistrationFormType.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Default/base.html.twig" />
+        <option value="$PROJECT_DIR$/web/js/libs.js" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Forms/form_div_layout.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Default/registration.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Entity/User.php" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsFlowSettings">
+    <service-enabled>false</service-enabled>
+    <exe-path />
+    <annotation-enable>false</annotation-enable>
+    <other-services-enabled>false</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/src/AppBundle/Resources/node_modules" />
+  </component>
+  <component name="PhpServers">
+    <servers>
+      <server host="127.0.0.1" id="b86256aa-3b5d-4c53-bc0d-2add1b93434e" name="apache" />
+    </servers>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" interpreter_name="PHP 7.1">
+    <include_path>
+      <path value="$PROJECT_DIR$/vendor/sensiolabs/security-checker" />
+      <path value="$PROJECT_DIR$/vendor/paragonie/random_compat" />
+      <path value="$PROJECT_DIR$/vendor/ircmaxell/password-compat" />
+      <path value="$PROJECT_DIR$/vendor/incenteev/composer-parameter-handler" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/lexer" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/orm" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/inflector" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/annotations" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/dbal" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/instantiator" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/collections" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/common" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/doctrine-bundle" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/cache" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/doctrine-cache-bundle" />
+      <path value="$PROJECT_DIR$/vendor/symfony/monolog-bundle" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/vendor/symfony/assetic-bundle" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php70" />
+      <path value="$PROJECT_DIR$/vendor/symfony/phpunit-bridge" />
+      <path value="$PROJECT_DIR$/vendor/symfony/symfony" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-util" />
+      <path value="$PROJECT_DIR$/vendor/symfony/security-acl" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php56" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php55" />
+      <path value="$PROJECT_DIR$/vendor/symfony/swiftmailer-bundle" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php54" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-icu" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-apcu" />
+      <path value="$PROJECT_DIR$/vendor/monolog/monolog" />
+      <path value="$PROJECT_DIR$/vendor/sensio/generator-bundle" />
+      <path value="$PROJECT_DIR$/vendor/sensio/buzz-bundle" />
+      <path value="$PROJECT_DIR$/vendor/sensio/distribution-bundle" />
+      <path value="$PROJECT_DIR$/vendor/sensio/framework-extra-bundle" />
+      <path value="$PROJECT_DIR$/vendor/google/recaptcha" />
+      <path value="$PROJECT_DIR$/vendor/jdorn/sql-formatter" />
+      <path value="$PROJECT_DIR$/vendor/twig/twig" />
+      <path value="$PROJECT_DIR$/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/kriswallsmith/buzz" />
+      <path value="$PROJECT_DIR$/vendor/kriswallsmith/assetic" />
+      <path value="$PROJECT_DIR$/vendor/swiftmailer/swiftmailer" />
+      <path value="$PROJECT_DIR$/vendor/symfony/twig-bridge" />
+      <path value="$PROJECT_DIR$/vendor/patchwork/jsqueeze" />
+      <path value="$PROJECT_DIR$/vendor/leafo/scssphp" />
+      <path value="$PROJECT_DIR$/vendor/container-interop/container-interop" />
+      <path value="$PROJECT_DIR$/vendor/pimple/pimple" />
+      <path value="$PROJECT_DIR$/vendor/tubalmartin/cssmin" />
+      <path value="$PROJECT_DIR$/vendor/mrclay/jsmin-php" />
+      <path value="$PROJECT_DIR$/vendor/mrclay/props-dic" />
+      <path value="$PROJECT_DIR$/vendor/psr/container" />
+      <path value="$PROJECT_DIR$/vendor/intervention/httpauth" />
+      <path value="$PROJECT_DIR$/vendor/sema/minifier-bundle" />
+      <path value="$PROJECT_DIR$/vendor/mrclay/minify" />
+      <path value="$PROJECT_DIR$/vendor/dalee/pepuwsclientbundle" />
+    </include_path>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="800" />
+    <option name="y" value="27" />
+    <option name="width" value="800" />
+    <option name="height" value="873" />
+  </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="promo.ya-juice.ru" type="b2602c69:ProjectViewProjectNode" />
+              <item name="local.promo.ya-juice.ru" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="promo.ya-juice.ru" type="b2602c69:ProjectViewProjectNode" />
+              <item name="local.promo.ya-juice.ru" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="promo.ya-juice.ru" type="b2602c69:ProjectViewProjectNode" />
+              <item name="local.promo.ya-juice.ru" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="config" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="promo.ya-juice.ru" type="b2602c69:ProjectViewProjectNode" />
+              <item name="local.promo.ya-juice.ru" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="promo.ya-juice.ru" type="b2602c69:ProjectViewProjectNode" />
+              <item name="local.promo.ya-juice.ru" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="TwigBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="promo.ya-juice.ru" type="b2602c69:ProjectViewProjectNode" />
+              <item name="local.promo.ya-juice.ru" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="TwigBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="promo.ya-juice.ru" type="b2602c69:ProjectViewProjectNode" />
+              <item name="local.promo.ya-juice.ru" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="TwigBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Exception" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="promo.ya-juice.ru" type="b2602c69:ProjectViewProjectNode" />
+              <item name="local.promo.ya-juice.ru" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="promo.ya-juice.ru" type="b2602c69:ProjectViewProjectNode" />
+              <item name="local.promo.ya-juice.ru" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="AppBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="promo.ya-juice.ru" type="b2602c69:ProjectViewProjectNode" />
+              <item name="local.promo.ya-juice.ru" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="AppBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Command" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="promo.ya-juice.ru" type="b2602c69:ProjectViewProjectNode" />
+              <item name="local.promo.ya-juice.ru" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="AppBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Controller" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="promo.ya-juice.ru" type="b2602c69:ProjectViewProjectNode" />
+              <item name="local.promo.ya-juice.ru" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="AppBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Entity" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="promo.ya-juice.ru" type="b2602c69:ProjectViewProjectNode" />
+              <item name="local.promo.ya-juice.ru" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="AppBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="EventListener" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="promo.ya-juice.ru" type="b2602c69:ProjectViewProjectNode" />
+              <item name="local.promo.ya-juice.ru" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="AppBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Handler" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="promo.ya-juice.ru" type="b2602c69:ProjectViewProjectNode" />
+              <item name="local.promo.ya-juice.ru" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="AppBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Repository" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="promo.ya-juice.ru" type="b2602c69:ProjectViewProjectNode" />
+              <item name="local.promo.ya-juice.ru" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="AppBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="promo.ya-juice.ru" type="b2602c69:ProjectViewProjectNode" />
+              <item name="local.promo.ya-juice.ru" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="AppBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="promo.ya-juice.ru" type="b2602c69:ProjectViewProjectNode" />
+              <item name="local.promo.ya-juice.ru" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="AppBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Default" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="promo.ya-juice.ru" type="b2602c69:ProjectViewProjectNode" />
+              <item name="local.promo.ya-juice.ru" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="AppBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Forms" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="promo.ya-juice.ru" type="b2602c69:ProjectViewProjectNode" />
+              <item name="local.promo.ya-juice.ru" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="AppBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Static" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="promo.ya-juice.ru" type="b2602c69:ProjectViewProjectNode" />
+              <item name="local.promo.ya-juice.ru" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="AppBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Security" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="promo.ya-juice.ru" type="b2602c69:ProjectViewProjectNode" />
+              <item name="local.promo.ya-juice.ru" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="AppBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Security" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="User" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="promo.ya-juice.ru" type="b2602c69:ProjectViewProjectNode" />
+              <item name="local.promo.ya-juice.ru" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="AppBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Service" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="promo.ya-juice.ru" type="b2602c69:ProjectViewProjectNode" />
+              <item name="local.promo.ya-juice.ru" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="AppBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Twig" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="promo.ya-juice.ru" type="b2602c69:ProjectViewProjectNode" />
+              <item name="local.promo.ya-juice.ru" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="verstka" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="promo.ya-juice.ru" type="b2602c69:ProjectViewProjectNode" />
+              <item name="local.promo.ya-juice.ru" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="web" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="promo.ya-juice.ru" type="b2602c69:ProjectViewProjectNode" />
+              <item name="local.promo.ya-juice.ru" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="web" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="js" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="promo.ya-juice.ru" type="b2602c69:ProjectViewProjectNode" />
+              <item name="local.promo.ya-juice.ru" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="web" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="styles" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="settings.editor.selected.configurable" value="Shelf.Project.Settings" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../test-work.local" />
+    <property name="nodejs_interpreter_path" value="/usr/bin/node" />
+    <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/Resources/views" />
+      <recent name="$PROJECT_DIR$/src/AppBundle/Resources/views" />
+      <recent name="$PROJECT_DIR$/web" />
+      <recent name="$PROJECT_DIR$/app/Resources" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/web" />
+      <recent name="$PROJECT_DIR$/src/AppBundle/Resources/views/Static" />
+      <recent name="$PROJECT_DIR$/web/js" />
+      <recent name="$PROJECT_DIR$/app/config" />
+      <recent name="$PROJECT_DIR$/web/styles" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="PHP Remote Debug.Unnamed">
+    <configuration name="Docker Deployment" type="docker-deploy" factoryName="Docker Deployment" server-name="Docker">
+      <deployment type="docker-image">
+        <settings>
+          <option name="JSONFilePath" value="" />
+          <option name="command" value="" />
+          <option name="containerName" value="deploy" />
+          <option name="entrypoint" value="" />
+          <option name="imageTag" value="lamp" />
+          <option name="startBrowserSettings">
+            <browser url="http://127.0.0.1" />
+          </option>
+        </settings>
+      </deployment>
+    </configuration>
+    <configuration name="Unnamed" type="PhpRemoteDebugRunConfigurationType" factoryName="PHP Remote Debug" server_name="apache" session_id="PHP_STORM" />
+    <list size="2">
+      <item index="0" class="java.lang.String" itemvalue="Docker Deployment.Docker Deployment" />
+      <item index="1" class="java.lang.String" itemvalue="PHP Remote Debug.Unnamed" />
+    </list>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0205ca8c-99dc-4958-820d-622084d2bb6e" name="Default" comment="" />
+      <created>1498577619770</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1498577619770</updated>
+      <workItem from="1498577621861" duration="1684000" />
+      <workItem from="1499115503773" duration="4947000" />
+      <workItem from="1499191454773" duration="74000" />
+      <workItem from="1499242885631" duration="179000" />
+      <workItem from="1499872733681" duration="626000" />
+      <workItem from="1499884470773" duration="62000" />
+      <workItem from="1499884563531" duration="65000" />
+      <workItem from="1499964208570" duration="759000" />
+      <workItem from="1500048663736" duration="599000" />
+      <workItem from="1500447069303" duration="598000" />
+      <workItem from="1500451172395" duration="1835000" />
+      <workItem from="1500569249864" duration="240000" />
+      <workItem from="1500985277781" duration="622000" />
+      <workItem from="1501166496131" duration="605000" />
+      <workItem from="1501259569485" duration="1530000" />
+      <workItem from="1501778520263" duration="5319000" />
+      <workItem from="1501841258300" duration="1468000" />
+      <workItem from="1502301822882" duration="3477000" />
+      <workItem from="1502404821139" duration="30551000" />
+      <workItem from="1502616630837" duration="1242000" />
+      <workItem from="1502617904609" duration="78118000" />
+      <workItem from="1502736233147" duration="17749000" />
+      <workItem from="1502782970988" duration="33842000" />
+      <workItem from="1502870110789" duration="44877000" />
+      <workItem from="1503301616468" duration="14304000" />
+      <workItem from="1503398806512" duration="2626000" />
+      <workItem from="1503412105719" duration="21462000" />
+      <workItem from="1503508302078" duration="20858000" />
+      <workItem from="1503562081760" duration="12614000" />
+      <workItem from="1503589448398" duration="524000" />
+      <workItem from="1503590014502" duration="35048000" />
+      <workItem from="1503650872182" duration="5585000" />
+      <workItem from="1503690945651" duration="38690000" />
+      <workItem from="1503818627484" duration="14595000" />
+      <workItem from="1503861001362" duration="31264000" />
+      <workItem from="1503992268052" duration="2133000" />
+      <workItem from="1503995744819" duration="144000" />
+      <workItem from="1503996300861" duration="2097000" />
+      <workItem from="1504013650506" duration="8008000" />
+      <workItem from="1504033866274" duration="34000" />
+      <workItem from="1504078752619" duration="14380000" />
+      <workItem from="1504114243902" duration="27000" />
+      <workItem from="1504122726049" duration="1951000" />
+      <workItem from="1504186155985" duration="1444000" />
+      <workItem from="1504252417423" duration="281000" />
+      <workItem from="1504270912348" duration="2581000" />
+      <workItem from="1504386035313" duration="2954000" />
+      <workItem from="1504435949339" duration="41000" />
+      <workItem from="1504444446063" duration="2023000" />
+      <workItem from="1504474004558" duration="3191000" />
+      <workItem from="1504509918119" duration="1252000" />
+      <workItem from="1504520505253" duration="2584000" />
+      <workItem from="1504531489919" duration="1699000" />
+      <workItem from="1504542586770" duration="3398000" />
+      <workItem from="1504603275771" duration="7167000" />
+      <workItem from="1504636111964" duration="75000" />
+      <workItem from="1504644355711" duration="665000" />
+      <workItem from="1504682175277" duration="430000" />
+      <workItem from="1504701581201" duration="5373000" />
+      <workItem from="1504727116987" duration="1314000" />
+      <workItem from="1505115137782" duration="8367000" />
+      <workItem from="1505164877713" duration="2048000" />
+      <workItem from="1505339013919" duration="371000" />
+      <workItem from="1505753243414" duration="1344000" />
+      <workItem from="1505764546330" duration="1936000" />
+      <workItem from="1505810654674" duration="4230000" />
+      <workItem from="1505912944689" duration="791000" />
+      <workItem from="1505925202809" duration="11169000" />
+      <workItem from="1506009154138" duration="8418000" />
+      <workItem from="1506089435877" duration="2452000" />
+      <workItem from="1506331896643" duration="1598000" />
+      <workItem from="1506361094590" duration="3421000" />
+      <workItem from="1506373444301" duration="4821000" />
+      <workItem from="1506538806781" duration="5172000" />
+      <workItem from="1506615304178" duration="6185000" />
+      <workItem from="1506668008347" duration="1398000" />
+      <workItem from="1506689437592" duration="2541000" />
+      <workItem from="1506779930963" duration="8218000" />
+      <workItem from="1506854146591" duration="11945000" />
+      <workItem from="1506932460860" duration="2567000" />
+      <workItem from="1506970402151" duration="4209000" />
+      <workItem from="1507015237466" duration="290000" />
+      <workItem from="1507016016577" duration="599000" />
+      <workItem from="1507039109352" duration="4517000" />
+      <workItem from="1507132175928" duration="6573000" />
+      <workItem from="1507188154842" duration="21000" />
+      <workItem from="1507203697424" duration="13435000" />
+      <workItem from="1507283023738" duration="1817000" />
+      <workItem from="1507368677167" duration="20203000" />
+      <workItem from="1507640303043" duration="750000" />
+      <workItem from="1507656993314" duration="16191000" />
+      <workItem from="1507709817892" duration="286000" />
+      <workItem from="1507755526003" duration="5112000" />
+      <workItem from="1507761897685" duration="1104000" />
+      <workItem from="1507816513948" duration="2619000" />
+      <workItem from="1507830081995" duration="10856000" />
+      <workItem from="1507882426077" duration="5454000" />
+      <workItem from="1507920580037" duration="13033000" />
+      <workItem from="1508156455174" duration="188000" />
+      <workItem from="1508190492902" duration="12170000" />
+      <workItem from="1508225116200" duration="1853000" />
+      <workItem from="1508236308203" duration="22000" />
+      <workItem from="1508265208551" duration="13067000" />
+      <workItem from="1508280262202" duration="28000" />
+      <workItem from="1508311576518" duration="39561000" />
+      <workItem from="1508405051598" duration="1065000" />
+      <workItem from="1508407225659" duration="3275000" />
+      <workItem from="1508414685158" duration="12032000" />
+      <workItem from="1508446686203" duration="685000" />
+      <workItem from="1508484927417" duration="805000" />
+      <workItem from="1508501850924" duration="1176000" />
+      <workItem from="1508520891956" duration="14360000" />
+      <workItem from="1508591854582" duration="2569000" />
+      <workItem from="1508678591798" duration="8672000" />
+      <workItem from="1508700650349" duration="7861000" />
+      <workItem from="1508751494612" duration="20806000" />
+      <workItem from="1508786810749" duration="931000" />
+      <workItem from="1508828450857" duration="170000" />
+      <workItem from="1508828716617" duration="44000" />
+      <workItem from="1508838499541" duration="1692000" />
+      <workItem from="1508841907821" duration="3479000" />
+      <workItem from="1508850028533" duration="400000" />
+      <workItem from="1508875644844" duration="2440000" />
+      <workItem from="1508942361499" duration="686000" />
+      <workItem from="1508972605217" duration="194000" />
+      <workItem from="1509004019638" duration="3189000" />
+      <workItem from="1509045858450" duration="4327000" />
+      <workItem from="1509091915003" duration="21000" />
+      <workItem from="1509106994991" duration="719000" />
+      <workItem from="1509114455559" duration="1125000" />
+      <workItem from="1509125913186" duration="1412000" />
+      <workItem from="1509290389708" duration="1051000" />
+      <workItem from="1509304620906" duration="628000" />
+      <workItem from="1509560416303" duration="2981000" />
+      <workItem from="1509657973340" duration="159000" />
+      <workItem from="1509702241848" duration="3161000" />
+      <workItem from="1509982540602" duration="1121000" />
+      <workItem from="1510090168587" duration="2662000" />
+      <workItem from="1510678737261" duration="280000" />
+      <workItem from="1510691464405" duration="1079000" />
+      <workItem from="1510765130926" duration="3192000" />
+      <workItem from="1510778575099" duration="1192000" />
+      <workItem from="1510816086905" duration="42000" />
+      <workItem from="1510818760269" duration="640000" />
+      <workItem from="1510831765888" duration="103000" />
+      <workItem from="1515696850821" duration="95000" />
+      <workItem from="1515935342682" duration="2995000" />
+      <workItem from="1516004903177" duration="668000" />
+      <workItem from="1516033291433" duration="1944000" />
+      <workItem from="1516101896991" duration="1953000" />
+      <workItem from="1516280745782" duration="601000" />
+      <workItem from="1516640780073" duration="8989000" />
+      <workItem from="1516721996309" duration="2173000" />
+      <workItem from="1516728660877" duration="7836000" />
+      <workItem from="1516770695895" duration="4227000" />
+      <workItem from="1516827166419" duration="14233000" />
+    </task>
+    <task id="LOCAL-00147" summary="Используем бандл правильно">
+      <created>1508379859281</created>
+      <option name="number" value="00147" />
+      <option name="presentableId" value="LOCAL-00147" />
+      <option name="project" value="LOCAL" />
+      <updated>1508379859281</updated>
+    </task>
+    <task id="LOCAL-00148" summary="Используем бандл правильно">
+      <created>1508380540502</created>
+      <option name="number" value="00148" />
+      <option name="presentableId" value="LOCAL-00148" />
+      <option name="project" value="LOCAL" />
+      <updated>1508380540502</updated>
+    </task>
+    <task id="LOCAL-00149" summary="Используем бандл правильно">
+      <created>1508433587803</created>
+      <option name="number" value="00149" />
+      <option name="presentableId" value="LOCAL-00149" />
+      <option name="project" value="LOCAL" />
+      <updated>1508433587804</updated>
+    </task>
+    <task id="LOCAL-00150" summary="Используем бандл правильно">
+      <created>1508435031446</created>
+      <option name="number" value="00150" />
+      <option name="presentableId" value="LOCAL-00150" />
+      <option name="project" value="LOCAL" />
+      <updated>1508435031446</updated>
+    </task>
+    <task id="LOCAL-00151" summary="Используем бандл правильно">
+      <created>1508439684519</created>
+      <option name="number" value="00151" />
+      <option name="presentableId" value="LOCAL-00151" />
+      <option name="project" value="LOCAL" />
+      <updated>1508439684519</updated>
+    </task>
+    <task id="LOCAL-00152" summary="Используем бандл правильно">
+      <created>1508441293564</created>
+      <option name="number" value="00152" />
+      <option name="presentableId" value="LOCAL-00152" />
+      <option name="project" value="LOCAL" />
+      <updated>1508441293564</updated>
+    </task>
+    <task id="LOCAL-00153" summary="попап вораст рега">
+      <created>1508442590880</created>
+      <option name="number" value="00153" />
+      <option name="presentableId" value="LOCAL-00153" />
+      <option name="project" value="LOCAL" />
+      <updated>1508442590880</updated>
+    </task>
+    <task id="LOCAL-00154" summary="попап вораст рега">
+      <created>1508442610956</created>
+      <option name="number" value="00154" />
+      <option name="presentableId" value="LOCAL-00154" />
+      <option name="project" value="LOCAL" />
+      <updated>1508442610956</updated>
+    </task>
+    <task id="LOCAL-00155" summary="попап вораст рега">
+      <created>1508442885352</created>
+      <option name="number" value="00155" />
+      <option name="presentableId" value="LOCAL-00155" />
+      <option name="project" value="LOCAL" />
+      <updated>1508442885352</updated>
+    </task>
+    <task id="LOCAL-00156" summary="попап вораст рега">
+      <created>1508444554923</created>
+      <option name="number" value="00156" />
+      <option name="presentableId" value="LOCAL-00156" />
+      <option name="project" value="LOCAL" />
+      <updated>1508444554923</updated>
+    </task>
+    <task id="LOCAL-00157" summary="попап вораст рега">
+      <created>1508445251951</created>
+      <option name="number" value="00157" />
+      <option name="presentableId" value="LOCAL-00157" />
+      <option name="project" value="LOCAL" />
+      <updated>1508445251951</updated>
+    </task>
+    <task id="LOCAL-00158" summary="попап вораст рега">
+      <created>1508445676701</created>
+      <option name="number" value="00158" />
+      <option name="presentableId" value="LOCAL-00158" />
+      <option name="project" value="LOCAL" />
+      <updated>1508445676701</updated>
+    </task>
+    <task id="LOCAL-00159" summary="$('#agePP').arcticmodal(favSyr.popup.options);">
+      <created>1508446749615</created>
+      <option name="number" value="00159" />
+      <option name="presentableId" value="LOCAL-00159" />
+      <option name="project" value="LOCAL" />
+      <updated>1508446749616</updated>
+    </task>
+    <task id="LOCAL-00160" summary="$('#agePP').arcticmodal(favSyr.popup.options);">
+      <created>1508447139427</created>
+      <option name="number" value="00160" />
+      <option name="presentableId" value="LOCAL-00160" />
+      <option name="project" value="LOCAL" />
+      <updated>1508447139427</updated>
+    </task>
+    <task id="LOCAL-00161" summary="$('#agePP').arcticmodal(favSyr.popup.options);">
+      <created>1508447262468</created>
+      <option name="number" value="00161" />
+      <option name="presentableId" value="LOCAL-00161" />
+      <option name="project" value="LOCAL" />
+      <updated>1508447262468</updated>
+    </task>
+    <task id="LOCAL-00162" summary="$('#agePP').arcticmodal(favSyr.popup.options);">
+      <created>1508525214485</created>
+      <option name="number" value="00162" />
+      <option name="presentableId" value="LOCAL-00162" />
+      <option name="project" value="LOCAL" />
+      <updated>1508525214486</updated>
+    </task>
+    <task id="LOCAL-00163" summary="$('#agePP').arcticmodal(favSyr.popup.options);">
+      <created>1508525990417</created>
+      <option name="number" value="00163" />
+      <option name="presentableId" value="LOCAL-00163" />
+      <option name="project" value="LOCAL" />
+      <updated>1508525990417</updated>
+    </task>
+    <task id="LOCAL-00164" summary="1">
+      <created>1508527546483</created>
+      <option name="number" value="00164" />
+      <option name="presentableId" value="LOCAL-00164" />
+      <option name="project" value="LOCAL" />
+      <updated>1508527546483</updated>
+    </task>
+    <task id="LOCAL-00165" summary="1">
+      <created>1508541403122</created>
+      <option name="number" value="00165" />
+      <option name="presentableId" value="LOCAL-00165" />
+      <option name="project" value="LOCAL" />
+      <updated>1508541403122</updated>
+    </task>
+    <task id="LOCAL-00166" summary="1">
+      <created>1508551790796</created>
+      <option name="number" value="00166" />
+      <option name="presentableId" value="LOCAL-00166" />
+      <option name="project" value="LOCAL" />
+      <updated>1508551790797</updated>
+    </task>
+    <task id="LOCAL-00167" summary="$user-&gt;setPreMobileStatus($participant-&gt;getIsphoneactivated());">
+      <created>1508551921037</created>
+      <option name="number" value="00167" />
+      <option name="presentableId" value="LOCAL-00167" />
+      <option name="project" value="LOCAL" />
+      <updated>1508551921037</updated>
+    </task>
+    <task id="LOCAL-00168" summary="Прыгающее меню">
+      <created>1508552754123</created>
+      <option name="number" value="00168" />
+      <option name="presentableId" value="LOCAL-00168" />
+      <option name="project" value="LOCAL" />
+      <updated>1508552754124</updated>
+    </task>
+    <task id="LOCAL-00169" summary="report">
+      <created>1508594394693</created>
+      <option name="number" value="00169" />
+      <option name="presentableId" value="LOCAL-00169" />
+      <option name="project" value="LOCAL" />
+      <updated>1508594394694</updated>
+    </task>
+    <task id="LOCAL-00170" summary="Версия ресурсов в коде, больше не надо сбрасывать кеш">
+      <created>1508681539890</created>
+      <option name="number" value="00170" />
+      <option name="presentableId" value="LOCAL-00170" />
+      <option name="project" value="LOCAL" />
+      <updated>1508681539891</updated>
+    </task>
+    <task id="LOCAL-00171" summary="Версия ресурсов в коде, больше не надо сбрасывать кеш">
+      <created>1508688518068</created>
+      <option name="number" value="00171" />
+      <option name="presentableId" value="LOCAL-00171" />
+      <option name="project" value="LOCAL" />
+      <updated>1508688518068</updated>
+    </task>
+    <task id="LOCAL-00172" summary="Версия ресурсов в коде, больше не надо сбрасывать кеш">
+      <created>1508689416202</created>
+      <option name="number" value="00172" />
+      <option name="presentableId" value="LOCAL-00172" />
+      <option name="project" value="LOCAL" />
+      <updated>1508689416202</updated>
+    </task>
+    <task id="LOCAL-00173" summary="попапы">
+      <created>1508707131064</created>
+      <option name="number" value="00173" />
+      <option name="presentableId" value="LOCAL-00173" />
+      <option name="project" value="LOCAL" />
+      <updated>1508707131065</updated>
+    </task>
+    <task id="LOCAL-00174" summary="попапы">
+      <created>1508709728398</created>
+      <option name="number" value="00174" />
+      <option name="presentableId" value="LOCAL-00174" />
+      <option name="project" value="LOCAL" />
+      <updated>1508709728398</updated>
+    </task>
+    <task id="LOCAL-00175" summary="ковры">
+      <created>1508785046003</created>
+      <option name="number" value="00175" />
+      <option name="presentableId" value="LOCAL-00175" />
+      <option name="project" value="LOCAL" />
+      <updated>1508785046003</updated>
+    </task>
+    <task id="LOCAL-00176" summary="ковры">
+      <created>1508785388074</created>
+      <option name="number" value="00176" />
+      <option name="presentableId" value="LOCAL-00176" />
+      <option name="project" value="LOCAL" />
+      <updated>1508785388075</updated>
+    </task>
+    <task id="LOCAL-00177" summary="ковры">
+      <created>1508786552530</created>
+      <option name="number" value="00177" />
+      <option name="presentableId" value="LOCAL-00177" />
+      <option name="project" value="LOCAL" />
+      <updated>1508786552530</updated>
+    </task>
+    <task id="LOCAL-00178" summary="Ram css">
+      <created>1508828609629</created>
+      <option name="number" value="00178" />
+      <option name="presentableId" value="LOCAL-00178" />
+      <option name="project" value="LOCAL" />
+      <updated>1508828609630</updated>
+    </task>
+    <task id="LOCAL-00179" summary="Ram css">
+      <created>1508885685585</created>
+      <option name="number" value="00179" />
+      <option name="presentableId" value="LOCAL-00179" />
+      <option name="project" value="LOCAL" />
+      <updated>1508885685586</updated>
+    </task>
+    <task id="LOCAL-00180" summary="twig phone filter">
+      <created>1509051341579</created>
+      <option name="number" value="00180" />
+      <option name="presentableId" value="LOCAL-00180" />
+      <option name="project" value="LOCAL" />
+      <updated>1509051341581</updated>
+    </task>
+    <task id="LOCAL-00181" summary="twig phone filter">
+      <created>1509051380285</created>
+      <option name="number" value="00181" />
+      <option name="presentableId" value="LOCAL-00181" />
+      <option name="project" value="LOCAL" />
+      <updated>1509051380285</updated>
+    </task>
+    <task id="LOCAL-00182" summary=" на странице об акции в слогане нужно И перенести на вторую строчку">
+      <created>1509052816619</created>
+      <option name="number" value="00182" />
+      <option name="presentableId" value="LOCAL-00182" />
+      <option name="project" value="LOCAL" />
+      <updated>1509052816619</updated>
+    </task>
+    <task id="LOCAL-00183" summary="111">
+      <created>1509125947329</created>
+      <option name="number" value="00183" />
+      <option name="presentableId" value="LOCAL-00183" />
+      <option name="project" value="LOCAL" />
+      <updated>1509125947330</updated>
+    </task>
+    <task id="LOCAL-00184" summary="111">
+      <created>1509658129390</created>
+      <option name="number" value="00184" />
+      <option name="presentableId" value="LOCAL-00184" />
+      <option name="project" value="LOCAL" />
+      <updated>1509658129391</updated>
+    </task>
+    <task id="LOCAL-00185" summary="111">
+      <created>1510003735131</created>
+      <option name="number" value="00185" />
+      <option name="presentableId" value="LOCAL-00185" />
+      <option name="project" value="LOCAL" />
+      <updated>1510003735131</updated>
+    </task>
+    <task id="LOCAL-00186" summary="111">
+      <created>1510678934290</created>
+      <option name="number" value="00186" />
+      <option name="presentableId" value="LOCAL-00186" />
+      <option name="project" value="LOCAL" />
+      <updated>1510678934291</updated>
+    </task>
+    <task id="LOCAL-00187" summary="злоебучие попапы">
+      <created>1510776773554</created>
+      <option name="number" value="00187" />
+      <option name="presentableId" value="LOCAL-00187" />
+      <option name="project" value="LOCAL" />
+      <updated>1510776773554</updated>
+    </task>
+    <task id="LOCAL-00188" summary="злоебучие попапы">
+      <created>1510776821007</created>
+      <option name="number" value="00188" />
+      <option name="presentableId" value="LOCAL-00188" />
+      <option name="project" value="LOCAL" />
+      <updated>1510776821007</updated>
+    </task>
+    <task id="LOCAL-00189" summary="злоебучие попапы">
+      <created>1510777262397</created>
+      <option name="number" value="00189" />
+      <option name="presentableId" value="LOCAL-00189" />
+      <option name="project" value="LOCAL" />
+      <updated>1510777262397</updated>
+    </task>
+    <task id="LOCAL-00190" summary="злоебучие попапы">
+      <created>1510779504314</created>
+      <option name="number" value="00190" />
+      <option name="presentableId" value="LOCAL-00190" />
+      <option name="project" value="LOCAL" />
+      <updated>1510779504315</updated>
+    </task>
+    <task id="LOCAL-00191" summary="Поддерка php-fpm">
+      <created>1515935502509</created>
+      <option name="number" value="00191" />
+      <option name="presentableId" value="LOCAL-00191" />
+      <option name="project" value="LOCAL" />
+      <updated>1515935502510</updated>
+    </task>
+    <task id="LOCAL-00192" summary="Чистка">
+      <created>1515940501215</created>
+      <option name="number" value="00192" />
+      <option name="presentableId" value="LOCAL-00192" />
+      <option name="project" value="LOCAL" />
+      <updated>1515940501215</updated>
+    </task>
+    <task id="LOCAL-00193" summary="Верска главной и логина.&#10;Логин еще не работает">
+      <created>1516653898053</created>
+      <option name="number" value="00193" />
+      <option name="presentableId" value="LOCAL-00193" />
+      <option name="project" value="LOCAL" />
+      <updated>1516653898055</updated>
+    </task>
+    <task id="LOCAL-00194" summary="Вход, востановление пароля, пока через ввод кода">
+      <created>1516736924137</created>
+      <option name="number" value="00194" />
+      <option name="presentableId" value="LOCAL-00194" />
+      <option name="project" value="LOCAL" />
+      <updated>1516736924138</updated>
+    </task>
+    <task id="LOCAL-00195" summary="Перенёс базовую вёрстку. Можно начинать оживлять">
+      <created>1516773053672</created>
+      <option name="number" value="00195" />
+      <option name="presentableId" value="LOCAL-00195" />
+      <option name="project" value="LOCAL" />
+      <updated>1516773053673</updated>
+    </task>
+    <option name="localTasksCounter" value="196" />
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="914974000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="27" width="1600" height="873" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20425257" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32964602" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891247" sideWeight="0.5025" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32925257" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.92054796" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39920425" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Framework" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32869378" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32625994" sideWeight="0.4975" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891247" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891247" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+    <layout-to-restore>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32869378" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891247" sideWeight="0.5025" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32625994" sideWeight="0.4975" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.92054796" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22551547" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32964602" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891247" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891247" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39920425" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Framework" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="EXTERNAL /var/www/vhost/local.promo.ya-juice.ru/favorite_syrup">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <MESSAGE value="Закрытие формы. Если нет доступных полей" />
+    <MESSAGE value="Нормальное сохранение. Бандл не работает из коробки без напильника" />
+    <MESSAGE value="Нахуй ИЛП выводим город и регион текстовым полем" />
+    <MESSAGE value="Внутренняя ошибка во время авторизации, попробуйте еще раз" />
+    <MESSAGE value="jq masks" />
+    <MESSAGE value="Используем бандл правильно" />
+    <MESSAGE value="попап вораст рега" />
+    <MESSAGE value="$('#agePP').arcticmodal(favSyr.popup.options);" />
+    <MESSAGE value="1" />
+    <MESSAGE value="$user-&gt;setPreMobileStatus($participant-&gt;getIsphoneactivated());" />
+    <MESSAGE value="Прыгающее меню" />
+    <MESSAGE value="report" />
+    <MESSAGE value="Версия ресурсов в коде, больше не надо сбрасывать кеш" />
+    <MESSAGE value="попапы" />
+    <MESSAGE value="ковры" />
+    <MESSAGE value="Ram css" />
+    <MESSAGE value="twig phone filter" />
+    <MESSAGE value=" на странице об акции в слогане нужно И перенести на вторую строчку" />
+    <MESSAGE value="111" />
+    <MESSAGE value="злоебучие попапы" />
+    <MESSAGE value="Поддерка php-fpm" />
+    <MESSAGE value="Чистка" />
+    <MESSAGE value="Верска главной и логина.&#10;Логин еще не работает" />
+    <MESSAGE value="Вход, востановление пароля, пока через ввод кода" />
+    <MESSAGE value="Перенёс базовую вёрстку. Можно начинать оживлять" />
+    <option name="LAST_COMMIT_MESSAGE" value="Перенёс базовую вёрстку. Можно начинать оживлять" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/ModalController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/LotteryController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/app_dev.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="15" column="20" lean-forward="false" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/dalee/pepuwsclientbundle/Controller/ClientApiController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="141" column="52" lean-forward="false" selection-start-line="141" selection-start-column="52" selection-end-line="141" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Default/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="3" column="1" lean-forward="false" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/symfony/symfony/src/Symfony/Bridge/Twig/Extension/TranslationExtension.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="233">
+          <caret line="94" column="20" lean-forward="false" selection-start-line="94" selection-start-column="20" selection-end-line="94" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/symfony/symfony/src/Symfony/Component/Form/Form.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-15121">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#7#236#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/composer.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="149">
+          <caret line="42" column="31" lean-forward="false" selection-start-line="42" selection-start-column="31" selection-end-line="42" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="554">
+          <caret line="84" column="25" lean-forward="false" selection-start-line="84" selection-start-column="25" selection-end-line="84" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/sema/minifier-bundle/Sema/Bundle/MinifierBundle/Twig/TokenParser/MinifyHTMLTokenParser.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="13" column="33" lean-forward="false" selection-start-line="13" selection-start-column="15" selection-end-line="13" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/sema/minifier-bundle/Sema/Bundle/MinifierBundle/Twig/Node/MinifyHTMLNode.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="6" column="42" lean-forward="false" selection-start-line="6" selection-start-column="42" selection-end-line="6" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/dalee/pepuwsclientbundle/Controller/ParticipantApiController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="233">
+          <caret line="505" column="20" lean-forward="false" selection-start-line="505" selection-start-column="20" selection-end-line="505" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/parameters.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="6" column="33" lean-forward="false" selection-start-line="6" selection-start-column="23" selection-end-line="6" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/PersonalController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="110" column="54" lean-forward="false" selection-start-line="110" selection-start-column="54" selection-end-line="110" selection-end-column="54" />
+          <folding>
+            <marker date="1516734877665" expanded="false" signature="3752:3762" ph="/" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/verstka/prize.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="155" column="11" lean-forward="false" selection-start-line="55" selection-start-column="4" selection-end-line="155" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Static/prizes.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="93" column="119" lean-forward="false" selection-start-line="93" selection-start-column="119" selection-end-line="93" selection-end-column="119" />
+          <folding>
+            <element signature="e#490#552#0#HTML" expanded="false" />
+            <element signature="e#2320#2382#0#HTML" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/verstka/faq.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="173" column="11" lean-forward="false" selection-start-line="57" selection-start-column="2" selection-end-line="173" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Static/faq.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2420">
+          <caret line="121" column="9" lean-forward="false" selection-start-line="121" selection-start-column="9" selection-end-line="121" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/verstka/feedback.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="99" column="55" lean-forward="false" selection-start-line="99" selection-start-column="47" selection-end-line="99" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/Type/Feedback/FeedbackFieldsFormType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="20" column="9" lean-forward="false" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/Type/Feedback/NotAuthorizedUserFormType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="27" column="42" lean-forward="false" selection-start-line="27" selection-start-column="42" selection-end-line="27" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/Type/Feedback/AuthorizedUserFormType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="28" column="79" lean-forward="false" selection-start-line="28" selection-start-column="79" selection-end-line="28" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/FeedbackController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="700">
+          <caret line="54" column="7" lean-forward="false" selection-start-line="54" selection-start-column="7" selection-end-line="54" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/verstka/winners.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5420">
+          <caret line="271" column="11" lean-forward="false" selection-start-line="57" selection-start-column="4" selection-end-line="271" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Default/winners.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="720">
+          <caret line="36" column="20" lean-forward="false" selection-start-line="36" selection-start-column="20" selection-end-line="36" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/dalee/pepuwsclientbundle/Controller/TaskApiController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/dalee/pepuwsclientbundle/Entity/PromocodeApplication.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-440">
+          <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/SecurityController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="47" column="31" lean-forward="false" selection-start-line="47" selection-start-column="31" selection-end-line="47" selection-end-column="31" />
+          <folding>
+            <marker date="1516897692170" expanded="true" signature="3410:3521" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/City.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="514">
+          <caret line="139" column="23" lean-forward="false" selection-start-line="139" selection-start-column="13" selection-end-line="139" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Command/UpdateFiasCommand.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="89" column="21" lean-forward="false" selection-start-line="89" selection-start-column="21" selection-end-line="89" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Default/personal.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4740">
+          <caret line="24" column="83" lean-forward="false" selection-start-line="24" selection-start-column="83" selection-end-line="24" selection-end-column="83" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Default/drop_password.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="5" column="16" lean-forward="true" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
+          <folding>
+            <element signature="e#185#206#0#Twig" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/css/hit.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Default/login.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="614">
+          <caret line="125" column="10" lean-forward="false" selection-start-line="125" selection-start-column="10" selection-end-line="125" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/verstka/LK.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="54" column="31" lean-forward="false" selection-start-line="54" selection-start-column="31" selection-end-line="54" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/verstka/auth.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="920">
+          <caret line="169" column="12" lean-forward="false" selection-start-line="140" selection-start-column="2" selection-end-line="169" selection-end-column="12" />
+          <folding>
+            <element signature="n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/verstka/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="38" column="38" lean-forward="false" selection-start-line="38" selection-start-column="38" selection-end-line="38" selection-end-column="38" />
+          <folding>
+            <element signature="n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Default/feedback.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="60" column="33" lean-forward="false" selection-start-line="60" selection-start-column="33" selection-end-line="60" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Default/base.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="118" column="0" lean-forward="false" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
+          <folding>
+            <element signature="e#1393#1403#0#Twig" expanded="true" />
+            <element signature="e#2707#2720#0#Twig" expanded="true" />
+            <element signature="e#2851#2857#0#Twig" expanded="true" />
+            <element signature="e#3436#4195#0#Twig" expanded="false" />
+            <element signature="e#5279#5509#0#Twig" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/Type/Participant/ParticipantFieldsFormType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-316">
+          <caret line="91" column="23" lean-forward="false" selection-start-line="91" selection-start-column="23" selection-end-line="91" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/Type/Participant/RegistrationFormType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="52" column="57" lean-forward="false" selection-start-line="52" selection-start-column="33" selection-end-line="52" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/verstka/reg.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="254">
+          <caret line="66" column="35" lean-forward="false" selection-start-line="66" selection-start-column="26" selection-end-line="66" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/verstka/popup.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2280">
+          <caret line="280" column="2" lean-forward="false" selection-start-line="280" selection-start-column="2" selection-end-line="303" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="661">
+          <caret line="71" column="15" lean-forward="true" selection-start-line="71" selection-start-column="15" selection-end-line="71" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/libs.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Forms/form_div_layout.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="334">
+          <caret line="25" column="10" lean-forward="false" selection-start-line="25" selection-start-column="10" selection-end-line="25" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Default/registration.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="18" column="92" lean-forward="false" selection-start-line="18" selection-start-column="92" selection-end-line="18" selection-end-column="92" />
+          <folding>
+            <element signature="e#156#197#0#Twig" expanded="true" />
+            <element signature="e#558#601#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Service/RecaptchaService.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="321">
+          <caret line="59" column="18" lean-forward="false" selection-start-line="59" selection-start-column="18" selection-end-line="59" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="145" column="15" lean-forward="false" selection-start-line="145" selection-start-column="15" selection-end-line="145" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="43" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
