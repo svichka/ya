@@ -10,86 +10,21 @@
       <h1 class="static-title up">Победители</h1>
       <div class="searching-winner-line">
         <div class="seacrh-wrap">
-          <form action="">
+          <form action="{{ path('winnners_page') }}">
             <label for="" class='up'>Поиск по фио</label>
-            <input type="text">
+            <input type="text" name="fio">
           </form>
         </div>
-        <input type="text" class='js-date date-input' placeholder="Выбрать дату">
+        <input type="text" class='js-date date-input' name="date" placeholder="Выбрать дату">
       </div>
-      <div class="week-item up">
-        <div class="week-title js-week-title">
-          <div class="week-toggler">-</div>
-          <div class="row">
-            <div class="col-xs-12">Текущая неделя</div>
-            <div class="col-xs-12 text-right"></div>
-          </div>
-        </div>
-        <div class="week-toggle-block js-toggle-table">
-          <div class="js-week-table-scroll">
-            <div class="week-table">
-              <div class="week-row">
-                <div class="week-cell">ФИО</div>
-                <div class="week-cell">E-Mail</div>
-                <div class="week-cell">Результат</div>
-                <div class="week-cell">Партнер</div>
-                <div class="week-cell">Дата</div>
-              </div>
-              <div class="week-row">
-                <div class="week-cell">Иванов Иван</div>
-                <div class="week-cell">test@test.fe</div>
-                <div class="week-cell">Сертификат <br> 3000 Р</div>
-                <div class="week-cell">
-                  <img src={{ asset('images/yr.png') }} alt="">
-                </div>
-                <div class="week-cell">19.03.2018</div>
-              </div>
-              <div class="week-row">
-                <div class="week-cell">Иванов Иван</div>
-                <div class="week-cell">test@test.fe</div>
-                <div class="week-cell">Сертификат <br> 3000 Р</div>
-                <div class="week-cell">
-                  <img src={{ asset('images/yr.png') }} alt="">
-                </div>
-                <div class="week-cell">19.03.2018</div>
-              </div>
-              <div class="week-row">
-                <div class="week-cell">Иванов Иван</div>
-                <div class="week-cell">test@test.fe</div>
-                <div class="week-cell">Сертификат <br> 3000 Р</div>
-                <div class="week-cell">
-                  <img src={{ asset('images/yr.png') }} alt="">
-                </div>
-                <div class="week-cell">19.03.2018</div>
-              </div>
-              <div class="week-row">
-                <div class="week-cell">Иванов Иван</div>
-                <div class="week-cell">test@test.fe</div>
-                <div class="week-cell">Сертификат <br> 3000 Р</div>
-                <div class="week-cell">
-                  <img src={{ asset('images/yr.png') }} alt="">
-                </div>
-                <div class="week-cell">19.03.2018</div>
-              </div>
-              <div class="week-row">
-                <div class="week-cell">Иванов Иван</div>
-                <div class="week-cell">test@test.fe</div>
-                <div class="week-cell">Сертификат <br> 3000 Р</div>
-                <div class="week-cell">
-                  <img src={{ asset('images/yr.png') }} alt="">
-                </div>
-                <div class="week-cell">19.03.2018</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      {% for i,value in winners %}
       <div class="week-item up">
         <div class="week-title js-week-title">
           <div class="week-toggler">+</div>
           <div class="row">
-            <div class="col-xs-12">Неделя 3</div>
-            <div class="col-xs-12 text-right">(12.03.2018-18.03.2018)</div>
+            <div class="col-xs-12">Неделя {{ i }}</div>
+            <div class="col-xs-12 text-right">{{ weeks[i]['start']|date('d.m.Y') }}
+              - {{ weeks[i]['end']|date('d.m.Y') }}</div>
           </div>
         </div>
         <div class="week-toggle-block js-toggle-table" style="display: none;">
@@ -102,123 +37,30 @@
                 <div class="week-cell">Партнер</div>
                 <div class="week-cell">Дата</div>
               </div>
-              <div class="week-row">
-                <div class="week-cell">Иванов Иван</div>
-                <div class="week-cell">test@test.fe</div>
-                <div class="week-cell">Сертификат <br> 3000 Р</div>
-                <div class="week-cell">
-                  <img src={{ asset('images/yr.png') }} alt="">
+              {% for winner in value %}
+                <div class="week-row">
+                  <div class="week-cell">{{ winner['fio'] }}</div>
+                  <div class="week-cell">{{ winner['email'] }}</div>
+                  <div class="week-cell">{{ winner['prize']|prize }}</div>
+                  <div class="week-cell">
+                    <img src={{ asset('images/' ~ winner['prize']|prize_image) }} alt="{{ winner['prize'] }}">
+                  </div>
+                  <div class="week-cell">{{ winner['date'] }}</div>
                 </div>
-                <div class="week-cell">19.03.2018</div>
-              </div>
-              <div class="week-row">
-                <div class="week-cell">Иванов Иван</div>
-                <div class="week-cell">test@test.fe</div>
-                <div class="week-cell">Сертификат <br> 3000 Р</div>
-                <div class="week-cell">
-                  <img src={{ asset('images/yr.png') }} alt="">
-                </div>
-                <div class="week-cell">19.03.2018</div>
-              </div>
-              <div class="week-row">
-                <div class="week-cell">Иванов Иван</div>
-                <div class="week-cell">test@test.fe</div>
-                <div class="week-cell">Сертификат <br> 3000 Р</div>
-                <div class="week-cell">
-                  <img src={{ asset('images/yr.png') }} alt="">
-                </div>
-                <div class="week-cell">19.03.2018</div>
-              </div>
-              <div class="week-row">
-                <div class="week-cell">Иванов Иван</div>
-                <div class="week-cell">test@test.fe</div>
-                <div class="week-cell">Сертификат <br> 3000 Р</div>
-                <div class="week-cell">
-                  <img src={{ asset('images/yr.png') }} alt="">
-                </div>
-                <div class="week-cell">19.03.2018</div>
-              </div>
-              <div class="week-row">
-                <div class="week-cell">Иванов Иван</div>
-                <div class="week-cell">test@test.fe</div>
-                <div class="week-cell">Сертификат <br> 3000 Р</div>
-                <div class="week-cell">
-                  <img src={{ asset('images/yr.png') }} alt="">
-                </div>
-                <div class="week-cell">19.03.2018</div>
-              </div>
+              {% endfor %}
             </div>
           </div>
         </div>
       </div>
+      {% else %}
       <div class="week-item up">
         <div class="week-title js-week-title">
-          <div class="week-toggler">+</div>
           <div class="row">
-            <div class="col-xs-12">Неделя 2</div>
-            <div class="col-xs-12 text-right">(05.03.2018-11.03.2018)</div>
+            <div class="col-xs-24" style="text-align: center;padding: 10px 0 0 0;">Нет победителей</div>
           </div>
         </div>
-        <div class="week-toggle-block js-toggle-table" style="display: none;">
-          <div class="js-week-table-scroll">
-            <div class="week-table">
-              <div class="week-row">
-                <div class="week-cell">ФИО</div>
-                <div class="week-cell">E-Mail</div>
-                <div class="week-cell">Результат</div>
-                <div class="week-cell">Партнер</div>
-                <div class="week-cell">Дата</div>
-              </div>
-              <div class="week-row">
-                <div class="week-cell">Иванов Иван</div>
-                <div class="week-cell">test@test.fe</div>
-                <div class="week-cell">Сертификат <br> 3000 Р</div>
-                <div class="week-cell">
-                  <img src={{ asset('images/yr.png') }} alt="">
-                </div>
-                <div class="week-cell">19.03.2018</div>
-              </div>
-              <div class="week-row">
-                <div class="week-cell">Иванов Иван</div>
-                <div class="week-cell">test@test.fe</div>
-                <div class="week-cell">Сертификат <br> 3000 Р</div>
-                <div class="week-cell">
-                  <img src={{ asset('images/yr.png') }} alt="">
-                </div>
-                <div class="week-cell">19.03.2018</div>
-              </div>
-              <div class="week-row">
-                <div class="week-cell">Иванов Иван</div>
-                <div class="week-cell">test@test.fe</div>
-                <div class="week-cell">Сертификат <br> 3000 Р</div>
-                <div class="week-cell">
-                  <img src={{ asset('images/yr.png') }} alt="">
-                </div>
-                <div class="week-cell">19.03.2018</div>
-              </div>
-              <div class="week-row">
-                <div class="week-cell">Иванов Иван</div>
-                <div class="week-cell">test@test.fe</div>
-                <div class="week-cell">Сертификат <br> 3000 Р</div>
-                <div class="week-cell">
-                  <img src={{ asset('images/yr.png') }} alt="">
-                </div>
-                <div class="week-cell">19.03.2018</div>
-              </div>
-              <div class="week-row">
-                <div class="week-cell">Иванов Иван</div>
-                <div class="week-cell">test@test.fe</div>
-                <div class="week-cell">Сертификат <br> 3000 Р</div>
-                <div class="week-cell">
-                  <img src="{{ asset('images/yr.png') }}" alt="">
-                </div>
-                <div class="week-cell">19.03.2018</div>
-              </div>
-            </div>
-          </div>
-        </div>
+        {% endfor %}
       </div>
-    </div>
   </main>
 {% endblock %}
 

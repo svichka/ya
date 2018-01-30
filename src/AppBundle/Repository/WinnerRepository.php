@@ -7,13 +7,28 @@
    */
   
   namespace AppBundle\Repository;
-
+  
   use Doctrine\ORM\EntityRepository;
-
+  
   class WinnerRepository extends EntityRepository
   {
     public function findAll()
     {
-      return $this->findBy(array(), array('win_date' => 'DESC'));
+      return $this->findBy([], ['win_date' => 'DESC']);
+    }
+    
+    public function findByBetween($from, $till)
+    {
+      $query = $this->_em->createQueryBuilder()
+        ->select('w')
+        ->from('AppBundle:Winner', 'w')
+        ->where('w.win_date >= :from')
+        ->andWhere('w.win_date <= :till')
+        ->setParameter('from', $from)
+        ->setParameter('till', $till)
+        ->getQuery()
+        ->getResult();
+      
+      return $query;
     }
   }

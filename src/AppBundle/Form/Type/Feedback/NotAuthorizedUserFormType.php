@@ -25,7 +25,7 @@
         ->add('email', EmailType::class, ['attr' => ['class' => 'form__input form__input_height_high']])
         ->add('message', TextareaType::class, ['attr' => ['class' => 'form__textarea']])
         ->add('file', FileType::class, ['required' => false, 'attr' => ['class' => 'form__input form__input_type_file', 'onchange' => "ValidateSize(this)"]])
-        ->add('agree', CheckboxType::class, ['required' => true,'value' => 'Y']);
+        ->add('agree', CheckboxType::class, ['required' => true,'value' => 'Y','label'=>"Я согласен на обработку\n моих данных"]);
       
       global $kernel;
       $recaptchaService = $kernel->getContainer()->get('app.recaptcha');

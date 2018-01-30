@@ -64,7 +64,7 @@
         <input id="{{ child.vars.id }}" type="radio" value="{{ child.vars.value }}" name="{{ child.vars.name }}">
         <span></span>
       </div>
-      <div class="checkbox-title">{{ child.vars.label }}</div>
+      <div class="checkbox-title">{{ child.vars.label|nl2br }}</div>
     {% endfor -%}
     <div class="form__text-error">
       {{- form_errors(form) -}}

@@ -35,9 +35,26 @@
      */
     private $end_time;
     /**
+     * @ORM\Column(type="datetime")
+     */
+    private $balance_date;
+    /**
      * @ORM\Column(type="integer")
      */
-    private $is_active;
+    private $is_runnable;
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $is_ready;
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $is_done;
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $prize;
+    
     /**
      * @ORM\Column(type="integer")
      */
@@ -95,21 +112,6 @@
       $this->end_time = $end_time;
     }
     
-    /**
-     * @return mixed
-     */
-    public function getisActive()
-    {
-      return $this->is_active;
-    }
-    
-    /**
-     * @param mixed $is_active
-     */
-    public function setIsActive($is_active)
-    {
-      $this->is_active = $is_active;
-    }
     
     /**
      * @return mixed
@@ -172,7 +174,100 @@
       {
         $ledgerApi = new LedgerApiController();
         $juicy_rub = $ledgerApi->getList($id, 'juicy_rub', $this->start_time, $this->end_time);
+        
         return $juicy_rub['total']['opening_balance'];
       }
+    }
+    
+    /**
+     * @return mixed
+     */
+    public function getisRunnable()
+    {
+      return $this->is_runnable;
+    }
+    
+    /**
+     * @param mixed $is_runnable
+     */
+    public function setIsRunnable($is_runnable)
+    {
+      if ($is_runnable === null)
+      {
+        $is_runnable = false;
+      }
+      $this->is_runnable = $is_runnable;
+    }
+    
+    /**
+     * @return mixed
+     */
+    public function getisReady()
+    {
+      return $this->is_ready;
+    }
+    
+    /**
+     * @param mixed $is_ready
+     */
+    public function setIsReady($is_ready)
+    {
+      if ($is_ready === null)
+      {
+        $is_ready = false;
+      }
+      $this->is_ready = $is_ready;
+    }
+    
+    /**
+     * @return mixed
+     */
+    public function getisDone()
+    {
+      return $this->is_done;
+    }
+    
+    /**
+     * @param mixed $is_done
+     */
+    public function setIsDone($is_done)
+    {
+      if ($is_done === null)
+      {
+        $is_done = false;
+      }
+      $this->is_done = $is_done;
+    }
+    
+    /**
+     * @return mixed
+     */
+    public function getPrize()
+    {
+      return $this->prize;
+    }
+    
+    /**
+     * @param mixed $prize
+     */
+    public function setPrize($prize)
+    {
+      $this->prize = $prize;
+    }
+  
+    /**
+     * @return mixed
+     */
+    public function getBalanceDate()
+    {
+      return $this->balance_date;
+    }
+  
+    /**
+     * @param mixed $balance_date
+     */
+    public function setBalanceDate($balance_date)
+    {
+      $this->balance_date = $balance_date;
     }
   }

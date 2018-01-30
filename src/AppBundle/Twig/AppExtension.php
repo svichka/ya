@@ -14,11 +14,23 @@
     {
       return [
         new \Twig_SimpleFilter('phone', [$this, 'phoneFilter']),
+        new \Twig_SimpleFilter('prize', [$this, 'prizeFilter']),
+        new \Twig_SimpleFilter('prize_image', [$this, 'prizeImageFilter']),
       ];
     }
     
     public function phoneFilter($num)
     {
       return ($num) ? '+7 (' . substr($num, 1, 3) . ') ' . substr($num, 4, 3) . '-' . substr($num, 7, 2) . '-' . substr($num, 9, 2) : '-';
+    }
+  
+    public function prizeFilter($prize)
+    {
+      return $prize;
+    }
+  
+    public function prizeImageFilter($prize)
+    {
+      return $prize;
     }
   }

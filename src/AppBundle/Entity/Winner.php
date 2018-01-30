@@ -26,10 +26,6 @@
      */
     private $id;
     /**
-     * @ORM\Column(type="string", nullable=true)
-     */
-    private $receipt_guid;
-    /**
      * @ORM\Column(type="integer", nullable=true)
      */
     private $is_active;
@@ -78,10 +74,19 @@
      */
     private $promocode_participant_prize;
     /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $promocode_participant_email;
+    /**
      * @ORM\Column(type="date", nullable=true)
      */
     private $win_date;
-  
+    
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $prize;
+    
     /**
      * @return mixed
      */
@@ -273,7 +278,7 @@
     {
       $this->promocode_participant_date = $promocode_participant_date;
     }
-  
+    
     /**
      * @return mixed
      */
@@ -281,7 +286,7 @@
     {
       return $this->receipt_guid;
     }
-  
+    
     /**
      * @param mixed $receipt_guid
      */
@@ -289,7 +294,7 @@
     {
       $this->receipt_guid = $receipt_guid;
     }
-  
+    
     /**
      * @return mixed
      */
@@ -297,7 +302,7 @@
     {
       return $this->promocode_participant_phone;
     }
-  
+    
     /**
      * @param mixed $promocode_participant_phone
      */
@@ -305,7 +310,7 @@
     {
       $this->promocode_participant_phone = $promocode_participant_phone;
     }
-  
+    
     /**
      * @return mixed
      */
@@ -313,13 +318,45 @@
     {
       return $this->win_date;
     }
-  
+    
     /**
      * @param mixed $win_date
      */
     public function setWinDate($win_date)
     {
       $this->win_date = $win_date;
+    }
+    
+    /**
+     * @return mixed
+     */
+    public function getPrize()
+    {
+      return $this->prize;
+    }
+    
+    /**
+     * @param mixed $prize
+     */
+    public function setPrize($prize)
+    {
+      $this->prize = $prize;
+    }
+  
+    /**
+     * @return mixed
+     */
+    public function getPromocodeParticipantEmail()
+    {
+      return $this->promocode_participant_email;
+    }
+  
+    /**
+     * @param mixed $promocode_participant_email
+     */
+    public function setPromocodeParticipantEmail($promocode_participant_email)
+    {
+      $this->promocode_participant_email = $promocode_participant_email;
     }
   
   

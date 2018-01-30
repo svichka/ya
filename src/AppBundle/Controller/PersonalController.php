@@ -131,68 +131,81 @@
           $this->get('logger')->info('----------------------------');
         }
       }
-      if ($participant->secname == '')
-      {
-        $participant->secname = '';
-      }
-      $this->get('logger')->info("USER DATA LINK " . $participant->id . " " . $participant->email);
       
-      try
-      {
-        $receiptApi = new ReceiptApiController();
-        $receipts = $receiptApi->getParticipantReceipts($user->getParticipant()->id);
-      }
-      catch (ApiFailedException $e)
-      {
-        $this->get('logger')->error('receipts error ');
-        $receipts = [];
-      }
-      $win_receipts = [];
+      $this->get('logger')->info("USER DATA LINK " . $participant->id . " " . $participant->email);
+      // Номер кода Дата загрузки Статус кода Результат Партнер"
+      $all_promocodes = [];
+      $tmp_weeks = [];
       /**
        * @var \Dalee\PEPUWSClientBundle\Entity\PromocodeApplication[] $promocodes
        */
-      $promocodes = (new PromocodeApiController())->getApplicationsByParticipantId($user->getParticipant()->id);
-      
-      foreach ($promocodes as $application)
+      $lotteries = $this->getDoctrine()->getRepository('AppBundle:Lottery')->findBy(['prize' => 'certificate_lamoda']);
+      $weeks = [];
+      $i = 1;
+      foreach ($lotteries as $lottery)
       {
-        $receipt_guid = $application->getReceipt()['guid'];
-        $promoApplications = $application->getPromoApplications();
-        foreach ($promoApplications as $promoApplication)
+        if ($lottery->getStartTime() <= new \DateTime())
         {
-          if (count($promoApplication['prize_options']))
-          {
-            foreach ($promoApplication['prize_options'] as $prize_option)
-            {
-              
-              $guid = $application->getCode();
-              if (!isset($win_receipts[$guid]))
-              {
-                $win_receipts[$guid] = [];
-              }
-              $options = $prize_option;
-              $win_receipts[$guid][$options['slug']] = $options['slug'];
-            }
-          }
-        }
-        $prizeApplications = $application->getPrizeApplications();
-        foreach ($prizeApplications as $prizeApplication)
-        {
-          if (!isset($win_receipts[$guid]))
-          {
-            $win_receipts[$guid] = [];
-          }
-          $win_receipts[$guid][$prizeApplication['prize']['slug']] = $prizeApplication['prize']['slug'];
-//              var_dump($prizeApplication);
+          
+          $weeks[$i++] = ['start' => $lottery->getStartTime(), 'end' => $lottery->getEndTime()];
         }
       }
-      $receipts = $this->sortReceipts($receipts);
+      
+      $promocodes = (new PromocodeApiController())->getApplicationsByParticipantId($user->getParticipant()->id);
+      sort($weeks, SORT_DESC);
+      
+      foreach ($weeks as $key => $week)
+      {
+        $i = $key + 1;
+
+        $tmp_weeks["Неделя " . $i] = $week;
+        if(!isset($all_promocodes["Неделя " . $i])){
+          $all_promocodes["Неделя " . $i] = [];
+        }
+        $start = $week['start'];
+        $end = $week['end'];
+        foreach ($promocodes as $application)
+        {
+          if (!isset($all_promocodes[$i]))
+          {
+            $all_promocodes[$i] = [];
+          }
+          $results = [];
+          $partners = [];
+          $promoApplications = $application->getPromoApplications();
+          
+          foreach ($promoApplications as $promoApplication)
+          {
+            if (count($promoApplication['prize_options']))
+            {
+              foreach ($promoApplication['prize_options'] as $prize_option)
+              {
+                $results[] = $prize_option['slug'];
+              }
+            }
+          }
+          
+          $promoOptions = $application->getPromoOptions();
+          foreach ($promoOptions as $promoOption)
+          {
+            $partners[] = $promoOption['slug'];
+          }
+          $all_promocodes["Неделя " . $i][] = [
+            'code'    => $application->getCode(),
+            'date'    => $application->getValidationDate(),
+            'status'  => $application->getValidationStatus(),
+            'result'  => $results,
+            'partner' => $partners,
+          ];
+        }
+      }
       
       return $this->render('AppBundle:Default:personal.html.twig', [
-        'messages'     => $this->messages,
-        'errors'       => $this->errors,
-        'receipts'     => $receipts,
-        'win_receipts' => $win_receipts,
-        'participant'  => $participant,]);
+        'messages'    => $this->messages,
+        'errors'      => $this->errors,
+        'weeks'       => $tmp_weeks,
+        'promocodes'  => $all_promocodes,
+        'participant' => $participant,]);
     }
     
     
