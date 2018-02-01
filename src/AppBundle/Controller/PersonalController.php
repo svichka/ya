@@ -303,13 +303,11 @@
       if ($formData->region == '')
       {
         $formData->regionguid = $registration_form['regionguid'];
-        $formData->region = $registration_form['region'];
         $this->validate($formData->region, "Выберите регион");
       }
       if ($formData->city == '')
       {
         $formData->cityguid = $registration_form['cityguid'];
-        $formData->city = $registration_form['city'];
         $this->validate($formData->city, "Выберите город");
       }
       if ($formData->ismale == '')
@@ -356,9 +354,7 @@
           $this->getUser()->setParticipant($p2);
           $participant = $this->getUser()->getParticipant();
           $participant->setCityguid($p2->getCityguid());
-          $participant->setCity($p2->getCity());
           $participant->setRegionguid($p2->getRegionguid());
-          $participant->setRegion($p2->getRegion());
           
           // Пишем локальное согласие с правилами
           $user = $this->getDoctrine()->getRepository('AppBundle:User')->find($participant->id);
@@ -403,227 +399,13 @@
         }
       }
       
-      
       return new JsonResponse([
         "status" => 400,
         'errors' => $this->errors,
       ]);
     }
     
-    
-    /**
-     * @Route("/mobile_code/", name="mobile_code")
-     */
-    public function mobileCodeAction(Request $request)
-    {
-      $participantApi = new ParticipantApiController();
-      $code = $request->request->get('code');
-      $participant = $this->getUser()->getParticipant();
-      $uI = $this->getDoctrine()->getRepository('AppBundle:User')->find($participant->id);
-      if (!$code)
-      {
-        return new JsonResponse([
-          "status" => 400,
-          'errors' => "Введите код",
-        ]);
-      }
-      
-      $user = $this->getUser()->getParticipant();
-      try
-      {
-        $participantApi->activate('MOBILE', $user->mobilephone, $code);
-        $user->isphoneactivated = 'Y';
-        $this->getUser()->setParticipant($user);
-        $uI->setMobileActivated(1);
-        $this->getDoctrine()->getManager()->merge($uI);
-        $this->getDoctrine()->getManager()->flush();
-        
-        return new JsonResponse([
-          "status" => 200,
-        ]);
-      }
-      catch (NotCorrectDataException $e)
-      {
-        return new JsonResponse([
-          "status" => 400,
-          'errors' => "Код не верный",
-        ]);
-      }
-    }
-    
-    /**
-     * @Route("/mobile_u_json_page/", name="mobile_u_json_page")
-     */
-    public function mobileUpdateAction(Request $request)
-    {
-      $this->get('logger')->error("init");
-      $participantApi = new ParticipantApiController();
-      $mobilephone = $request->request->get('mobilephone');
-      $mobilephone = preg_replace("/[^0-9]/", "", $mobilephone);
-      if (!$mobilephone)
-      {
-        return new JsonResponse([
-          "status" => 400,
-          'errors' => "Введите номер телефона",
-        ]);
-      }
-      $user = $this->getUser()->getParticipant();
-      $user->mobilephone = $mobilephone;
-      $pp = new Participant();
-      $pp->setMobilephone($mobilephone);
-      try
-      {
-        $p2 = $participantApi->update($user->id, $pp);
-      }
-      catch (NotCorrectDataException $e2)
-      {
-        $this->get('logger')->error("ERROR update NotCorrectDataException e2 " . $e2->getMessage());
-        if ($e2->getMessage() == 'Participant with this email/phone/social account is already registered')
-        {
-          return new JsonResponse([
-            "status" => 205,
-            'errors' => "Номер уже привязан к другой учётной записи. Обратитесь в обратную связь.",
-          ]);
-//          $fields = ['lastname', 'firstname', 'secname', 'region', 'city', 'regionguid', 'cityguid', 'birthdate', 'email', 'ismale', 'mobilephone', 'isphoneactivated'];
-//          $p_o = $participantApi->getById($user->id, $fields);
-//          if ($p_o->getMobilephone() == $mobilephone)
-//          {
-//            if ($p_o->getIsphoneactivated() == 'Y')
-//            {
-//              $uI = $this->getDoctrine()->getRepository('AppBundle:User')->find($user->id);
-//              $uI->setMobileFilled(1);
-//              $uI->setMobileActivated(1);
-//              $this->getDoctrine()->getManager()->merge($uI);
-//              $this->getDoctrine()->getManager()->flush();
-//
-//              return new JsonResponse([
-//                "status" => 201,
-//              ]);
-//            }
-//            else
-//            {
-//              // Nop идём на отправку смс активации
-//            }
-//          }
-//          else
-//          {
-//            return new JsonResponse([
-//              "status" => 400,
-//              'errors' => "Номер уже привязан к другой учётной записи. Обратитесь в обратную связь.",
-//            ]);
-//          }
-        }
-        else
-        {
-          return new JsonResponse([
-            "status" => 400,
-            'errors' => "Введены не верные данные",
-          ]);
-        }
-      }
-      catch (ApiFailedException $e)
-      {
-        $this->get('logger')->error("ERROR update ApiFailedException e " . $e->getMessage());
-        
-        return new JsonResponse([
-          "status" => 400,
-          'errors' => "Внутренняя ошибка привязки номера",
-        ]);
-      }
-      if ($p2->isphoneactivated != 'Y')
-      {
-        try
-        {
-          $participantApi->activationGenerate($mobilephone);
-        }
-        catch (NotCorrectDataException $e2)
-        {
-          $this->get('logger')->error("ERROR act NotCorrectDataException e2 " . $e2->getMessage());
-          if ($e2->getMessage() == 'Incorrect data')
-          {
-            
-            return new JsonResponse([
-              "status" => 400,
-              'errors' => "Ошибка запроса активации номера. Некорректные данные",
-            ]);
-          }
-          elseif ($e2->getMessage() == 'This email/phone is already activated')
-          {
-            $uI = $this->getDoctrine()->getRepository('AppBundle:User')->find($user->id);
-            $uI->setMobileFilled(1);
-            $uI->setMobileActivated(1);
-            $this->getDoctrine()->getManager()->merge($uI);
-            $this->getDoctrine()->getManager()->flush();
-            
-            return new JsonResponse([
-              "status" => 201,
-              'errors' => "Номер уже активирован",
-            ]);
-          }
-          else
-          {
-            
-            return new JsonResponse([
-              "status" => 400,
-              'errors' => "Ошибка запроса активации номера",
-            ]);
-          }
-        }
-        catch (ApiFailedException $e)
-        {
-          $this->get('logger')->error("ERROR act ApiFailedException e " . $e->getMessage());
-          
-          return new JsonResponse([
-            "status" => 400,
-            'errors' => "Внутренняя ошибка запроса активации номера",
-          ]);
-        }
-        $u = $this->getDoctrine()->getRepository('AppBundle:User')->find($user->id);
-        $u->setMobileFilled(1);
-        $this->getDoctrine()->getManager()->merge($u);
-        $this->getDoctrine()->getManager()->flush();
-        
-        $user->setMobilephone($p2->getMobilephone());
-        $user->setIsphoneactivated($p2->getIsphoneactivated());
-        $uI = $this->getDoctrine()->getRepository('AppBundle:User')->find($user->id);
-        if ($p2->getIsphoneactivated() == 'N')
-        {
-          $participantApi->activationUpdate($mobilephone);
-          
-          $uI->setMobileFilled(1);
-          $this->getDoctrine()->getManager()->merge($uI);
-          $this->getDoctrine()->getManager()->flush();
-          
-          return new JsonResponse([
-            "status" => 300,
-          ]);
-        }
-        else
-        {
-          $uI->setMobileFilled(1);
-          $uI->setMobileActivated(1);
-          $this->getDoctrine()->getManager()->merge($uI);
-          $this->getDoctrine()->getManager()->flush();
-          
-          return new JsonResponse([
-            "status" => 200,
-          ]);
-        }
-      }
-      else
-      {
-        $uI = $this->getDoctrine()->getRepository('AppBundle:User')->find($user->id);
-        $uI->setMobileFilled(1);
-        $uI->setMobileActivated(1);
-        $this->getDoctrine()->getManager()->merge($uI);
-        $this->getDoctrine()->getManager()->flush();
-        
-        return new JsonResponse([
-          "status" => 201,
-        ]);
-      }
-    }
-    
+
     /**
      * @param $receipts
      *

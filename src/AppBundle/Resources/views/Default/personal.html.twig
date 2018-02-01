@@ -4,7 +4,19 @@
 
 {% block title %}Личный кабинет{% endblock %}
 
-{% set user = participant %}
+{% set user = app.user.participant %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  <style>
+    select:disabled {
+      background: #495528 !important;
+      border-color: #495528 !important;
+    }
+
+  </style>
+{% endblock %}
+
 {% block body %}
   <main class="main-content">
     <div class="page-bg page-bg-empty">
@@ -14,7 +26,6 @@
           <div class="col-sm-5">
             <div class="personal-info-block">
               <div class="personal-name up">
-                {% set user = app.user.participant %}
                 {{ user.getfirstname }} <br>
                 {{ user.getlastname }} {{ user.getsecname }}
               </div>
@@ -28,7 +39,7 @@
           </div>
           <div class="col-sm-19 text-center">
             <div class="code-upload-wrap">
-              <a href="" class="button-purple">Зарегистрировать код</a>
+              <a href="" class="button-purple" data-toggle="modal" data-target="#prizeModal">Зарегистрировать код</a>
             </div>
           </div>
         </div>
@@ -77,7 +88,8 @@
     margin: auto;
     width: 100%;
     position: absolute;
-    margin-top: 15px;">Нет промокодов</div>
+    margin-top: 15px;">Нет промокодов
+                  </div>
                 </div>
               </div>
               {% endfor %}
@@ -87,16 +99,6 @@
       {% endfor %}
     </div>
   </main>
-{% endblock %}
-
-{% block javascripts %}
-  {{ parent() }}
-  <script>
-    // Список регионов теперь динамический
-    window.regions = {{ banned_listener.regions()|json_encode|raw }};
-    window.cities = {{ banned_listener.cities(user.getregionguid())|json_encode|raw }};
-    window.reg_errors = {};
-  </script>
 {% endblock %}
 
 {% block modals %}
@@ -114,64 +116,64 @@
         </div>
         <div class="modal-body">
           <div class="modal-reg-form">
-            <form action="" method="POST">
+            <form action="{{ path('registration_u_json_page') }}" method="POST" id="registration_u_json">
               <div class="row">
                 <div class="col-xs-11">
                   <div class="form-block">
                     <label for="">Фамилия *</label>
-                    <input type="text" placeholder="Фамилия">
+                    <input id="lastname" placeholder="Фамилия" name="registration_form[lastname]" type="text"
+                           required=""
+                           value="{{ user.getlastname }}"
+                           onkeyup="Ru(this);" {% if (user.getlastname!='') %} disabled {% endif %}
+                           data-toggle="tooltip" title="Только русские буквы!">
                   </div>
                   <div class="form-block">
                     <label for="">Имя *</label>
-                    <input type="text" placeholder="Имя">
+                    <input id="firstname" placeholder="Имя" name="registration_form[firstname]" type="text" required=""
+                           value="{{ user.getfirstname }}"
+                           onkeyup="Ru(this);" {% if (user.getfirstname!='') %} disabled {% endif %}
+                           data-toggle="tooltip" title="Только русские буквы!">
                   </div>
                   <div class="form-block">
                     <label for="">Дата рождения *</label>
-                    <input type="text" placeholder="18.08.1988" class="js-date">
+                    <input id="birthdate" name="registration_form[birthdate]" type="text"
+                           class='js-date' required="" value="{{ user.getbirthdate }}"
+                        {% if (user.getbirthdate!='') %} disabled {% endif %}>
                   </div>
                   <div class="form-block">
                     <label for="">Email *</label>
-                    <input type="email" placeholder="email334@email.com">
+                    <input id="email" name="registration_form[email]" type="email" required=""
+                           value="{{ user.getemail }}" {% if (user.getemail!='') %} disabled {% endif %}>
                   </div>
                 </div>
                 <div class="col-xs-2"></div>
                 <div class="col-xs-11">
                   <div class="form-block">
-                    <label for="">Регион *</label>
-                    <input type="text" placeholder="Регион">
+                    <label for="registration_form_regionguid">Регион *</label>
+                    <select id="registration_form_regionguid" name="registration_form[regionguid]" disabled
+                            required=""></select>
                   </div>
                   <div class="form-block">
-                    <label for="">Город *</label>
-                    <input type="text" placeholder="Город">
+                    <label for="registration_form_cityguid">Город *</label>
+                    <select id="registration_form_cityguid" name="registration_form[cityguid]" disabled
+                            required=""></select>
                   </div>
                   <div class="form-block">
                     <label for="">Пол *</label>
                     <div class="checkbox-wrap">
-                      <input id="izmaleY" type="radio" name="registration_form[ismale]" value="Y">
+                      <input id="izmale" type="radio" name="registration_form[ismale]" value="Y"
+                             {% if user.getismale=='Y' %}checked
+                             disabled{% endif %} {% if user.getismale=='N' %} disabled{% endif %}>
                       <span></span>
                     </div>
                     <div class="checkbox-title">М</div>
                     <div class="checkbox-wrap">
-                      <input id="izmaleN" type="radio" name="registration_form[ismale]" value="N">
+                      <input id="izmale" type="radio" name="registration_form[ismale]" value="N"
+                             {% if user.getismale=='N' %}checked
+                             disabled{% endif %} {% if user.getismale=='Y' %} disabled{% endif %}>
                       <span></span>
                     </div>
                     <div class="checkbox-title">Ж</div>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-
-                <div class="col-xs-11">
-                  <div class="form-block">
-                    <label for="">Пароль *</label>
-                    <input type="password" placeholder="Пароль">
-                  </div>
-                </div>
-                <div class="col-xs-2"></div>
-                <div class="col-xs-11">
-                  <div class="form-block">
-                    <label for="">Повторите пароль *</label>
-                    <input type="password" placeholder="Повторите пароль">
                   </div>
                 </div>
               </div>
@@ -184,9 +186,97 @@
       </div>
     </div>
   </div>
-
 {% endblock %}
 
-{% block stylesheets %}
+{% block javascripts %}
   {{ parent() }}
+  <script>
+    // Список регионов теперь динамический
+    window.regions = {{ banned_listener.regions()|json_encode|raw }};
+    window.cities = {{ banned_listener.cities(user.getregionguid())|json_encode|raw }};
+    window.reg_errors = {};
+
+  </script>
+  <script>
+    $(function () {
+      regions = {{ banned_listener.regions()|json_encode|raw }};
+      select = $("select#registration_form_regionguid");
+      selectC = $("select#registration_form_cityguid");
+
+      select.html('');
+      select.append('<option value="">Выберите регион</option>');
+      for (var key in regions) {
+        if (regions.hasOwnProperty(key)) {
+          select.append('<option value="' + regions[ key ] + '">' + key + '</option>');
+        }
+      }
+      if ('{{ user.getregionguid() }}' != '') {
+        select.val('{{ user.getregionguid() }}');
+        selectC.html('');
+        selectC.append('<option value="">Выберите город</option>');
+        for (var key in cities) {
+          if (cities.hasOwnProperty(key)) {
+            selectC.append('<option value="' + cities[ key ] + '">' + key + '</option>');
+          }
+        }
+        if ('{{ user.getcityguid() }}' != '') {
+          selectC.val('{{ user.getcityguid() }}');
+        } else {
+          selectC.removeAttr('disabled', 'disabled');
+        }
+      } else {
+        select.removeAttr('disabled', 'disabled');
+      }
+      select.on('change', function () {
+        selectC.html('');
+        selectC.attr('disabled', 'disabled');
+        selectC.append('<option value="">Зарузка...</option>');
+        var data = { region: select.val() };
+        loadCities(data);
+      });
+
+      function loadCities(data) {
+        $.ajax({
+          url: '{{ path('cities_json') }}',
+          type: 'post',
+          data: data,
+          success: function (json) {
+            var s;
+            selectC.html('');
+            selectC.append('<option value="">Выберите город</option>');
+            for (var key in json) {
+              if (json.hasOwnProperty(key)) {
+                selectC.append('<option value="' + json[ key ] + '">' + key + '</option>');
+              }
+            }
+            selectC.removeAttr('disabled', 'disabled');
+          },
+        });
+      }
+    });
+  </script>
+  <script>
+    $(function () {
+
+
+      var form = $('#registration_u_json');
+      $('#registration_u_json').ajaxForm({
+        beforeSubmit: function (formData, jqForm, options) {
+          return true;
+        },
+        success: function (json, statusText, xhr, $form) {
+          if (json.status === 200) {
+            $('#regModal').hide();
+          } else {
+            showErrorMessage(json.errors.join(", "));
+          }
+        },
+        url: '{{ path('registration_u_json_page') }}',
+        type: 'post',
+        dataType: 'json',
+        clearForm: false,
+        resetForm: false,
+      });
+    });
+  </script>
 {% endblock %}

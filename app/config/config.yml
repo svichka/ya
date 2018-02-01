@@ -81,5 +81,5 @@ assetic:
     filters:
         cssrewrite: ~
 
-sema_minifier:
-    enable_listener: true
+#wrewolf_minifier:
+#    enable_listener: true

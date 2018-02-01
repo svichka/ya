@@ -1,0 +1,65 @@
+<form action="{{ path('registration_u_json_page') }}" method="POST" id="registration_u_json">
+  <div class="row">
+    <div class="col-xs-11">
+      <div class="form-block">
+        <label for="">Фамилия *</label>
+        <input type="text" placeholder="Фамилия" >
+      </div>
+      <div class="form-block">
+        <label for="">Имя *</label>
+        <input type="text" placeholder="Имя">
+      </div>
+      <div class="form-block">
+        <label for="">Дата рождения *</label>
+        <input type="text" placeholder="18.08.1988" class="js-date">
+      </div>
+      <div class="form-block">
+        <label for="">Email *</label>
+        <input type="email" placeholder="email334@email.com">
+      </div>
+    </div>
+    <div class="col-xs-2"></div>
+    <div class="col-xs-11">
+      <div class="form-block">
+        <label for="">Регион *</label>
+        <input type="text" placeholder="Регион">
+      </div>
+      <div class="form-block">
+        <label for="">Город *</label>
+        <input type="text" placeholder="Город">
+      </div>
+      <div class="form-block">
+        <label for="">Пол *</label>
+        <div class="checkbox-wrap">
+          <input id="izmaleY" type="radio" name="registration_form[ismale]" value="Y">
+          <span></span>
+        </div>
+        <div class="checkbox-title">М</div>
+        <div class="checkbox-wrap">
+          <input id="izmaleN" type="radio" name="registration_form[ismale]" value="N">
+          <span></span>
+        </div>
+        <div class="checkbox-title">Ж</div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+
+    <div class="col-xs-11">
+      <div class="form-block">
+        <label for="">Пароль *</label>
+        <input type="password" placeholder="Пароль">
+      </div>
+    </div>
+    <div class="col-xs-2"></div>
+    <div class="col-xs-11">
+      <div class="form-block">
+        <label for="">Повторите пароль *</label>
+        <input type="password" placeholder="Повторите пароль">
+      </div>
+    </div>
+  </div>
+  <div class="form-btn text-center">
+    <button class="gradient-btn xs-button">Сохранить</button>
+  </div>
+</form>

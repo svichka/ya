@@ -1,4 +1,4 @@
-{% minifyhtml %}
+{#{% minifyhtml %}#}
 <!DOCTYPE html>
 {% set show = app.request.query.get("show") %}
 {% set action =  banned_listener.getAction() %}
@@ -84,26 +84,123 @@
   <!--Modals-->
 
   <!-- Modal -->
-  <div class="modal fade" id="modalMessage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal fade" id="prizeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                 aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title up" id="myModalLabel">
+            Регистрация кода
+          </h4>
         </div>
         <div class="modal-body">
-          <div class="modal-static" id="modalMessage-text">
-
+          <div class="modal-pre-title up">
+            Получи гарантированный приз
           </div>
-          <div class="form-btn text-center">
-            <button class="gradient-btn xxs-button" data-dismiss="modal">ОК</button>
+          <div class="modal-post-title">
+            Выберите скидку:
+          </div>
+          <div class="prize-select-row">
+            <div class="row">
+              <div class="col-xs-8 prize-select-block">
+                <div class="img-choise-prize" style="background-image: url({{ asset('images/yr.png') }})"></div>
+                <input type="radio" name="prize-garant" id="prize-garant-yr" disabled value="yr">
+                <img src="{{ asset('images/t.png') }}" alt="">
+                <img src="{{ asset('images/t1.png') }}" alt="">
+              </div>
+              <div class="col-xs-8 prize-select-block">
+                <div class="img-choise-prize" style="background-image: url({{ asset('images/lamoda.png') }})"></div>
+                <input type="radio" name="prize-garant" id="prize-garant-lamoda" disabled value="lamoda">
+                <img src="{{ asset('images/t.png') }}" alt="">
+                <img src="{{ asset('images/t1.png') }}" alt="">
+              </div>
+              <div class="col-xs-8 prize-select-block">
+                <div class="img-choise-prize" style="background-image: url({{ asset('images/ll.png') }})"></div>
+                <input type="radio" name="prize-garant" id="prize-garant-ll" disabled value="ll">
+                <img src="{{ asset('images/t.png') }}" alt="">
+                <img src="{{ asset('images/t1.png') }}" alt="">
+              </div>
+            </div>
+          </div>
+          <div class="modal-hr text-center">
+            <img src="{{ asset('images/hr.png') }}" alt="">
+          </div>
+          <div class="modal-pre-title up">
+            УЧАСТВУЙ В ЕЖЕНЕДЕЛЬНОМ РОЗЫГРЫШЕ
+          </div>
+          <div class="modal-post-title">
+            Выберите сертификат:
+          </div>
+          <div class="prize-select-row">
+            <div class="row">
+              <div class="col-xs-8 prize-select-block">
+                <div class="img-choise-prize" style="background-image: url({{ asset('images/yr.png') }})"></div>
+                <input type="radio" name="prize-daily" value="yr">
+                <img src="{{ asset('images/t.png') }}" alt="">
+                <img src="{{ asset('images/t1.png') }}" alt="">
+              </div>
+              <div class="col-xs-8 prize-select-block">
+                <div class="img-choise-prize" style="background-image: url({{ asset('images/lamoda.png') }})"></div>
+                <input type="radio" name="prize-daily" value="lamoda">
+                <img src="{{ asset('images/t.png') }}" alt="">
+                <img src="{{ asset('images/t1.png') }}" alt="">
+              </div>
+              <div class="col-xs-8 prize-select-block">
+                <div class="img-choise-prize" style="background-image: url({{ asset('images/ll.png') }})"></div>
+                <input type="radio" name="prize-daily" value="ll">
+                <img src="{{ asset('images/t.png') }}" alt="">
+                <img src="{{ asset('images/t1.png') }}" alt="">
+              </div>
+            </div>
+          </div>
+          <div class="mf-row">
+            <form action="" class="modal-reg-form">
+              <div class="row">
+                <div class="col-sm-6"></div>
+                <div class="col-sm-7">
+                  <div class="form-block">
+                    <input type="text" class='text-center modal-custum-input' name="code" placeholder="Введите код">
+                  </div>
+                </div>
+                <div class="col-sm-1"></div>
+                <div class="col-sm-10 col-xs-text-center">
+                  <button class="gradient-btn xxs-button" data-dismiss="modal" disabled="">ОК</button>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+
 {% endblock %}
 <!--Modals end-->
+
+<!-- Modal Отдельно, должна перекрывать отстальные модалки -->
+<div class="modal fade" id="modalMessage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document" style="z-index: 10000;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+              aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title up" id="modalMessage-header">
+
+        </h4>
+      </div>
+      <div class="modal-body">
+        <div class="modal-static" id="modalMessage-text">
+
+        </div>
+        <div class="form-btn text-center">
+          <button class="gradient-btn xxs-button" data-dismiss="modal">ОК</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 {% block javascripts %}
   <script src="{{ asset('js/jquery-2.2.1.min.js') }}"></script>
@@ -121,13 +218,42 @@
 
   {#<script src="//www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>#}
   <script>
+    function showErrorMessage(text) {
+      console.log("Error", text);
+      $('#modalMessage-header').text("Ошибка");
+      $('#modalMessage-text').text(text);
+      $('#modalMessage').modal('show');
+    }
+
     function showMessage(text) {
+      console.log("Message", text);
+      $('#modalMessage-header').text("");
       $('#modalMessage-text').text(text);
       $('#modalMessage').modal('show');
     }
   </script>
 
   <script src="{{ asset('js/index.js') }}?{{ content_version }}"></script>
+
+  <script>
+    $('#prizeModal').on('shown.bs.modal', function () {
+      console.log('prizeModal');
+      $.ajax({
+        url: '{{ path('check_prizes') }}', success: function (json) {
+          console.log(json);
+          if (json.lamoda === 1) {
+            $('#prize-garant-lamoda').prop('disabled', false);
+          }
+          if (json.yr === 1) {
+            $('#prize-garant-yr').prop('disabled', false);
+          }
+          if (json.ll === 1) {
+            $('#prize-garant-ll').prop('disabled', false);
+          }
+        },
+      });
+    })
+  </script>
 {% endblock %}
 {% for label, messages in app.session.flashbag.all %}
   {% if label == 'age' %}
@@ -144,4 +270,4 @@
 {% endfor %}
 </body>
 </html>
-{% endminifyhtml %}
+{#{% endminifyhtml %}#}
