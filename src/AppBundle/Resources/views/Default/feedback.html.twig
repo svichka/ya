@@ -59,7 +59,7 @@
           </div>
           <div class="col-sm-2"></div>
           <div class="col-sm-11">
-            {{ form_row(form.agree,{'id': 'izmale'}) }}
+            {{ form_row(form.agree) }}
           </div>
         </div>
         <div class="form-btn text-center">
@@ -74,34 +74,47 @@
 {% block javascripts %}
   {{ parent() }}
   <script>
-
-
-    function showError() {
-      $('.free-text-h').html('Обратная связь');
-      $('.free-text').html('Ошибка отправки данных.');
-      $('#freeModal').arcticmodal(favSyr.popup.options);
-    }
-
     document.addEventListener('feedback_error', function (e) {
-      showError()
+      showErrorMessage("Ошибка отправки сообщения");
+    }, false);
+    document.addEventListener('ok', function (e) {
+      $('#feedback').modal();
     }, false);
 
     function ValidateSize(file) {
       var FileSize = file.files[ 0 ].size / 1024 / 1024; // in MB
       if (FileSize > 3) {
-        $('.free-text-h').html('Обратная связь');
-        $('.free-text').html('Превышен допустимый размер файла в 3 Мб.<br>' +
+        showErrorMessage('Превышен допустимый размер файла в 3 Мб.<br>' +
           ' Попробуйте загрузить файл другого размера.');
-        $('#freeModal').arcticmodal(favSyr.popup.options);
         $(file).val(''); //for clearing with Jquery
-      } else {
-
       }
     }
-
   </script>
 {% endblock %}
 
 {% block modals %}
   {{ parent() }}
+  <!-- Modal -->
+  <div class="modal fade" id="feedback" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body">
+          <div class="modal-static">
+            <p>
+              Спасибо! <br><br>
+              Ваш вопрос отправлен Оператору Акции. <br>
+              Мы вернемся к Вам с ответом <br>
+              в течение 24 часов.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Modals End-->
+
 {% endblock %}

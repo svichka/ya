@@ -82,100 +82,293 @@
 
 {% block modals %}
   <!--Modals-->
-
-  <!-- Modal -->
-  <div class="modal fade" id="prizeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title up" id="myModalLabel">
-            Регистрация кода
-          </h4>
-        </div>
-        <div class="modal-body">
-          <div class="modal-pre-title up">
-            Получи гарантированный приз
+  {% if action == "#uploadModal" %}
+    <!-- Modal -->
+    <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                  aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title up" id="myModalLabel">
+              Регистрация кода
+            </h4>
           </div>
-          <div class="modal-post-title">
-            Выберите скидку:
-          </div>
-          <div class="prize-select-row">
-            <div class="row">
-              <div class="col-xs-8 prize-select-block">
-                <div class="img-choise-prize" style="background-image: url({{ asset('images/yr.png') }})"></div>
-                <input type="radio" name="prize-garant" id="prize-garant-yr" disabled value="yr">
-                <img src="{{ asset('images/t.png') }}" alt="">
-                <img src="{{ asset('images/t1.png') }}" alt="">
+          <div class="modal-body">
+            <form action="{{ path('promocode_register') }}" method="post" id="upload_form">
+              <div class="modal-pre-title up">
+                Получи гарантированный приз
               </div>
-              <div class="col-xs-8 prize-select-block">
-                <div class="img-choise-prize" style="background-image: url({{ asset('images/lamoda.png') }})"></div>
-                <input type="radio" name="prize-garant" id="prize-garant-lamoda" disabled value="lamoda">
-                <img src="{{ asset('images/t.png') }}" alt="">
-                <img src="{{ asset('images/t1.png') }}" alt="">
+              <div class="modal-post-title">
+                Выберите скидку:
               </div>
-              <div class="col-xs-8 prize-select-block">
-                <div class="img-choise-prize" style="background-image: url({{ asset('images/ll.png') }})"></div>
-                <input type="radio" name="prize-garant" id="prize-garant-ll" disabled value="ll">
-                <img src="{{ asset('images/t.png') }}" alt="">
-                <img src="{{ asset('images/t1.png') }}" alt="">
-              </div>
-            </div>
-          </div>
-          <div class="modal-hr text-center">
-            <img src="{{ asset('images/hr.png') }}" alt="">
-          </div>
-          <div class="modal-pre-title up">
-            УЧАСТВУЙ В ЕЖЕНЕДЕЛЬНОМ РОЗЫГРЫШЕ
-          </div>
-          <div class="modal-post-title">
-            Выберите сертификат:
-          </div>
-          <div class="prize-select-row">
-            <div class="row">
-              <div class="col-xs-8 prize-select-block">
-                <div class="img-choise-prize" style="background-image: url({{ asset('images/yr.png') }})"></div>
-                <input type="radio" name="prize-daily" value="yr">
-                <img src="{{ asset('images/t.png') }}" alt="">
-                <img src="{{ asset('images/t1.png') }}" alt="">
-              </div>
-              <div class="col-xs-8 prize-select-block">
-                <div class="img-choise-prize" style="background-image: url({{ asset('images/lamoda.png') }})"></div>
-                <input type="radio" name="prize-daily" value="lamoda">
-                <img src="{{ asset('images/t.png') }}" alt="">
-                <img src="{{ asset('images/t1.png') }}" alt="">
-              </div>
-              <div class="col-xs-8 prize-select-block">
-                <div class="img-choise-prize" style="background-image: url({{ asset('images/ll.png') }})"></div>
-                <input type="radio" name="prize-daily" value="ll">
-                <img src="{{ asset('images/t.png') }}" alt="">
-                <img src="{{ asset('images/t1.png') }}" alt="">
-              </div>
-            </div>
-          </div>
-          <div class="mf-row">
-            <form action="" class="modal-reg-form">
-              <div class="row">
-                <div class="col-sm-6"></div>
-                <div class="col-sm-7">
-                  <div class="form-block">
-                    <input type="text" class='text-center modal-custum-input' name="code" placeholder="Введите код">
+              <div class="prize-select-row">
+                <div class="row">
+                  <div class="col-xs-8 prize-select-block">
+                    <div class="img-choise-prize" style="background-image: url({{ asset('images/yr.png') }})"></div>
+                    <input type="radio" name="prize-garant" id="prize-garant-yr" disabled value="yr">
+                    <img src="{{ asset('images/t.png') }}" alt="">
+                    <img src="{{ asset('images/t1.png') }}" alt="">
+                  </div>
+                  <div class="col-xs-8 prize-select-block">
+                    <div class="img-choise-prize" style="background-image: url({{ asset('images/lamoda.png') }})"></div>
+                    <input type="radio" name="prize-garant" id="prize-garant-lamoda" disabled value="lamoda">
+                    <img src="{{ asset('images/t.png') }}" alt="">
+                    <img src="{{ asset('images/t1.png') }}" alt="">
+                  </div>
+                  <div class="col-xs-8 prize-select-block">
+                    <div class="img-choise-prize" style="background-image: url({{ asset('images/ll.png') }})"></div>
+                    <input type="radio" name="prize-garant" id="prize-garant-ll" disabled value="ll">
+                    <img src="{{ asset('images/t.png') }}" alt="">
+                    <img src="{{ asset('images/t1.png') }}" alt="">
                   </div>
                 </div>
-                <div class="col-sm-1"></div>
-                <div class="col-sm-10 col-xs-text-center">
-                  <button class="gradient-btn xxs-button" data-dismiss="modal" disabled="">ОК</button>
+              </div>
+              <div class="modal-hr text-center">
+                <img src="{{ asset('images/hr.png') }}" alt="">
+              </div>
+              <div class="modal-pre-title up">
+                УЧАСТВУЙ В ЕЖЕНЕДЕЛЬНОМ РОЗЫГРЫШЕ
+              </div>
+              <div class="modal-post-title">
+                Выберите сертификат:
+              </div>
+              <div class="prize-select-row">
+                <div class="row">
+                  <div class="col-xs-8 prize-select-block">
+                    <div class="img-choise-prize" style="background-image: url({{ asset('images/yr.png') }})"></div>
+                    <input type="radio" name="prize-daily" value="yr">
+                    <img src="{{ asset('images/t.png') }}" alt="">
+                    <img src="{{ asset('images/t1.png') }}" alt="">
+                  </div>
+                  <div class="col-xs-8 prize-select-block">
+                    <div class="img-choise-prize" style="background-image: url({{ asset('images/lamoda.png') }})"></div>
+                    <input type="radio" name="prize-daily" value="lamoda">
+                    <img src="{{ asset('images/t.png') }}" alt="">
+                    <img src="{{ asset('images/t1.png') }}" alt="">
+                  </div>
+                  <div class="col-xs-8 prize-select-block">
+                    <div class="img-choise-prize" style="background-image: url({{ asset('images/ll.png') }})"></div>
+                    <input type="radio" name="prize-daily" value="ll">
+                    <img src="{{ asset('images/t.png') }}" alt="">
+                    <img src="{{ asset('images/t1.png') }}" alt="">
+                  </div>
                 </div>
+              </div>
+              <div class="mf-row">
+                <form action="" class="modal-reg-form">
+                  <div class="row">
+                    <div class="col-sm-6"></div>
+                    <div class="col-sm-7">
+                      <div class="form-block">
+                        <input type="text" class='text-center modal-custum-input' name="code" placeholder="Введите код">
+                      </div>
+                    </div>
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-10 col-xs-text-center">
+                      <button class="gradient-btn xxs-button" data-dismiss="modal" disabled="">ОК</button>
+                    </div>
+                  </div>
+                </form>
               </div>
             </form>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
+    <!-- Modal мы с Тамарой ходим парой -->
+    <div class="modal fade" id="lamoda" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                  aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title up" id="myModalLabel">
+              Код успешно принят!
+            </h4>
+          </div>
+          <div class="modal-body">
+            <div class="modal-static">
+              <p>
+                Поздравляем, Вы получаете <br>
+                гарантированный приз — код на скидку <br>
+                в интернет-магазине
+                <img src="images/lamoda.png" class="modal-single-img modal-prise-garanted" alt="">
+                Также Ваш код будет участвовать <br>
+                в розыгрыше еженедельного <br>
+                приза – сертификат
+                <img src="images/lamoda.png" class="modal-single-img  modal-prise-main" alt="">
+                и в розыгрыше главного приза <br><br>
 
+                Розыгрыш еженедельного приза <br>
+                состоится 01.01.2025
+              </p>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+  {% if action == "#eolModal" %}
+    <!-- Modal -->
+    <div class="modal fade" id="eolModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                  aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title up" id="myModalLabel">
+              Уважаемый участник!
+            </h4>
+          </div>
+          <div class="modal-body">
+            <div class="modal-static">
+              <p>Акция завершена!</p>
+              <p>
+                Выдача призов осуществляется <br>
+                до 31 августа 2018 г. <br>
+                Информацию по получению призов <br>
+                Вы можете узнать в <a href="{{ path('personal_page') }}">Личном кабинете</a><br> 
+                или направив запрос в <a href="{{ path('feedback_page') }}">Обратную связь.</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+  {% if action == "#earlyModal" %}
+    <!-- Modal -->
+    <div class="modal fade" id="earlyModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                  aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title up" id="myModalLabel">
+              Уважаемый участник!
+            </h4>
+          </div>
+          <div class="modal-body">
+            <div class="modal-static">
+              <p>Акция еще не началась!</p>
+              <p>
+                Ваш первый код Вы сумеете загрузить <br> уже 01 марта 2018. <br>
+                С правилами акции можете <br>
+                ознакомиться перейдя по <a href="">ссылке</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+  {% if action == "#agreeModal" %}{% endif %}
+  {% if action == "#ageModal" %}
+    <!-- Modal -->
+    <div class="modal fade" id="ageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                  aria-hidden="true">&times;</span></button>
+          </div>
+          <div class="modal-body">
+            <div class="modal-static">
+              К сожалению, согласно правилам,<br>
+              принять участие в Акции могут только <br>
+              лица, достигшие 18 лет.
+            </div>
+            <div class="form-btn text-center">
+              <button class="gradient-btn xxs-button" data-dismiss="modal">ОК</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+  {% if action == "#overflowModal" %}
+    <!-- Modal -->
+    <div class="modal fade" id="overflowModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                  aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title up" id="myModalLabel">
+              Уважаемый участник!
+            </h4>
+          </div>
+          <div class="modal-body">
+            <div class="modal-static">
+              <p>
+                Вы заблокированы на 6 часов <br>
+                в связи с множественным вводом <br>
+                некорректных кодов.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+  {% if action == "#speedModal" %}{% endif %}
+  {% if action == "#countModal" %}
+    <!-- Modal -->
+    <div class="modal fade" id="countModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                  aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title up" id="myModalLabel">
+              Уважаемый участник!
+            </h4>
+          </div>
+          <div class="modal-body">
+            <div class="modal-static">
+              <p>
+                Согласно Правилам Акции <br>
+                Вы не можете зарегистрировать <br>
+                более 100 кодов <br>
+                за весь период акции. 
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+  {% if action == "#banModal" %}
+    <!-- Modal -->
+    <div class="modal fade" id="banModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                  aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title up" id="myModalLabel">
+              Уважаемый участник!
+            </h4>
+          </div>
+          <div class="modal-body">
+            <div class="modal-static">
+              <p>
+                Согласно Правилам Акции <br>
+                Вы не можете зарегистрировать <br>
+                более 100 кодов <br>
+                за весь период акции. 
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
 {% endblock %}
 <!--Modals end-->
 
@@ -232,7 +425,39 @@
       $('#modalMessage').modal('show');
     }
   </script>
+  {% if action == "#authModal" %}
+  <script>
+    $('.button-purple').click(function () {
+      window.location = '{{ path('login') }}';
+    });
+  </script>
+  {% endif %}
+  {% if action == "#uploadModal" %}
+  <script>
+    $('#upload_form').ajaxForm({
+      beforeSubmit: function (formData, jqForm, options) {
+        var queryString = $.param(formData);
+        console.log(queryString);
+        return true;
+      },
+      success: function (responseText, statusText, xhr, $form) {
+        console.log('status: ' + statusText + '\n\nresponseText: \n' + responseText);
+      },
+      type: 'post',
+      dataType: 'json',
+      clearForm: true,
+      resetForm: true,
+    });
+  </script>
+  {% endif %}
 
+  {% if action == "#updateModal" %}
+  <script>
+    $('.button-purple').click(function () {
+      window.location = '{{ path('personal_page',{open: 'updateModal'}) }}';
+    });
+  </script>
+  {% endif %}
   <script src="{{ asset('js/index.js') }}?{{ content_version }}"></script>
 
   <script>
@@ -261,6 +486,12 @@
   {% elseif label == 'login' %}
 
   {% elseif label == 'feedback' %}
+    <script>
+      {% for message in messages %}
+      console.log('{{ message }}');
+      document.dispatchEvent(new Event('{{ message }}'));
+      {% endfor %}
+    </script>
 
   {% elseif label == 'registration' %}
 

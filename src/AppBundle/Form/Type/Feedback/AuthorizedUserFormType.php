@@ -27,9 +27,9 @@
         ->add('message', TextareaType::class, ['attr' => ['class' => 'form__textarea']])
         ->add('file', FileType::class, ['required' => false, 'attr' => ['class' => 'form__input form__input_type_file', 'onchange' => "ValidateSize(this)"]])
         ->add('agree', CheckboxType::class, ['required' => true,'value' => 'Y','label'=>"Я согласен на обработку\n моих данных"]);
-      
+      $builder->get('agree')->addModelTransformer($this->booleanToYNFormatCallbackTransformer);
+  
       $builder->add('recaptcha', HiddenType::class);
-      
       $builder->addEventListener(FormEvents::PRE_SET_DATA, [$this, 'addThemes']);
     }
   }

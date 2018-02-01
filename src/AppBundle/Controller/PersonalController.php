@@ -157,9 +157,10 @@
       foreach ($weeks as $key => $week)
       {
         $i = $key + 1;
-
+        
         $tmp_weeks["Неделя " . $i] = $week;
-        if(!isset($all_promocodes["Неделя " . $i])){
+        if (!isset($all_promocodes["Неделя " . $i]))
+        {
           $all_promocodes["Неделя " . $i] = [];
         }
         $start = $week['start'];
@@ -244,32 +245,7 @@
     {
       $participantApi = new ParticipantApiController();
       $request->getClientIp();
-      $password_old = $request->get('password_old', '');
-      $password_new = $request->get('password_new', '');
-      if ($password_new != '' && $password_old != '')
-      {
-        try
-        {
-          $data = [
-            "oldpassword" => $password_old,
-            "newpassword" => $password_new,
-          ];
-          $this->get('logger')->info("request new pass object: " . print_r($data, true));
-          $participantApi->changePassword($this->getUser()->getParticipant()->id, $data);
-          
-          return new JsonResponse(["status" => 200]);
-        }
-        catch (NotCorrectDataException $e)
-        {
-          $this->get('logger')->error("Error change password NotCorrectDataException " . $e->getMessage());
-          throw $e;
-        }
-        catch (ApiFailedException $e2)
-        {
-          $this->get('logger')->error("Error change password ApiFailedException ");
-          throw $e2;
-        }
-      }
+      
       $formData = $this->getUser()->getParticipant();
       $registration_form = $request->request->get('registration_form');
       $this->valid = true;
@@ -297,10 +273,8 @@
         $this->validate($formData->birthdate, "Введите дату рождения");
       }
       
-      
       $formData->countrycode = 'RU';
-      
-      if ($formData->region == '')
+      if ($formData->regionguid == '')
       {
         $formData->regionguid = $registration_form['regionguid'];
         $this->validate($formData->region, "Выберите регион");
@@ -315,23 +289,9 @@
         $formData->ismale = $registration_form['ismale'];
         $this->validate($formData->ismale, "Выберите пол");
       }
-//      if ($registration_form['agreement'])
-//      {
-      $formData->isrulesagreed = "Y";
-      $formData->ispdagreed = "Y";
-      $formData->ismailingagreed = "Y";
-//      }
-//      else
-//      {
-//        $this->errors[] = "Согласитесь с условиями";
-//        $formData->isrulesagreed = "N";
-//        $formData->ispdagreed = "N";
-//        $formData->ismailingagreed = "N";
-//      }
+      
       if ($this->valid)
       {
-        
-        
         try
         {
           if ($registration_form == null)
@@ -348,7 +308,7 @@
             $p->{$array_key} = $registration_form[$array_key];
           }
           $p2 = $participantApi->update($formData->id, $p);
-          $fields = ['lastname', 'firstname', 'secname', 'region', 'city', 'regionguid', 'cityguid', 'birthdate', 'email', 'ismale', 'mobilephone'];
+          $fields = ['lastname', 'firstname', 'secname', 'region', 'city', 'regionguid', 'cityguid', 'birthdate', 'ismale'];
           $p2 = $participantApi->getById($formData->id, $fields);
           
           $this->getUser()->setParticipant($p2);
@@ -405,14 +365,13 @@
       ]);
     }
     
-
+    
     /**
      * @param $receipts
      *
      * @return array
      */
-    public
-    function sortReceipts($receipts): array
+    public function sortCodes($receipts): array
     {
       $tmp = [];
       $tmp3 = [];

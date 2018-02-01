@@ -14,6 +14,10 @@
       border-color: #495528 !important;
     }
 
+    .checkbox-wrap.disabled {
+      background: #495528 !important;
+      border-color: #495528 !important;
+    }
   </style>
 {% endblock %}
 
@@ -39,7 +43,7 @@
           </div>
           <div class="col-sm-19 text-center">
             <div class="code-upload-wrap">
-              <a href="" class="button-purple" data-toggle="modal" data-target="#prizeModal">Зарегистрировать код</a>
+              <a href="" class="button-purple" data-toggle="modal" data-target="{{ action }}">Зарегистрировать код</a>
             </div>
           </div>
         </div>
@@ -152,23 +156,25 @@
                     <label for="registration_form_regionguid">Регион *</label>
                     <select id="registration_form_regionguid" name="registration_form[regionguid]" disabled
                             required=""></select>
+                    <input type="hidden" name="registration_form[region]" id="registration_form_region" value="{{ user.getregion }}">
                   </div>
                   <div class="form-block">
                     <label for="registration_form_cityguid">Город *</label>
                     <select id="registration_form_cityguid" name="registration_form[cityguid]" disabled
                             required=""></select>
+                    <input type="hidden" name="registration_form[city]" id="registration_form_city" value="{{ user.getcity }}">
                   </div>
                   <div class="form-block">
                     <label for="">Пол *</label>
-                    <div class="checkbox-wrap">
-                      <input id="izmale" type="radio" name="registration_form[ismale]" value="Y"
+                    <div class="checkbox-wrap{% if user.getismale=='N' or user.getismale=='Y' %} disabled{% endif %}">
+                      <input id="registration_form_ismale_y" type="radio" name="registration_form[ismale]" value="Y"
                              {% if user.getismale=='Y' %}checked
                              disabled{% endif %} {% if user.getismale=='N' %} disabled{% endif %}>
                       <span></span>
                     </div>
                     <div class="checkbox-title">М</div>
-                    <div class="checkbox-wrap">
-                      <input id="izmale" type="radio" name="registration_form[ismale]" value="N"
+                    <div class="checkbox-wrap{% if user.getismale=='N' or user.getismale=='Y' %} disabled{% endif %}">
+                      <input id="registration_form_ismale_n" type="radio" name="registration_form[ismale]" value="N"
                              {% if user.getismale=='N' %}checked
                              disabled{% endif %} {% if user.getismale=='Y' %} disabled{% endif %}>
                       <span></span>
@@ -200,6 +206,8 @@
   <script>
     $(function () {
       regions = {{ banned_listener.regions()|json_encode|raw }};
+      city_input = $("input#registration_form_city");
+      region_input = $("input#registration_form_region");
       select = $("select#registration_form_regionguid");
       selectC = $("select#registration_form_cityguid");
 
@@ -228,13 +236,16 @@
         select.removeAttr('disabled', 'disabled');
       }
       select.on('change', function () {
+        region_input.val(select.val());
         selectC.html('');
         selectC.attr('disabled', 'disabled');
         selectC.append('<option value="">Зарузка...</option>');
         var data = { region: select.val() };
         loadCities(data);
       });
-
+      selectC.on('change', function () {
+        city_input.val(selectC.val());
+      });
       function loadCities(data) {
         $.ajax({
           url: '{{ path('cities_json') }}',

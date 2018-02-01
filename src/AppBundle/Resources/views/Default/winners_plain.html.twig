@@ -1,0 +1,71 @@
+{% extends 'AppBundle:Default:base.html.twig' %}
+
+{% block title %}
+  Победители
+{% endblock %}
+
+{% block body %}
+  <main class="main-content">
+    <div class="page-bg page-bg-empty">
+      <h1 class="static-title up">Победители</h1>
+      <div class="searching-winner-line">
+        <div class="seacrh-wrap">
+          <form action="{{ path('winnners_page') }}">
+            <label for="" class='up'>Поиск по фио</label>
+            <input type="text" name="fio" value="{{ fio }}">
+            <input type="hidden" name="date" value="{{ date }}">
+          </form>
+        </div>
+        <input type="text" class='js-date date-input' value="{{ date }}" name="date" placeholder="Выбрать дату">
+      </div>
+      {% for i,value in winners %}
+      <div class="week-item up">
+        <div class="week-toggle-block js-toggle-table">
+          <div class="js-week-table-scroll">
+            <div class="week-table">
+              <div class="week-row">
+                <div class="week-cell">ФИО</div>
+                <div class="week-cell">E-Mail</div>
+                <div class="week-cell">Результат</div>
+                <div class="week-cell">Партнер</div>
+                <div class="week-cell">Дата</div>
+              </div>
+              {% for winner in value %}
+                <div class="week-row">
+                  <div class="week-cell">{{ winner['fio'] }}</div>
+                  <div class="week-cell">{{ winner['email'] }}</div>
+                  <div class="week-cell">{{ winner['prize']|prize }}</div>
+                  <div class="week-cell">
+                    <img src={{ asset('images/' ~ winner['prize']|prize_image) }} alt="{{ winner['prize'] }}">
+                  </div>
+                  <div class="week-cell">{{ winner['date'] }}</div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+      {% else %}
+      <div class="week-item up">
+        <div class="week-title js-week-title">
+          <div class="row">
+            <div class="col-xs-24" style="text-align: center;padding: 10px 0 0 0;">Нет победителей</div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+  </main>
+{% endblock %}
+
+{% block stylesheets %}
+  {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  <script>
+    $('.date-input').change(function () {
+      $('input[type=hidden][name=date]').val($(this).val());
+    });
+  </script>
+{% endblock %}

@@ -54,6 +54,7 @@
       if ($form->isSubmitted() && $form->isValid())
       {
         $formData = $form->getData();
+        $this->get('logger')->info("formData " . print_r($formData, true));
         try
         {
           if ($formData['agree'] == 'N')

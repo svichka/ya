@@ -31,8 +31,8 @@
   
   class BannedListener
   {
-    
-    
+    private $end;
+    private $start;
     private $doctrine;
     private $logger = null;
     private $action = null;
@@ -42,7 +42,8 @@
     public function __construct(LoggerInterface $logger, $doctrine)
     {
       $this->doctrine = $doctrine;
-      
+      $this->end = "2018-12-31 23:59:59";
+      $this->start = "2018-01-01 00:00:00";
       $this->logger = $logger;
       $this->logger->info('Inited BannedListener');
       $this->logger->info('Test log!!!!');
@@ -50,14 +51,8 @@
     
     public function onKernelController(FilterControllerEvent $event)
     {
-//      return;
       $controller = $event->getController();
       
-      /*
-       * $controller passed can be either a class or a Closure.
-       * This is not usual in Symfony but it may happen.
-       * If it is a class, it comes in array format
-       */
       if (!is_array($controller))
       {
         return;
@@ -68,31 +63,31 @@
       
       if ($controller[0] instanceof DefaultController || $controller[0] instanceof StaticController || $controller[0] instanceof PersonalController)
       {
-        
         $this->logger->info("onKernelController");
         if ($this->action == null)
         {
-          $this->action = '#eolModal';
-          return;
           try
           {
             if (!$controller[0]->get('security.context')->isGranted('ROLE_USER'))
             {
               $this->action = '#authModal';
+              
               return;
             }
             else
             {
-              if ((new \DateTime())->format("Y-m-d H:i:s") > "2017-11-15 23:59:59")
+              if ((new \DateTime())->format("Y-m-d H:i:s") > $this->end)
               {
                 $this->action = '#eolModal';
                 
                 return;
               }
-
-//              $count = $this->getDoctrine()->getRepository('AppBundle:LogUpload')->getLastBan($controller[0]->getUser()->getParticipant()->guid);
-//              if ($count == 0)
-//              {
+              if ((new \DateTime())->format("Y-m-d H:i:s") < $this->start)
+              {
+                $this->action = '#earlyModal';
+    
+                return;
+              }
               $api = new ParticipantApiController();
               try
               {
@@ -102,11 +97,7 @@
               {
                 $data['status'] = 'bad';
               }
-//              }
-//              else
-//              {
-//                $data['status'] = 'time_ban';
-//              }
+              
               if ($data['status'] == 'ok')
               {
                 if (!$this->checkParticipantRequiredFields($controller[0]->getUser()->getParticipant()))
@@ -128,14 +119,22 @@
               }
               else
               {
-//                if ($data['status'] == 'time_ban')
-//                {
-//                  $this->action = '#timebanModal';
-//                }
-//                else
-//                {
+                switch ($data["reason"])
+                {
+                  case "TOO_MANY_INVALID_PROMOCODES":
+                  case "TOO_MANY_INVALID_RECEIPTS":
+                    $this->action = "#overflowModal";
+                    
+                    return;
+                  case "TOO_MANY_PROMOCODES_PER_MINUTE":
+                  case "TOO_MANY_RECEIPTS_PER_MINUTE":
+                    $this->action = "#speedModal";
+                    
+                    return;
+                }
                 $this->action = '#banModal';
-//                }
+                
+                return;
               }
             }
           }
@@ -158,8 +157,8 @@
         "email",
         "firstname",
         "lastname",
-        //        "cityguid",
-        //        "regionguid",
+        "cityguid",
+        "regionguid",
       ];
       
       foreach ($fields as $field)

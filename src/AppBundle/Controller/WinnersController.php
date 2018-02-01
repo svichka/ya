@@ -34,15 +34,87 @@
     /**
      * @Route("/winnners", name="winnners_page")
      */
-    public function winnersAction()
+    public function winnersAction(Request $request)
     {
       /**
        * @var \AppBundle\Entity\Winner[] $winners
        */
       $winners = [];
+      $fio = $request->get('fio');
+      $date = $request->get('date');
+      if ($fio && $date)
+      {
+        /***
+         * @var $tmp_winners \AppBundle\Entity\Winner[]
+         */
+        $tmp_winners = $this->getDoctrine()->getRepository('AppBundle:Winner')->findByFioDate($fio, $date);
+        foreach ($tmp_winners as $tmp_winner)
+        {
+          $winners[] = [
+            'fio'   => $tmp_winner->getPromocodeParticipantFio(),
+            'email' => $tmp_winner->getPromocodeParticipantEmail(),
+            'prize' => $tmp_winner->getPrize(),
+            'date'  => $tmp_winner->getWinDate(),
+          ];
+          
+        }
+        
+        return $this->render('AppBundle:Default:winners_plain.html.twig', [
+          'winners' => $winners,
+          'fio'     => $fio,
+          'date'    => $date,
+        ]);
+      }
+      if ($fio)
+      {
+        /***
+         * @var $tmp_winners \AppBundle\Entity\Winner[]
+         */
+        $tmp_winners = $this->getDoctrine()->getRepository('AppBundle:Winner')->findByFio($fio);
+        foreach ($tmp_winners as $tmp_winner)
+        {
+          $winners[] = [
+            'fio'   => $tmp_winner->getPromocodeParticipantFio(),
+            'email' => $tmp_winner->getPromocodeParticipantEmail(),
+            'prize' => $tmp_winner->getPrize(),
+            'date'  => $tmp_winner->getWinDate(),
+          ];
+          
+        }
+        
+        return $this->render('AppBundle:Default:winners_plain.html.twig', [
+          'winners' => $winners,
+          'fio'     => $fio,
+          'date'    => ''
+        ]);
+      }
+      if ($date)
+      {
+        /***
+         * @var $tmp_winners \AppBundle\Entity\Winner[]
+         */
+        $tmp_winners = $this->getDoctrine()->getRepository('AppBundle:Winner')->findByDate($date);
+        foreach ($tmp_winners as $tmp_winner)
+        {
+          $winners[] = [
+            'fio'   => $tmp_winner->getPromocodeParticipantFio(),
+            'email' => $tmp_winner->getPromocodeParticipantEmail(),
+            'prize' => $tmp_winner->getPrize(),
+            'date'  => $tmp_winner->getWinDate(),
+          ];
+          
+        }
+        
+        return $this->render('AppBundle:Default:winners_plain.html.twig', [
+          'winners' => $winners,
+          'fio'     => '',
+          'date'    => $date,
+        ]);
+      }
+      
       $lotteries = $this->getDoctrine()->getRepository('AppBundle:Lottery')->findBy(['prize' => 'certificate_lamoda']);
       $weeks = [];
-      $i=0;
+      $i = 0;
       foreach ($lotteries as $lottery)
       {
         $i++;
