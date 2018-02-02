@@ -13,6 +13,7 @@
           <form action="{{ path('winnners_page') }}">
             <label for="" class='up'>Поиск по фио</label>
             <input type="text" name="fio">
+            <input type="hidden" name="date" value="">
           </form>
         </div>
         <input type="text" class='js-date date-input' name="date" placeholder="Выбрать дату">
@@ -80,6 +81,12 @@
       } else {
         toggler.text('-');
       }
+    });
+  </script>
+  <script>
+    $('.date-input').change(function () {
+      $('input[type=hidden][name=date]').val($(this).val());
+      $('form').submit();
     });
   </script>
 {% endblock %}
