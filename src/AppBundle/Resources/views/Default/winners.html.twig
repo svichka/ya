@@ -18,49 +18,50 @@
         <input type="text" class='js-date date-input' name="date" placeholder="Выбрать дату">
       </div>
       {% for i,value in winners %}
-      <div class="week-item up">
-        <div class="week-title js-week-title">
-          <div class="week-toggler">+</div>
-          <div class="row">
-            <div class="col-xs-12">Неделя {{ i }}</div>
-            <div class="col-xs-12 text-right">{{ weeks[i]['start']|date('d.m.Y') }}
-              - {{ weeks[i]['end']|date('d.m.Y') }}</div>
+        <div class="week-item up">
+          <div class="week-title js-week-title">
+            <div class="week-toggler">+</div>
+            <div class="row">
+              <div class="col-xs-12">Неделя {{ i }}</div>
+              <div class="col-xs-12 text-right">{{ weeks[i]['start']|date('d.m.Y') }}
+                - {{ weeks[i]['end']|date('d.m.Y') }}</div>
+            </div>
           </div>
-        </div>
-        <div class="week-toggle-block js-toggle-table" style="display: none;">
-          <div class="js-week-table-scroll">
-            <div class="week-table">
-              <div class="week-row">
-                <div class="week-cell">ФИО</div>
-                <div class="week-cell">E-Mail</div>
-                <div class="week-cell">Результат</div>
-                <div class="week-cell">Партнер</div>
-                <div class="week-cell">Дата</div>
-              </div>
-              {% for winner in value %}
+          <div class="week-toggle-block js-toggle-table" style="display: none;">
+            <div class="js-week-table-scroll">
+              <div class="week-table">
                 <div class="week-row">
-                  <div class="week-cell">{{ winner['fio'] }}</div>
-                  <div class="week-cell">{{ winner['email'] }}</div>
-                  <div class="week-cell">{{ winner['prize']|prize }}</div>
-                  <div class="week-cell">
-                    <img src={{ asset('images/' ~ winner['prize']|prize_image) }} alt="{{ winner['prize'] }}">
-                  </div>
-                  <div class="week-cell">{{ winner['date'] }}</div>
+                  <div class="week-cell">ФИО</div>
+                  <div class="week-cell">E-Mail</div>
+                  <div class="week-cell">Результат</div>
+                  <div class="week-cell">Партнер</div>
+                  <div class="week-cell">Дата</div>
                 </div>
-              {% endfor %}
+                {% for winner in value %}
+                  <div class="week-row">
+                    <div class="week-cell">{{ winner['fio'] }}</div>
+                    <div class="week-cell">{{ winner['email'] }}</div>
+                    <div class="week-cell">{{ winner['prize']|prize|raw }}</div>
+                    <div class="week-cell">
+                      <img src={{ asset('images/' ~ winner['prize']|prize_image) }} alt="{{ winner['prize'] }}">
+                    </div>
+                    <div class="week-cell">{{ winner['date']|date('d.m.Y') }}</div>
+                  </div>
+                {% endfor %}
+              </div>
             </div>
           </div>
         </div>
-      </div>
       {% else %}
-      <div class="week-item up">
-        <div class="week-title js-week-title">
-          <div class="row">
-            <div class="col-xs-24" style="text-align: center;padding: 10px 0 0 0;">Нет победителей</div>
+        <div class="week-item up">
+          <div class="week-title js-week-title">
+            <div class="row">
+              <div class="col-xs-24" style="text-align: center;padding: 10px 0 0 0;">Нет победителей</div>
+            </div>
           </div>
         </div>
-        {% endfor %}
-      </div>
+      {% endfor %}
+    </div>
   </main>
 {% endblock %}
 
@@ -70,4 +71,15 @@
 
 {% block javascripts %}
   {{ parent() }}
+  <script>
+    $(function () {
+      $('.js-toggle-table:first').toggle().find('.js-week-table-scroll').find('.js-week-table-scroll').scrollbar("resize");
+      var toggler = $('.week-toggler:first');
+      if (toggler.text() === '-') {
+        toggler.text('+');
+      } else {
+        toggler.text('-');
+      }
+    });
+  </script>
 {% endblock %}

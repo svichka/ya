@@ -23,7 +23,7 @@
         ->select('w')
         ->from('AppBundle:Winner', 'w')
         ->where('w.promocode_participant_fio LIKE :fio')
-        ->setParameter('fio', $fio)
+        ->setParameter('fio', "%" . $fio . "%")
         ->getQuery()
         ->getResult();
       
@@ -38,7 +38,7 @@
         ->from('AppBundle:Winner', 'w')
         ->where('w.promocode_participant_fio LIKE :fio')
         ->andWhere('w.win_date LIKE :date')
-        ->setParameter('fio', $fio)
+        ->setParameter('fio', "%" . $fio . "%")
         ->setParameter('date', "%" . $date . "%")
         ->getQuery()
         ->getResult();
