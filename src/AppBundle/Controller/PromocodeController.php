@@ -2,6 +2,7 @@
   
   namespace AppBundle\Controller;
   
+  use AppBundle\Entity\CodeHistory;
   use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
   use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
   use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -325,6 +326,12 @@
       $code = $request->request->get('code', $request->get('code', null));
       $week = $request->request->get('week', $request->get('prize-garant', null));
       $main = $request->request->get('prize-daily', $request->get('prize-daily', null));
+      $ch = new CodeHistory();
+      $ch->setUser($this->getUser()->getParticipant()->id);
+      $ch->setCode($code);
+      $ch->setActivated(new \DateTime());
+      $this->getDoctrine()->getManager()->persist($ch);
+      $this->getDoctrine()->getManager()->flush();
       if ($code === null)
       {
         $response['status'] = 400;
@@ -392,7 +399,7 @@
       $code->setActivated(new \DateTime());
       $code->setStatus(1);
       $code->setUser($userId);
-      $code->setTask($result);
+      $code->setTask($result->getUUID());
       $this->getDoctrine()->getManager()->merge($code);
       $this->getDoctrine()->getManager()->flush();
       

@@ -43,7 +43,7 @@
     }
     
     /**
-     * @Route("/check_prizes/", name="check_prizes")
+     * @Route("/check_prizes", name="check_prizes")
      * @Security("has_role('ROLE_USER')")
      */
     public function checkPrizesAction(\Symfony\Component\HttpFoundation\Request $request)
@@ -56,26 +56,25 @@
       $prizes = $api->getPrizes();
       foreach ($prizes as $prize)
       {
-        var_dump($prize);
         switch ($prize->getSlug())
         {
           case "code_lenina":
-//            if ($prize->getRemainingAmount())
-//            {
-//              $ret['ll'] = 1;
-//            }
+            if ($prize->getRemainingAmount())
+            {
+              $ret['ll'] = 1;
+            }
             break;
           case "code_yves_rocher":
-//            if ($prize->getRemainingAmount())
-//            {
-//              $ret['yr'] = 1;
-//            }
+            if ($prize->getRemainingAmount())
+            {
+              $ret['yr'] = 1;
+            }
             break;
           case "code_lamoda":
-//            if ($prize->getRemainingAmount())
-//            {
-//              $ret['lamoda'] = 1;
-//            }
+            if ($prize->getRemainingAmount())
+            {
+              $ret['lamoda'] = 1;
+            }
             break;
         }
       }

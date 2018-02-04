@@ -71,32 +71,32 @@
                   <div class="week-cell">Партнер</div>
                 </div>
                 {% for promocode in promocodes[i]|reverse %}
-                <div class="week-row">
-                  <div class="week-cell">1234 5687 3454 5987</div>
-                  <div class="week-cell">05.02.2018</div>
-                  <div class="week-cell">Принят</div>
-                  <div class="week-cell">
-                    <span>Сертификат <br> 3000 Р</span>
+                  <div class="week-row">
+                    <div class="week-cell">1234 5687 3454 5987</div>
+                    <div class="week-cell">05.02.2018</div>
+                    <div class="week-cell">Принят</div>
+                    <div class="week-cell">
+                      <span>Сертификат <br> 3000 Р</span>
+                    </div>
+                    <div class="week-cell">
+                      <img src="{{ asset('images/yr.png') }}" alt="">
+                      <a href="" class='table-get-link js-get-code'>
+                        Получить
+                        <span class='js-code'>2c9WERL6</span>
+                      </a>
+                    </div>
                   </div>
-                  <div class="week-cell">
-                    <img src="{{ asset('images/yr.png') }}" alt="">
-                    <a href="" class='table-get-link js-get-code'>
-                      Получить
-                      <span class='js-code'>2c9WERL6</span>
-                    </a>
-                  </div>
-                </div>
                 {% else %}
-                <div class="week-row">
-                  <div style="display: block;
+                  <div class="week-row">
+                    <div style="display: block;
     margin: auto;
     width: 100%;
     position: absolute;
     margin-top: 15px;">Нет промокодов
+                    </div>
                   </div>
-                </div>
+                {% endfor %}
               </div>
-              {% endfor %}
             </div>
           </div>
         </div>
@@ -156,13 +156,15 @@
                     <label for="registration_form_regionguid">Регион *</label>
                     <select id="registration_form_regionguid" name="registration_form[regionguid]" disabled
                             required=""></select>
-                    <input type="hidden" name="registration_form[region]" id="registration_form_region" value="{{ user.getregion }}">
+                    <input type="hidden" name="registration_form[region]" id="registration_form_region"
+                           value="{{ user.getregion }}">
                   </div>
                   <div class="form-block">
                     <label for="registration_form_cityguid">Город *</label>
                     <select id="registration_form_cityguid" name="registration_form[cityguid]" disabled
                             required=""></select>
-                    <input type="hidden" name="registration_form[city]" id="registration_form_city" value="{{ user.getcity }}">
+                    <input type="hidden" name="registration_form[city]" id="registration_form_city"
+                           value="{{ user.getcity }}">
                   </div>
                   <div class="form-block">
                     <label for="">Пол *</label>
@@ -246,6 +248,7 @@
       selectC.on('change', function () {
         city_input.val(selectC.val());
       });
+
       function loadCities(data) {
         $.ajax({
           url: '{{ path('cities_json') }}',

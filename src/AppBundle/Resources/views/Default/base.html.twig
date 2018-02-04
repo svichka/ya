@@ -106,19 +106,22 @@
                 <div class="row">
                   <div class="col-xs-8 prize-select-block">
                     <div class="img-choise-prize" style="background-image: url({{ asset('images/yr.png') }})"></div>
-                    <input type="radio" name="prize-garant" id="prize-garant-yr" disabled value="yr">
+                    <input type="radio" name="prize-garant" id="prize-garant-yr" title="prize-garant-yr" disabled
+                           value="yr">
                     <img src="{{ asset('images/t.png') }}" alt="">
                     <img src="{{ asset('images/t1.png') }}" alt="">
                   </div>
                   <div class="col-xs-8 prize-select-block">
                     <div class="img-choise-prize" style="background-image: url({{ asset('images/lamoda.png') }})"></div>
-                    <input type="radio" name="prize-garant" id="prize-garant-lamoda" disabled value="lamoda">
+                    <input type="radio" name="prize-garant" id="prize-garant-lamoda" title="prize-garant-lamoda"
+                           disabled value="lamoda">
                     <img src="{{ asset('images/t.png') }}" alt="">
                     <img src="{{ asset('images/t1.png') }}" alt="">
                   </div>
                   <div class="col-xs-8 prize-select-block">
                     <div class="img-choise-prize" style="background-image: url({{ asset('images/ll.png') }})"></div>
-                    <input type="radio" name="prize-garant" id="prize-garant-ll" disabled value="ll">
+                    <input type="radio" name="prize-garant" id="prize-garant-ll" title="prize-garant-ll" disabled
+                           value="ll">
                     <img src="{{ asset('images/t.png') }}" alt="">
                     <img src="{{ asset('images/t1.png') }}" alt="">
                   </div>
@@ -137,19 +140,19 @@
                 <div class="row">
                   <div class="col-xs-8 prize-select-block">
                     <div class="img-choise-prize" style="background-image: url({{ asset('images/yr.png') }})"></div>
-                    <input type="radio" name="prize-daily" value="yr">
+                    <input type="radio" name="prize-daily" value="yr" title="prize-week-yr">
                     <img src="{{ asset('images/t.png') }}" alt="">
                     <img src="{{ asset('images/t1.png') }}" alt="">
                   </div>
                   <div class="col-xs-8 prize-select-block">
                     <div class="img-choise-prize" style="background-image: url({{ asset('images/lamoda.png') }})"></div>
-                    <input type="radio" name="prize-daily" value="lamoda">
+                    <input type="radio" name="prize-daily" value="lamoda" title="prize-week-lamoda">
                     <img src="{{ asset('images/t.png') }}" alt="">
                     <img src="{{ asset('images/t1.png') }}" alt="">
                   </div>
                   <div class="col-xs-8 prize-select-block">
                     <div class="img-choise-prize" style="background-image: url({{ asset('images/ll.png') }})"></div>
-                    <input type="radio" name="prize-daily" value="ll">
+                    <input type="radio" name="prize-daily" value="ll" title="prize-week-ll">
                     <img src="{{ asset('images/t.png') }}" alt="">
                     <img src="{{ asset('images/t1.png') }}" alt="">
                   </div>
@@ -166,7 +169,8 @@
                     </div>
                     <div class="col-sm-1"></div>
                     <div class="col-sm-10 col-xs-text-center">
-                      <button class="gradient-btn xxs-button" data-dismiss="modal" disabled="">ОК</button>
+                      <button class="gradient-btn xxs-button" id="send_code" disabled="">ОК
+                      </button>
                     </div>
                   </div>
                 </form>
@@ -194,11 +198,11 @@
                 Поздравляем, Вы получаете <br>
                 гарантированный приз — код на скидку <br>
                 в интернет-магазине
-                <img src="images/lamoda.png" class="modal-single-img modal-prise-garanted" alt="">
+                <img src="{{ asset('images/lamoda.png') }}" class="modal-single-img modal-prise-garanted" alt="">
                 Также Ваш код будет участвовать <br>
                 в розыгрыше еженедельного <br>
                 приза – сертификат
-                <img src="images/lamoda.png" class="modal-single-img  modal-prise-main" alt="">
+                <img src="{{ asset('images/lamoda.png') }}" class="modal-single-img  modal-prise-main" alt="">
                 и в розыгрыше главного приза <br><br>
 
                 Розыгрыш еженедельного приза <br>
@@ -409,7 +413,6 @@
 
   <script src="{{ asset('js/libs.js') }}"></script>
 
-  {#<script src="//www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>#}
   <script>
     function showErrorMessage(text) {
       console.log("Error", text);
@@ -434,19 +437,27 @@
   {% endif %}
   {% if action == "#uploadModal" %}
   <script>
-    $('#upload_form').ajaxForm({
-      beforeSubmit: function (formData, jqForm, options) {
-        var queryString = $.param(formData);
-        console.log(queryString);
-        return true;
-      },
-      success: function (responseText, statusText, xhr, $form) {
-        console.log('status: ' + statusText + '\n\nresponseText: \n' + responseText);
-      },
-      type: 'post',
-      dataType: 'json',
-      clearForm: true,
-      resetForm: true,
+    $(function () {
+      $('#upload_form').ajaxForm({
+        beforeSubmit: function (formData, jqForm, options) {
+          var queryString = $.param(formData);
+          console.log(queryString);
+          return true;
+        },
+        success: function (responseText, statusText, xhr, $form) {
+          console.log('status: ' + statusText + '\n\nresponseText: \n' + responseText);
+          if(responseText.status===200) {
+            showMessage(responseText.message);
+          }else{
+            showErrorMessage(responseText.error);
+            return false;
+          }
+        },
+        type: 'post',
+        dataType: 'json',
+        clearForm: false,
+        resetForm: false,
+      });
     });
   </script>
   {% endif %}
@@ -461,22 +472,27 @@
   <script src="{{ asset('js/index.js') }}?{{ content_version }}"></script>
 
   <script>
-    $('#prizeModal').on('shown.bs.modal', function () {
-      console.log('prizeModal');
-      $.ajax({
-        url: '{{ path('check_prizes') }}', success: function (json) {
-          console.log(json);
-          if (json.lamoda === 1) {
-            $('#prize-garant-lamoda').prop('disabled', false);
-          }
-          if (json.yr === 1) {
-            $('#prize-garant-yr').prop('disabled', false);
-          }
-          if (json.ll === 1) {
-            $('#prize-garant-ll').prop('disabled', false);
-          }
-        },
-      });
+    $(document).on('shown.bs.modal', function (e) {
+      console.log('uploadModal');
+      console.log(e.target.id);
+      if (e.target.id === "uploadModal") {
+        $.ajax({
+          url: '{{ path('check_prizes') }}', success: function (json) {
+            console.log(json);
+            if (json.lamoda === 1) {
+              $('#prize-garant-lamoda').prop('disabled', false);
+            }
+            if (json.yr === 1) {
+              $('#prize-garant-yr').prop('disabled', false);
+            }
+            if (json.ll === 1) {
+              $('#prize-garant-ll').prop('disabled', false);
+            }
+
+            $('#send_code').prop('disabled', false);
+          },
+        });
+      }
     })
   </script>
 {% endblock %}
