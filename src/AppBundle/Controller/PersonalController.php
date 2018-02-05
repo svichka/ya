@@ -224,6 +224,7 @@
               'result'  => $results,
               'partner' => $partners,
               'app'     => $application,
+              'prizes'  => $prizeApplications,
               'coupons' => $coupons,
             ];
           }

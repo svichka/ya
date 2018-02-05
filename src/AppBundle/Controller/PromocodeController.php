@@ -324,8 +324,8 @@
       $response = ['status' => 200];
       $slugs = [];
       $code = $request->request->get('code', $request->get('code', null));
-      $week = $request->request->get('week', $request->get('prize-garant', null));
-      $main = $request->request->get('prize-daily', $request->get('prize-daily', null));
+      $guaranteed = $request->request->get('prize-guaranteed', $request->get('prize-guaranteed', null));
+      $weekly = $request->request->get('prize-weekly', $request->get('prize-weekly', null));
       $ch = new CodeHistory();
       $ch->setUser($this->getUser()->getParticipant()->id);
       $ch->setCode($code);
@@ -340,7 +340,7 @@
         
         return new JsonResponse($response);
       }
-      if ($week === null)
+      if ($guaranteed === null)
       {
         $response['status'] = 400;
         $response['error'] = "Не выбран гарантированный приз";
@@ -349,23 +349,23 @@
       }
       else
       {
-        switch ($main)
+        switch ($guaranteed)
         {
           case 'll':
             $slugs[] = "moda_lenina_guaranteed";
-            $urls['guaranteed'] = $this->container->get('assets.url_package')->getUrl('images/ll.png');
+            $urls['guaranteed'] = $this->container->get('assets.packages')->getUrl('images/ll.png');
             break;
           case 'yr':
             $slugs[] = "moda_yves_rocher_guaranteed";
-            $urls['guaranteed'] = $this->container->get('assets.url_package')->getUrl('images/yr.png');
+            $urls['guaranteed'] = $this->container->get('assets.packages')->getUrl('images/yr.png');
             break;
           case 'lamoda':
             $slugs[] = "moda_lamoda_guaranteed";
-            $urls['guaranteed'] = $this->container->get('assets.url_package')->getUrl('images/lamoda.png');
+            $urls['guaranteed'] = $this->container->get('assets.packages')->getUrl('images/lamoda.png');
             break;
         }
       }
-      if ($main === null)
+      if ($weekly === null)
       {
         $response['status'] = 400;
         $response['error'] = "Не выбран еженедельный приз";
@@ -374,19 +374,19 @@
       }
       else
       {
-        switch ($main)
+        switch ($weekly)
         {
           case 'll':
             $slugs[] = "moda_lenina_weekly";
-            $urls['weekly'] = $this->container->get('assets.url_package')->getUrl('images/ll.png');
+            $urls['weekly'] = $this->container->get('assets.packages')->getUrl('images/ll.png');
             break;
           case 'yr':
             $slugs[] = "moda_yves_rocher_weekly";
-            $urls['weekly'] = $this->container->get('assets.url_package')->getUrl('images/yr.png');
+            $urls['weekly'] = $this->container->get('assets.packages')->getUrl('images/yr.png');
             break;
           case 'lamoda':
             $slugs[] = "moda_lamoda_weekly";
-            $urls['weekly'] = $this->container->get('assets.url_package')->getUrl('images/weekly.png');
+            $urls['weekly'] = $this->container->get('assets.packages')->getUrl('images/lamoda.png');
             break;
         }
       }
@@ -406,6 +406,8 @@
       $code->setStatus(1);
       $code->setUser($userId);
       $code->setTask($result->getUUID());
+      $code->setGuaranteed($guaranteed);
+      $code->setWeekly($weekly);
       $this->getDoctrine()->getManager()->merge($code);
       $this->getDoctrine()->getManager()->flush();
       

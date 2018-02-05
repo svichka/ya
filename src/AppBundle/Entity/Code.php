@@ -43,6 +43,14 @@
      * @ORM\Column(type="string", nullable=true)
      */
     private $task;
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $weekly;
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $guaranteed;
     
     /**
      * @return mixed
@@ -122,5 +130,37 @@
     public function setTask($task)
     {
       $this->task = $task;
+    }
+  
+    /**
+     * @return mixed
+     */
+    public function getGuaranteed()
+    {
+      return $this->guaranteed;
+    }
+  
+    /**
+     * @param mixed $guaranteed
+     */
+    public function setGuaranteed($guaranteed)
+    {
+      $this->guaranteed = $guaranteed;
+    }
+  
+    /**
+     * @return mixed
+     */
+    public function getWeekly()
+    {
+      return $this->weekly;
+    }
+  
+    /**
+     * @param mixed $weekly
+     */
+    public function setWeekly($weekly)
+    {
+      $this->weekly = $weekly;
     }
   }

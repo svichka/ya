@@ -73,7 +73,7 @@
                 </div>
                 {% for promocode in promocodes[i]|reverse %}
                   <div class="week-row">
-                    {{ dump(promocode) }}
+                    {#{{ dump(promocode) }}#}
                     <div class="week-cell">{{ promocode.code }}</div>
                     <div class="week-cell">{{ promocode.app.validationDate|date('d.m.Y') }}</div>
                     <div class="week-cell">{{ promocode.status }}</div>

@@ -46,13 +46,25 @@
     private $messages = [];
     private $errors = [];
     private $valid;
-    
-    
+  
+    /**
+     * @Route("/url_test", name="url_test_page")
+     * @param Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     * @throws \Exception
+     */
+    public function urlTestAction(Request $request)
+    {
+      return new JsonResponse(['url' => $this->container->get('assets.packages')->getUrl('images/ll.png')]);
+    }
+  
     /**
      * @Route("/promos2", name="promos2_page")
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
      * @return \Symfony\Component\HttpFoundation\JsonResponse
+     * @throws \Exception
      */
     public function promos2Action(Request $request)
     {
@@ -179,7 +191,7 @@
           {
             throw new NotCorrectDataException("Введите верную дату рождения");
           }
-
+          
           
           $age = \DateTime::createFromFormat('d.m.Y', $formData->birthdate)
             ->diff(new \DateTime('now'))
@@ -672,9 +684,12 @@
       }
       catch (NotCorrectDataException $e)
       {
-        if($e->getMessage()=="User not found"){
+        if ($e->getMessage() == "User not found")
+        {
           $this->errors[] = "Пользователь не найден";
-        }else{
+        }
+        else
+        {
           $this->errors[] = $e->getMessage();
         }
       }
