@@ -151,6 +151,10 @@
         }
       }
       
+      /**
+       * @var $prizes \Dalee\PEPUWSClientBundle\Entity\PrizeApplication[]
+       */
+      $prizes = (new ParticipantApiController())->getPrizeApplications($user->getParticipant()->id);
       $promocodes = (new PromocodeApiController())->getApplicationsByParticipantId($user->getParticipant()->id);
       sort($weeks, SORT_DESC);
       
@@ -163,41 +167,66 @@
         {
           $all_promocodes["Неделя " . $i] = [];
         }
-        $start = $week['start'];
-        $end = $week['end'];
+        $start = $week['start']->format("Y-m-d H:i:s");
+        $end = $week['end']->format("Y-m-d H:i:s");
         foreach ($promocodes as $application)
         {
-          if (!isset($all_promocodes[$i]))
+          $c_date = date("Y-m-d H:i:s", strtotime($application->getValidationDate()));
+          if ($start <= $c_date && $c_date <= $end)
           {
-            $all_promocodes[$i] = [];
-          }
-          $results = [];
-          $partners = [];
-          $promoApplications = $application->getPromoApplications();
-          
-          foreach ($promoApplications as $promoApplication)
-          {
-            if (count($promoApplication['prize_options']))
+            if ($application->getValidationDate())
             {
-              foreach ($promoApplication['prize_options'] as $prize_option)
+              if (!isset($all_promocodes[$i]))
               {
-                $results[] = $prize_option['slug'];
+                $all_promocodes[$i] = [];
               }
             }
+            $results = [];
+            $partners = [];
+            $promoApplications = $application->getPromoApplications();
+            
+            foreach ($promoApplications as $promoApplication)
+            {
+              if (count($promoApplication['prize_options']))
+              {
+                foreach ($promoApplication['prize_options'] as $prize_option)
+                {
+                  $results[] = $prize_option['slug'];
+                }
+              }
+            }
+            $coupons = [];
+            /***
+             * @var $prizeApplications \Dalee\PEPUWSClientBundle\Entity\PrizeApplication[]
+             */
+            $prizeApplications = $application->getPrizeApplications();
+            foreach ($prizeApplications as $prizeApplication)
+            {
+              $coupons[] = $prizeApplication->getCouponCode();
+            }
+            
+            $promoOptions = $application->getPromoOptions();
+            foreach ($promoOptions as $promoOption)
+            {
+              $partners[] = $promoOption['slug'];
+            }
+            $validation_status = "Не известен";
+            switch ($application->getValidationStatus())
+            {
+              case "VALID":
+                $validation_status = "Принят";
+                break;
+            }
+            $all_promocodes["Неделя " . $i][] = [
+              'code'    => $application->getCode(),
+              'date'    => $application->getValidationDate(),
+              'status'  => $validation_status,
+              'result'  => $results,
+              'partner' => $partners,
+              'app'     => $application,
+              'coupons' => $coupons,
+            ];
           }
-          
-          $promoOptions = $application->getPromoOptions();
-          foreach ($promoOptions as $promoOption)
-          {
-            $partners[] = $promoOption['slug'];
-          }
-          $all_promocodes["Неделя " . $i][] = [
-            'code'    => $application->getCode(),
-            'date'    => $application->getValidationDate(),
-            'status'  => $application->getValidationStatus(),
-            'result'  => $results,
-            'partner' => $partners,
-          ];
         }
       }
       
@@ -206,7 +235,9 @@
         'errors'      => $this->errors,
         'weeks'       => $tmp_weeks,
         'promocodes'  => $all_promocodes,
-        'participant' => $participant,]);
+        'participant' => $participant,
+        'prizes'      => $prizes,
+      ]);
     }
     
     

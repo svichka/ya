@@ -59,6 +59,7 @@ User not found: Пользователь с указанным адресом э
 REJECTED: ОТКЛОНЕН
 APPROVED: ПРИНЯТ
 WAITING: ОБРАБОТКА
+VALID: ПРИНЯТ
 #
 #DUPLICATE: Дубликат
 #MODIFICATION: Модифицирован

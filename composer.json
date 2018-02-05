@@ -24,7 +24,7 @@
   ],
   "require": {
     "php": ">=7.0.0",
-    "dalee/pepuwsclientbundle": "~1.0",
+    "dalee/pepuwsclientbundle": "~2.0",
     "doctrine/doctrine-bundle": "~1.4",
     "doctrine/orm": "^2.4.8",
     "google/recaptcha": "~1.1",

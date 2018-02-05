@@ -56,8 +56,9 @@
             <div class="week-toggler">-</div>
             <div class="row">
               <div class="col-xs-12">{% if first == 1 %}Текущая неделя{% else %}{{ i }}{% endif %}</div>
-              <div
-                  class="col-xs-12 text-right">{% if first != 1 %}({{ week['start']|date('d.m.Y') }} - {{ week['end']|date('d.m.Y') }}){% endif %}</div>
+              <div class="col-xs-12 text-right">
+                {% if first != 1 %}({{ week['start']|date('d.m.Y') }} - {{ week['end']|date('d.m.Y') }}){% endif %}
+              </div>
             </div>
           </div>
           <div class="week-toggle-block js-toggle-table" {% if first != 1 %}style="display: none;"{% endif %}>
@@ -72,9 +73,10 @@
                 </div>
                 {% for promocode in promocodes[i]|reverse %}
                   <div class="week-row">
-                    <div class="week-cell">1234 5687 3454 5987</div>
-                    <div class="week-cell">05.02.2018</div>
-                    <div class="week-cell">Принят</div>
+                    {{ dump(promocode) }}
+                    <div class="week-cell">{{ promocode.code }}</div>
+                    <div class="week-cell">{{ promocode.app.validationDate|date('d.m.Y') }}</div>
+                    <div class="week-cell">{{ promocode.status }}</div>
                     <div class="week-cell">
                       <span>Сертификат <br> 3000 Р</span>
                     </div>
@@ -82,7 +84,7 @@
                       <img src="{{ asset('images/yr.png') }}" alt="">
                       <a href="" class='table-get-link js-get-code'>
                         Получить
-                        <span class='js-code'>2c9WERL6</span>
+                        <span class='js-code'>{{ promocode.coupons|join(', ') }}</span>
                       </a>
                     </div>
                   </div>

@@ -332,6 +332,7 @@
       $ch->setActivated(new \DateTime());
       $this->getDoctrine()->getManager()->persist($ch);
       $this->getDoctrine()->getManager()->flush();
+      $urls = [];
       if ($code === null)
       {
         $response['status'] = 400;
@@ -340,6 +341,31 @@
         return new JsonResponse($response);
       }
       if ($week === null)
+      {
+        $response['status'] = 400;
+        $response['error'] = "Не выбран гарантированный приз";
+        
+        return new JsonResponse($response);
+      }
+      else
+      {
+        switch ($main)
+        {
+          case 'll':
+            $slugs[] = "moda_lenina_guaranteed";
+            $urls['guaranteed'] = $this->container->get('assets.url_package')->getUrl('images/ll.png');
+            break;
+          case 'yr':
+            $slugs[] = "moda_yves_rocher_guaranteed";
+            $urls['guaranteed'] = $this->container->get('assets.url_package')->getUrl('images/yr.png');
+            break;
+          case 'lamoda':
+            $slugs[] = "moda_lamoda_guaranteed";
+            $urls['guaranteed'] = $this->container->get('assets.url_package')->getUrl('images/lamoda.png');
+            break;
+        }
+      }
+      if ($main === null)
       {
         $response['status'] = 400;
         $response['error'] = "Не выбран еженедельный приз";
@@ -351,35 +377,16 @@
         switch ($main)
         {
           case 'll':
-            $slugs[] = "moda_lenina_guaranteed";
-            break;
-          case 'yr':
-            $slugs[] = "moda_yves_rocher_guaranteed";
-            break;
-          case 'lamoda':
-            $slugs[] = "moda_lamoda_guaranteed";
-            break;
-        }
-      }
-      if ($main === null)
-      {
-        $response['status'] = 400;
-        $response['error'] = "Не выбран главный приз";
-        
-        return new JsonResponse($response);
-      }
-      else
-      {
-        switch ($main)
-        {
-          case 'll':
             $slugs[] = "moda_lenina_weekly";
+            $urls['weekly'] = $this->container->get('assets.url_package')->getUrl('images/ll.png');
             break;
           case 'yr':
             $slugs[] = "moda_yves_rocher_weekly";
+            $urls['weekly'] = $this->container->get('assets.url_package')->getUrl('images/yr.png');
             break;
           case 'lamoda':
             $slugs[] = "moda_lamoda_weekly";
+            $urls['weekly'] = $this->container->get('assets.url_package')->getUrl('images/weekly.png');
             break;
         }
       }
@@ -392,7 +399,6 @@
         
         return new JsonResponse($response);
       }
-      $slugs = [$week, $main];
       $userId = $this->getUser()->getParticipant()->getId();
       $promocodeApiController = new PromocodeApiController();
       $result = $promocodeApiController->addToParticipantAsync($userId, $code->getCode(), $slugs);
@@ -404,7 +410,16 @@
       $this->getDoctrine()->getManager()->flush();
       
       $response['error'] = $result->getStatus();
-      $response['status'] = $result->getResponseCode();
+      if ($result->getStatus() == "NEW")
+      {
+        $response['status'] = 200;
+        $response['garanted'] = $urls['guaranteed'];
+        $response['main'] = $urls['weekly'];
+      }
+      else
+      {
+        $response['status'] = $result->getResponseCode();
+      }
       
       return new JsonResponse($response);
     }
