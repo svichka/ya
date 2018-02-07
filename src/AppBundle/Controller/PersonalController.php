@@ -6,6 +6,7 @@
   use Dalee\PEPUWSClientBundle\Controller\CrmReceiptsController;
   use Dalee\PEPUWSClientBundle\Controller\GeoApiController;
   use Dalee\PEPUWSClientBundle\Controller\LedgerApiController;
+  use Dalee\PEPUWSClientBundle\Controller\PrizeApiController;
   use Dalee\PEPUWSClientBundle\Controller\PromocodeApiController;
   use Dalee\PEPUWSClientBundle\Controller\PromoLotteryApiController;
   use Dalee\PEPUWSClientBundle\Controller\ReceiptApiController;
@@ -133,83 +134,59 @@
       }
       
       $this->get('logger')->info("USER DATA LINK " . $participant->id . " " . $participant->email);
-      // Номер кода Дата загрузки Статус кода Результат Партнер"
+      $promocodes_info = $this->getPromocodes($user->getParticipant()->id);
+      
+      return $this->render('AppBundle:Default:personal.html.twig', [
+        'messages'    => $this->messages,
+        'errors'      => $this->errors,
+        'weeks'       => $promocodes_info['weeks'],
+        'promocodes'  => $promocodes_info['promocodes'],
+        'participant' => $participant,
+      ]);
+    }
+    
+    private function getPromocodes($participant_id)
+    {
+      // Массив промокодов по неделям
       $all_promocodes = [];
+      // Массив недель
       $tmp_weeks = [];
-      /**
-       * @var \Dalee\PEPUWSClientBundle\Entity\PromocodeApplication[] $promocodes
-       */
-      $lotteries = $this->getDoctrine()->getRepository('AppBundle:Lottery')->findBy(['prize' => 'certificate_lamoda']);
-      $weeks = [];
-      $i = 1;
-      foreach ($lotteries as $lottery)
-      {
-        if ($lottery->getStartTime() <= new \DateTime())
-        {
-          
-          $weeks[$i++] = ['start' => $lottery->getStartTime(), 'end' => $lottery->getEndTime()];
-        }
-      }
+      $weeks = $this->getWeeks();
       
       /**
-       * @var $prizes \Dalee\PEPUWSClientBundle\Entity\PrizeApplication[]
+       * @var \Dalee\PEPUWSClientBundle\Entity\PromocodeApplication[] $promocode_applications
        */
-      $prizes = (new ParticipantApiController())->getPrizeApplications($user->getParticipant()->id);
-      $promocodes = (new PromocodeApiController())->getApplicationsByParticipantId($user->getParticipant()->id);
-      sort($weeks, SORT_DESC);
+      $promocode_applications = (new PromocodeApiController())->getApplicationsByParticipantId($participant_id);
       
       foreach ($weeks as $key => $week)
       {
         $i = $key + 1;
-        
         $tmp_weeks["Неделя " . $i] = $week;
         if (!isset($all_promocodes["Неделя " . $i]))
         {
           $all_promocodes["Неделя " . $i] = [];
         }
+        
         $start = $week['start']->format("Y-m-d H:i:s");
         $end = $week['end']->format("Y-m-d H:i:s");
-        foreach ($promocodes as $application)
+        
+        foreach ($promocode_applications as $application)
         {
           $c_date = date("Y-m-d H:i:s", strtotime($application->getValidationDate()));
+          
           if ($start <= $c_date && $c_date <= $end)
           {
-            if ($application->getValidationDate())
+            if (!isset($all_promocodes[$i]))
             {
-              if (!isset($all_promocodes[$i]))
-              {
-                $all_promocodes[$i] = [];
-              }
+              $all_promocodes[$i] = [];
             }
-            $results = [];
-            $partners = [];
-            $promoApplications = $application->getPromoApplications();
             
-            foreach ($promoApplications as $promoApplication)
-            {
-              if (count($promoApplication['prize_options']))
-              {
-                foreach ($promoApplication['prize_options'] as $prize_option)
-                {
-                  $results[] = $prize_option['slug'];
-                }
-              }
-            }
-            $coupons = [];
             /***
              * @var $prizeApplications \Dalee\PEPUWSClientBundle\Entity\PrizeApplication[]
              */
             $prizeApplications = $application->getPrizeApplications();
-            foreach ($prizeApplications as $prizeApplication)
-            {
-              $coupons[] = $prizeApplication->getCouponCode();
-            }
+            $promoApplications = $application->getPromoApplications();
             
-            $promoOptions = $application->getPromoOptions();
-            foreach ($promoOptions as $promoOption)
-            {
-              $partners[] = $promoOption['slug'];
-            }
             $validation_status = "Не известен";
             switch ($application->getValidationStatus())
             {
@@ -218,32 +195,20 @@
                 break;
             }
             $all_promocodes["Неделя " . $i][] = [
-              'code'    => $application->getCode(),
-              'date'    => $application->getValidationDate(),
-              'status'  => $validation_status,
-              'result'  => $results,
-              'partner' => $partners,
-              'app'     => $application,
-              'prizes'  => $prizeApplications,
-              'coupons' => $coupons,
+              'code'   => $application->getCode(),
+              'date'   => $application->getValidationDate(),
+              'status' => $validation_status,
+              'prizes' => $prizeApplications,
+              'promos' => $promoApplications,
             ];
           }
         }
       }
       
-      return $this->render('AppBundle:Default:personal.html.twig', [
-        'messages'    => $this->messages,
-        'errors'      => $this->errors,
-        'weeks'       => $tmp_weeks,
-        'promocodes'  => $all_promocodes,
-        'participant' => $participant,
-        'prizes'      => $prizes,
-      ]);
+      return ['weeks' => $tmp_weeks, 'promocodes' => $all_promocodes];
     }
     
-    
-    private
-    function makeErrorsFromFields($fields)
+    private function makeErrorsFromFields($fields)
     {
       foreach ($fields as $field => $status)
       {
@@ -259,8 +224,7 @@
     }
     
     
-    public
-    function validate($val, $err)
+    public function validate($val, $err)
     {
       if (trim($val) == "")
       {
@@ -423,6 +387,26 @@
       $receipts = array_reverse($receipts);
       
       return $receipts;
+    }
+    
+    /**
+     * @return \DateTime[][]
+     */
+    private function getWeeks()
+    {
+      $lotteries = $this->getDoctrine()->getRepository('AppBundle:Lottery')->findBy(['prize' => 'certificate_lamoda']);
+      $weeks = [];
+      $i = 1;
+      foreach ($lotteries as $lottery)
+      {
+        if ($lottery->getStartTime() <= new \DateTime())
+        {
+          $weeks[$i++] = ['start' => $lottery->getStartTime(), 'end' => $lottery->getEndTime()];
+        }
+      }
+      sort($weeks, SORT_DESC);
+      
+      return $weeks;
     }
     
   }

@@ -13,6 +13,7 @@
   
   use Doctrine\ORM\Mapping\JoinColumn;
   use Doctrine\ORM\Mapping\ManyToOne;
+  use Doctrine\ORM\Mapping\OneToOne;
   use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
   
   /**
@@ -46,6 +47,7 @@
      * @ORM\Column(type="datetime", columnDefinition="DATETIME on update CURRENT_TIMESTAMP")
      */
     private $updated;
+
     
     /**
      * @return integer

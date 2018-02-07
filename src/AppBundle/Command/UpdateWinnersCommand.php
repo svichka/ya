@@ -68,9 +68,12 @@
       $lotteryApi = new PromoLotteryApiController();
       foreach (["moda_lamoda_weekly", "moda_yves_rocher_weekly", "moda_lenina_weekly", "moda_dream"] as $promo_slug)
       {
+        $output->writeln("Lotteries $promo_slug");
         $lotteries = $lotteryApi->getLotteries($promo_slug);
+        
         foreach ($lotteries as $lottery)
         {
+          $output->writeln("Lottery $promo_slug " . $lottery['id']);
           $Lottery = $this->doctrine->getRepository('AppBundle:Lottery')->find($lottery['id']);
           if (!$Lottery)
           {

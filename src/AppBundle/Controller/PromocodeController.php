@@ -3,6 +3,7 @@
   namespace AppBundle\Controller;
   
   use AppBundle\Entity\CodeHistory;
+  use AppBundle\Entity\SpeedLock;
   use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
   use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
   use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -326,12 +327,55 @@
       $code = $request->request->get('code', $request->get('code', null));
       $guaranteed = $request->request->get('prize-guaranteed', $request->get('prize-guaranteed', null));
       $weekly = $request->request->get('prize-weekly', $request->get('prize-weekly', null));
+      
+      $user = $this->getDoctrine()->getRepository('AppBundle:User')->findOneBy(['id' => $this->getUser()->getParticipant()->id]);
+      $count = $this->getDoctrine()->getRepository('AppBundle:CodeHistory')->findLastMinuteCount($user->getId());
+      $speedLock = $this->getDoctrine()->getRepository('AppBundle:SpeedLock')->findOneBy(['user'=>$user->getId()]);
+      if ($speedLock != null)
+      {
+        $date = new \DateTime();
+        
+        if($speedLock->getTill()>$date){
+          $response['status'] = 400;
+          $response['error'] = "Блокировка на 3 часа!";
+          return new JsonResponse($response);
+        }
+      }
+      
+      if ($count['cnt'] >= 15)
+      {
+        if ($speedLock == null)
+        {
+          $speedLock = new SpeedLock();
+        }
+        $speedLock->setUser($user);
+        
+        $date = new \DateTime();
+        $date->modify("+3 hour");
+        $speedLock->setTill($date);
+        $speedLock->setUser($user->getId());
+        $speedLock->setCount($speedLock->getCount() + 1);
+        $this->getDoctrine()->getManager()->merge($speedLock);
+        $this->getDoctrine()->getManager()->flush();
+        
+        $response['status'] = 400;
+        $response['error'] = "Блокировка на 3 часа";
+        
+        return new JsonResponse($response);
+      }
+  
       $ch = new CodeHistory();
       $ch->setUser($this->getUser()->getParticipant()->id);
       $ch->setCode($code);
       $ch->setActivated(new \DateTime());
       $this->getDoctrine()->getManager()->persist($ch);
       $this->getDoctrine()->getManager()->flush();
+      
+      $response['status'] = 200;
+      $response['error'] = "Ok " . $count['cnt'];
+  
+      return new JsonResponse($response);
+      
       $urls = [];
       if ($code === null)
       {

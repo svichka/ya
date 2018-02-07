@@ -85,9 +85,22 @@
               if ((new \DateTime())->format("Y-m-d H:i:s") < $this->start)
               {
                 $this->action = '#earlyModal';
-    
+                
                 return;
               }
+              $speedLock = $this->getDoctrine()->getRepository('AppBundle:SpeedLock')->findOneBy(['user' => $controller[0]->getUser()->getParticipant()->id]);
+              if ($speedLock != null)
+              {
+                $date = new \DateTime();
+                
+                if ($speedLock->getTill() > $date)
+                {
+                  $this->action = "#speed1Modal";
+                  
+                  return;
+                }
+              }
+              
               $api = new ParticipantApiController();
               try
               {

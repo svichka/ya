@@ -310,9 +310,8 @@
           <div class="modal-body">
             <div class="modal-static">
               <p>
-                Вы заблокированы на 6 часов <br>
-                в связи с множественным вводом <br>
-                некорректных кодов.
+                далее TOO_MANY_INVALID_PROMOCODES
+                далее TOO_MANY_INVALID_RECEIPTS
               </p>
             </div>
           </div>
@@ -320,7 +319,50 @@
       </div>
     </div>
   {% endif %}
-  {% if action == "#speedModal" %}{% endif %}
+  {% if action == "#speedModal" %}
+    <div class="modal fade" id="speedModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            <h4 class="modal-title up" id="myModalLabel">
+              Уважаемый участник!
+            </h4>
+          </div>
+          <div class="modal-body">
+            <div class="modal-static">
+              <p>
+                Далее
+                TOO_MANY_PROMOCODES_PER_MINUTE
+                TOO_MANY_RECEIPTS_PER_MINUTE
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+  {% if action == "#speed1Modal" %}
+    <div class="modal fade" id="speed1Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            <h4 class="modal-title up" id="myModalLabel">
+              Уважаемый участник!
+            </h4>
+          </div>
+          <div class="modal-body">
+            <div class="modal-static">
+              <p>
+                Попап 15 кодов в минуту
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
   {% if action == "#countModal" %}
     <!-- Modal -->
     <div class="modal fade" id="countModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

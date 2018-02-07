@@ -75,17 +75,17 @@
                   <div class="week-row">
                     {#{{ dump(promocode) }}#}
                     <div class="week-cell">{{ promocode.code }}</div>
-                    <div class="week-cell">{{ promocode.app.validationDate|date('d.m.Y') }}</div>
+                    <div class="week-cell">{{ promocode.date|date('d.m.Y') }}</div>
                     <div class="week-cell">{{ promocode.status }}</div>
                     <div class="week-cell">
-                      <span>Сертификат <br> 3000 Р</span>
+                      {#<span>Сертификат <br> 3000 Р</span>#}
                     </div>
                     <div class="week-cell">
-                      <img src="{{ asset('images/yr.png') }}" alt="">
-                      <a href="" class='table-get-link js-get-code'>
-                        Получить
-                        <span class='js-code'>{{ promocode.coupons|join(', ') }}</span>
-                      </a>
+                      {#<img src="{{ asset('images/yr.png') }}" alt="">#}
+                      {#<a href="" class='table-get-link js-get-code'>#}
+                        {#Получить#}
+                        {#<span class='js-code'>{{ promocode.coupons|join(', ') }}</span>#}
+                      {#</a>#}
                     </div>
                   </div>
                 {% else %}
