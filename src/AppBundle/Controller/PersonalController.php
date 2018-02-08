@@ -188,15 +188,63 @@
             $prizeApplications = $application->getPrizeApplications();
             foreach ($prizeApplications as $prizeApplication)
             {
-              $prizes[$prizeApplication->getPrize()->getSlug()] = $prizeApplication->getCouponCode();
+              if (strpos($prizeApplication->getPrize()->getSlug(), "weekly"))
+              {
+                if (!isset($prizes["weekly"]))
+                {
+                  $prizes["weekly"] = [];
+                }
+                $prizes["weekly"]["slug"] = $prizeApplication->getPrize()->getSlug();
+                $prizes["weekly"]["code"] = $prizeApplication->getCouponCode();
+                $prizes["weekly"]["url"] = $this->getPrizeImage($prizeApplication->getPrize()->getSlug());
+              }
+              if (strpos($prizeApplication->getPrize()->getSlug(), "guaranteed"))
+              {
+                if (!isset($prizes["guaranteed"]))
+                {
+                  $prizes["guaranteed"] = [];
+                }
+                $prizes["guaranteed"]["slug"] = $prizeApplication->getPrize()->getSlug();
+                $prizes["guaranteed"]["code"] = $prizeApplication->getCouponCode();
+                $prizes["guaranteed"]["url"] = $this->getPrizeImage($prizeApplication->getPrize()->getSlug());
+              }
             }
             $promoApplications = $application->getPromoApplications();
-
+            
             foreach ($promoApplications as $promoApplication)
             {
-              if(!isset($prizes[$promoApplication['promo']['slug']])){
-                $prizes[$promoApplication['promo']['slug']] = "-";
+              if (strpos($promoApplication['promo']['slug'], "weekly"))
+              {
+                if (!isset($prizes["weekly"]))
+                {
+                  $prizes["weekly"]["slug"] = $promoApplication['promo']['slug'];
+                  $prizes["weekly"]["code"] = "-";
+                  $prizes["weekly"]["url"] = "";
+                }
               }
+              if (strpos($promoApplication['promo']['slug'], "guaranteed"))
+              {
+                if (!isset($prizes["guaranteed"]))
+                {
+                  $prizes["guaranteed"]["slug"] = $promoApplication['promo']['slug'];
+                  $prizes["guaranteed"]["code"] = "-";
+                  $prizes["guaranteed"]["url"] = ""; // Для теста $this->getPrizeImage($promoApplication['promo']['slug']);
+                }
+              }
+            }
+            
+            // TODO: Говнокод, такого быть не должно
+            if (!isset($prizes["weekly"]))
+            {
+              $prizes["weekly"]["slug"] = "-";
+              $prizes["weekly"]["code"] = "-";
+              $prizes["weekly"]["url"] = "";
+            }
+            if (!isset($prizes["guaranteed"]))
+            {
+              $prizes["guaranteed"]["slug"] = "-";
+              $prizes["guaranteed"]["code"] = "-";
+              $prizes["guaranteed"]["url"] = "";
             }
             
             $validation_status = "Не известен";
@@ -418,6 +466,24 @@
       sort($weeks, SORT_DESC);
       
       return $weeks;
+    }
+    
+    private function getPrizeImage($slug)
+    {
+      switch ($slug)
+      {
+        case 'moda_lenina_weekly':
+        case 'moda_lenina_guaranteed':
+          return $this->container->get('assets.packages')->getUrl('images/ll.png');
+        case 'moda_yves_rocher_weekly':
+        case 'moda_yves_rocher_guaranteed':
+          return $this->container->get('assets.packages')->getUrl('images/yr.png');
+        case 'moda_lamoda_weekly':
+        case 'moda_lamoda_guaranteed':
+          return $this->container->get('assets.packages')->getUrl('images/lamoda.png');
+      }
+      
+      return "";
     }
     
   }

@@ -29,19 +29,25 @@
       switch ($prize)
       {
         case "dream":
-          return "И участие в программе<br>«Успеть за 24 часа»!";
+          return "И участие в программе «Успеть за 24 часа»!";
         case "certificate_lenina":
-          return "Сертификат<br>3000";
+        case "moda_lenina_weekly":
+          return "Сертификат 3000";
         case "certificate_yves_rocher":
-          return "Сертификат<br>4000";
+        case "moda_yves_rocher_weekly":
+          return "Сертификат 4000";
         case "certificate_lamoda":
-          return "Сертификат<br>3000";
+        case "moda_lamoda_weekly":
+          return "Сертификат 3000";
         case "code_lenina":
-          return "Скидка<br>30%";
+        case "moda_lenina_guaranteed":
+          return "Скидка 30%";
         case "code_yves_rocher":
-          return "Код<br>500р";
+        case "moda_yves_rocher_guaranteed":
+          return "Скидка 500р";
         case "code_lamoda":
-          return "Код<br>600р";
+        case "moda_lamoda_guaranteed":
+          return "Скидка 600р";
       }
   
       return $prize;

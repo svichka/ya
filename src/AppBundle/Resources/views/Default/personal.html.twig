@@ -76,15 +76,26 @@
                     <div class="week-cell">{{ promocode.code }}</div>
                     <div class="week-cell">{{ promocode.date|date('d.m.Y') }}</div>
                     <div class="week-cell">
-                      {{ dump(promocode.prizes) }}
+                      {% if promocode.prizes['guaranteed']['url'] != '' %}
+                        <span>{{ promocode.prizes['guaranteed']['slug']|prize }}</span><br>
+                        <img src="{{ promocode.prizes['guaranteed']['url'] }}"
+                             alt="{{ promocode.prizes['guaranteed']['slug'] }}">
+                        <a href="" class='table-get-link js-get-code'>
+                          Получить
+                          <span class='js-code'>{{ promocode.prizes['guaranteed']['code'] }}</span>
+                        </a>
+                      {% else %}
+                        --
+                      {% endif %}
                     </div>
                     <div class="week-cell">
-                      {{ dump(promocode.promos) }}
-                      {#<img src="{{ asset('images/yr.png') }}" alt="">#}
-                      {#<a href="" class='table-get-link js-get-code'>#}
-                        {#Получить#}
-                        {#<span class='js-code'>{{ promocode.coupons|join(', ') }}</span>#}
-                      {#</a>#}
+                      {% if promocode.prizes['weekly']['url'] != '' %}
+                        <span>{{ promocode.prizes['guaranteed']['slug']|prize }}</span><br>
+                        <img src="{{ promocode.prizes['weekly']['url'] }}"
+                             alt="{{ promocode.prizes['weekly']['slug'] }}">
+                      {% else %}
+                        --
+                      {% endif %}
                     </div>
                   </div>
                 {% else %}

@@ -24,8 +24,8 @@
         ->add('lastname', TextType::class, ['label' => "Фамилия*", 'attr' => ["placeholder" => "Фамилия", 'onkeyup' => 'Ru(this)']])// ,"onkeyup"=>"Ru(this);"
 //        ->add('secname', TextType::class, ['label' => "Отчество", 'required' => false, 'attr' => ["placeholder" => "Отчество", 'onkeyup' => 'Ru(this)']])// ,"onkeyup"=>"Ru(this);"
         ->add('birthdate', TextType::class, ['label' => 'Дата рождения*', 'attr' => ['class' => 'js-date', "placeholder" => "18.08.1988"]])
-        ->add('password', PasswordType::class, ['label' => 'Пароль*', 'mapped' => false, 'attr' => ['plaseholder' => 'Пароль']])
-        ->add('confirm_password', PasswordType::class, ['label' => 'Повторите пароль*', 'mapped' => false, 'attr' => ['plaseholder' => 'Повторите пароль']])
+        ->add('password', PasswordType::class, ['label' => 'Пароль*', 'mapped' => false, 'attr' => ['plaseholder' => 'Пароль', 'onkeyup' => 'Pass(this)']])
+        ->add('confirm_password', PasswordType::class, ['label' => 'Повторите пароль*', 'mapped' => false, 'attr' => ['plaseholder' => 'Повторите пароль', 'onkeyup' => 'Pass(this)']])
         ->add('countrycode', ChoiceType::class, ['label' => 'Страна'])
         ->add('regionguid', ChoiceType::class, [
             'label'       => 'Регион*',
