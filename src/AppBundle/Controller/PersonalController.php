@@ -184,8 +184,20 @@
             /***
              * @var $prizeApplications \Dalee\PEPUWSClientBundle\Entity\PrizeApplication[]
              */
+            $prizes = [];
             $prizeApplications = $application->getPrizeApplications();
+            foreach ($prizeApplications as $prizeApplication)
+            {
+              $prizes[$prizeApplication->getPrize()->getSlug()] = $prizeApplication->getCouponCode();
+            }
             $promoApplications = $application->getPromoApplications();
+
+            foreach ($promoApplications as $promoApplication)
+            {
+              if(!isset($prizes[$promoApplication['promo']['slug']])){
+                $prizes[$promoApplication['promo']['slug']] = "-";
+              }
+            }
             
             $validation_status = "Не известен";
             switch ($application->getValidationStatus())
@@ -198,8 +210,7 @@
               'code'   => $application->getCode(),
               'date'   => $application->getValidationDate(),
               'status' => $validation_status,
-              'prizes' => $prizeApplications,
-              'promos' => $promoApplications,
+              'prizes' => $prizes,
             ];
           }
         }

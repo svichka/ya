@@ -67,20 +67,19 @@
                 <div class="week-row">
                   <div class="week-cell">Номер кода</div>
                   <div class="week-cell">Дата загрузки</div>
-                  <div class="week-cell">Статус кода</div>
-                  <div class="week-cell">Результат</div>
-                  <div class="week-cell">Партнер</div>
+                  <div class="week-cell">Гарантированный приз</div>
+                  <div class="week-cell">Еженедельный приз</div>
                 </div>
                 {% for promocode in promocodes[i]|reverse %}
                   <div class="week-row">
                     {#{{ dump(promocode) }}#}
                     <div class="week-cell">{{ promocode.code }}</div>
                     <div class="week-cell">{{ promocode.date|date('d.m.Y') }}</div>
-                    <div class="week-cell">{{ promocode.status }}</div>
                     <div class="week-cell">
-                      {#<span>Сертификат <br> 3000 Р</span>#}
+                      {{ dump(promocode.prizes) }}
                     </div>
                     <div class="week-cell">
+                      {{ dump(promocode.promos) }}
                       {#<img src="{{ asset('images/yr.png') }}" alt="">#}
                       {#<a href="" class='table-get-link js-get-code'>#}
                         {#Получить#}
