@@ -46,7 +46,7 @@
     private $messages = [];
     private $errors = [];
     private $valid;
-  
+    
     /**
      * @Route("/url_test", name="url_test_page")
      * @param Request $request
@@ -58,7 +58,7 @@
     {
       return new JsonResponse(['url' => $this->container->get('assets.packages')->getUrl('images/ll.png')]);
     }
-  
+    
     /**
      * @Route("/promos2", name="promos2_page")
      * @param \Symfony\Component\HttpFoundation\Request $request
@@ -163,7 +163,14 @@
           {
             throw new NotCorrectDataException('Confirm password does not match the password');
           }
-          
+          if (strlen($form->get('password')->getData()) < 6)
+          {
+            throw new NotCorrectDataException("Минимальная длинна пароля 6 символов");
+          }
+          if (strlen($form->get('password')->getData()) > 15)
+          {
+            throw new NotCorrectDataException("Максимальная длинна пароля 15 символов");
+          }
           /**
            * "data":{"region":"empty","city":"empty"},"
            */
