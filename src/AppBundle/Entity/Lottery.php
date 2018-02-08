@@ -146,40 +146,6 @@
     }
     
     /**
-     * @param $id      float
-     * @param $doctine \Doctrine\Bundle\DoctrineBundle\Registry
-     *
-     * @return int
-     */
-    public function getOpeningBalance($id, $doctine)
-    {
-      if ($this->is_active == 0)
-      {
-        $openingBalance = $doctine->getRepository('AppBundle:OpeningBalance')->findOneBy(['user_id' => $id, 'lottery_id' => $this->id]);
-        if ($openingBalance == null)
-        {
-          $ledgerApi = new LedgerApiController();
-          $juicy_rub = $ledgerApi->getList($id, 'juicy_rub', $this->start_time, $this->end_time);
-          $openingBalance = new OpeningBalance();
-          $openingBalance->setBalance($juicy_rub['total']['opening_balance']);
-          $openingBalance->setLotteryId($this->id);
-          $openingBalance->setUserId($id);
-          $doctine->getManager()->merge($openingBalance);
-          $doctine->getManager()->flush();
-        }
-        
-        return $openingBalance->getBalance();
-      }
-      else
-      {
-        $ledgerApi = new LedgerApiController();
-        $juicy_rub = $ledgerApi->getList($id, 'juicy_rub', $this->start_time, $this->end_time);
-        
-        return $juicy_rub['total']['opening_balance'];
-      }
-    }
-    
-    /**
      * @return mixed
      */
     public function getisRunnable()

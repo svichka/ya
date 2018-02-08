@@ -11,7 +11,6 @@
   
   use AppBundle\Entity\City;
   use AppBundle\Entity\Lottery;
-  use AppBundle\Entity\Rates;
   use AppBundle\Entity\Region;
   use AppBundle\Entity\Winner;
   use AppBundle\Repository\LotteryRepository;

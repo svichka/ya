@@ -12,7 +12,6 @@
   use AppBundle\Controller\FeedbackController;
   use AppBundle\Entity\City;
   use AppBundle\Entity\Lottery;
-  use AppBundle\Entity\Rates;
   use AppBundle\Entity\Region;
   use AppBundle\Entity\Theme;
   use Dalee\PEPUWSClientBundle\Controller\FeedbackApiController;

@@ -69,10 +69,6 @@
         {
           $roles[] = 'ROLE_NOT_ACTIVE_USER_NOT_ACTIVE_EMAIL';
         }
-        else
-        {
-//        $roles = ['ROLE_USER'];
-        }
         if (array_key_exists('mobile_status', $loginStatus) && $loginStatus['mobile_status'] == 'N')
         {
           $roles[] = 'ROLE_NOT_ACTIVE_USER_NOT_ACTIVE_MOBILE';

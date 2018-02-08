@@ -232,7 +232,6 @@
               {
                 $user = new User();
                 $user->setId($participant->id);
-                $user->setPreMobileStatus($participant->getIsphoneactivated());
                 $user->setAgree(1);
                 $this->getDoctrine()->getManager()->merge($user);
                 $this->getDoctrine()->getManager()->flush();

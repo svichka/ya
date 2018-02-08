@@ -11,7 +11,6 @@
   
   use AppBundle\Entity\City;
   use AppBundle\Entity\Lottery;
-  use AppBundle\Entity\Rates;
   use AppBundle\Entity\Region;
   use Dalee\PEPUWSClientBundle\Controller\GeoApiController;
   use Dalee\PEPUWSClientBundle\Controller\PromoLotteryApiController;
