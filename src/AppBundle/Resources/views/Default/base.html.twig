@@ -489,6 +489,7 @@
         success: function (responseText, statusText, xhr, $form) {
           console.log('status: ' + statusText + '\n\nresponseText: \n' + responseText);
           if (responseText.status === 200) {
+            $('input[name=code]').val('');
             var completeModal = $('#completeRegCode');
             completeModal.find('.modal-prise-garanted').attr('src', responseText.garanted);
             completeModal.find('.modal-prise-main').attr('src', responseText.main);

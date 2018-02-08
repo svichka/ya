@@ -371,11 +371,6 @@
       $this->getDoctrine()->getManager()->persist($ch);
       $this->getDoctrine()->getManager()->flush();
       
-      $response['status'] = 200;
-      $response['error'] = "Ok " . $count['cnt'];
-  
-      return new JsonResponse($response);
-      
       $urls = [];
       if ($code === null)
       {
