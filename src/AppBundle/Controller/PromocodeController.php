@@ -323,7 +323,7 @@
     public function promocodeRegisterAction(Request $request)
     {
       $response = ['status' => 200];
-      $slugs = [];
+      $slugs = ["moda_dream"];
       $code = $request->request->get('code', $request->get('code', null));
       $guaranteed = $request->request->get('prize-guaranteed', $request->get('prize-guaranteed', null));
       $weekly = $request->request->get('prize-weekly', $request->get('prize-weekly', null));
