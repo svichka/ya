@@ -446,13 +446,12 @@
 	}
 
 	.mobile-menu {
-		width: 33px;
-		margin-top: 10px;
-		width: 33px;
-		margin-top: 10px;
-		z-index: 11;
-		position: relative;
-	}
+        width: 33px;
+        margin-top: 5px;
+        z-index: 11;
+        position: relative;
+        float: right;
+    }
 	.page-bg:before {
 		display: none;
 	}
