@@ -216,7 +216,7 @@
 
 @media (max-width:992px){
 	.header-logo img {
-		width: 150px;
+		width: 200px;
 	}
 	.header-menu li {
 		margin: 0 10px;
@@ -277,7 +277,7 @@
 	}
 	.header-menu {
 		text-align: right;
-		margin-top: 2px;
+		margin-top: 18px;
 	}
 	.page-bg.page-bg-faq:after, .page-bg.page-bg-reg:after , .page-bg-feedback:after {
 		display: none;
@@ -322,6 +322,12 @@
 		padding-left: 50px;
 		font-size: 16px;
 		margin-top: -44px;
+	}
+	.header-menu {
+		margin-top: 2px;
+	}
+	.header-logo img {
+		width: 150px;
 	}
 	.modal-title {
 		font-size: 25px;
