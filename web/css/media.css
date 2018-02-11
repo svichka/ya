@@ -109,10 +109,6 @@
 	.form-block textarea {
 		height: 200px;
 	}
-	.static-prize {
-		border-radius: 80px;
-	}
-
 	.static-prize-title {
 		font-size: 20px;
 	}
@@ -277,6 +273,7 @@
 	}
 	.static-prize {
 		margin-bottom: 20px;
+		height: 413px;
 	}
 	.adventure-title {
 		font-size: 39px;
