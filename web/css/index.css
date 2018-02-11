@@ -523,7 +523,7 @@ h1.static-title.static-title-lg {
 .static-prize-middle .static-prize-price {
     margin-bottom: 23px;
 }
-.static-prize-title-av {
+.static-prize-title-av , .static-prize-title-av * {
     font-family: 'Conv_Adventure';
     font-size: 26px;
     line-height: 29px;
