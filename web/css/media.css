@@ -231,17 +231,7 @@
 	}
 	.page-bg {
 		padding-left:  30px;
-		padding-bottom: 290px;
-	}
-	.page-bg:after {
-		width: 200px;
-		height: 280px;
-		border-top: none;
-		background-position: center bottom;
-		top: auto;
-		left: 50%;
-		margin-left: -100px;
-		background-image: url(../images/girl-sm.png);
+		padding-bottom: 35px;
 	}
 	.top-text img {
 		width: 90%;
@@ -279,7 +269,7 @@
 		text-align: right;
 		margin-top: 18px;
 	}
-	.page-bg.page-bg-faq:after, .page-bg.page-bg-reg:after , .page-bg-feedback:after {
+	.page-bg.page-bg-faq:after, .page-bg.page-bg-reg:after , .page-bg-feedback:after ,.page-bg:after {
 		display: none;
 	}
 	.static-prize {
