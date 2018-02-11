@@ -176,6 +176,9 @@
 	.header-logo img {
 		width: 230px;
 	}
+	.header-menu {
+        text-align: right;
+    }
 	.header-bg {
 		padding-top: 26px;
 		background-size: auto 23px;
