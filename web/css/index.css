@@ -2,13 +2,13 @@ body *{
     font-family: 'Conv_agavalanchec', sans-serif;
     color: #fcef9c;
 }
- body , html{
+body , html{
     height:100%;
     margin:0;
     padding:0;
     background:#fff;
 }
- ul{
+ul{
     padding:0;
     margin:0;
 }
@@ -16,20 +16,20 @@ body *{
 ::-moz-placeholder          {color:#1e9a01;text-transform: uppercase;    font-family: 'Conv_agavalanchec-bold';}
 :-moz-placeholder           {color:#1e9a01;text-transform: uppercase;    font-family: 'Conv_agavalanchec-bold';}
 :-ms-input-placeholder      {color:#1e9a01;text-transform: uppercase;    font-family: 'Conv_agavalanchec-bold';}
- a:hover , a:active , a:focus{
+a:hover , a:active , a:focus{
     text-decoration:none;
     color:inherit;
     outline:none;
 }
- button:active , button:focus{
+button:active , button:focus{
     outline:none;
 }
- a , button , .trs{
+a , button , .trs{
     -webkit-transition:all 0.5s;
     -o-transition:all 0.5s;
     transition:all 0.5s;
 }
- input:focus , input:active , select:focus , select:active , textarea:focus , textarea:active{
+input:focus , input:active , select:focus , select:active , textarea:focus , textarea:active{
     outline:none;
 }
 .full-screen {
@@ -68,13 +68,13 @@ body *{
     text-transform: uppercase;
 }
 .header-bg {
-	background-image: url(../images/header-bg.png);
-	background-color: #0c2608;
-	background-position: top center;
-	background-size: auto 40px;
-	background-repeat-y: no-repeat;
-	background-repeat-x: repeat;
-	padding: 35px 40px 5px;
+    background-image: url(../images/header-bg.png);
+    background-color: #0c2608;
+    background-position: top center;
+    background-size: auto 40px;
+    background-repeat-y: no-repeat;
+    background-repeat-x: repeat;
+    padding: 35px 40px 5px;
 }
 .header-menu li a {
     color: #e9d66e;
@@ -88,13 +88,13 @@ body *{
     width: 300px;
 }
 .page-footer-bg {
-	background-image: url(../images/footer-bg.png);
+    background-image: url(../images/footer-bg.png);
     background-position: center;
     background-size: cover;
     padding: 13px 0;
 }
 .page-footer-bg , .page-footer-bg a , .page-footer-bg div {
-	color: #030f00;
+    color: #030f00;
 }
 .main-content {
     display: table-row;
@@ -105,7 +105,7 @@ body *{
     background-position: center;
     position: relative;
     padding-left: 340px;
-    padding-right: 150px;
+    padding-right: 75px;
     padding-top: 26px;
     padding-bottom: 30px;
 }
@@ -152,7 +152,7 @@ body *{
 }
 .prize-img-3 {
     background-size: 230px;
-   	background-position-y: 97px;
+    background-position-y: 97px;
 }
 .prize-desc {
     text-align: center;
@@ -168,22 +168,22 @@ body *{
     position: relative;
 }
 .prize-item-arrows:before , .prize-item-arrows:after {
-	content: '';
-	width: 31px;
-	height: 60px;
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: contain;
-	background-image: url(../images/arrow.png);
-	position: absolute;
-	top: 50%;
-	margin-top: -60px;
+    content: '';
+    width: 31px;
+    height: 60px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url(../images/arrow.png);
+    position: absolute;
+    top: 50%;
+    margin-top: -60px;
 }
 .prize-item-arrows:after {
-	right: -10px;
+    right: -10px;
 }
 .prize-item-arrows:before {
-	left: -10px;
+    left: -10px;
 }
 .button-purple {
     font-family: 'Conv_agavalanchec-bold';
@@ -242,7 +242,7 @@ body *{
     min-height:  80px;
 }
 .js-faq-wrapper {
-	height: 590px;
+    height: 590px;
 }
 .fs-scrollbar-content:focus {
     border: none;
@@ -262,8 +262,8 @@ body *{
     margin: 0 0 30px;
 }
 .page-bg.page-bg-reg:after {
-	background-image: url(../images/girl3.png);
-	background-size: 79%;
+    background-image: url(../images/girl3.png);
+    background-size: 79%;
 }
 .form-block {
     margin-bottom: 18px;
@@ -353,7 +353,7 @@ button.gradient-btn {
     background-image: url(../images/btn.png);
     background-size: 100% 100%;
     background-color: #d7c474;
-    	min-width: 200px;
+    min-width: 200px;
     box-shadow: 0px 0px 16px 4px #57731f;
     text-shadow: 1px 1px 1px #253510b5;
 }
@@ -467,7 +467,7 @@ h1.static-title.static-title-lg {
     margin-bottom: 10px;
 }
 .static-prize-row img {
-	width: 107px;
+    width: 107px;
 }
 .static-prize-row {
     margin-bottom: 14px;
@@ -492,17 +492,17 @@ h1.static-title.static-title-lg {
     padding-top: 7px;
 }
 .static-prize-text:before{
-	content: '';
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	background-repeat: no-repeat;
-	-webkit-background-size: auto;
-	background-size: auto;
-	background-position: center;
-	background-image: url(../images/line-y.png);
-	height: 2px;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-repeat: no-repeat;
+    -webkit-background-size: auto;
+    background-size: auto;
+    background-position: center;
+    background-image: url(../images/line-y.png);
+    height: 2px;
 }
 .static-prize-img.static-prize-img-s {
     background-size: 183px;
@@ -515,15 +515,15 @@ h1.static-title.static-title-lg {
     white-space: nowrap;
 }
 .static-prize-row img.img-yr	{
-	width: 126px;
+    width: 126px;
 }
 .img-m15 {
-	margin-top: 15px;
+    margin-top: 15px;
 }
 .static-prize-middle .static-prize-price {
     margin-bottom: 23px;
 }
-.static-prize-title-av {
+.static-prize-title-av , .static-prize-title-av * {
     font-family: 'Conv_Adventure';
     font-size: 26px;
     line-height: 29px;
@@ -557,7 +557,7 @@ h1.static-title.static-title-lg {
     background-repeat: no-repeat;
     background-position: 98% center;
     background-size: 21px;
-}	
+}
 .date-input {
     background-image: url(../images/dr-input.png);
     padding: 7px 29px;
@@ -653,7 +653,7 @@ h1.static-title.static-title-lg {
     padding-right: 30px;
 }
 .js-week-table-scroll .fs-scrollbar-content {
-	padding: 0;
+    padding: 0;
 }
 .personal-name {
     font-family: 'Conv_agavalanchec-bold';
@@ -793,7 +793,7 @@ button.gradient-btn.xs-button {
     padding-bottom: 40px;
 }
 .mt20 {
-	margin-top: 20px;
+    margin-top: 20px;
 }
 button.gradient-btn.xxs-button {
     font-size: 14px;
@@ -849,7 +849,7 @@ img.modal-single-img {
 }
 
 .prize-select-block input +
- img + img {
+img + img {
     display: none;
 }
 
@@ -860,7 +860,7 @@ img.modal-single-img {
 }
 
 .prize-select-block input:checked +
- img + img {
+img + img {
     display: block;
 }
 
