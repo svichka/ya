@@ -11,7 +11,7 @@
 	<link rel="stylesheet" href="./css/jquery.datetimepicker.css">  
 	<link rel="stylesheet" href="./css/fonts.css">  
 	<link rel="stylesheet" href="./css/index.css">   
-	<link rel="stylesheet" href="./css/main.css">   
+	<link rel="stylesheet" href="./css/media.css">   
 	<script type="text/javascript" src="./js/jquery-2.2.1.min.js" charset="utf-8"></script>
 	<script src="./js/owl.carousel.min.js"></script>
 	<script src="./js/jquery.datetimepicker.js"></script>
@@ -23,14 +23,19 @@
 	<div class="full-screen container-mp">
 		<header class="page_header">
 			<div class="row header-bg">
-				<div class="col-lg-5">
+				<div class="col-xs-24 col-sm-5">
 					<div class="header-logo">
 						<a href="">
 							<img src="images/logo.png" alt="">
 						</a>
 					</div>
 				</div>
-				<div class="col-lg-19">
+				<div class="col-xs-19">
+					<div class="mobile-menu js-menu-toggler visible-xs">
+						<div></div>
+						<div></div>
+						<div></div>
+					</div>
 					<div class="header-menu-wrap">
 						<ul class="up header-menu">
 							<li>
@@ -56,7 +61,8 @@
 		<main class="main-content">
 			<div class="page-bg">
 				<div class="top-text">
-					<img src="images/text1.png" alt="">
+					<img src="images/text1.png" class="hidden-xs" alt="">
+					<img src="images/text2.png" class="visible-xs" alt="">
 				</div>
 				<div class="mp-button">
 					<a href="" class="button-purple">Зарегистрировать код</a>
@@ -91,15 +97,13 @@
 				</div>
 			</div>
 		</main>
-		<footer class='page_footer text-center hidden-xs up'>
+		<footer class='page_footer text-center up'>
 			<div class="page-footer-bg">
 				<a href="" class='up'>Правила акции</a> | <a href="" class='up'>Пользовательское соглашение</a>				
 				<div class="">© ВСЕ ПРАВА ЗАЩИЩЕНЫ</div>
 			</div>
 		</footer>
 	</div>
-	<footer class='page_footer text-center visible-xs'>
-	</footer>
 
 	<!--Modals-->
 

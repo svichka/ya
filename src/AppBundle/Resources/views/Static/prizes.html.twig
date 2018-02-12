@@ -5,10 +5,14 @@
 {% block body %}
   <main class="main-content">
     <div class="page-bg page-bg-empty">
+      <h2 class="static-title visible-xs up">Призы</h2>
       <h1 class='adventure-title'>Выигрывай модные призы!</h1>
+      <div class="text-center visible-xs">
+        <a href="" class="button-purple" data-toggle="modal" data-target="{{ action }}">Зарегистрировать код</a>
+      </div>
       <div class="static-prize-blocks">
         <div class="row">
-          <div class="col-md-8 col-sm-12 col-xs-24">
+          <div class="col-md-8 col-sm-12 col-xs-24 ">
             <div class="static-prize">
               <div class="static-prize-title up">Гарантированно</div>
               <div class="static-prize-img" style="background-image: url({{ asset('images/stpr1.png') }})"></div>
@@ -16,8 +20,8 @@
                 <div class="col-xs-12">
                   <img src="{{ asset('images/lamoda.png') }}" alt="">
                 </div>
-                <div class="col-sm-6"></div>
-                <div class="col-xs-6">
+                <div class="col-lg-6 col-xs-4"></div>
+                <div class="col-lg-6 col-xs-8">
                   <div class="static-prize-price">600 P</div>
                   <div class="static-prize-post-price">от 3000 Р</div>
                 </div>
@@ -26,8 +30,8 @@
                 <div class="col-xs-12">
                   <img src="{{ asset('images/yr.png') }}" class="img-yr img-m15" alt="">
                 </div>
-                <div class="col-sm-6"></div>
-                <div class="col-xs-6">
+                <div class="col-lg-6 col-xs-4"></div>
+                <div class="col-lg-6 col-xs-8">
                   <div class="static-prize-price">500 P</div>
                   <div class="static-prize-post-price">от 3000 Р</div>
                 </div>
@@ -36,8 +40,8 @@
                 <div class="col-xs-12">
                   <img src="{{ asset('images/ll.png') }}" class="img-m15" alt="">
                 </div>
-                <div class="col-sm-6"></div>
-                <div class="col-xs-6">
+                <div class="col-lg-6 col-xs-4"></div>
+                <div class="col-lg-6 col-xs-8">
                   <div class="static-prize-price">30%</div>
                   <div class="static-prize-post-price">на все виды маникюра</div>
                 </div>
@@ -48,10 +52,11 @@
               </div>
             </div>
           </div>
-          <div class="col-md-8 col-sm-12 col-xs-24">
+          <div class="col-md-8 col-sm-12 col-xs-24 ">
             <div class="static-prize static-prize-middle">
               <div class="static-prize-title up">Еженедельно</div>
-              <div class="static-prize-img static-prize-img-s" style="background-image: url({{ asset('images/stpr2.png') }})"></div>
+              <div class="static-prize-img static-prize-img-s"
+                   style="background-image: url({{ asset('images/stpr2.png') }})"></div>
               <div class="static-prize-row row">
                 <div class="col-xs-11">
                   <img src="{{ asset('images/lamoda.png') }}" alt="">
@@ -91,7 +96,8 @@
               <div class="static-prize-title-av">
                 Шопинг в Милане <br> на 200 000 Р с А. Роговым!
               </div>
-              <div class="static-prize-img static-prize-img-r" style="background-image: url({{ asset('images/prize3.png') }})"></div>
+              <div class="static-prize-img static-prize-img-r"
+                   style="background-image: url({{ asset('images/prize3.png') }})"></div>
               <div class="static-prize-text">
                 И участие в программе <br> «Успеть за 24 часа»!
               </div>
@@ -99,8 +105,8 @@
           </div>
         </div>
       </div>
-      <div class="text-center">
-        <a href="" class="button-purple" data-toggle="modal"  data-target="{{ action }}">Зарегистрировать код</a>
+      <div class="text-center hidden-xs">
+        <a href="" class="button-purple" data-toggle="modal" data-target="{{ action }}">Зарегистрировать код</a>
       </div>
     </div>
   </main>

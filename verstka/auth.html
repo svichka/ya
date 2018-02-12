@@ -11,7 +11,7 @@
 	<link rel="stylesheet" href="./css/jquery.datetimepicker.css">  
 	<link rel="stylesheet" href="./css/fonts.css">  
 	<link rel="stylesheet" href="./css/index.css">   
-	<link rel="stylesheet" href="./css/main.css">   
+	<link rel="stylesheet" href="./css/media.css">   
 	<script type="text/javascript" src="./js/jquery-2.2.1.min.js" charset="utf-8"></script>
 	<script src="./js/owl.carousel.min.js"></script>
 	<script src="./js/jquery.datetimepicker.js"></script>
@@ -23,14 +23,19 @@
 	<div class="full-screen container-mp">
 		<header class="page_header">
 			<div class="row header-bg">
-				<div class="col-lg-5">
+				<div class="col-xs-24 col-sm-5">
 					<div class="header-logo">
 						<a href="">
 							<img src="images/logo.png" alt="">
 						</a>
 					</div>
 				</div>
-				<div class="col-lg-19">
+				<div class="col-xs-19">
+					<div class="mobile-menu js-menu-toggler visible-xs">
+						<div></div>
+						<div></div>
+						<div></div>
+					</div>
 					<div class="header-menu-wrap">
 						<ul class="up header-menu">
 							<li>
@@ -59,8 +64,8 @@
 				<div class="content-form text-center">
 					<form action="" method="POST">
 						<div class="form-block">
-							<label for="">Фамилия *</label>
-							<input type="text" placeholder="Фамилия">
+							<label for="">Email *</label>
+							<input type="email" placeholder="Email">
 						</div>
 						<div class="form-block">
 							<label for="">Пароль *</label>
@@ -78,24 +83,22 @@
 								<div class="g-recaptcha" style="display: inline-block;" data-sitekey="6LdLP0EUAAAAAJYVwt6pbJ5g1i9WdCNKrOEv_hBo"></div>
 							</div>
 						</div>
-						<button class="gradient-btn">Войти</button>
+						<button class="gradient-btn" type="submit">Войти</button>
 						<div class="form-link">
 							<a href="" class="up" data-toggle="modal" data-target="#recover">Забыли пароль?</a>
 						</div>								
-						<a href="" class='form-link-lg up'>Регистрация</a>
+						<a href="" class='form-link-lg up' data-toggle="modal" data-target="#pass">Регистрация</a>
 					</form>
 				</div>
 			</div>
 		</main>
-		<footer class='page_footer text-center hidden-xs up'>
+		<footer class='page_footer text-center up'>
 			<div class="page-footer-bg">
 				<a href="" class='up'>Правила акции</a> | <a href="" class='up'>Пользовательское соглашение</a>				
 				<div class="">© ВСЕ ПРАВА ЗАЩИЩЕНЫ</div>
 			</div>
 		</footer>
 	</div>
-	<footer class='page_footer text-center visible-xs'>
-	</footer>
 
 	<!-- Modal -->
 	<div class="modal fade" id="recover" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -103,14 +106,16 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title up" id="myModalLabel">
+						Уважаемый участник!
+					</h4>
 				</div>
 				<div class="modal-body">
 					<div class="modal-static">
 						Если Вы забыли пароль, пожалуйста, <br> 
 						введите e-mail, указанный при <br>
-						регистрации. 
-						<br><br>
-						Мы вышлем Вам код для восстановления.
+						регистрации, мы вышлем Вам ссылку <br> 
+						для восстановления доступа.
 					</div>
 					<div class="modal-reg-form mt20">
 						<form action="">
@@ -123,6 +128,41 @@
 							</div>
 							<div class="form-btn text-center">
 								<button class="gradient-btn xxs-button">ОК</button>
+							</div>
+						</form>
+					</div>
+				</div>			
+			</div>
+		</div>
+	</div>
+	
+		<!-- Modal -->
+	<div class="modal fade" id="pass" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title up" id="myModalLabel">
+						Изменение пароля
+					</h4>
+				</div>
+				<div class="modal-body">
+					<div class="modal-reg-form mt20">
+						<form action="">
+							<div class="row">
+								<div class="col-sm-14 col-sm-offset-5 col-xs-offset-0">
+									<div class="form-block">
+										<label for="">Новый пароль</label>
+										<input type="password" class="text-center" placeholder="Пароль">
+									</div>
+									<div class="form-block">
+										<label for="">Повторите новый пароль</label>
+										<input type="password" class="text-center" placeholder="Пароль">
+									</div>
+								</div>								
+							</div>
+							<div class="form-btn text-center">
+								<button class="gradient-btn xxs-button">Сохранить</button>
 							</div>
 						</form>
 					</div>

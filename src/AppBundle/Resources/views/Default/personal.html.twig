@@ -27,7 +27,7 @@
       <h1 class="static-title up">Личный кабинет</h1>
       <div class="personal-info-wrap">
         <div class="row">
-          <div class="col-sm-5">
+          <div class="col-lg-5 col-sm-7">
             <div class="personal-info-block">
               <div class="personal-name up">
                 {{ user.getfirstname }} <br>
@@ -41,7 +41,7 @@
               </div>
             </div>
           </div>
-          <div class="col-sm-19 text-center">
+          <div class="col-lg-19 col-sm-17 text-center">
             <div class="code-upload-wrap">
               <a href="" class="button-purple" data-toggle="modal" data-target="{{ action }}">Зарегистрировать код</a>
             </div>
@@ -55,7 +55,7 @@
           <div class="week-title js-week-title">
             <div class="week-toggler">-</div>
             <div class="row">
-              <div class="col-xs-12">{% if first == 1 %}Текущая неделя{% else %}{{ i }}{% endif %}</div>
+              <div class="col-xs-12 {% if first == 1 %}week-item-current{% endif %}">{% if first == 1 %}Текущая неделя{% else %}{{ i }}{% endif %}</div>
               <div class="col-xs-12 text-right">
                 {% if first != 1 %}({{ week['start']|date('d.m.Y') }} - {{ week['end']|date('d.m.Y') }}){% endif %}
               </div>
@@ -73,10 +73,10 @@
                 {% for promocode in promocodes[i]|reverse %}
                   <div class="week-row">
                     <div class="week-cell">{{ promocode.code }}</div>
-                    <div class="week-cell">{{ promocode.date|date('d.m.Y') }}</div>
+                    <div class="week-cell move-xs">{{ promocode.date|date('d.m.Y') }}</div>
                     <div class="week-cell">
                       {% if promocode.prizes['guaranteed']['slug'] != '' %}
-                        <span>{{ promocode.prizes['guaranteed']['slug']|prize }}</span><br>
+                        {#<span>{{ promocode.prizes['guaranteed']['slug']|prize }}</span><br>#}
                         <img src="{{ promocode.prizes['guaranteed']['url'] }}"
                              alt="{{ promocode.prizes['guaranteed']['slug'] }}">
                         <a href="" class='table-get-link js-get-code'>
@@ -89,7 +89,7 @@
                     </div>
                     <div class="week-cell">
                       {% if promocode.prizes['weekly']['slug'] != '' %}
-                        <span>{{ promocode.prizes['weekly']['slug']|prize }}</span><br>
+                        {#<span>{{ promocode.prizes['weekly']['slug']|prize }}</span><br>#}
                         <img src="{{ promocode.prizes['weekly']['url'] }}"
                              alt="{{ promocode.prizes['weekly']['slug'] }}">
                       {% else %}

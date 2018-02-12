@@ -23,14 +23,14 @@
           {% endif %}
         </div>
         <div class="row">
-          <div class="col-xs-11">
+          <div class="col-sm-11">
             <div class="form-block">
               <label for="">Ваш E-Mail</label>
               {{ form_widget(form.email, {'attr': {'class': 'fw'}}) }}
             </div>
           </div>
-          <div class="col-xs-2"></div>
-          <div class="col-xs-11">
+          <div class="col-sm-2"></div>
+          <div class="col-sm-11">
             <div class="form-block">
               <label for="">Тема сообщения</label>
               {{ form_widget(form.theme_id, {'attr': {'class': 'fw'}}) }}
@@ -57,8 +57,8 @@
               {{ form_row(form.recaptcha) }}
             </div>
           </div>
-          <div class="col-sm-2"></div>
-          <div class="col-sm-11">
+          <div class="col-xs-1"></div>
+          <div class="col-sm-12">
             {{ form_row(form.agree) }}
           </div>
         </div>

@@ -105,7 +105,7 @@ body *{
     background-position: center;
     position: relative;
     padding-left: 340px;
-    padding-right: 75px;
+    padding-right: 150px;
     padding-top: 26px;
     padding-bottom: 30px;
 }
@@ -523,7 +523,7 @@ h1.static-title.static-title-lg {
 .static-prize-middle .static-prize-price {
     margin-bottom: 23px;
 }
-.static-prize-title-av , .static-prize-title-av * {
+.static-prize-title-av {
     font-family: 'Conv_Adventure';
     font-size: 26px;
     line-height: 29px;

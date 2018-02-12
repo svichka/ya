@@ -23,8 +23,8 @@
           <div class="week-title js-week-title">
             <div class="week-toggler">+</div>
             <div class="row">
-              <div class="col-xs-12">Неделя {{ i }}</div>
-              <div class="col-xs-12 text-right">{{ weeks[i]['start']|date('d.m.Y') }}
+              <div class="col-sm-12">Неделя {{ i }}</div>
+              <div class="col-sm-12 text-right">{{ weeks[i]['start']|date('d.m.Y') }}
                 - {{ weeks[i]['end']|date('d.m.Y') }}</div>
             </div>
           </div>
@@ -46,7 +46,7 @@
                     <div class="week-cell">
                       <img src={{ asset('images/' ~ winner['prize']|prize_image) }} alt="{{ winner['prize'] }}">
                     </div>
-                    <div class="week-cell">{{ winner['date']|date('d.m.Y') }}</div>
+                    <div class="week-cell move-xs">{{ winner['date']|date('d.m.Y') }}</div>
                   </div>
                 {% endfor %}
               </div>
