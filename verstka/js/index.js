@@ -44,8 +44,8 @@ $(function() {
         $('.js-body').not($(this).closest('.js-wrap').find('.js-body')).slideUp();
         $(this).closest('.js-wrap').find('.js-body').slideToggle();
     }) 
-    $('.js-menu-toggler').click(function() {
-        $('body').toggleClass('visible-menu');
+    $('.js-mobile-toggler').click(function() {
+        $('.js-mobile-menu').toggleClass('visible-menu');
     }) 
 
     $('.faq-title').click(function(){
@@ -53,75 +53,24 @@ $(function() {
         $(this).closest('.faq-item').find('.faq-body').show();
     })
 
-
-
     if ($.fn.scrollbar) {
 
+        $(".js-faq-wrapper").scrollbar({
+            handleSize : 25,
+            duration : 0.1
+        });
 
-        $(window).on('resize' , function(){
-            if ($(this).width() < 751){
-                $(".js-faq-wrapper").scrollbar("destroy");
-                $(".js-week-table-scroll").scrollbar("destroy");
-            }
-        })
-
-        if ($(window).width() > 751){
-            $(".js-faq-wrapper").scrollbar({
+        $('.js-week-table-scroll').each(function(){
+            $(this).scrollbar({
                 handleSize : 25,
                 duration : 0.1
             });
-            $('.js-week-table-scroll').each(function(){
-                $(this).scrollbar({
-                    handleSize : 25,
-                    duration : 0.1
-                });
-            })
-        }
+        })
     }
 
     $('.js-get-code').click(function(){
         $(this).find('.js-code').toggle();
         return false;
     })
-
-
-    $('#City , #Street , #HouseNumber').blur(function () {
-        if (!$(this).attr('data-selected')) {            
-            $(this).val('');
-        }
-    }).keypress(function () {
-        $(this).removeAttr('data-selected');
-    })
-
-    // // FIAS 
-    // if ($.fn.suggestions) {
-    //     var dadataToken = '0cd26ad806163ab4b224da78ce1b8d211f9f495d',
-    //             dadataServiceUrl = 'https://suggestions.dadata.ru/suggestions/api/4_1/rs/';
-    //     var byName = function(name) {
-    //         return $('[name=' + name + ']');
-    //     };
-    //     var editForm = $('#Street').get(0) ? $($('#Street').get(0).form) : $();
-    //     $('#City').suggestions({
-    //         serviceUrl: dadataServiceUrl,
-    //         token: dadataToken,
-    //         type: 'ADDRESS',
-    //         hint: false,
-    //         bounds: 'city-settlement',
-    //         constraints: {
-    //             locations: { country: "Россия" },
-    //         },
-    //         onSelect: function (suggestion) {
-    //             byName('FiasRegionId').val(suggestion.data.region_fias_id);
-    //             byName('FiasCityId').val(suggestion.data.fias_id);
-    //             byName('Region').val(suggestion.data.region);
-    //             $('#RegionInput').attr('value', suggestion.data.region);
-    //             //
-    //             var city = suggestion.data.city ? suggestion.data.city : suggestion.data.settlement;
-    //             $(this).val(city);
-    //             $(this).attr('data-selected', city);
-    //             reinitStreet();
-    //         }
-    //     });
-    // }
 
 })

@@ -11,7 +11,7 @@
 	<link rel="stylesheet" href="./css/jquery.datetimepicker.css">  
 	<link rel="stylesheet" href="./css/fonts.css">  
 	<link rel="stylesheet" href="./css/index.css">   
-	<link rel="stylesheet" href="./css/media.css">   
+	<link rel="stylesheet" href="./css/main.css">   
 	<script type="text/javascript" src="./js/jquery-2.2.1.min.js" charset="utf-8"></script>
 	<script src="./js/owl.carousel.min.js"></script>
 	<script src="./js/jquery.datetimepicker.js"></script>
@@ -23,19 +23,14 @@
 	<div class="full-screen container-mp">
 		<header class="page_header">
 			<div class="row header-bg">
-				<div class="col-xs-24 col-sm-5">
+				<div class="col-lg-5">
 					<div class="header-logo">
 						<a href="">
 							<img src="images/logo.png" alt="">
 						</a>
 					</div>
 				</div>
-				<div class="col-xs-19">
-					<div class="mobile-menu js-menu-toggler visible-xs">
-						<div></div>
-						<div></div>
-						<div></div>
-					</div>
+				<div class="col-lg-19">
 					<div class="header-menu-wrap">
 						<ul class="up header-menu">
 							<li>
@@ -64,7 +59,7 @@
 				<div class="reg-form">
 					<form action="" method="POST">
 						<div class="row">
-							<div class="col-sm-12">
+							<div class="col-xs-12">
 								<div class="form-block">
 									<label for="">Фамилия *</label>
 									<input type="text" placeholder="Фамилия">
@@ -82,24 +77,14 @@
 									<input type="email" placeholder="email334@email.com">
 								</div>								
 							</div>
-							<div class="col-sm-12">
+							<div class="col-xs-12">
 								<div class="form-block">
 									<label for="">Регион *</label>
-									<select name="">
-										<option value=""></option>
-										<option value="">Регион 1</option>
-										<option value="">Регион 2</option>
-										<option value="">Регион 3</option>
-									</select>
+									<input type="text" placeholder="Регион">
 								</div>
 								<div class="form-block">
 									<label for="">Город *</label>
-									<select name="">
-										<option value=""></option>									
-										<option value="">Город 1</option>
-										<option value="">Город 2</option>
-										<option value="">Город 3</option>
-									</select>
+									<input type="text" placeholder="Город">
 								</div>
 								<div class="form-block">
 									<label for="">Пол *</label>
@@ -117,13 +102,13 @@
 							</div>
 						</div>
 						<div class="row">
-							<div class="col-sm-12">
+							<div class="col-xs-12">
 								<div class="form-block">
 									<label for="">Пароль *</label>
 									<input type="password" placeholder="Пароль">
 								</div>
 							</div>
-							<div class="col-sm-12">
+							<div class="col-xs-12">
 								<div class="form-block">
 									<label for="">Повторите пароль *</label>
 									<input type="password" placeholder="Повторите пароль">
@@ -131,7 +116,7 @@
 							</div>
 						</div>
 						<div class="row">
-							<div class="col-sm-12">
+							<div class="col-xs-12">
 								<div class="form-block">
 									<div class="media-checkbox">	
 										<div class="checkbox-wrap">
@@ -154,7 +139,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-sm-12">
+							<div class="col-xs-12">
 								<div class="form-block">
 									<div class="captcha-wrap">
 										<div class="g-recaptcha" data-sitekey="6LdLP0EUAAAAAJYVwt6pbJ5g1i9WdCNKrOEv_hBo"></div>
@@ -169,13 +154,16 @@
 				</div>
 			</div>
 		</main>
-		<footer class='page_footer text-center up'>
+		<footer class='page_footer text-center hidden-xs up'>
 			<div class="page-footer-bg">
 				<a href="" class='up'>Правила акции</a> | <a href="" class='up'>Пользовательское соглашение</a>				
 				<div class="">© ВСЕ ПРАВА ЗАЩИЩЕНЫ</div>
 			</div>
 		</footer>
 	</div>
+	<footer class='page_footer text-center visible-xs'>
+	</footer>
+
 
 </body>
 </html>

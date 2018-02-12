@@ -56,14 +56,6 @@ body *{
     display: inline-block;
     margin: 0 35px;
 }
-.header-menu li a img {
-    width: 36px;
-    margin-right: 10px;
-}
-
-.header-menu li.auth a {
-    border-bottom: navajowhite;
-}
 .up {
     text-transform: uppercase;
 }
@@ -107,7 +99,7 @@ body *{
     padding-left: 340px;
     padding-right: 150px;
     padding-top: 26px;
-    padding-bottom: 30px;
+    padding-bottom: 15px;
 }
 .page-bg:before {
     content: '';
@@ -274,7 +266,7 @@ body *{
     text-transform: uppercase;
     font-size: 17px;
 }
-.form-block input, .form-block select{
+.form-block input {
     width: 83%;
     padding: 4px 8px;
     background: #0f190785;
@@ -325,7 +317,7 @@ body *{
     display: inline-block;
     vertical-align: middle;
     margin-right: 24px;
-    /*color: #fff;*/
+    color: #fff;
     font-size: 16px;
 }
 .media-checkbox .checkbox-title {
@@ -551,7 +543,7 @@ h1.static-title.static-title-lg {
     background-color: #0f190785;
     border: 2px solid #c1c134;
     font-size: 16px;
-    border-radius: 7px;
+    border-radius: 4px;
     width: 350px;
     background-image: url(../images/search.png);
     background-repeat: no-repeat;
@@ -739,20 +731,12 @@ button.close {
     font-size: 34px;
     text-transform: none;
 }
-.modal-title span {
-    font-family: 'Conv_agavalanchec-bold';
-    font-size: 14px;
-    display: block;
-}
-input[disabled] {
-    opacity: 0.3;
-}
 .modal-header {
     padding: 26px 0 0;
     border: none;
     text-align: center;
 }
-.modal-reg-form .form-block input, .modal-reg-form .form-block select {
+.modal-reg-form .form-block input {
     width: 100%;
     font-size:  13px;
     background: #a39c60;
@@ -874,9 +858,6 @@ img.modal-single-img {
 }
 .modal-hr {
     margin-bottom: 20px;
-}
-.modal-hr img {
-    max-width: 100%;
 }
 .mf-row {
     margin-top: 20px;
