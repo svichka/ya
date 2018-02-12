@@ -72,11 +72,10 @@
                 </div>
                 {% for promocode in promocodes[i]|reverse %}
                   <div class="week-row">
-                    {#{{ dump(promocode) }}#}
                     <div class="week-cell">{{ promocode.code }}</div>
                     <div class="week-cell">{{ promocode.date|date('d.m.Y') }}</div>
                     <div class="week-cell">
-                      {% if promocode.prizes['guaranteed']['url'] != '' %}
+                      {% if promocode.prizes['guaranteed']['slug'] != '' %}
                         <span>{{ promocode.prizes['guaranteed']['slug']|prize }}</span><br>
                         <img src="{{ promocode.prizes['guaranteed']['url'] }}"
                              alt="{{ promocode.prizes['guaranteed']['slug'] }}">
@@ -89,8 +88,8 @@
                       {% endif %}
                     </div>
                     <div class="week-cell">
-                      {% if promocode.prizes['weekly']['url'] != '' %}
-                        <span>{{ promocode.prizes['guaranteed']['slug']|prize }}</span><br>
+                      {% if promocode.prizes['weekly']['slug'] != '' %}
+                        <span>{{ promocode.prizes['weekly']['slug']|prize }}</span><br>
                         <img src="{{ promocode.prizes['weekly']['url'] }}"
                              alt="{{ promocode.prizes['weekly']['slug'] }}">
                       {% else %}

@@ -10,6 +10,8 @@
   use Dalee\PEPUWSClientBundle\Controller\PromocodeApiController;
   use Dalee\PEPUWSClientBundle\Controller\PromoLotteryApiController;
   use Dalee\PEPUWSClientBundle\Controller\ReceiptApiController;
+  use Dalee\PEPUWSClientBundle\Entity\PrizeApplication;
+  use Dalee\PEPUWSClientBundle\Entity\PromocodeApplication;
   use Dalee\PEPUWSClientBundle\Exception\ApiFailedException;
   use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
   use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -28,12 +30,12 @@
     private $messages = [];
     private $errors = [];
     private $valid;
-
-//    /**
-//     * @Route("/perdbg", name="per_dbg_page")
-//     */
-//    public function dbgAction(Request $request)
-//    {
+    
+    /**
+     * @Route("/perdbg", name="per_dbg_page")
+     */
+    public function dbgAction(Request $request)
+    {
 //      $user = $this->getUser();
 //      if (!$this->get('security.context')->isGranted('ROLE_USER'))
 //      {
@@ -46,12 +48,13 @@
 //      {
 //        $p[$item] = $participant->{$item};
 //      }
-//
-//      return new JsonResponse([
-//        "status"      => 200,
-//        'participant' => $p,
-//      ]);
-//    }
+      $p = $this->container->get('assets.packages')->getUrl('images/ll.png');
+      
+      return new JsonResponse([
+        "status"   => 200,
+        'response' => $p,
+      ]);
+    }
     
     /**
      * @Route("/agree", name="agree_page")
@@ -188,61 +191,65 @@
             $prizeApplications = $application->getPrizeApplications();
             foreach ($prizeApplications as $prizeApplication)
             {
-              if (strpos($prizeApplication->getPrize()->getSlug(), "weekly"))
+              $prizeApplication = new PrizeApplication($prizeApplication);
+              
+              if (strpos($prizeApplication->getPrize()->getSlug(), "certificate") !== false)
               {
                 if (!isset($prizes["weekly"]))
                 {
                   $prizes["weekly"] = [];
                 }
+                
                 $prizes["weekly"]["slug"] = $prizeApplication->getPrize()->getSlug();
                 $prizes["weekly"]["code"] = $prizeApplication->getCouponCode();
                 $prizes["weekly"]["url"] = $this->getPrizeImage($prizeApplication->getPrize()->getSlug());
               }
-              if (strpos($prizeApplication->getPrize()->getSlug(), "guaranteed"))
+              if (strpos($prizeApplication->getPrize()->getSlug(), "code") !== false)
               {
                 if (!isset($prizes["guaranteed"]))
                 {
                   $prizes["guaranteed"] = [];
                 }
+                
                 $prizes["guaranteed"]["slug"] = $prizeApplication->getPrize()->getSlug();
                 $prizes["guaranteed"]["code"] = $prizeApplication->getCouponCode();
                 $prizes["guaranteed"]["url"] = $this->getPrizeImage($prizeApplication->getPrize()->getSlug());
               }
             }
-            $promoApplications = $application->getPromoApplications();
-            
-            foreach ($promoApplications as $promoApplication)
-            {
-              if (strpos($promoApplication['promo']['slug'], "weekly"))
-              {
-                if (!isset($prizes["weekly"]))
-                {
-                  $prizes["weekly"]["slug"] = $promoApplication['promo']['slug'];
-                  $prizes["weekly"]["code"] = "-";
-                  $prizes["weekly"]["url"] = "";
-                }
-              }
-              if (strpos($promoApplication['promo']['slug'], "guaranteed"))
-              {
-                if (!isset($prizes["guaranteed"]))
-                {
-                  $prizes["guaranteed"]["slug"] = $promoApplication['promo']['slug'];
-                  $prizes["guaranteed"]["code"] = "-";
-                  $prizes["guaranteed"]["url"] = ""; // Для теста $this->getPrizeImage($promoApplication['promo']['slug']);
-                }
-              }
-            }
+//            $promoApplications = $application->getPromoApplications();
+//
+//            foreach ($promoApplications as $promoApplication)
+//            {
+//              if (strpos($promoApplication['promo']['slug'], "weekly"))
+//              {
+//                if (!isset($prizes["weekly"]))
+//                {
+//                  $prizes["weekly"]["slug"] = $promoApplication['promo']['slug'];
+//                  $prizes["weekly"]["code"] = "-";
+//                  $prizes["weekly"]["url"] = ""; // Для теста $this->getPrizeImage($promoApplication['promo']['slug']);
+//                }
+//              }
+//              if (strpos($promoApplication['promo']['slug'], "guaranteed"))
+//              {
+//                if (!isset($prizes["guaranteed"]))
+//                {
+//                  $prizes["guaranteed"]["slug"] = $promoApplication['promo']['slug'];
+//                  $prizes["guaranteed"]["code"] = "-";
+//                  $prizes["guaranteed"]["url"] = ""; // Для теста $this->getPrizeImage($promoApplication['promo']['slug']);
+//                }
+//              }
+//            }
             
             // TODO: Говнокод, такого быть не должно
             if (!isset($prizes["weekly"]))
             {
-              $prizes["weekly"]["slug"] = "-";
+              $prizes["weekly"]["slug"] = "";
               $prizes["weekly"]["code"] = "-";
               $prizes["weekly"]["url"] = "";
             }
             if (!isset($prizes["guaranteed"]))
             {
-              $prizes["guaranteed"]["slug"] = "-";
+              $prizes["guaranteed"]["slug"] = "";
               $prizes["guaranteed"]["code"] = "-";
               $prizes["guaranteed"]["url"] = "";
             }
@@ -472,12 +479,18 @@
     {
       switch ($slug)
       {
+        case 'certificate_lenina':
+        case 'code_lenina':
         case 'moda_lenina_weekly':
         case 'moda_lenina_guaranteed':
           return $this->container->get('assets.packages')->getUrl('images/ll.png');
+        case 'certificate_yves_rocher':
+        case 'code_yves_rocher':
         case 'moda_yves_rocher_weekly':
         case 'moda_yves_rocher_guaranteed':
           return $this->container->get('assets.packages')->getUrl('images/yr.png');
+        case 'certificate_lamoda':
+        case 'code_lamoda':
         case 'moda_lamoda_weekly':
         case 'moda_lamoda_guaranteed':
           return $this->container->get('assets.packages')->getUrl('images/lamoda.png');
