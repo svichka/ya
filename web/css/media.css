@@ -273,8 +273,15 @@
 	}
 	.static-prize {
 		margin-bottom: 20px;
+		width: 97%;
 		height: 413px;
 	}
+	.static-prize-title-av {
+        font-size: 17px;
+    }
+    .static-prize-price {
+        font-size: 16px;
+    }
 	.adventure-title {
 		font-size: 39px;
 	}
@@ -298,6 +305,12 @@
 		width: 250px;
 		padding: 4px 8px 5px;
 	}
+}
+@media (max-width:835px){
+    .static-prize-img.static-prize-img-r {
+        height: 160px;
+        background-size: 157px;
+    }
 }
 @media (max-width:870px){
 	.header-menu li {
