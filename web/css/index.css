@@ -12,10 +12,10 @@ ul{
     padding:0;
     margin:0;
 }
-::-webkit-input-placeholder {color:#1e9a01;text-transform: uppercase;    font-family: 'Conv_agavalanchec-bold';}
-::-moz-placeholder          {color:#1e9a01;text-transform: uppercase;    font-family: 'Conv_agavalanchec-bold';}
-:-moz-placeholder           {color:#1e9a01;text-transform: uppercase;    font-family: 'Conv_agavalanchec-bold';}
-:-ms-input-placeholder      {color:#1e9a01;text-transform: uppercase;    font-family: 'Conv_agavalanchec-bold';}
+::-webkit-input-placeholder {color:#1e9a0157;text-transform: uppercase;    font-family: 'Conv_agavalanchec-bold';}
+::-moz-placeholder          {color:#1e9a0157;text-transform: uppercase;    font-family: 'Conv_agavalanchec-bold';}
+:-moz-placeholder           {color:#1e9a0157;text-transform: uppercase;    font-family: 'Conv_agavalanchec-bold';}
+:-ms-input-placeholder      {color:#1e9a0157;text-transform: uppercase;    font-family: 'Conv_agavalanchec-bold';}
 a:hover , a:active , a:focus{
     text-decoration:none;
     color:inherit;
