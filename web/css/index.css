@@ -72,8 +72,7 @@ input:focus , input:active , select:focus , select:active , textarea:focus , tex
     background-color: #0c2608;
     background-position: top center;
     background-size: auto 40px;
-    background-repeat-y: no-repeat;
-    background-repeat-x: repeat;
+    background-repeat: repeat no-repeat;
     padding: 35px 40px 5px;
 }
 .header-menu li a {
