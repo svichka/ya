@@ -892,3 +892,6 @@ button[disabled] {
     overflow-y: hidden !important;
   }
 }
+.fs-scrollbar-content {
+    -ms-overflow-style : none;
+}
