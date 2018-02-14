@@ -62,6 +62,19 @@ $(function() {
             if ($(this).width() < 751){
                 $(".js-faq-wrapper").scrollbar("destroy");
                 $(".js-week-table-scroll").scrollbar("destroy");
+            } else {
+                $(".js-faq-wrapper").scrollbar("destroy");
+                $(".js-week-table-scroll").scrollbar("destroy");
+                $(".js-faq-wrapper").scrollbar({
+                    handleSize : 25,
+                    duration : 0.1
+                });
+                $('.js-week-table-scroll').each(function(){
+                    $(this).scrollbar({
+                        handleSize : 25,
+                        duration : 0.1
+                    });
+                })
             }
         })
 
