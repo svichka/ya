@@ -91,6 +91,8 @@ input:focus , input:active , select:focus , select:active , textarea:focus , tex
     background-position: center;
     background-size: cover;
     padding: 13px 0;
+    display: table-cell;
+    vertical-align: middle;
 }
 .page-footer-bg , .page-footer-bg a , .page-footer-bg div {
     color: #030f00;
