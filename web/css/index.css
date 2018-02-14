@@ -107,6 +107,7 @@ input:focus , input:active , select:focus , select:active , textarea:focus , tex
     padding-right: 75px;
     padding-top: 26px;
     padding-bottom: 30px;
+    display: table-cell;
 }
 .page-bg:before {
     content: '';
