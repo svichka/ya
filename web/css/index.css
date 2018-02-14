@@ -21,6 +21,7 @@ a:hover , a:active , a:focus{
     color:inherit;
     outline:none;
 }
+
 button:active , button:focus{
     outline:none;
 }
@@ -885,4 +886,9 @@ img + img {
 }
 button[disabled] {
     opacity: 0.5;
+}
+@-moz-document url-prefix() {
+  .fs-scrollbar-content {
+    overflow-y: hidden !important;
+  }
 }
