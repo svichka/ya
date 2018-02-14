@@ -340,6 +340,15 @@
 		background-image: url(../images/line-y.png);
 		height: 1px;
 	}
+	.auth-form .media-checkbox .checkbox-title {
+        margin-left: 0;
+        display: inline-block;
+        width: auto;
+    }
+    
+    .auth-form .media-checkbox.media-checkbox-sm {
+        text-align: center;
+    }
 	.header-menu {
 		margin-top: 2px;
 	}
