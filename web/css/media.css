@@ -424,10 +424,16 @@
 	/*	width: 100%;*/
 	/*}*/
 	.header-menu li {
-		display: block;
-		margin-bottom:  24px;
+	    display: block;
+        margin-bottom: 24px;
+        background-size: 21px;
+        background-repeat: no-repeat;
+        background-position: left center;
+        padding: 6px 0 4px 40px;
 	}
-
+    .header-menu li.ask {
+        background-size: 14px;
+    }
 	.header-menu li a {
 		font-size: 18px;
 		border-bottom: 0;
