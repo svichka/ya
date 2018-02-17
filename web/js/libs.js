@@ -8,7 +8,7 @@ function Ru(obj) {
 }
 
 function Pass(obj) {
-  if (obj.value.search(/[^a-zA-Z1-9]/ig) >= 0) {
+  if (obj.value.search(/[^a-zA-Z1-90]/ig) >= 0) {
     $(obj).parent().find('.form__text-error').text("Только латиница и числа");
   }else {
     $(obj).parent().find('.form__text-error').text("");

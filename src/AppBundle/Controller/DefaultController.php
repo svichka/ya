@@ -127,7 +127,7 @@
      * @Route("/", name="index_page")
      */
     public function indexAction(Request $request)
-    {
+    {$this->addFlash('exists', 'ok');
       return $this->render('AppBundle:Default:index.html.twig', [
       ]);
     }
@@ -142,8 +142,9 @@
       $form->handleRequest($request);
       if ($form->isSubmitted() && $form->isValid())
       {
-        if ($request->request->has('ajax') && $request->request->get('ajax') == 'Y')http://prntscr.com/if56zy
+        if ($request->request->has('ajax') && $request->request->get('ajax') == 'Y')
         {
+          
           return $this->render('AppBundle:Default:registration.html.twig', [
             'errors' => $this->errors,
             'form'   => $form->createView(),
@@ -267,7 +268,8 @@
           }
           if ($e->getMessage() == 'Participant with this email/phone/social account is already registered')
           {
-            $this->addFlash('exist', 'ok');
+            $this->addFlash('exists', 'ok');
+            return $this->redirectToRoute('index_page');
           }
         }
       }

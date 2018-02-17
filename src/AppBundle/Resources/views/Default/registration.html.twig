@@ -15,9 +15,11 @@
         <div class="row">
           <div class="col-sm-12">
             <div class="form-block">
-              {% for error in errors %}
-                <label style="margin-bottom: 15px; padding: 15px;">{{ error|trans }}</label>
-              {% endfor %}
+              {% if errors is defined %}
+                {% for error in errors %}
+                  <label style="margin-bottom: 15px; padding: 15px;">{{ error|trans }}</label>
+                {% endfor %}
+              {% endif %}
             </div>
           </div>
         </div>
@@ -72,33 +74,7 @@
   {{ parent() }}
 
 
-  <!-- Modal -->
-  <div class="modal fade" id="exists" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title up" id="myModalLabel">
-            Уважаемый участник!
-          </h4>
-        </div>
-        <div class="modal-body">
-          <div class="modal-static">
-            <p>
-              Введенные Вами данные уже <br> существуют.
-            </p>
-            <p>
-              Если Вы участвовали в других акциях <br> группы Компании <a href="">PepsiCo Россия</a>,
-              то <br> можете использовать прежний логин и <br>пароль для <a href="">авторизации</a> на сайт. <br>
-              Если необходимо восстановить пароль, <br> воспользуйтесь формой <br> 
-              <a href="">восстановления пароля</a>.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+
 {% endblock %}
 
 {% block javascripts %}
