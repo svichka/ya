@@ -376,7 +376,7 @@
       $this->getDoctrine()->getManager()->flush();
       
       $urls = [];
-      if ($code === null)
+      if ($code === null || $code == "")
       {
         $response['status'] = 400;
         $response['error'] = "Код не введён";

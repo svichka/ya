@@ -43,34 +43,42 @@
         <div class="header-menu-wrap">
           <ul class="up header-menu">
             {% if(is_granted('ROLE_USER')) %}
-            <li class="auth visible-xs {{ route == 'personal_page' ? 'active' }}" style="background-image : url({{ asset('images/user-i.png') }})">
+              <li class="auth visible-xs {{ route == 'personal_page' ? 'active' }}"
+                  style="background-image : url({{ asset('images/user-i.png') }})">
                 <a href="{{ path('personal_page') }}">Личный кабинет</a>
-            </li>
+              </li>
             {% endif %}
-            <li class="visible-xs {{ route == 'index_page' ? 'active' }}" style="background-image : url({{ asset('images/house-i.png') }})">
+            <li class="visible-xs {{ route == 'index_page' ? 'active' }}"
+                style="background-image : url({{ asset('images/house-i.png') }})">
               <a class="{{ route == 'index_page' ? 'active' }}" href="{{ path('index_page') }}">Главная</a>
-            </li>  
-            <li class="{{ route == 'prizes_page' ? 'active' }}" style="background-image : url({{ asset('images/gift-i.png') }})">
+            </li>
+            <li class="{{ route == 'prizes_page' ? 'active' }}"
+                style="background-image : url({{ asset('images/gift-i.png') }})">
               <a class="{{ route == 'prizes_page' ? 'active' }}" href="{{ path('prizes_page') }}">Призы</a>
             </li>
-            <li class="{{ route == 'winnners_page' ? 'active' }}" style="background-image : url({{ asset('images/star-i.png') }})">
+            <li class="{{ route == 'winnners_page' ? 'active' }}"
+                style="background-image : url({{ asset('images/star-i.png') }})">
               <a class="{{ route == 'winnners_page' ? 'active' }}" href="{{ path('winnners_page') }}">Победители</a>
             </li>
-            <li class="ask {{ route == 'faq_page' ? 'active' }}" style="background-image : url({{ asset('images/ask-i.png') }})">
+            <li class="ask {{ route == 'faq_page' ? 'active' }}"
+                style="background-image : url({{ asset('images/ask-i.png') }})">
               <a class="{{ route == 'faq_page' ? 'active' }}" href="{{ path('faq_page') }}">Вопрос-ответ</a>
             </li>
-            <li class="mail {{ route == 'feedback_page' ? 'active' }}" style="background-image : url({{ asset('images/mail-i.png') }})">
+            <li class="mail {{ route == 'feedback_page' ? 'active' }}"
+                style="background-image : url({{ asset('images/mail-i.png') }})">
               <a class="{{ route == 'feedback_page' ? 'active' }}" href="{{ path('feedback_page') }}">Обратная свзяь</a>
             </li>
             {% if(is_granted('ROLE_USER')) %}
-              <li class="auth {{ route == 'personal_page' ? 'active' }}" style="background-image : url({{ asset('images/exit-i.png') }})">
+              <li class="auth {{ route == 'personal_page' ? 'active' }}"
+                  style="background-image : url({{ asset('images/exit-i.png') }})">
                 <a href="{{ path('personal_page') }}" class="hidden-xs">
                   <img src="{{ asset('images/user.png') }}" alt="">
                 </a>
                 <a href="{{ path('logout') }}">Выход</a>
               </li>
             {% else %}
-              <li class="{{ route == 'login' ? 'active' }}" style="background-image : url({{ asset('images/user-i.png') }})">
+              <li class="{{ route == 'login' ? 'active' }}"
+                  style="background-image : url({{ asset('images/user-i.png') }})">
                 <a href="{{ path('login') }}">Вход</a>
               </li>
             {% endif %}
@@ -104,6 +112,7 @@
           </div>
           <div class="modal-body">
             <form action="{{ path('promocode_register') }}" method="post" id="upload_form">
+              <span class="reg-code-error-fuel"></span>
               <div class="modal-pre-title up">
                 Получи гарантированный приз
               </div>
@@ -172,7 +181,6 @@
                     <div class="col-sm-6"></div>
                     <div class="col-sm-7">
                       <div class="form-block">
-                        <span class="reg-code-error-fuel"></span>
                         <input type="text" class='text-center modal-custum-input' name="code" placeholder="Введите код">
                       </div>
                     </div>
@@ -475,8 +483,12 @@
     }
 
     function showMessage(text) {
-      console.log("Message", text);
-      $('#modalMessage-header').text("");
+      showMessage2(text, header)
+    }
+
+    function showMessage2(header, text) {
+      console.log("Message", text, header);
+      $('#modalMessage-header').text(header);
       $('#modalMessage-text').text(text);
       $('#modalMessage').modal('show');
     }
@@ -535,11 +547,11 @@
     $(document).on('shown.bs.modal', function (e) {
       var custom_options = {
         translation: {
-          'A': {pattern: /[a-zA-Z0-9]/, optional: true},
-          'B': {pattern: /[a-zA-Z0-9]/},
-        }
+          'A': { pattern: /[a-zA-Z0-9]/, optional: true },
+          'B': { pattern: /[a-zA-Z0-9]/ },
+        },
       };
-      $('input[name=code]').mask("BBBB-BBBA",custom_options);
+      $('input[name=code]').mask("BBBB-BBBA", custom_options);
       console.log('uploadModal');
       console.log(e.target.id);
       if (e.target.id === "uploadModal") {
