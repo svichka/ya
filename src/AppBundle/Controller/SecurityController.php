@@ -2,6 +2,7 @@
   
   namespace AppBundle\Controller;
   
+  use Dalee\PEPUWSClientBundle\Controller\ParticipantApiController;
   use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
   use Symfony\Bundle\FrameworkBundle\Controller\Controller;
   use Symfony\Component\HttpFoundation\JsonResponse;
@@ -30,13 +31,23 @@
         }
         elseif (in_array('ROLE_NOT_ACTIVE_USER', $userRoles))
         {
-          if (in_array('ROLE_NOT_ACTIVE_USER_NOT_ACTIVE_MOBILE', $userRoles))
-          {
-            $error = ['messageKey' => 'Please, activate mobile', 'messageData' => []];
-          }
           if (in_array('ROLE_NOT_ACTIVE_USER_NOT_ACTIVE_EMAIL', $userRoles))
           {
             $error = ['messageKey' => 'Please, activate email', 'messageData' => []];
+            try
+            {
+              (new ParticipantApiController())->activationGenerate($lastUsername);
+            }
+            catch (\Exception $e)
+            {
+            
+            }
+          }
+          else
+          {
+            $this->addFlash('login', 'ok');
+            
+            return $this->redirectToRoute('personal_page');
           }
           $this->container->get('security.context')->setToken(null);
         }
