@@ -1,18 +1,22 @@
 function Ru(obj) {
   if (obj.value.search(/[^а-яё\-]/ig) >= 0) {
-    showMessage("Только кирилица");
+    $(obj).parent().find('.form__text-error').text("Только кирилица");
+  }else {
+    $(obj).parent().find('.form__text-error').text("");
   }
   obj.value = obj.value.replace(/[^а-яё\-]/ig, '');
 }
 
 function Pass(obj) {
   if (obj.value.search(/[^a-zA-Z1-9]/ig) >= 0) {
-    showMessage("Только латиница и числа");
+    $(obj).parent().find('.form__text-error').text("Только латиница и числа");
+  }else {
+    $(obj).parent().find('.form__text-error').text("");
   }
   obj.value = obj.value.replace(/[^a-zA-Z1-9]/ig, '');
 
   if (obj.value.length > 15) {
-    showMessage("Максимум 15 символов");
+    $(obj).parent().find('.form__text-error').text("Максимум 15 символов");
     obj.value = obj.value.substr(0, 15);
   }
 }

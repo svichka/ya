@@ -55,7 +55,8 @@
           <div class="week-title js-week-title">
             <div class="week-toggler">-</div>
             <div class="row">
-              <div class="col-xs-12 {% if first == 1 %}week-item-current{% endif %}">{% if first == 1 %}Текущая неделя{% else %}{{ i }}{% endif %}</div>
+              <div
+                  class="col-xs-12 {% if first == 1 %}week-item-current{% endif %}">{% if first == 1 %}Текущая неделя{% else %}{{ i }}{% endif %}</div>
               <div class="col-xs-12 text-right">
                 {% if first != 1 %}({{ week['start']|date('d.m.Y') }} - {{ week['end']|date('d.m.Y') }}){% endif %}
               </div>
@@ -165,39 +166,41 @@
                 <div class="col-xs-11">
                   <div class="form-block">
                     <label for="registration_form_regionguid">Регион *</label>
-                    <select id="registration_form_regionguid" name="registration_form[regionguid]" disabled
+                    <select id="registration_form_regionguid" name="registration_form[regionguid]"
                             required=""></select>
                     <input type="hidden" name="registration_form[region]" id="registration_form_region"
                            value="{{ user.getregion }}">
                   </div>
                   <div class="form-block">
                     <label for="registration_form_cityguid">Город *</label>
-                    <select id="registration_form_cityguid" name="registration_form[cityguid]" disabled
+                    <select id="registration_form_cityguid" name="registration_form[cityguid]"
                             required=""></select>
                     <input type="hidden" name="registration_form[city]" id="registration_form_city"
                            value="{{ user.getcity }}">
                   </div>
                   <div class="form-block">
                     <label for="">Пол *</label>
-                    <div class="checkbox-wrap{% if user.getismale=='N' or user.getismale=='Y' %} disabled{% endif %}">
+                    <div class="checkbox-wrap">
                       <input id="registration_form_ismale_y" type="radio" name="registration_form[ismale]" value="Y"
-                             {% if user.getismale=='Y' %}checked
-                             disabled{% endif %} {% if user.getismale=='N' %} disabled{% endif %}>
+                             {% if user.getismale=='Y' %}checked{% endif %}>
                       <span></span>
                     </div>
                     <div class="checkbox-title">М</div>
-                    <div class="checkbox-wrap{% if user.getismale=='N' or user.getismale=='Y' %} disabled{% endif %}">
+                    <div class="checkbox-wrap">
                       <input id="registration_form_ismale_n" type="radio" name="registration_form[ismale]" value="N"
-                             {% if user.getismale=='N' %}checked
-                             disabled{% endif %} {% if user.getismale=='Y' %} disabled{% endif %}>
+                             {% if user.getismale=='N' %}checked{% endif %} >
                       <span></span>
                     </div>
                     <div class="checkbox-title">Ж</div>
                   </div>
                 </div>
               </div>
+              <div class="col-xs-2"></div>
+              <div class="col-xs-11">
+                <span class="update-profie-fuel"></span>
+              </div>
               <div class="form-btn text-center">
-                <button class="gradient-btn xs-button">Сохранить</button>
+                <button class="gradient-btn xs-button save">Сохранить</button>
               </div>
             </form>
           </div>
@@ -287,13 +290,16 @@
       var form = $('#registration_u_json');
       $('#registration_u_json').ajaxForm({
         beforeSubmit: function (formData, jqForm, options) {
+          $('.save').prop('disabled', true);
           return true;
         },
         success: function (json, statusText, xhr, $form) {
+          $('.save').prop('disabled', false);
           if (json.status === 200) {
-            $('#regModal').hide();
+            $('#regModal').modal('hide');
+            window.location.reload(true);
           } else {
-            showErrorMessage(json.errors.join(", "));
+            $('span.update-profie-fuel').text(json.errors.join(", "));
           }
         },
         url: '{{ path('registration_u_json_page') }}',

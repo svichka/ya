@@ -97,7 +97,7 @@
     }
     
     /**
-     * @Route("/personal/", name="personal_page")
+     * @Route("/personal", name="personal_page")
      */
     public function personalAction(Request $request)
     {
