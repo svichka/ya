@@ -4,6 +4,8 @@
   
   use AppBundle\Entity\CodeHistory;
   use AppBundle\Entity\SpeedLock;
+  use Dalee\PEPUWSClientBundle\Controller\ParticipantApiController;
+  use Dalee\PEPUWSClientBundle\Exception\ApiFailedException;
   use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
   use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
   use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -438,6 +440,22 @@
         $response['status'] = 400;
         $response['error'] = "Код не существует или уже активирован";
         
+        return new JsonResponse($response);
+      }
+      $api = new ParticipantApiController();
+      try
+      {
+        $data = $api->getBanStatusById($this->getUser()->getParticipant()->id);
+      }
+      catch (ApiFailedException $e)
+      {
+        $data['status'] = 'bad';
+      }
+      if ($data['status'] != 'ok')
+      {
+        $response['status'] = 400;
+        $response['error'] = "Вы заблокированы";
+  
         return new JsonResponse($response);
       }
       $userId = $this->getUser()->getParticipant()->getId();

@@ -3,7 +3,7 @@
 {% block form_widget_simple %}
   {% set type = type|default('text') %}
   <input type="{{ type }}"
-         name="{{ full_name }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+         name="{{ full_name }}" {{ name }} {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
 {% endblock form_widget_simple %}
 
 {%- block form_row -%}
@@ -61,7 +61,8 @@
     <label for="">{{ form.vars.label }}</label>
     {%- for child in form %}
       <div class="checkbox-wrap">
-        <input id="{{ child.vars.id }}" type="radio" value="{{ child.vars.value }}" name="{{ child.vars.name }}">
+
+        <input id="{{ child.vars.id }}" type="radio" value="{{ child.vars.value }}" name="{{ child.vars.full_name }}">
         <span></span>
       </div>
       <div class="checkbox-title">{{ child.vars.label|nl2br }}</div>

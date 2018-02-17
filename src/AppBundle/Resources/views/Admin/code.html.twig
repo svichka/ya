@@ -14,7 +14,17 @@
         </tr>
         <tr>
           <th scope="row">Статус</th>
-          <td>{% if code.status is defined %}{{ code.status }}{% else %}-{% endif %}</td>
+          <td>
+            {% if code.status is defined %}
+              {% if code.status == 1 %}
+                Активирован
+              {% else %}
+                Не активирован
+              {% endif %}
+            {% else %}
+              Не активирован
+            {% endif %}
+          </td>
         </tr>
         <tr>
           <th scope="row">Юзер</th>

@@ -11,6 +11,7 @@
   use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
   use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
   use Symfony\Component\HttpFoundation\Request;
+  use Symfony\Component\HttpKernel\Exception\HttpException;
   
   class AdminController extends Base
   {
@@ -19,13 +20,17 @@
      * @param Request $request
      *
      * @return \Symfony\Component\HttpFoundation\Response
-     * @throws \HttpException
+     * @throws HttpException
      */
     public function listAction(Request $request)
     {
+      if ($this->getUser() == null)
+      {
+        throw new HttpException(403, "Доступ запрещён");
+      }
       if (!in_array('ROLE_ADMIN', $this->getUser()->getRoles()))
       {
-        throw new \HttpException("Доступ запрещён", 403);
+        throw new HttpException(403, "Доступ запрещён");
       }
       $codes = $this->getDoctrine()->getRepository('AppBundle:CodeHistory')->findAll();
       $ret = [];
@@ -44,19 +49,23 @@
         'codes' => $ret,
       ]);
     }
-  
+    
     /**
      * @Route("/admin/code_check", name="admin_codes_check")
      * @param Request $request
      *
      * @return \Symfony\Component\HttpFoundation\Response
-     * @throws \HttpException
+     * @throws HttpException
      */
     public function checkCodeAction(Request $request)
     {
+      if ($this->getUser() == null)
+      {
+        throw new HttpException(403, "Доступ запрещён");
+      }
       if (!in_array('ROLE_ADMIN', $this->getUser()->getRoles()))
       {
-        throw new \HttpException("Доступ запрещён", 403);
+        throw new HttpException(403, "Доступ запрещён");
       }
       $code = null;
       $history = null;

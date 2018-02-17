@@ -30,7 +30,7 @@
               Период совершения покупки и регистрации кодов: с «01» марта 2018 года по «31» мая 2018 года
               (включительно).<br>
               Розыгрыш призов второго уровня происходит в следующие периоды:
-              <table>
+              <table border="2">
                 <thead>
                 <tr>
                   <td width="40px">Номер еженедельного периода</td>
@@ -377,12 +377,13 @@
 {% endblock %}
 
 {% block stylesheets %}
+
+  {{ parent() }}
   <style>
     td {
       padding: .4em;
     }
   </style>
-  {{ parent() }}
 {% endblock %}
 
 {% block javascripts %}
