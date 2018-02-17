@@ -133,7 +133,6 @@
         }
       }
       
-      return $this->render('AppBundle:Default:feedback.html.twig', ['errors' => $this->errors,
-                                                                    'form'   => $form->createView(),]);
+      return $this->render('AppBundle:Default:feedback.html.twig', ['errors' => $this->errors, 'form' => $form->createView(),]);
     }
   }

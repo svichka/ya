@@ -172,6 +172,7 @@
                     <div class="col-sm-6"></div>
                     <div class="col-sm-7">
                       <div class="form-block">
+                        <span class="reg-code-error-fuel"></span>
                         <input type="text" class='text-center modal-custum-input' name="code" placeholder="Введите код">
                       </div>
                     </div>
@@ -507,7 +508,7 @@
             completeModal.modal();
 
           } else {
-            showErrorMessage(responseText.error);
+            $('span.reg-code-error-fuel').text(responseText.error)
             return false;
           }
         },

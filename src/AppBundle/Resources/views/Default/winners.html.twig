@@ -10,13 +10,13 @@
       <h1 class="static-title up">Победители</h1>
       <div class="searching-winner-line">
         <div class="seacrh-wrap">
-          <form action="{{ path('winnners_page') }}">
+          <form action="{{ path('winnners_page') }}" autocomplete="off">
             <label for="" class='up'>Поиск по фио</label>
             <input type="text" name="fio">
             <input type="hidden" name="date" value="">
           </form>
         </div>
-        <input type="text" class='js-date date-input' name="date" placeholder="Выбрать дату">
+        <input type="text" class='js-date date-input' name="date" placeholder="Выбрать дату" autocomplete="off">
       </div>
       {% for i,value in winners %}
         <div class="week-item up">

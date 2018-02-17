@@ -137,12 +137,12 @@
      */
     public function registrationAction(Request $request)
     {
-      $form = $this->createForm(RegistrationFormType::class, new Participant(), ['attr' => ['class' => 'form']]);
+      $form = $this->createForm(RegistrationFormType::class, new Participant(), ['attr' => ['class' => 'form', "autocomplete" => "off"]]);
       
       $form->handleRequest($request);
       if ($form->isSubmitted() && $form->isValid())
       {
-        if ($request->request->has('ajax') && $request->request->get('ajax') == 'Y')
+        if ($request->request->has('ajax') && $request->request->get('ajax') == 'Y')http://prntscr.com/if56zy
         {
           return $this->render('AppBundle:Default:registration.html.twig', [
             'errors' => $this->errors,
