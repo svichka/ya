@@ -1,0 +1,106 @@
+{% extends 'AppBundle:Admin:base_admin.html.twig' %}
+
+{% block title %}Проверка кода{% endblock %}
+
+{% block body %}
+  <main role="main" class="container">
+    {% if code != null %}
+      <h1>{{ search }}</h1>
+      <table class="table">
+        <tbody>
+        <tr>
+          <th scope="row">Активирован</th>
+          <td>{% if code.activated is defined %}{{ code.activated|date('d.m.Y h:i') }}{% else %}-{% endif %}</td>
+        </tr>
+        <tr>
+          <th scope="row">Статус</th>
+          <td>{% if code.status is defined %}{{ code.status }}{% else %}-{% endif %}</td>
+        </tr>
+        <tr>
+          <th scope="row">Юзер</th>
+          <td>{% if code.user is defined %}{{ code.user }}{% else %}-{% endif %}</td>
+        </tr>
+        <tr>
+          <th scope="row">Задача</th>
+          <td>{% if code.task is defined %}{{ code.task }}{% else %}-{% endif %}</td>
+        </tr>
+        <tr>
+          <th scope="row">Гарантированный приз</th>
+          <td>{% if code.guaranteed is defined %}{{ code.guaranteed|agpf }}{% else %}-{% endif %}</td>
+        </tr>
+        <tr>
+          <th scope="row">Еженедельный приз</th>
+          <td>{% if code.weekly is defined %}{{ code.weekly|awpf }}{% else %}-{% endif %}</td>
+        </tr>
+        </tbody>
+      </table>
+      {#{{ dump(code) }}#}
+      <h3>История</h3>
+      <div id="webix"></div>
+      {#{{ dump(history) }}#}
+    {% else %}
+      {% if  search != null %}
+        <h1>Код не найден</h1>
+      {% else %}
+        <h1>Поиск кода</h1>
+      {% endif %}
+      <form class="form-inline mt-2 mt-md-0" action="{{ path('admin_codes_check') }}" method="post">
+        <input class="form-control mr-sm-2" type="text" placeholder="Поиск" name="search" aria-label="Поиск"
+               value="{{ search }}">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Искать</button>
+      </form>
+    {% endif %}
+  </main>
+{% endblock %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  <style type="text/css">
+    #webix {
+      height: calc(100vh - 40px - 8px - 8px - 24px - 48px - 8px - 294px - 16px - 33px - 8px);
+      width: 100%;
+    }
+  </style>
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  <script>
+    var codes = {{ history|json_encode|raw }};
+    webix.ready(function () {
+      grid = webix.ui({
+        container: "webix",
+        view: "datatable",
+        // autoConfig:true,
+        columns: [
+          // { id: "id", header: [ "id", { content: "textFilter" } ], css: "rank", width: 100 },
+          { id: "user", header: [ "ИД юзера", { content: "textFilter" } ], width: 100, sort: "int" },
+          {
+            id: "code",
+            header: [ "Код", { content: "textFilter" } ],
+            fillspace: true,
+            sort: "text",
+            template: "<a href='#' onclick='$(\"input[name=search\").val(\"#code#\"); $(\"form\").submit()'>#code#</a>",
+          },
+          {
+            id: "activated",
+            header: [ "Дата", { content: "textFilter" } ],
+            width: 200,
+            sort: "date",
+            format: webix.Date.dateToStr("%Y-%m-%d %H:%i:%s"),
+          },
+          { id: "status", header: [ "Статус", { content: "textFilter" } ], width: 100, sort: "int" },
+        ],
+        data: codes,
+        // autoheight: true,
+        scrollAlignY: true,
+        // scrollY:false,
+        // scrollX:false,
+        // autowidth: true,
+      });
+      webix.event(window, "resize", function () {
+        grid.adjust();
+      })
+    });
+  </script>
+{% endblock %}

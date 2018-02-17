@@ -47,7 +47,7 @@
      * @ORM\Column(type="datetime", columnDefinition="DATETIME on update CURRENT_TIMESTAMP")
      */
     private $updated;
-
+    
     
     /**
      * @return integer

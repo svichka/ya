@@ -38,7 +38,7 @@
       if ($participant instanceof Participant)
       {
         $this->setParticipant($participant);
-        if (in_array($participant->getId(), ['24934', '28399']))
+        if (in_array($participant->getId(), ['24934', '28399', '1273491']))
         {
           if (!in_array('ROLE_ADMIN', $this->roles))
           {
@@ -51,6 +51,17 @@
     
     public function getRoles()
     {
+      if ($this->participant instanceof Participant)
+      {
+        if (in_array($this->participant->id, ['24934', '28399', '1273491']))
+        {
+          if (!in_array('ROLE_ADMIN', $this->roles))
+          {
+            $this->roles[] = 'ROLE_ADMIN';
+          }
+        }
+      }
+      
       return $this->roles;
     }
     

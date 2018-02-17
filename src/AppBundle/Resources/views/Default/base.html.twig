@@ -1,6 +1,6 @@
 {#{% minifyhtml %}#}
 <!DOCTYPE html>
-{% set show = app.request.query.get("show") %}
+{% set show = app.request.request.get("show") %}
 {% set action =  banned_listener.getAction() %}
 {% set content_version = banned_listener.getAssetsVersion() %}
 <html>
@@ -52,7 +52,7 @@
               <a class="{{ route == 'faq_page' ? 'active' }}" href="{{ path('faq_page') }}">Вопрос-ответ</a>
             </li>
             <li class="{{ route == 'feedback_page' ? 'active' }}">
-              <a class="{{ route == 'feedback_page' ? 'active' }}" href="{{ path('feedback_page') }}">Обратная свзяь</a>
+              <a class="{{ route == 'feedback_page' ? 'active' }}" href="{{ path('feedback_page') }}">Обратная связь</a>
             </li>
             {% if(is_granted('ROLE_USER')) %}
               <li class="auth {{ route == 'personal_page' ? 'active' }}">
@@ -71,6 +71,8 @@
       </div>
     </div>
   </header>
+
+
   {% block body %}{% endblock %}
   <footer class='page_footer text-center up'>
     <div class="page-footer-bg">

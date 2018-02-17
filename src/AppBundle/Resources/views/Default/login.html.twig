@@ -39,7 +39,7 @@
           <button class="gradient-btn" type="submit">Войти</button>
           <div class="form-link">
             <a href="" class="up" data-toggle="modal" data-target="#recover">Забыли пароль?</a>
-            <a href="" class="up" data-toggle="modal" data-target="#restore">Ввести код</a>
+            {#<a href="" class="up" data-toggle="modal" data-target="#restore">Ввести код</a>#}
           </div>
           <a href="{{ path('registration_page') }}" class='form-link-lg up'>Регистрация</a>
         </form>
@@ -162,9 +162,9 @@
         success: function showResponse(responseText, statusText, xhr, $form) {
           console.log(responseText);
           if (responseText.status === 200) {
-            $.modal.close();
+            history.replaceState({ foo: 'bat' }, 'Вход', '{{ path('login') }}');
             $('#restore').modal('hide');
-            showMessage("Пароль установлен выполните вход");
+            // showMessage("Пароль установлен выполните вход");
 
           } else {
             $('#restore_result').text(responseText.error);

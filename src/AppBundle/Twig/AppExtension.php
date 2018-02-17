@@ -16,6 +16,8 @@
         new \Twig_SimpleFilter('phone', [$this, 'phoneFilter']),
         new \Twig_SimpleFilter('prize', [$this, 'prizeFilter']),
         new \Twig_SimpleFilter('prize_image', [$this, 'prizeImageFilter']),
+        new \Twig_SimpleFilter('agpf', [$this, 'prizeAGImageFilter']),
+        new \Twig_SimpleFilter('awpf', [$this, 'prizeAWImageFilter']),
       ];
     }
     
@@ -73,6 +75,36 @@
           return "lamoda.png";
       }
       
+      return $prize;
+    }
+  
+    public function prizeAGImageFilter($prize)
+    {
+      switch ($prize)
+      {
+        case "ll":
+          return "Лена Ленина: Скидка 30%";
+        case "yr":
+          return "Ив Роше:  Скидка 500р";
+        case "lamoda":
+          return "Ламода: Скидка 600р";
+      }
+    
+      return $prize;
+    }
+  
+    public function prizeAWImageFilter($prize)
+    {
+      switch ($prize)
+      {
+        case "ll":
+          return "Лена Ленина: Сертификат 3000";
+        case "yr":
+          return "Ив Роше: Сертификат 4000";
+        case "lamoda":
+          return "Ламода: Сертификат 3000";
+      }
+    
       return $prize;
     }
   }

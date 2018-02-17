@@ -1,0 +1,59 @@
+{% extends 'AppBundle:Admin:base_admin.html.twig' %}
+
+{% block title %}Список кодов{% endblock %}
+
+{% block body %}
+
+  <main role="main" class="container">
+    {#<div class="jumbotron">#}
+      <h1>{{ block('title') }}</h1>
+    {#</div>#}
+    <div id="webix"></div>
+  </main>
+{% endblock %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  <style type="text/css">
+    #webix {
+      height: calc(100vh - 40px - 8px - 8px - 24px - 48px - 8px);
+      width: 100%;
+    }
+  </style>
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  <script>
+    var codes = {{ codes|json_encode|raw }};
+    webix.ready(function () {
+      grid = webix.ui({
+        container: "webix",
+        view: "datatable",
+        // autoConfig:true,
+        columns: [
+          // { id: "id", header: [ "id", { content: "textFilter" } ], css: "rank", width: 100 },
+          { id: "user", header: [ "ИД юзера", { content: "textFilter" } ], width: 100, sort: "int" },
+          { id: "code", header: [ "Код", { content: "textFilter" } ], fillspace: true, sort: "text", template: "<a href='#' onclick='$(\"input[name=search\").val(\"#code#\"); $(\"form\").submit()'>#code#</a>" },
+          {
+            id: "activated",
+            header: [ "Дата", { content: "textFilter" } ],
+            width: 200,
+            sort: "date",
+            format: webix.Date.dateToStr("%Y-%m-%d %H:%i:%s"),
+          },
+          { id: "status", header: [ "Статус", { content: "textFilter" } ], width: 100, sort: "int" },
+        ],
+        data: codes,
+        // autoheight: true,
+        scrollAlignY:true,
+        // scrollY:false,
+        // scrollX:false,
+        // autowidth: true,
+      });
+      webix.event(window, "resize", function () {
+        grid.adjust();
+      })
+    });
+  </script>
+{% endblock %}

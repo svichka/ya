@@ -330,14 +330,16 @@
       
       $user = $this->getDoctrine()->getRepository('AppBundle:User')->findOneBy(['id' => $this->getUser()->getParticipant()->id]);
       $count = $this->getDoctrine()->getRepository('AppBundle:CodeHistory')->findLastMinuteCount($user->getId());
-      $speedLock = $this->getDoctrine()->getRepository('AppBundle:SpeedLock')->findOneBy(['user'=>$user->getId()]);
+      $speedLock = $this->getDoctrine()->getRepository('AppBundle:SpeedLock')->findOneBy(['user' => $user->getId()]);
       if ($speedLock != null)
       {
         $date = new \DateTime();
         
-        if($speedLock->getTill()>$date){
+        if ($speedLock->getTill() > $date)
+        {
           $response['status'] = 400;
           $response['error'] = "Блокировка на 3 часа!";
+          
           return new JsonResponse($response);
         }
       }
@@ -363,7 +365,7 @@
         
         return new JsonResponse($response);
       }
-  
+      
       $ch = new CodeHistory();
       $ch->setUser($this->getUser()->getParticipant()->id);
       $ch->setCode($code);
@@ -441,6 +443,11 @@
       $userId = $this->getUser()->getParticipant()->getId();
       $promocodeApiController = new PromocodeApiController();
       $result = $promocodeApiController->addToParticipantAsync($userId, $code->getCode(), $slugs);
+      
+      $ch->setStatus(1);
+      $this->getDoctrine()->getManager()->merge($ch);
+      $this->getDoctrine()->getManager()->flush();
+      
       $code->setActivated(new \DateTime());
       $code->setStatus(1);
       $code->setUser($userId);

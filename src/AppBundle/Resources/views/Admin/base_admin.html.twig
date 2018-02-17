@@ -1,0 +1,63 @@
+<!doctype html>
+{% set route = app.request.attributes.get('_route') %}
+{% set search = app.request.request.get('search') %}
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="{{ asset('favicon.ico') }}">
+
+  <title>{% block title %}Админка{% endblock %}</title>
+  {% block stylesheets %}
+    <!-- Bootstrap core CSS -->
+    <link href="{{ asset('admin/bootstrap.min.css') }}" rel="stylesheet">
+    <!-- Webix core CSS -->
+    <link href="{{ asset('admin/webix.css') }}" rel="stylesheet">
+  {% endblock %}
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+  <a class="navbar-brand" href="{{ path('index_page') }}">На сайт</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+          aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item {{ route == 'admin_codes_all' ? 'active' }}">
+        <a class="nav-link" href="{{ path('admin_codes_all') }}">Список кодов</a>
+      </li>
+      <li class="nav-item {{ route == 'admin_codes_check' ? 'active' }}">
+        <a class="nav-link" href="{{ path('admin_codes_check') }}">Поиск по кодам</a>
+      </li>
+    </ul>
+    <form class="form-inline mt-2 mt-md-0" action="{{ path('admin_codes_check') }}" method="post">
+      <input class="form-control mr-sm-2" type="text" placeholder="Поиск" name="search" aria-label="Поиск"
+             value="{{ search }}">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Искать</button>
+    </form>
+  </div>
+</nav>
+{% block body %}
+
+{% endblock %}
+{% block javascripts %}
+  <!-- Bootstrap core JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+          integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+          crossorigin="anonymous"></script>
+  <script>window.jQuery || document.write('<script src="{{ asset('admin/jquery-slim.min.js') }}"><\/script>')</script>
+  <script src="{{ asset('admin/popper.min.js') }}"></script>
+  <script src="{{ asset('admin/bootstrap.min.js') }}"></script>
+  <!-- Webix core JavaScript -->
+  <script src="{{ asset('admin/webix.js') }}"></script>
+{% endblock %}
+</body>
+</html>
+
