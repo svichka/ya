@@ -127,7 +127,7 @@
      * @Route("/", name="index_page")
      */
     public function indexAction(Request $request)
-    {$this->addFlash('exists', 'ok');
+    {
       return $this->render('AppBundle:Default:index.html.twig', [
       ]);
     }
