@@ -42,27 +42,35 @@
         </div>
         <div class="header-menu-wrap">
           <ul class="up header-menu">
-            <li class="{{ route == 'prizes_page' ? 'active' }}">
+            {% if(is_granted('ROLE_USER')) %}
+            <li class="auth visible-xs {{ route == 'personal_page' ? 'active' }}" style="background-image : url({{ asset('images/user-i.png') }})">
+                <a href="{{ path('personal_page') }}">Личный кабинет</a>
+            </li>
+            {% endif %}
+            <li class="visible-xs {{ route == 'index_page' ? 'active' }}" style="background-image : url({{ asset('images/house-i.png') }})">
+              <a class="{{ route == 'index_page' ? 'active' }}" href="{{ path('index_page') }}">Главная</a>
+            </li>  
+            <li class="{{ route == 'prizes_page' ? 'active' }}" style="background-image : url({{ asset('images/gift-i.png') }})">
               <a class="{{ route == 'prizes_page' ? 'active' }}" href="{{ path('prizes_page') }}">Призы</a>
             </li>
-            <li class="{{ route == 'winnners_page' ? 'active' }}">
+            <li class="{{ route == 'winnners_page' ? 'active' }}" style="background-image : url({{ asset('images/star-i.png') }})">
               <a class="{{ route == 'winnners_page' ? 'active' }}" href="{{ path('winnners_page') }}">Победители</a>
             </li>
-            <li class="{{ route == 'faq_page' ? 'active' }}">
+            <li class="{{ route == 'faq_page' ? 'active' }}" style="background-image : url({{ asset('images/ask-i.png') }})">
               <a class="{{ route == 'faq_page' ? 'active' }}" href="{{ path('faq_page') }}">Вопрос-ответ</a>
             </li>
-            <li class="{{ route == 'feedback_page' ? 'active' }}">
+            <li class="{{ route == 'feedback_page' ? 'active' }}" style="background-image : url({{ asset('images/mail-i.png') }})">
               <a class="{{ route == 'feedback_page' ? 'active' }}" href="{{ path('feedback_page') }}">Обратная свзяь</a>
             </li>
             {% if(is_granted('ROLE_USER')) %}
-              <li class="auth {{ route == 'personal_page' ? 'active' }}">
-                <a href="{{ path('personal_page') }}">
+              <li class="auth {{ route == 'personal_page' ? 'active' }}" style="background-image : url({{ asset('images/exit-i.png') }})">
+                <a href="{{ path('personal_page') }}" class="hidden-xs">
                   <img src="{{ asset('images/user.png') }}" alt="">
                 </a>
                 <a href="{{ path('logout') }}">Выход</a>
               </li>
             {% else %}
-              <li class="{{ route == 'login' ? 'active' }}">
+              <li class="{{ route == 'login' ? 'active' }}" style="background-image : url({{ asset('images/user-i.png') }})">
                 <a href="{{ path('login') }}">Вход</a>
               </li>
             {% endif %}
