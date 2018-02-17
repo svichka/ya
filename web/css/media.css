@@ -321,16 +321,6 @@
 	}
 }
 @media (max-width:768px){
-    .visible-menu .page_header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        z-index: 100;
-    }
-    body.visible-menu {
-        padding-top: 75px;
-    }
 	.static-title {
 		font-size: 20px;
 		margin-top: 0;
@@ -400,13 +390,16 @@
 		padding-left: 15px;
 		padding-right: 15px;
 	}
+	.visible-menu .main-content {
+        opacity: 0.3;
+    }
 	.header-menu {
 		display: none;
-        position: fixed;
-        top: 73px;
+        position: absolute;
+        top: 43px;
         background: #164a1c;
-        right: 0;
-        width: 90%;
+        right: -20px;
+        width: 300px;
         margin: 0;
         z-index: 10;
         text-align: left;
