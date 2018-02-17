@@ -325,8 +325,9 @@
     public function promocodeRegisterAction(Request $request)
     {
       $response = ['status' => 200];
-      $slugs = ["moda_dream"];
+//      $slugs = ["moda_dream"];
       $code = $request->request->get('code', $request->get('code', null));
+      $code = str_replace("-", "", $code);
       $guaranteed = $request->request->get('prize-guaranteed', $request->get('prize-guaranteed', null));
       $weekly = $request->request->get('prize-weekly', $request->get('prize-weekly', null));
       
@@ -435,6 +436,7 @@
       }
       
       $code = $this->getDoctrine()->getRepository('AppBundle:Code')->findOneBy(['code' => $code]);
+      
       if ($code === null || $code->getActivated() === 1)
       {
         $response['status'] = 400;
@@ -455,7 +457,7 @@
       {
         $response['status'] = 400;
         $response['error'] = "Вы заблокированы";
-  
+        
         return new JsonResponse($response);
       }
       $userId = $this->getUser()->getParticipant()->getId();
