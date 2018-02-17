@@ -13,7 +13,7 @@ function Pass(obj) {
   }else {
     $(obj).parent().find('.form__text-error').text("");
   }
-  obj.value = obj.value.replace(/[^a-zA-Z1-9]/ig, '');
+  obj.value = obj.value.replace(/[^a-zA-Z1-90]/ig, '');
 
   if (obj.value.length > 15) {
     $(obj).parent().find('.form__text-error').text("Максимум 15 символов");
