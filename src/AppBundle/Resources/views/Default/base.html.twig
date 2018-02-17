@@ -56,10 +56,10 @@
             <li class="{{ route == 'winnners_page' ? 'active' }}" style="background-image : url({{ asset('images/star-i.png') }})">
               <a class="{{ route == 'winnners_page' ? 'active' }}" href="{{ path('winnners_page') }}">Победители</a>
             </li>
-            <li class="{{ route == 'faq_page' ? 'active' }}" style="background-image : url({{ asset('images/ask-i.png') }})">
+            <li class="ask {{ route == 'faq_page' ? 'active' }}" style="background-image : url({{ asset('images/ask-i.png') }})">
               <a class="{{ route == 'faq_page' ? 'active' }}" href="{{ path('faq_page') }}">Вопрос-ответ</a>
             </li>
-            <li class="{{ route == 'feedback_page' ? 'active' }}" style="background-image : url({{ asset('images/mail-i.png') }})">
+            <li class="mail {{ route == 'feedback_page' ? 'active' }}" style="background-image : url({{ asset('images/mail-i.png') }})">
               <a class="{{ route == 'feedback_page' ? 'active' }}" href="{{ path('feedback_page') }}">Обратная свзяь</a>
             </li>
             {% if(is_granted('ROLE_USER')) %}
