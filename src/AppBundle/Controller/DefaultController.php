@@ -630,6 +630,23 @@
       catch (NotCorrectDataException $e)
       {
         $error = ['messageKey' => $e->getMessage()];
+        switch ($e->getMessage())
+        {
+          case 'User not found':
+            $error = "Пользователь не найден";
+            break;
+          case 'Incorrect data':
+            $error = "Емейл не корректен";
+            break;
+          default:
+            if (
+              strpos($e->getMessage(), "Status code") !== false
+            )
+            {
+              $error = "Ошибка востановления пароля";
+            }
+            break;
+        }
         
         return JsonResponse::create(
           [
