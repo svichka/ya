@@ -268,6 +268,13 @@
           }
           if ($e->getMessage() == 'Participant with this email/phone/social account is already registered')
           {
+            $participantApi = new ParticipantApiController();
+            try
+            {
+              $participantApi->recoverPassword($formData->getEmail(), ["channel" => "S"]);
+            }
+            catch (Exception $e)
+            {}
             $this->addFlash('exists', 'ok');
             return $this->redirectToRoute('index_page');
           }

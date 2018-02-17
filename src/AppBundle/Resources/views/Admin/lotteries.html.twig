@@ -1,0 +1,70 @@
+{% extends 'AppBundle:Admin:base_admin.html.twig' %}
+
+{% block title %}Список розыгрышей{% endblock %}
+
+{% block body %}
+
+  <main role="main" class="container">
+    <h1>{{ block('title') }}</h1>
+    <div id="webix"></div>
+  </main>
+{% endblock %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  <style type="text/css">
+    #webix {
+      height: calc(100vh - 40px - 8px - 8px - 24px - 48px - 8px);
+      width: 100%;
+    }
+  </style>
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  <script>
+    var codes = {{ lotteries|json_encode|raw }};
+    webix.ready(function () {
+      grid = webix.ui({
+        container: "webix",
+        view: "datatable",
+        // autoConfig:true,
+        columns: [
+          { id: "id", header: [ "id", { content: "textFilter" } ], width: 100, sort: "int" },
+          { id: "is_done", header: [ "is_done", { content: "textFilter" } ], width: 100, sort: "int" },
+          { id: "is_ready", header: [ "is_ready", { content: "textFilter" } ], width: 100, sort: "int" },
+          { id: "is_runnable", header: [ "is_runnable", { content: "textFilter" } ], width: 100, sort: "int" },
+          {
+            id: "start_time", header: [ "start_time", { content: "textFilter" } ], width: 180, sort: "date",
+            format: webix.Date.dateToStr("%Y-%m-%d %H:%i:%s"),
+          },
+          {
+            id: "end_time", header: [ "end_time", { content: "textFilter" } ], width: 180, sort: "date",
+            format: webix.Date.dateToStr("%Y-%m-%d %H:%i:%s"),
+          },
+          {
+            id: "run_time", header: [ "run_time", { content: "textFilter" } ], width: 180, sort: "date",
+            format: webix.Date.dateToStr("%Y-%m-%d %H:%i:%s"),
+          },
+          {
+            id: "run", header: "run", width: 80,
+            template: "<a href='{{ path('admin_lottery_run',{'promo',#promo#}) }}'>run</a>",
+          },
+          {
+            id: "commit", header: "commit", width: 80,
+            template: "<a href=''>run</a>",
+          },
+        ],
+        data: codes,
+        // autoheight: true,
+        scrollAlignY: true,
+        // scrollY:false,
+        // scrollX:false,
+        // autowidth: true,
+      });
+      webix.event(window, "resize", function () {
+        grid.adjust();
+      })
+    });
+  </script>
+{% endblock %}

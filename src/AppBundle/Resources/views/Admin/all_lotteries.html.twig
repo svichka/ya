@@ -1,0 +1,29 @@
+{% extends 'AppBundle:Admin:base_admin.html.twig' %}
+
+{% block title %}Список розыгрышей{% endblock %}
+
+{% block body %}
+
+  <main role="main" class="container">
+    <h1>{{ block('title') }}</h1>
+    <ul>
+      <li>
+        <a href="{{ path('admin_lotteries_check',{'promo':'moda_lamoda_weekly'}) }}">Ламода</a>
+      </li>
+      <li>
+        <a href="{{ path('admin_lotteries_check',{'promo':'moda_yves_rocher_weekly'}) }}">Ифроша</a>
+      </li>
+      <li>
+        <a href="{{ path('admin_lotteries_check',{'promo':'moda_lenina_weekly'}) }}">Лена</a>
+      </li>
+    </ul>
+  </main>
+{% endblock %}
+
+{% block stylesheets %}
+  {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+{% endblock %}
