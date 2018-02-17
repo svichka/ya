@@ -610,7 +610,7 @@
       $login = $request->request->get('email');
       if ($login == '')
       {
-        $error = ['messageKey' => 'Введите емейл'];
+        $error =  'Введите емейл';
         
         return JsonResponse::create(
           [
