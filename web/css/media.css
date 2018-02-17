@@ -233,7 +233,7 @@
 		padding-bottom: 35px;
 	}
 	.top-text img {
-		width: 90%;
+		width: 690px;
 		margin: 0 auto 0;
 		display: block;
 	}
@@ -273,8 +273,15 @@
 	}
 	.static-prize {
 		margin-bottom: 20px;
+		width: 97%;
 		height: 413px;
 	}
+	.static-prize-title-av {
+        font-size: 17px;
+    }
+    .static-prize-price {
+        font-size: 16px;
+    }
 	.adventure-title {
 		font-size: 39px;
 	}
@@ -298,6 +305,12 @@
 		width: 250px;
 		padding: 4px 8px 5px;
 	}
+}
+@media (max-width:835px){
+    .static-prize-img.static-prize-img-r {
+        height: 160px;
+        background-size: 157px;
+    }
 }
 @media (max-width:870px){
 	.header-menu li {
@@ -327,6 +340,15 @@
 		background-image: url(../images/line-y.png);
 		height: 1px;
 	}
+	.auth-form .media-checkbox .checkbox-title {
+        margin-left: 0;
+        display: inline-block;
+        width: auto;
+    }
+    
+    .auth-form .media-checkbox.media-checkbox-sm {
+        text-align: center;
+    }
 	.header-menu {
 		margin-top: 2px;
 	}
@@ -361,41 +383,53 @@
 	}
 	h1.static-title.static-title-lg {
 		font-size: 18px;
-		margin-top: -63px;
+		margin-top: -16px;
 	}
 	.page-bg {
 		background: #0c2608;
 		padding-left: 15px;
 		padding-right: 15px;
 	}
+	.visible-menu .main-content {
+        opacity: 0.3;
+    }
 	.header-menu {
 		display: none;
-		position: fixed;
-		top: 73px;
-		background: #164a1c;
-		left: 0;
-		width: 100%;
-		margin: 0;
-		z-index: 10;
-		text-align: left;
-		padding: 60px 24px 20px;
-		height: 100%;
+        position: absolute;
+        top: 43px;
+        background: #071f04;
+        right: -20px;
+        width: 300px;
+        margin: 0;
+        z-index: 10;
+        text-align: left;
+        padding: 25px 24px 20px;
+        height: auto;
+        border: 4px solid;
+        border-radius: 0px 0px 0px 36px;
 	}
 	.visible-menu .header-menu{
 		display: block;
 	}
-	body.visible-menu {
-		overflow: hidden;
-		position: fixed;
-		width: 100%;
-	}
+	/*body.visible-menu {*/
+	/*	overflow: hidden;*/
+	/*	position: fixed;*/
+	/*	width: 100%;*/
+	/*}*/
 	.header-menu li {
-		display: block;
-		margin-bottom:  28px;
+	    display: block;
+        margin-bottom: 24px;
+        background-size: 21px;
+        background-repeat: no-repeat;
+        background-position: left center;
+        padding: 6px 0 4px 40px;
 	}
-
+    .header-menu li.ask {
+        background-size: 14px;
+    }
 	.header-menu li a {
-		font-size: 21px;
+		font-size: 18px;
+		border-bottom: 0;
 	}
 
 	.top-text img {

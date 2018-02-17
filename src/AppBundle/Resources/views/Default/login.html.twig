@@ -8,7 +8,7 @@
     <div class="page-bg page-bg-empty content-center">
       <h1 class="static-title static-title-lg up">Авторизация</h1>
       <div class="content-form text-center">
-        <form action="{{ path('login') }}" method="POST">
+        <form action="{{ path('login') }}" method="POST" class='auth-form'>
           <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
           <div class="form-block">
             {% if error %}
