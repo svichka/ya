@@ -328,6 +328,9 @@
         width: 100%;
         z-index: 100;
     }
+    body.visible-menu {
+        padding-top: 75px;
+    }
 	.static-title {
 		font-size: 20px;
 		margin-top: 0;
