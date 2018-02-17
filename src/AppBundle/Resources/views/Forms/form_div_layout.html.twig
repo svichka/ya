@@ -20,7 +20,7 @@
   {% elseif block_prefixes.1 == 'checkbox' %}
     <div class="media-checkbox">
       <div class="checkbox-wrap">
-        <input id="{{ form.vars.id }}" type="checkbox" name="{{ form.vars.full_name }}" value="{{ form.vars.value }}" {% if form.vars.value is defined and form.vars.value == 'Y' %} checked {% endif %}>
+        <input id="{{ form.vars.id }}" type="checkbox" name="{{ form.vars.full_name }}" value="{{ form.vars.value }}" {% if form.vars.checked is defined and form.vars.checked %} checked {% endif %}{% if form.vars.checked is defined and form.vars.checked %} checked {% endif %}>
         <span></span>
       </div>
       <div class="checkbox-title" for="{{ form.vars.id }}">
@@ -62,7 +62,7 @@
     {%- for child in form %}
       <div class="checkbox-wrap">
 
-        <input id="{{ child.vars.id }}" type="radio" value="{{ child.vars.value }}" {% if child.vars.value=='Y' %} checked {% endif %} name="{{ child.vars.full_name }}">
+        <input id="{{ child.vars.id }}" type="radio" value="{{ child.vars.value }}" {% if child.vars.checked %} checked {% endif %} name="{{ child.vars.full_name }}">
         <span></span>
       </div>
       <div class="checkbox-title">{{ child.vars.label|nl2br }}</div>
