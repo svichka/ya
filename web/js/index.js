@@ -48,9 +48,10 @@ $(function() {
         $('body').toggleClass('visible-menu');
     }) 
 
-    $('.faq-title').click(function(){
-        $('.faq-body').hide();
-        $(this).closest('.faq-item').find('.faq-body').show();
+    $('.faq-title').click(function(){        
+        var el  = $(this).closest('.faq-item').find('.faq-body');
+        el.toggle();
+        $('.faq-body').not(el).hide();
     })
 
 
