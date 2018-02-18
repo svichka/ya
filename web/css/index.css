@@ -290,7 +290,7 @@ input:focus , input:active , select:focus , select:active , textarea:focus , tex
 .form-block input, .form-block select{
     width: 83%;
     padding: 4px 8px;
-    background: #0f190785;
+    background: rgba(15, 25, 7, 0.61);
     border: 1px solid #c5c53c;
     font-size: 16px;
     border-radius: 4px;
@@ -307,7 +307,7 @@ input:focus , input:active , select:focus , select:active , textarea:focus , tex
     border-radius: 10px;
     margin-right: 2px;
     text-align: center;
-    background: #0f190785;
+    background: rgba(15, 25, 7, 0.61);
     border: 1px solid #c5c53c;
     padding: 7px 10px;
 }
@@ -416,7 +416,7 @@ h1.static-title.static-title-lg {
 }
 .form-block textarea {
     padding: 4px 8px;
-    background: #0f190785;
+    background: rgba(15, 25, 7, 0.61);
     border: 1px solid #c5c53c;
     font-size: 16px;
     border-radius: 4px;
@@ -561,7 +561,7 @@ h1.static-title.static-title-lg {
 }
 .seacrh-wrap input {
     padding: 4px 8px 3px;
-    background-color: #0f190785;
+    background-color: rgba(15, 25, 7, 0.61);
     border: 2px solid #c1c134;
     font-size: 16px;
     border-radius: 7px;
