@@ -488,7 +488,7 @@ h1.static-title.static-title-lg {
     text-align: left;
 }
 .static-prize-post-price {
-    font-family: 'Conv_agavalanchec-bold';
+    font-family: 'Conv_agavalanchec-bold', Arial;
     color: #fff;
     font-size: 12px;
     word-spacing: 1px;
