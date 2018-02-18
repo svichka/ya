@@ -22,7 +22,8 @@ $(function() {
         $('.js-date').datetimepicker({
             timepicker: false,
             format: 'd.m.Y',
-            lang: 'ru'
+            lang: 'ru',
+            closeOnDateSelect:true
         });
     }
     $('.js-week-title').click(function() {
