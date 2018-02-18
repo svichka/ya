@@ -77,6 +77,9 @@ input:focus , input:active , select:focus , select:active , textarea:focus , tex
     background-repeat: repeat no-repeat;
     padding: 35px 40px 5px;
 }
+.header-menu li:last-child {
+    margin-right: 0;
+}
 .header-menu li a {
     color: #e9d66e;
     font-size: 19px;
@@ -84,6 +87,9 @@ input:focus , input:active , select:focus , select:active , textarea:focus , tex
     border-bottom: 1px solid;
     line-height: 19px;
     font-family:'Conv_agavalanchec-bold';
+    -webkit-transition:all 0s;
+    -o-transition:all 0s;
+    transition:all 0s;
 }
 .header-logo img {
     width: 300px;
