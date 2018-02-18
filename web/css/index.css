@@ -82,7 +82,7 @@ input:focus , input:active , select:focus , select:active , textarea:focus , tex
 }
 .header-menu li a {
     color: #e9d66e;
-    font-size: 19px;
+    font-size: 26px;
     display: inline-block;
     border-bottom: 1px solid;
     line-height: 19px;
