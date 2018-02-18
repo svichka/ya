@@ -19,6 +19,8 @@ ul{
 ::-moz-placeholder          {color:#1e9a0157;text-transform: uppercase;    font-family: 'Conv_agavalanchec-bold';}
 :-moz-placeholder           {color:#1e9a0157;text-transform: uppercase;    font-family: 'Conv_agavalanchec-bold';}
 :-ms-input-placeholder      {color:#1e9a0157;text-transform: uppercase;    font-family: 'Conv_agavalanchec-bold';}
+::-ms-input-placeholder     {color:#1e9a0157;text-transform: uppercase;    font-family: 'Conv_agavalanchec-bold';}
+
 a:hover , a:active , a:focus{
     text-decoration:none;
     color:inherit;
@@ -596,6 +598,7 @@ h1.static-title.static-title-lg {
 .date-input::-moz-placeholder          {font-family: 'Conv_agavalanchec'; text-transform: none; font-size: 16px; color: #0d2007; font-weight: bold;}
 .date-input:-moz-placeholder           {font-family: 'Conv_agavalanchec'; text-transform: none; font-size: 16px; color: #0d2007; font-weight: bold;}
 .date-input:-ms-input-placeholder      {font-family: 'Conv_agavalanchec'; text-transform: none; font-size: 16px; color: #0d2007; font-weight: bold;}
+.date-input::-ms-input-placeholder      {font-family: 'Conv_agavalanchec'; text-transform: none; font-size: 16px; color: #0d2007; font-weight: bold;}
 .week-item * {
     font-family: 'Conv_agavalanchec-bold';
 }
@@ -778,6 +781,8 @@ input[disabled] {
 .modal-reg-form .form-block input::-moz-placeholder          {color:#1e9a01;text-transform: none; color: #0c2608;}
 .modal-reg-form .form-block input:-moz-placeholder           {color:#1e9a01;text-transform: none; color: #0c2608;}
 .modal-reg-form .form-block input:-ms-input-placeholder      {color:#1e9a01;text-transform: none; color: #0c2608;}
+.modal-reg-form .form-block input::-ms-input-placeholder      {color:#1e9a01;text-transform: none; color: #0c2608;}
+
 .modal-reg-form .checkbox-wrap {
     background: #a39c60;
     width: 27px;
