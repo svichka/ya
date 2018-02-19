@@ -566,6 +566,9 @@
 	.captcha-wrap {
 		text-align: center;
 	}
+	.reg-form .captcha-wrap {
+	    display : block !important;
+	}
 	.g-recaptcha {
 		display: inline-block;
 		-webkit-transform: scale(0.7);
