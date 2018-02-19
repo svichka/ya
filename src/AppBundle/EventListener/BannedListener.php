@@ -117,10 +117,10 @@
                 {
                   $this->action = '#updateModal';
                 }
-                elseif (!$this->checkParticipantAgreement($controller[0]->getUser()->getParticipant()))
-                {
-                  $this->action = '#agreeModal';
-                }
+//                elseif (!$this->checkParticipantAgreement($controller[0]->getUser()->getParticipant()))
+//                {
+//                  $this->action = '#agreeModal';
+//                }
                 elseif (!$this->checkParticipantAge($controller[0]->getUser()->getParticipant()))
                 {
                   $this->action = '#ageModal';

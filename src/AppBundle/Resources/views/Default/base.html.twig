@@ -69,7 +69,7 @@
             </li>
             <li class="mail {{ route == 'feedback_page' ? 'active' }}"
                 style="background-image : url({{ asset('images/mail-i.png') }})">
-              <a class="{{ route == 'feedback_page' ? 'active' }}" href="{{ path('feedback_page') }}">Обратная свзяь</a>
+              <a class="{{ route == 'feedback_page' ? 'active' }}" href="{{ path('feedback_page') }}">Обратная связь</a>
             </li>
             {% if(is_granted('ROLE_USER')) %}
               <li class="auth {{ route == 'personal_page' ? 'active' }}"
