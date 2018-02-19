@@ -53,6 +53,7 @@ $(function() {
         var el  = $(this).closest('.faq-item').find('.faq-body');
         el.toggle();
         $('.faq-body').not(el).hide();
+        $(".js-faq-wrapper").scrollbar("resize");
     })
 
 
