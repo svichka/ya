@@ -2,6 +2,7 @@
   
   namespace AppBundle\Controller;
   
+  use AppBundle\Entity\User;
   use Dalee\PEPUWSClientBundle\Controller\ParticipantApiController;
   use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
   use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -27,6 +28,12 @@
         {
           $this->addFlash('login', 'ok');
           
+          $u = new User();
+          $u->setId($user->getParticipant()->id);
+          $u->setAgree(1);
+          $this->getDoctrine()->getManager()->merge($u);
+          $this->getDoctrine()->getManager()->flush();
+          
           return $this->redirectToRoute('personal_page');
         }
         elseif (in_array('ROLE_NOT_ACTIVE_USER', $userRoles))
@@ -46,6 +53,12 @@
           else
           {
             $this->addFlash('login', 'ok');
+            
+            $u = new User();
+            $u->setId($user->getParticipant()->id);
+            $u->setAgree(1);
+            $this->getDoctrine()->getManager()->merge($u);
+            $this->getDoctrine()->getManager()->flush();
             
             return $this->redirectToRoute('personal_page');
           }

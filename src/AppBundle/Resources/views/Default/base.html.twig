@@ -20,6 +20,14 @@
     <link rel="stylesheet" href="{{ asset('css/fonts.css') }}?{{ content_version }}">
     <link rel="stylesheet" href="{{ asset('css/index.css') }}?{{ content_version }}">
     <link rel="stylesheet" href="{{ asset('css/media.css') }}?{{ content_version }}">
+    <style>
+      span.reg-code-error-fuel {
+        text-align: center;
+        display: inline-block;
+        width: 100%;
+        color: red;
+      }
+    </style>
   {% endblock %}
   <script>
     window.show = '{{ show }}';
@@ -555,8 +563,8 @@
   <script>
     function showErrorMessage(text) {
       console.log("Error", text);
-      $('#modalMessage-header').text("Ошибка");
-      $('#modalMessage-text').text(text);
+      $('#modalMessage-header').html("Ошибка");
+      $('#modalMessage-text').html(text);
       $('#modalMessage').modal('show');
     }
 
@@ -566,8 +574,8 @@
 
     function showMessage2(header, text) {
       console.log("Message", text, header);
-      $('#modalMessage-header').text(header);
-      $('#modalMessage-text').text(text);
+      $('#modalMessage-header').html(header);
+      $('#modalMessage-text').html(text);
       $('#modalMessage').modal('show');
     }
   </script>
