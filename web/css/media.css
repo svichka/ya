@@ -330,6 +330,23 @@
 		padding-bottom: 10px;
 		position: relative;
 	}
+	.top-text:before {
+        content: '';
+        position: absolute;
+        top: -7px;
+        left: 0;
+        width: 100%;
+        background-repeat: no-repeat;
+        -webkit-background-size: auto;
+        background-size: 98%;
+        background-position: center;
+        background-image: url(../images/line-y.png);
+        height: 1px;
+    }
+    .top-text {
+        position: relative;
+        padding-top: 15px;
+    }
 	.static-title:after {
 		content: '';
 		position: absolute;
