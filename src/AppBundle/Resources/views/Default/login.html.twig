@@ -6,7 +6,8 @@
 {% block body %}
   <main class="main-content">
     <div class="page-bg page-bg-empty content-center">
-      <h1 class="static-title static-title-lg up">Авторизация</h1>
+      <h1 class="static-title static-title-lg up hidden-xs">Авторизация</h1>
+      <h1 class="static-title static-title-lg up visible-xs">Вход</h1>
       <div class="content-form text-center">
         <form action="{{ path('login') }}" method="POST" class='auth-form'>
           <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
@@ -16,8 +17,8 @@
             {% endif %}
           </div>
           <div class="form-block">
-            <label for="">Эл. почта *</label>
-            <input type="text" name="_username" placeholder="Эл. почта" value="{{ last_username }}">
+            <label for="">E-MAIL *</label>
+            <input type="text" name="_username" placeholder="e-mail@e-mail.com" value="{{ last_username }}">
           </div>
           <div class="form-block">
             <label for="">Пароль *</label>
