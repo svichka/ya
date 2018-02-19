@@ -322,12 +322,13 @@
 	.header-menu li a{
 		font-size: 13px;
 	}
-}
-@media (max-width:767px){
-    .header-menu li a img {
+	.header-menu li a img {
         width: 24px;
         margin-right: 0;
     }
+}
+@media (max-width:767px){
+
 	.static-title {
 		font-size: 20px;
 		margin-top: 0;
