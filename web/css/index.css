@@ -924,6 +924,9 @@ button[disabled] {
     content: " ";
     height: 100%;
   }
+  .header-menu li {
+      background : none !important;
+  }
 }
 
 .modal-dialog {
