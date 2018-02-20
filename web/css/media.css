@@ -306,7 +306,7 @@
 
 	.seacrh-wrap input {
 		width: 250px;
-		padding: 4px 8px 5px;
+		padding: 4px 33px 5px 8px;
 	}
 }
 @media (max-width:835px){
