@@ -371,7 +371,7 @@
       </div>
     </div>
   {% endif %}
-  {% if action == "#speed1Modal" %}
+  {#{% if action == "#speed1Modal" %}#}
     <div class="modal fade" id="speed1Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -385,14 +385,17 @@
           <div class="modal-body">
             <div class="modal-static">
               <p>
-                Попап 15 кодов в минуту
+                Вы заблокированы на 3 часа в связи с подозрительной активностью и вводом более 15 кодов в минуту.
+                <br>
+                <br>
+                <a href="#">Правила Акции</a>
               </p>
             </div>
           </div>
         </div>
       </div>
     </div>
-  {% endif %}
+  {#{% endif %}#}
   {% if action == "#countModal" %}
     <!-- Modal -->
     <div class="modal fade" id="countModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
