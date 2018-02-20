@@ -628,6 +628,10 @@
       console.log('uploadModal');
       console.log(e.target.id);
       if (e.target.id === "uploadModal") {
+        $('input[name=code]').val('');
+        $('input[name=prize-guaranteed]').prop('disabled', true);
+        $('input[name=prize-guaranteed]').attr('checked', false);
+        $('input[name=prize-weekly]').attr('checked', false);
         $.ajax({
           url: '{{ path('check_prizes') }}', success: function (json) {
             console.log(json);
