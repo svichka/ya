@@ -137,6 +137,10 @@
      */
     public function registrationAction(Request $request)
     {
+      if($this->getUser()){
+        return $this->redirectToRoute('personal_page');
+      }
+      
       $form = $this->createForm(RegistrationFormType::class, new Participant(), ['attr' => ['class' => 'form', "autocomplete" => "off"]]);
       
       $form->handleRequest($request);
