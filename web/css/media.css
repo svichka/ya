@@ -217,6 +217,9 @@
     .modal-dialog {
         margin-top : 45px;
     }
+    .faq-item {
+        margin-bottom: 11px;
+    }
 	.header-logo img {
 		width: 200px;
 	}
