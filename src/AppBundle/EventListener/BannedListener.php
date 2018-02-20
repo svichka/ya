@@ -233,8 +233,10 @@
       $date = $participant->birthdate;
       $tz = new DateTimeZone('Europe/Moscow');
       $date = DateTime::createFromFormat('d.m.Y', $date, $tz);
-      if($date === false)
+      if ($date === false)
+      {
         return false;
+      }
       $age = $date
         ->diff(new DateTime('now', $tz))
         ->y;
@@ -390,5 +392,24 @@
       }
       
       return $t3;
+    }
+    
+    public function getLotteryDate()
+    {
+      $lotteries = $this->getDoctrine()->getRepository('AppBundle:Lottery')->findBy(['prize' => 'certificate_lamoda']);
+      $weeks = [];
+      $i = 1;
+      foreach ($lotteries as $lottery)
+      {
+        if ($lottery->getStartTime() <= new \DateTime() && new \DateTime() <= $lottery->getEndTime())
+        {
+          $date = $lottery->getEndTime();
+          $date->modify("+15 hours");
+          
+          return $date->format('d.m.Y');
+        }
+      }
+      
+      return "-";
     }
   }

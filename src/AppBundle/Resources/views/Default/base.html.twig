@@ -3,6 +3,7 @@
 {% set show = app.request.query.get("show") %}
 {% set action =  banned_listener.getAction() %}
 {% set content_version = banned_listener.getAssetsVersion() %}
+{% set lottery_date = banned_listener.getLotteryDate() %}
 <html>
 <head>
   <meta charset="UTF-8"/>
@@ -234,7 +235,7 @@
                 и в розыгрыше главного приза <br><br>
 
                 Розыгрыш еженедельного приза <br>
-                состоится 01.01.2025
+                состоится {{ lottery_date }}
               </p>
 
             </div>
@@ -291,7 +292,7 @@
               <p>
                 Ваш первый код Вы сумеете загрузить <br> уже 01 марта 2018. <br>
                 С правилами акции можете <br>
-                ознакомиться перейдя по <a href="">ссылке</a>.
+                ознакомиться перейдя по <a href="{{ asset('files/rules.pdf') }}">ссылке</a>.
               </p>
             </div>
           </div>

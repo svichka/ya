@@ -97,7 +97,7 @@
     }
     
     /**
-     * @return mixed
+     * @return \DateTime
      */
     public function getEndTime()
     {
