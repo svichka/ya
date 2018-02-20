@@ -328,7 +328,16 @@
     }
 }
 @media (max-width:767px){
-
+    .modal-reg-form .checkbox-title {
+        margin-left: 0;
+        margin-right: 7px;
+    }
+    body.modal-open {
+        padding-right: 0 !important;
+    }
+    .modal-dialog {
+        border: 7px solid #0c2608;
+    }
 	.static-title {
 		font-size: 20px;
 		margin-top: 0;
@@ -385,6 +394,8 @@
 	}
 	.modal-body {
 		padding-bottom: 10px;
+        padding-left: 8px;
+        padding-right: 8px;
 	}
 	button.close {
 		right: -15px;
