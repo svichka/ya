@@ -42,7 +42,6 @@
       {
         $formInputData['user_id'] = $user->getParticipant()->id;
         $formInputData['email'] = $user->getParticipant()->email;
-        $formInputData['agree'] = true;
         $form = $this->createForm(AuthorizedUserFormType::class, $formInputData);
       }
       else
@@ -112,6 +111,8 @@
           if ($e->getMessage() == 'Incorrect request data' || $e->getMessage() == null || $e->getMessage() == '')
           {
             $this->errors[] = "Ошибка отправки данных.";
+          }else if($e->getMessage() == 'Message is empty'){
+            $this->errors[] = "Введите сообщение.";
           }
           else
           {
