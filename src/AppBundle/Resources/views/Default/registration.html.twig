@@ -29,7 +29,6 @@
             {{ form_row(form.firstname) }}
             {{ form_row(form.birthdate) }}
             {{ form_row(form.email) }}
-
           </div>
           <div class="col-sm-12">
             {{ form_row(form.regionguid) }}
@@ -45,23 +44,23 @@
             {{ form_row(form.confirm_password) }}
           </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-11">
-          <div class="form-block">
-            {{ form_row(form.isageagreed) }}
-            {{ form_row(form.ispdagreed) }}
+        <div class="row">
+          <div class="col-sm-11">
+            <div class="form-block">
+              {{ form_row(form.isageagreed) }}
+              {{ form_row(form.ispdagreed) }}
+            </div>
+          </div>
+          <div class="col-sm-1"></div>
+          <div class="col-sm-12">
+            {{ form_row(form.recaptcha) }}
           </div>
         </div>
-        <div class="col-sm-1"></div>
-        <div class="col-sm-12">
-          {{ form_row(form.recaptcha) }}
+        <div class="form-btn text-center">
+          <button class='gradient-btn'>Зарегистрироваться</button>
         </div>
+        {{ form_end(form) }}
       </div>
-      <div class="form-btn text-center">
-        <button class='gradient-btn'>Зарегистрироваться</button>
-      </div>
-      {{ form_end(form) }}
     </div>
   </main>
 {% endblock %}

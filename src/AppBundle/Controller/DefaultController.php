@@ -137,11 +137,12 @@
      */
     public function registrationAction(Request $request)
     {
-      if($this->getUser()){
+      if ($this->getUser())
+      {
         return $this->redirectToRoute('personal_page');
       }
       
-      $form = $this->createForm(RegistrationFormType::class, new Participant(), ['attr' => ['class' => 'form', "autocomplete" => "off"]]);
+      $form = $this->createForm(RegistrationFormType::class, new Participant(), ['attr' => ['id' => "registration_form", 'class' => 'form', "autocomplete" => "off"]]);
       
       $form->handleRequest($request);
       if ($form->isSubmitted() && $form->isValid())
@@ -159,11 +160,16 @@
         $participantApi = new ParticipantApiController();
         try
         {
-//          $recaptcha = $this->container->get('app.recaptcha');
-//          if (!$recaptcha->isSuccess($request))
+          $recaptcha = $this->container->get('app.recaptcha');
+          if (!$recaptcha->isSuccess($request))
+          {
+            throw new NotCorrectDataException('Not correct recaptcha');
+          }
+//          else
 //          {
-//            throw new NotCorrectDataException('Not correct recaptcha');
+//            throw new NotCorrectDataException('Success recaptcha');
 //          }
+          
           if ($form->get('password')->getData() != $form->get('confirm_password')->getData())
           {
             throw new NotCorrectDataException('Confirm password does not match the password');
@@ -278,8 +284,10 @@
               $participantApi->recoverPassword($formData->getEmail(), ["channel" => "SMY"]);
             }
             catch (Exception $e)
-            {}
+            {
+            }
             $this->addFlash('exists', 'ok');
+            
             return $this->redirectToRoute('index_page');
           }
         }
@@ -623,7 +631,7 @@
       $login = $request->request->get('email');
       if ($login == '')
       {
-        $error =  'Введите емейл';
+        $error = 'Введите емейл';
         
         return JsonResponse::create(
           [
