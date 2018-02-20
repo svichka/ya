@@ -217,6 +217,9 @@
     .modal-dialog {
         margin-top : 45px;
     }
+    .faq-item {
+        margin-bottom: 11px;
+    }
 	.header-logo img {
 		width: 200px;
 	}
@@ -306,7 +309,7 @@
 
 	.seacrh-wrap input {
 		width: 250px;
-		padding: 4px 8px 5px;
+		padding: 4px 33px 5px 8px;
 	}
 }
 @media (max-width:835px){
@@ -328,7 +331,16 @@
     }
 }
 @media (max-width:767px){
-
+    .modal-reg-form .checkbox-title {
+        margin-left: 0;
+        margin-right: 7px;
+    }
+    body.modal-open {
+        padding-right: 0 !important;
+    }
+    .modal-dialog {
+        border: 7px solid #0c2608;
+    }
 	.static-title {
 		font-size: 20px;
 		margin-top: 0;
@@ -385,6 +397,8 @@
 	}
 	.modal-body {
 		padding-bottom: 10px;
+        padding-left: 8px;
+        padding-right: 8px;
 	}
 	button.close {
 		right: -15px;
@@ -424,7 +438,7 @@
         top: 43px;
         background: #071f04;
         right: -20px;
-        width: 300px;
+        width: 310px;
         margin: 0;
         z-index: 10;
         text-align: left;
@@ -444,16 +458,17 @@
 	.header-menu li {
 	    display: block;
         margin-bottom: 24px;
-        background-size: 21px;
+        background-size: 26px;
         background-repeat: no-repeat;
         background-position: left center;
         padding: 6px 0 4px 40px;
+        font-size: 0;
 	}
     .header-menu li.ask {
         background-size: 14px;
     }
 	.header-menu li a {
-		font-size: 18px;
+		font-size: 22px;
 		border-bottom: 0;
 	}
 
@@ -579,7 +594,7 @@
 		padding-right: 10px;
 	}
 	.static-prize-img.static-prize-img-r {
-		background-size: 180px !important;
+		background-size: 155px !important;
 	}
 	.form-block input , .form-block select {
 		width: 100%;
