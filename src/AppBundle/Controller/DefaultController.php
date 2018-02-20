@@ -275,7 +275,7 @@
             $participantApi = new ParticipantApiController();
             try
             {
-              $participantApi->recoverPassword($formData->getEmail(), ["channel" => "S"]);
+              $participantApi->recoverPassword($formData->getEmail(), ["channel" => "SMY"]);
             }
             catch (Exception $e)
             {}
