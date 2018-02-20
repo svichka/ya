@@ -236,13 +236,17 @@ input:focus , input:active , select:focus , select:active , textarea:focus , tex
     cursor: pointer;
 }
 .faq-title:before {
-    content: '∙';
+    content: '';
     font-size: 47px;
-    margin-top: -6px;
+    margin-top: -4px;
     line-height: 5px;
     position: absolute;
     left: 0;
     top: 50%;
+    width: 7px;
+    height: 7px;
+    background: #fcef9c;
+    border-radius: 6px;
 }
 .faq-item {
     margin-bottom: 11px;
