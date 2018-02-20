@@ -406,7 +406,7 @@ h1.static-title.static-title-lg {
 .form-link-lg {
     font-family: 'Conv_agavalanchec-bold';
     font-size: 22px;
-    text-decoration: underline;
+    border-bottom: 1px solid;
 }
 .page-bg-feedback:after {
     background-image: url(../images/girl4.png);
@@ -923,6 +923,9 @@ button[disabled] {
     vertical-align: middle;
     content: " ";
     height: 100%;
+  }
+  .header-menu li {
+      background : none !important;
   }
 }
 
