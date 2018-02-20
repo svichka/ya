@@ -232,7 +232,10 @@
     {
       $date = $participant->birthdate;
       $tz = new DateTimeZone('Europe/Moscow');
-      $age = DateTime::createFromFormat('d.m.Y', $date, $tz)
+      $date = DateTime::createFromFormat('d.m.Y', $date, $tz);
+      if($date === false)
+        return false;
+      $age = $date
         ->diff(new DateTime('now', $tz))
         ->y;
       

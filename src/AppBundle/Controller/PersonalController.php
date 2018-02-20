@@ -117,11 +117,11 @@
 //      {
 //        return $this->redirectToRoute('index_page', ['show' => 'agree']);
 //      }
-      
-      if (!$this->get('app.users.banned_listener')->checkParticipantAge($participant))
-      {
-        return $this->redirectToRoute('index_page', ['show' => 'age']);
-      }
+      // TODO: Иначе нельзя обновить дату рождения
+//      if (!$this->get('app.users.banned_listener')->checkParticipantAge($participant))
+//      {
+//        return $this->redirectToRoute('index_page', ['show' => 'ageModal']);
+//      }
       
       if ($participant->id == 24934)
       {

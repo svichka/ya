@@ -300,7 +300,7 @@
     </div>
   {% endif %}
   {% if action == "#agreeModal" %}{% endif %}
-  {% if action == "#ageModal" %}
+
     <!-- Modal -->
     <div class="modal fade" id="ageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
@@ -308,12 +308,16 @@
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                   aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title up" id="myModalLabel">
+              Уважаемый участник!
+            </h4>
           </div>
           <div class="modal-body">
             <div class="modal-static">
-              К сожалению, согласно правилам,<br>
-              принять участие в Акции могут только <br>
-              лица, достигшие 18 лет.
+              Согласно правилам, принять участие в Акции могут только лица, достигшие 18 лет.
+              <br>
+              <br>
+              <a href="{{ asset('files/rules.pdf') }}" target="_blank">Правила Акции</a>
             </div>
             <div class="form-btn text-center">
               <button class="gradient-btn xxs-button" data-dismiss="modal">ОК</button>
@@ -322,7 +326,7 @@
         </div>
       </div>
     </div>
-  {% endif %}
+
   {% if action == "#overflowModal" %}
     <!-- Modal -->
     <div class="modal fade" id="overflowModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -371,7 +375,7 @@
       </div>
     </div>
   {% endif %}
-  {#{% if action == "#speed1Modal" %}#}
+  {% if action == "#speed1Modal" %}
     <div class="modal fade" id="speed1Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -388,14 +392,14 @@
                 Вы заблокированы на 3 часа в связи с подозрительной активностью и вводом более 15 кодов в минуту.
                 <br>
                 <br>
-                <a href="#">Правила Акции</a>
+                <a href="{{ asset('files/rules.pdf') }}" target="_blank">Правила Акции</a>
               </p>
             </div>
           </div>
         </div>
       </div>
     </div>
-  {#{% endif %}#}
+  {% endif %}
   {% if action == "#countModal" %}
     <!-- Modal -->
     <div class="modal fade" id="countModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -476,27 +480,7 @@
       </div>
     </div>
   </div>
-  <!-- Modal -->
-  <div class="modal fade" id="age" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                aria-hidden="true">&times;</span></button>
-        </div>
-        <div class="modal-body">
-          <div class="modal-static">
-            К сожалению, согласно правилам,<br>
-            принять участие в Акции могут только <br>
-            лица, достигшие 18 лет.
-          </div>
-          <div class="form-btn text-center">
-            <button class="gradient-btn xxs-button" data-dismiss="modal">ОК</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+
   <!-- Modal -->
   <div class="modal fade" id="success" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -625,7 +609,7 @@
   {% if action == "#updateModal" %}
   <script>
     $('.button-purple').click(function () {
-      window.location = '{{ path('personal_page',{open: 'updateModal'}) }}';
+      window.location = '{{ path('personal_page',{show: 'updateModal'}) }}';
     });
   </script>
   {% endif %}
@@ -665,9 +649,9 @@
   </script>
 {% endblock %}
 {% for label, messages in app.session.flashbag.all %}
-  {% if label == 'age' %}
+  {% if label == 'ageModal' or label == 'age' %}
     <script>
-      $('#age').modal();
+      $('#ageModal').modal();
     </script>
   {% elseif label == 'login' %}
 
@@ -695,10 +679,14 @@
   $(function () {
     switch (show) {
       case 'age':
-        $('#age').modal();
+      case 'ageModal':
+        $('#ageModal').modal();
         break;
       case 'recover':
         $('#recover').modal();
+        break;
+      case 'updateModal':
+        $('#regModal').modal();
         break;
     }
   });
