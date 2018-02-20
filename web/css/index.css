@@ -604,7 +604,7 @@ h1.static-title.static-title-lg {
 }
 .week-title {
     position: relative;
-    background: #16801a80;
+    background: rgba(22, 128, 26, 0.5);
     font-size: 22px;
     padding: 6px 15px;
     border-radius: 7px;
@@ -620,7 +620,7 @@ h1.static-title.static-title-lg {
 }
 .week-toggle-block {
     width: 95%;
-    background: #08190680;
+    background: rgba(8, 25, 6, 0.5);
     margin: 0 auto;
     padding: 17px 0;
     text-align: center;
