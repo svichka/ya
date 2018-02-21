@@ -134,7 +134,7 @@
       }
       if (count($cities) == 1)
       {
-        $options = ['empty_data' => $cities[0]->getGuid(), 'label' => 'Город*', 'attr' => ['class' => 'form__select']];
+        $options = ['empty_data' => null, 'label' => 'Город*', 'attr' => ['class' => 'form__select']];
         if (static::class == 'AppBundle\Form\Type\Participant\PersonalProfileFormType')
         {
           $options['disabled'] = true;
