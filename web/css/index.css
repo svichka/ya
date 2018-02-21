@@ -921,7 +921,7 @@ button[disabled] {
 .modal {
   text-align: center;
 }
-@media screen and (min-width : 992px){
+@media screen and (min-width : 1200px){
     body.modal-open {
         padding-right : 17px !important;
     }
