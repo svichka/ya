@@ -285,6 +285,7 @@
             }
             catch (Exception $e)
             {
+            
             }
             $this->addFlash('exists', 'ok');
             

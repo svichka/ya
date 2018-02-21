@@ -43,7 +43,7 @@
             $error = ['messageKey' => 'Please, activate email', 'messageData' => []];
             try
             {
-              (new ParticipantApiController())->activationGenerate($lastUsername);
+              (new ParticipantApiController())->activationGenerate($user->getUsername());
             }
             catch (\Exception $e)
             {
