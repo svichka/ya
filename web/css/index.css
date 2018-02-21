@@ -5,9 +5,10 @@ body *{
 body , html{
     height:100%;
     margin:0;
-    padding:0;
+    padding:0 !important;
     background:#fff;
 }
+
 ul{
     padding:0;
     margin:0;
@@ -778,6 +779,9 @@ input[disabled] {
     background: #a39c60;
     color: #0c2608;
 }
+.modal-reg-form .form-block select::-ms-expand {
+    display: none;
+}
 .modal-reg-form .form-block label {
     font-size: 15px;
 }
@@ -920,7 +924,11 @@ button[disabled] {
 .modal {
   text-align: center;
 }
-
+@media screen and (min-width : 1200px){
+    body.modal-open {
+        padding-right : 17px !important;
+    }
+}
 @media screen and (min-width: 768px) { 
   .modal:before {
     display: inline-block;
