@@ -779,6 +779,9 @@ input[disabled] {
     background: #a39c60;
     color: #0c2608;
 }
+.modal-reg-form .form-block select:hover {
+    -webkit-appearance : none;
+}
 .modal-reg-form .form-block label {
     font-size: 15px;
 }
