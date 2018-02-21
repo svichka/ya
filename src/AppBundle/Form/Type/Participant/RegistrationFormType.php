@@ -20,8 +20,8 @@
     {
       $builder
         ->add('email', EmailType::class, ['label' => "Email*", 'attr' => ["placeholder" => "email@email.com"]])
-        ->add('firstname', TextType::class, ['label' => "Имя*", 'attr' => ["placeholder" => "Имя", 'onkeyup' => 'Ru(this)']])// ,"onkeyup"=>"Ru(this);"
-        ->add('lastname', TextType::class, ['label' => "Фамилия*", 'attr' => ["placeholder" => "Фамилия", 'onkeyup' => 'Ru(this)']])// ,"onkeyup"=>"Ru(this);"
+        ->add('firstname', TextType::class, ['label' => "Имя*", 'attr' => ["placeholder" => "Имя", 'onkeyup' => 'Ru(this)', 'maxlength' => 30]])// ,"onkeyup"=>"Ru(this);"
+        ->add('lastname', TextType::class, ['label' => "Фамилия*", 'attr' => ["placeholder" => "Фамилия", 'onkeyup' => 'Ru(this)', 'maxlength' => 30]])// ,"onkeyup"=>"Ru(this);"
 //        ->add('secname', TextType::class, ['label' => "Отчество", 'required' => false, 'attr' => ["placeholder" => "Отчество", 'onkeyup' => 'Ru(this)']])// ,"onkeyup"=>"Ru(this);"
         ->add('birthdate', TextType::class, ['label' => 'Дата рождения*', 'attr' => ['class' => 'js-date', "placeholder" => "18.08.1988"]])
         ->add('password', PasswordType::class, ['label' => 'Пароль*', 'mapped' => false, 'attr' => ['plaseholder' => 'Пароль', 'onkeyup' => 'Pass(this)']])
