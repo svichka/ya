@@ -74,7 +74,7 @@
                 {% for promocode in promocodes[i]|reverse %}
                   <div class="week-row">
                     <div class="week-cell">{{ promocode.code }}</div>
-                    <div class="week-cell move-xs">{{ promocode.date|date('d.m.Y') }}</div>
+                    <div class="week-cell">{{ promocode.date|date('d.m.Y') }}</div>
                     <div class="week-cell">
                       {% if promocode.prizes['guaranteed']['slug'] != '' %}
                         {#<span>{{ promocode.prizes['guaranteed']['slug']|prize }}</span><br>#}
