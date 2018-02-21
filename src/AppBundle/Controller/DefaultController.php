@@ -176,11 +176,11 @@
           }
           if (strlen($form->get('password')->getData()) < 6)
           {
-            throw new NotCorrectDataException("Минимальная длинна пароля 6 символов");
+            throw new NotCorrectDataException("Минимальная длина пароля 6 символов");
           }
           if (strlen($form->get('password')->getData()) > 15)
           {
-            throw new NotCorrectDataException("Максимальная длинна пароля 15 символов");
+            throw new NotCorrectDataException("Максимальная длина пароля 15 символов");
           }
           /**
            * "data":{"region":"empty","city":"empty"},"
