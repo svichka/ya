@@ -25,14 +25,7 @@
      */
     public function listAction(Request $request)
     {
-      if ($this->getUser() == null)
-      {
-        throw new HttpException(403, "Доступ запрещён");
-      }
-      if (!in_array('ROLE_ADMIN', $this->getUser()->getRoles()))
-      {
-        throw new HttpException(403, "Доступ запрещён");
-      }
+      $this->checkAccess();
       $codes = $this->getDoctrine()->getRepository('AppBundle:CodeHistory')->findAll();
       $ret = [];
       foreach ($codes as $code)
@@ -60,14 +53,7 @@
      */
     public function checkCodeAction(Request $request)
     {
-      if ($this->getUser() == null)
-      {
-        throw new HttpException(403, "Доступ запрещён");
-      }
-      if (!in_array('ROLE_ADMIN', $this->getUser()->getRoles()))
-      {
-        throw new HttpException(403, "Доступ запрещён");
-      }
+      $this->checkAccess();
       $code = null;
       $history = null;
       $search = $request->request->get('search');
@@ -107,14 +93,7 @@
      */
     public function allLotteriesAction(Request $request)
     {
-      if ($this->getUser() == null)
-      {
-        throw new HttpException(403, "Доступ запрещён");
-      }
-      if (!in_array('ROLE_ADMIN', $this->getUser()->getRoles()))
-      {
-        throw new HttpException(403, "Доступ запрещён");
-      }
+      $this->checkAccess();
       
       return $this->render('AppBundle:Admin:all_lotteries.html.twig', [
       
@@ -129,14 +108,7 @@
      */
     public function checkLotteriesAction(String $promo)
     {
-      if ($this->getUser() == null)
-      {
-        throw new HttpException(403, "Доступ запрещён");
-      }
-      if (!in_array('ROLE_ADMIN', $this->getUser()->getRoles()))
-      {
-        throw new HttpException(403, "Доступ запрещён");
-      }
+      $this->checkAccess();
       $lAPI = new PromoLotteryApiController();
       
       $lotteries = $lAPI->getLotteries($promo);
@@ -170,14 +142,7 @@
      */
     public function runLotteryAction(String $promo, $id)
     {
-      if ($this->getUser() == null)
-      {
-        throw new HttpException(403, "Доступ запрещён");
-      }
-      if (!in_array('ROLE_ADMIN', $this->getUser()->getRoles()))
-      {
-        throw new HttpException(403, "Доступ запрещён");
-      }
+      $this->checkAccess();
       $lAPI = new PromoLotteryApiController();
       
       $ret = $lAPI->runLottery($promo, $id);
@@ -196,14 +161,7 @@
      */
     public function commitLotteryAction(String $promo, $id)
     {
-      if ($this->getUser() == null)
-      {
-        throw new HttpException(403, "Доступ запрещён");
-      }
-      if (!in_array('ROLE_ADMIN', $this->getUser()->getRoles()))
-      {
-        throw new HttpException(403, "Доступ запрещён");
-      }
+      $this->checkAccess();
       $lAPI = new PromoLotteryApiController();
       
       $ret = $lAPI->runLottery($promo, $id);
@@ -211,5 +169,16 @@
       return $this->render('AppBundle:Admin:lottery_commit.html.twig', [
         'ret' => $ret,
       ]);
+    }
+  
+    private function checkAccess() {
+      if ($this->getUser() == null)
+      {
+        throw new HttpException(403, "Доступ запрещён");
+      }
+//      if (!in_array('ROLE_ADMIN', $this->getUser()->getRoles()))
+//      {
+//        throw new HttpException(403, "Доступ запрещён");
+//      }
     }
   }
