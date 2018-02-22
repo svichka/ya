@@ -302,31 +302,31 @@
   {% endif %}
   {% if action == "#agreeModal" %}{% endif %}
 
-    <!-- Modal -->
-    <div class="modal fade" id="ageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                  aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title up" id="myModalLabel">
-              Уважаемый участник!
-            </h4>
+  <!-- Modal -->
+  <div class="modal fade" id="ageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title up" id="myModalLabel">
+            Уважаемый участник!
+          </h4>
+        </div>
+        <div class="modal-body">
+          <div class="modal-static">
+            Согласно правилам, принять участие в Акции могут только лица, достигшие 18 лет.
+            <br>
+            <br>
+            <a href="{{ asset('files/rules.pdf') }}" target="_blank">Правила Акции</a>
           </div>
-          <div class="modal-body">
-            <div class="modal-static">
-              Согласно правилам, принять участие в Акции могут только лица, достигшие 18 лет.
-              <br>
-              <br>
-              <a href="{{ asset('files/rules.pdf') }}" target="_blank">Правила Акции</a>
-            </div>
-            <div class="form-btn text-center">
-              <button class="gradient-btn xxs-button" data-dismiss="modal">ОК</button>
-            </div>
+          <div class="form-btn text-center">
+            <button class="gradient-btn xxs-button" data-dismiss="modal">ОК</button>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
   {% if action == "#overflowModal" %}
     <!-- Modal -->
@@ -698,22 +698,21 @@
 </script>
 
 <script type="text/javascript" id="widget_chatbox">
-  odinodinid = 'Ndm892JnoqZ';
+  odinodinid = 'ISXCVZXCAQ';
   (function (odinodinid) {
     function async_load() {
       var s = document.createElement('script');
       s.type = 'text/javascript';
       s.async = true;
-      s.src = 'https://widget.firstline.chat/embed2.js?' + Math.random();
+      s.src = 'https://widget.firstline.chat/sokya/embed.js?' + Math.random();
       var embedder = document.getElementById('widget_chatbox');
-      embedder.parentNode.insertBefore(s, embedder);
-    }
-
-    window.odinodin = {};
+      embedder.parentNode.insertBefore(s, embedder)
+    };window.odinodin = {};
     window.odinodin.settings = {};
     window.odinodin.id = odinodinid;
-    window.attachEvent ? window.attachEvent('onload', async_load) : window.addEventListener('load', async_load, false);
-  })(odinodinid);
+    window.odinodin.autoStart = 0;
+    window.attachEvent ? window.attachEvent('onload', async_load) : window.addEventListener('load', async_load, false)
+  })(odinodinid)
 </script>
 </body>
 </html>
