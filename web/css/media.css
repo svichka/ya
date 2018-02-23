@@ -335,6 +335,27 @@
         margin-left: 0;
         margin-right: 7px;
     }
+    div#uploadModal .modal-post-title {
+        margin: 0 0 10px;
+        font-size: 14px;
+    }
+    div#uploadModal .mf-row {
+        margin-top: 6px;
+    }
+    div#uploadModal input.modal-custum-input {
+        border-width: 4px;
+        width: 200px;
+        margin: 0 auto;
+        display: block;
+        border-color: #e9d66e;
+        border-radius: 13px;
+    }
+    .prize-select-row {
+        padding-bottom: 15px;
+    }
+    div#uploadModal .modal-pre-title {
+        font-size: 15px;
+    }
     .prize-select-block {
         padding: 0 55px;
     }
