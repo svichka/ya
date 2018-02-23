@@ -335,12 +335,18 @@
         margin-left: 0;
         margin-right: 7px;
     }
+    .prize-select-block {
+        padding: 0 55px;
+    }
     #uploadModal .modal-body {
         padding-top: 6px;
         font-size: 0;
     }
     span.prize-select-wrapper {
         display: inline-block;
+        position: absolute;
+        right: 10px;
+        top: -8px;
     }
     .prize-select-block img {
         width: 25px;
