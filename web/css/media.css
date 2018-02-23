@@ -785,9 +785,15 @@
 		width: 30px;
 	}
 	.img-choise-prize {
-		height: 26px;
-		width: 66px;
-	}
+        height: 31px;
+        width: 77px;
+    }
+    .prize-select-block {
+        margin-bottom: 4px;
+    }
+    span.prize-select-wrapper {
+        top: -12px;
+    }
 }
 @media only screen
 and (orientation : landscape) {
