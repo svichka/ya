@@ -489,24 +489,25 @@
 		max-width: 100%;
 	}
 	.prize-desc img {
-		width: 180px;
+		width: 135px;
 	}
 	.prize-img {
-        height: 170px;
+        height: 130px;
         background-position-y: center;
         background-position-x: center;
         background-size: contain;
-        width: 100px;
+        width: 120px;
         display: inline-block;
         vertical-align: middle;
     }
     .prize-desc {
         display: inline-block;
-        width: 190px;
+        width: 170px;
         vertical-align: middle;
+        padding-left : 20px;
     }
 	.prize-item-arrows {
-		padding: 65px 0;
+		padding: 10px 0;
 	}
 	.prize-item-arrows:before, .prize-item-arrows:after {
 		display: none;
