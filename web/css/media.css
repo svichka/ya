@@ -335,6 +335,11 @@
         margin-left: 0;
         margin-right: 7px;
     }
+    .prize-item {
+        width: 290px;
+        font-size: 0;
+        margin: 0 auto;
+    }
     body.modal-open {
         padding-right: 0 !important;
     }
@@ -487,23 +492,24 @@
 		width: 180px;
 	}
 	.prize-img {
-		height: 170px;
-		background-position-y:  center;
-		background-position-x:  center;
-		background-size:  contain;
-	}
+        height: 170px;
+        background-position-y: center;
+        background-position-x: center;
+        background-size: contain;
+        width: 100px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .prize-desc {
+        display: inline-block;
+        width: 190px;
+        vertical-align: middle;
+    }
 	.prize-item-arrows {
 		padding: 65px 0;
 	}
 	.prize-item-arrows:before, .prize-item-arrows:after {
-		top: auto;
-		bottom: auto;
-		left: 50%;
-		margin-left:  -25px;
-		-webkit-transform: rotate(90deg);
-		-ms-transform: rotate(90deg);
-		-o-transform: rotate(90deg);
-		transform: rotate(90deg);
+		display: none;
 	}
 	.prize-item-arrows:after {
 		bottom: 0;
