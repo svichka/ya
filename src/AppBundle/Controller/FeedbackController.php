@@ -33,7 +33,7 @@
      */
     public function feedbackAction(Request $request)
     {
-      
+      $theme_id = $request->get('theme_id');
       NotAuthorizedUserFormType::$em = $this->getDoctrine()->getRepository('AppBundle:Theme')->findAll();
       $this->get('logger')->error("init!");
       $formInputData = [''];
@@ -103,7 +103,7 @@
             'ok'
           );
           
-          return $this->redirectToRoute('feedback_page');
+          return $this->redirectToRoute('feedback_page', ['theme_id' => $formData['theme_id']]);
         }
         catch (NotCorrectDataException $e)
         {
@@ -111,12 +111,17 @@
           if ($e->getMessage() == 'Incorrect request data' || $e->getMessage() == null || $e->getMessage() == '')
           {
             $this->errors[] = "Ошибка отправки данных.";
-          }else if($e->getMessage() == 'Message is empty'){
-            $this->errors[] = "Введите сообщение.";
           }
           else
           {
-            $this->errors[] = $e->getMessage();
+            if ($e->getMessage() == 'Message is empty')
+            {
+              $this->errors[] = "Введите сообщение.";
+            }
+            else
+            {
+              $this->errors[] = $e->getMessage();
+            }
           }
           $this->addFlash(
             'feedback_error',
@@ -134,6 +139,6 @@
         }
       }
       
-      return $this->render('AppBundle:Default:feedback.html.twig', ['errors' => $this->errors, 'form' => $form->createView(),]);
+      return $this->render('AppBundle:Default:feedback.html.twig', ['errors' => $this->errors, 'form' => $form->createView(), 'theme_id' => $theme_id]);
     }
   }

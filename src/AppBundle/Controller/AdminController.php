@@ -110,7 +110,39 @@
     {
       $this->checkAccess();
       $lAPI = new PromoLotteryApiController();
-      
+      /**
+       * {
+       *  "is_runnable": true,
+       *  "id": 2712,
+       *  "prize": {
+       *    "remaining_amount": 84,
+       *    "id": 551,
+       *    "title": "Сертификат Лена Ленина",
+       *    "value": "3000.00",
+       *    "group": null,
+       *    "is_active": true,
+       *    "crm_slug": "2492828",
+       *    "slug": "certificate_lenina",
+       *    "promopoints_value": "0.00",
+       *    "limit_total": 84,
+       *    "spent_total": 0,
+       *    "balance_date": "2018-01-22T16:16:44+0300",
+       *    "has_coupon_code": true
+       *  },
+       *  "start_time": "2018-02-21T13:00:01+0300",
+       *  "end_time": "2018-02-21T13:30:01+0300",
+       *  "winners_count": 6,
+       *  "is_ready": false,
+       *  "is_done": false,
+       *  "ticket_price": 1,
+       *  "ticket_multiuse": false,
+       *  "formula": null,
+       *  "is_auto_run": false,
+       *  "run_time": "2018-02-21T13:31:00+0300",
+       *  "auto_run_order": 3,
+       *  "thread": "indep_220259"
+       * },
+       */
       $lotteries = $lAPI->getLotteries($promo);
       $tmp = [];
       foreach ($lotteries as $lottery)

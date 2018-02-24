@@ -109,11 +109,13 @@
                 <div class="col-sm-14 col-sm-offset-5 col-xs-offset-0">
                   <div class="form-block">
                     <label for="">Новый пароль</label>
-                    <input type="password" name="password1" class="text-center" placeholder="Пароль" onkeyup="Pass(this);">
+                    <input type="password" name="password1" class="text-center" placeholder="Пароль"
+                           onkeyup="Pass(this);">
                   </div>
                   <div class="form-block">
                     <label for="">Повторите новый пароль</label>
-                    <input type="password" name="password2" class="text-center" placeholder="Пароль" onkeyup="Pass(this);">
+                    <input type="password" name="password2" class="text-center" placeholder="Пароль"
+                           onkeyup="Pass(this);">
                   </div>
                 </div>
               </div>
@@ -182,4 +184,9 @@
     $('#restore').modal();
     {% endif %}
   </script>
+  {% if error %}
+    <script>
+      eE('SignIn', 'SentForm', 'Unsuccess_SignIn', '_username,_password', '{{ error.messageKey }}');
+    </script>
+  {% endif %}
 {% endblock %}

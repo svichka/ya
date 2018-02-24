@@ -71,14 +71,14 @@
 
 {% block modals %}
   {{ parent() }}
-
-
-
 {% endblock %}
 
 {% block javascripts %}
   {{ parent() }}
   <script>
+    $(function () {
+      eA('Signup', 'OpenSignup');
+    });
     $(function () {
       regions = {{ banned_listener.regions()|json_encode|raw }};
       select = $("select#registration_form_regionguid");
@@ -111,7 +111,12 @@
         });
       }
     });
-
-
   </script>
+  {% if errors %}
+    <script>
+      var errors = '{{ join(errors,', ') }}';
+
+      eE('Signup', 'SentForm', 'Unsuccess_Signup', '-', errors);
+    </script>
+  {% endif %}
 {% endblock %}

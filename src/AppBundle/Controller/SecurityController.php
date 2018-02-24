@@ -28,11 +28,20 @@
         {
           $this->addFlash('login', 'ok');
           
-          $u = new User();
+          $u = $this->getDoctrine()->getRepository('AppBundle:User')->find($user->getParticipant()->id);
+          if ($u == null)
+          {
+            $u = new User();
+          }
           $u->setId($user->getParticipant()->id);
           $u->setAgree(1);
           $this->getDoctrine()->getManager()->merge($u);
           $this->getDoctrine()->getManager()->flush();
+          if ($user->getParticipant()->is_new_in_project​)
+          {
+            $this->addFlash('firstlogin', 'ok');
+          }
+          
           
           return $this->redirectToRoute('personal_page');
         }
@@ -53,12 +62,20 @@
           else
           {
             $this->addFlash('login', 'ok');
-            
-            $u = new User();
+  
+            $u = $this->getDoctrine()->getRepository('AppBundle:User')->find($user->getParticipant()->id);
+            if ($u == null)
+            {
+              $u = new User();
+            }
             $u->setId($user->getParticipant()->id);
             $u->setAgree(1);
             $this->getDoctrine()->getManager()->merge($u);
             $this->getDoctrine()->getManager()->flush();
+            if ($user->getParticipant()->is_new_in_project​)
+            {
+              $this->addFlash('firstlogin', 'ok');
+            }
             
             return $this->redirectToRoute('personal_page');
           }

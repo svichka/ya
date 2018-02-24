@@ -51,10 +51,11 @@
         foreach ($tmp_winners as $tmp_winner)
         {
           $winners[] = [
-            'fio'   => $tmp_winner->getPromocodeParticipantFio(),
-            'email' => $tmp_winner->getPromocodeParticipantEmail(),
-            'prize' => $tmp_winner->getPrize(),
-            'date'  => $tmp_winner->getWinDate(),
+            'lottery_id' => $tmp_winner->getLotteryId(),
+            'fio'        => $tmp_winner->getPromocodeParticipantFio(),
+            'email'      => $tmp_winner->getPromocodeParticipantEmail(),
+            'prize'      => $tmp_winner->getPrize(),
+            'date'       => $tmp_winner->getWinDate(),
           ];
           
         }
@@ -74,10 +75,11 @@
         foreach ($tmp_winners as $tmp_winner)
         {
           $winners[] = [
-            'fio'   => $tmp_winner->getPromocodeParticipantFio(),
-            'email' => $tmp_winner->getPromocodeParticipantEmail(),
-            'prize' => $tmp_winner->getPrize(),
-            'date'  => $tmp_winner->getWinDate(),
+            'lottery_id' => $tmp_winner->getLotteryId(),
+            'fio'        => $tmp_winner->getPromocodeParticipantFio(),
+            'email'      => $tmp_winner->getPromocodeParticipantEmail(),
+            'prize'      => $tmp_winner->getPrize(),
+            'date'       => $tmp_winner->getWinDate(),
           ];
           
         }
@@ -85,7 +87,7 @@
         return $this->render('AppBundle:Default:winners_plain.html.twig', [
           'winners' => $winners,
           'fio'     => $fio,
-          'date'    => ''
+          'date'    => '',
         ]);
       }
       if ($date)
@@ -97,10 +99,11 @@
         foreach ($tmp_winners as $tmp_winner)
         {
           $winners[] = [
-            'fio'   => $tmp_winner->getPromocodeParticipantFio(),
-            'email' => $tmp_winner->getPromocodeParticipantEmail(),
-            'prize' => $tmp_winner->getPrize(),
-            'date'  => $tmp_winner->getWinDate(),
+            'lottery_id' => $tmp_winner->getLotteryId(),
+            'fio'        => $tmp_winner->getPromocodeParticipantFio(),
+            'email'      => $tmp_winner->getPromocodeParticipantEmail(),
+            'prize'      => $tmp_winner->getPrize(),
+            'date'       => $tmp_winner->getWinDate(),
           ];
           
         }
@@ -120,7 +123,7 @@
         $i++;
         if ($lottery->getStartTime() < new \DateTime())
         {
-          $weeks[$i] = ['start' => $lottery->getStartTime(), 'end' => $lottery->getEndTime()];
+          $weeks[$i] = ['start' => $lottery->getStartTime(), 'end' => $lottery->getEndTime(), 'id' => $lottery->getId()];
         }
       }
       sort($weeks, SORT_DESC);
@@ -141,10 +144,11 @@
             $winners[$i] = [];
           }
           $winners[$i][] = [
-            'fio'   => $tmp_winner->getPromocodeParticipantFio(),
-            'email' => $tmp_winner->getPromocodeParticipantEmail(),
-            'prize' => $tmp_winner->getPrize(),
-            'date'  => $tmp_winner->getWinDate(),
+            'lottery_id' => $tmp_winner->getLotteryId(),
+            'fio'        => $tmp_winner->getPromocodeParticipantFio(),
+            'email'      => $tmp_winner->getPromocodeParticipantEmail(),
+            'prize'      => $tmp_winner->getPrize(),
+            'date'       => $tmp_winner->getWinDate(),
           ];
           
         }

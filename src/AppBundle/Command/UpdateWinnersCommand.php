@@ -72,7 +72,7 @@
         
         foreach ($lotteries as $lottery)
         {
-          $output->writeln("Lottery $promo_slug " . $lottery['id']);
+//          $output->writeln("Lottery $promo_slug " . $lottery['id']);
           $Lottery = $this->doctrine->getRepository('AppBundle:Lottery')->find($lottery['id']);
           if (!$Lottery)
           {
@@ -112,45 +112,31 @@
     private function updateWinners($winners, $lottery, $output)
     {
       $participantApi = new ParticipantApiController();
-      /**
-       * {
-       *   "tickets_count": null,
-       *   "is_active": true,
-       *   "is_winner": true,
-       *   "prize_application": null,
-       *   "id": 224,
-       *   "promocodes": [
-       *     {
-       *       "id": 3149,
-       *       "participant": {
-       *         "id": 1111111,
-       *         "crm_id_ilp": "1111111",
-       *         "guid": "9a15a7dd-edaf-5cf6-b5b7-8e1adcaabd63",
-       *         "crm_data": []
-       *       }
-       *     }
-       *   ]
-       * }
-       */
+      
       foreach ($winners as $winner)
       {
-        $w = $this->doctrine->getRepository('AppBundle:Winner')->find($winner['id']);
-        
-        if (!$w)
+        foreach ($winner['promocodes'] as $promocode)
         {
-          $w = new Winner();
-          $w->setId($winner['id']);
-          $w->setPrizeApplication($winner['prize_application']);
-          $w->setPrize($lottery->getPrize());
-          $w->setWinDate($lottery->getBalanceDate());
-          $w->setPromocodeParticipantId($winner['promocodes']['participant']['id']);
-          $w->setPromocodeParticipantCrmIdIlp($winner['promocodes']['participant']['crm_id_ilp']);
-          $w->setPromocodeParticipantGuid($winner['promocodes']['participant']['guid']);
-          $participant = $participantApi->getById($winner['promocodes']['participant']['id'], ['firstname', 'lastname', 'email']);
-          $w->setPromocodeParticipantFio($participant->lastname . " " . $participant->firstname);
-          $w->setPromocodeParticipantEmail($participant->email);
-          $this->em->merge($w);
-          $this->em->flush();
+          //$w = $this->doctrine->getRepository('AppBundle:Winner')->find($promocode['id']);
+          $w = $this->doctrine->getRepository('AppBundle:Winner')->findOneBy(['promocode_id' => $promocode['id'], 'lottery_id' => $lottery->getId()]);
+          
+          $output->writeln("promocode: {$promocode['id']}\tlottery:" . $lottery->getId() . "\t" . $lottery->getStartTime()->format("Y-m-d H:i:s") . "\t" . $lottery->getEndTime()->format("Y-m-d H:i:s"));
+          if (!$w)
+          {
+            $w = new Winner();
+            $w->setPromocodeId($promocode['id']);
+            $w->setLotteryId($lottery->getId());
+            $w->setPrize($lottery->getPrize());
+            $w->setWinDate($lottery->getStartTime());
+            $w->setPromocodeParticipantId($promocode['participant']['id']);
+            $w->setPromocodeParticipantCrmIdIlp($promocode['participant']['crm_id_ilp']);
+            $w->setPromocodeParticipantGuid($promocode['participant']['guid']);
+            $participant = $participantApi->getById($promocode['participant']['id'], ['firstname', 'lastname', 'email']);
+            $w->setPromocodeParticipantFio($participant->lastname . " " . $participant->firstname);
+            $w->setPromocodeParticipantEmail($participant->email);
+            $this->em->merge($w);
+            $this->em->flush();
+          }
         }
       }
     }

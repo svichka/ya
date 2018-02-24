@@ -80,7 +80,8 @@
                         {#<span>{{ promocode.prizes['guaranteed']['slug']|prize }}</span><br>#}
                         <img src="{{ promocode.prizes['guaranteed']['url'] }}"
                              alt="{{ promocode.prizes['guaranteed']['slug'] }}">
-                        <a href="" class='table-get-link js-get-code'>
+                        <a href="" class='table-get-link js-get-code'
+                           data-slug="{{ promocode.prizes['guaranteed']['slug'] }}">
                           Получить
                           <span class='js-code'>{{ promocode.prizes['guaranteed']['code'] }}</span>
                         </a>
@@ -233,7 +234,7 @@
           select.append('<option value="' + regions[ key ] + '">' + key + '</option>');
         }
       }
-      if ('{{ user.getregionguid() }}' != '') {
+      if ('{{ user.getregionguid() }}' !== '') {
         select.val('{{ user.getregionguid() }}');
         selectC.html('');
         selectC.append('<option value="">Выберите город</option>');
@@ -242,7 +243,7 @@
             selectC.append('<option value="' + cities[ key ] + '">' + key + '</option>');
           }
         }
-        if ('{{ user.getcityguid() }}' != '') {
+        if ('{{ user.getcityguid() }}' !== '') {
           selectC.val('{{ user.getcityguid() }}');
         } else {
           selectC.removeAttr('disabled', 'disabled');
@@ -284,8 +285,6 @@
   </script>
   <script>
     $(function () {
-
-
       var form = $('#registration_u_json');
       $('#registration_u_json').ajaxForm({
         beforeSubmit: function (formData, jqForm, options) {
@@ -306,6 +305,28 @@
         dataType: 'json',
         clearForm: false,
         resetForm: false,
+      });
+    });
+  </script>
+  <script>
+    $(function () {
+      $('.js-get-code').click(function () {
+        eA('PrizeShow', 'ClickPrize');
+        switch ($(this).data('slug')) {
+          case 'code_lenina':
+            eL('PrizeShow', 'ClickPrize', 'PrizeLenaLeninaDaily');
+            break;
+          case 'code_lamoda':
+            eL('PrizeShow', 'ClickPrize', 'PrizeLamodaDaily');
+            break;
+          case 'code_yves_rocher':
+            eL('PrizeShow', 'ClickPrize', 'PrizeRosheDaily');
+            break;
+        }
+        gtag('event', 'conversion', {
+          'allow_custom_scripts': true,
+          'send_to': 'DC-6274508/ya_ju0/ya_ju00-+standard',
+        });
       });
     });
   </script>

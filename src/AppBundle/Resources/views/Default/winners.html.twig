@@ -39,7 +39,7 @@
                   <div class="week-cell">Дата</div>
                 </div>
                 {% for winner in value %}
-                  <div class="week-row">
+                  <div class="week-row" data-l="{{ winner['lottery_id'] }}">
                     <div class="week-cell">{{ winner['fio'] }}</div>
                     <div class="week-cell">{{ winner['email'] }}</div>
                     <div class="week-cell">{{ winner['prize']|prize|raw }}</div>

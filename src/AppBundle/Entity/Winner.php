@@ -13,9 +13,14 @@
   use Doctrine\ORM\Mapping\JoinColumn;
   use Doctrine\ORM\Mapping\ManyToOne;
   use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+  use Doctrine\ORM\Mapping\UniqueConstraint;
   
   /**
-   * @ORM\Table(name="app_winners")
+   * AppBundle\Entity\Winner
+   * @ORM\Table(name="app_winners", uniqueConstraints={
+   *        @UniqueConstraint(name="id", columns={"lottery_id", "promocode_id"})
+   *    }
+   *   )
    * @ORM\Entity(repositoryClass="AppBundle\Repository\WinnerRepository")
    */
   class Winner
@@ -23,6 +28,7 @@
     /**
      * @ORM\Id
      * @ORM\Column(type="integer", unique=true)
+     * @ORM\GeneratedValue
      */
     private $id;
     /**
@@ -41,6 +47,10 @@
      * @ORM\Column(type="integer", nullable=true)
      */
     private $promocode_id;
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $lottery_id;
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
@@ -342,7 +352,7 @@
     {
       $this->prize = $prize;
     }
-  
+    
     /**
      * @return mixed
      */
@@ -350,7 +360,7 @@
     {
       return $this->promocode_participant_email;
     }
-  
+    
     /**
      * @param mixed $promocode_participant_email
      */
@@ -358,6 +368,22 @@
     {
       $this->promocode_participant_email = $promocode_participant_email;
     }
-  
-  
+    
+    /**
+     * @return mixed
+     */
+    public function getLotteryId()
+    {
+      return $this->lottery_id;
+    }
+    
+    /**
+     * @param mixed $lottery_id
+     */
+    public function setLotteryId($lottery_id)
+    {
+      $this->lottery_id = $lottery_id;
+    }
+    
+    
   }

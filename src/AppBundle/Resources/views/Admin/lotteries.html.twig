@@ -30,37 +30,25 @@
         view: "datatable",
         // autoConfig:true,
         columns: [
-          { id: "id", header: [ "id", { content: "textFilter" } ], width: 100, sort: "int" },
+          { id: "id", header: [ "Id", { content: "textFilter" } ], width: 100, sort: "int" },
+          { id: "promo", header: [ "Промо", { content: "textFilter" } ], width: 150, sort: "text" },
           { id: "is_done", header: [ "is_done", { content: "textFilter" } ], width: 100, sort: "int" },
           { id: "is_ready", header: [ "is_ready", { content: "textFilter" } ], width: 100, sort: "int" },
           { id: "is_runnable", header: [ "is_runnable", { content: "textFilter" } ], width: 100, sort: "int" },
+          { id: "start_time", header: [ "Начало", { content: "textFilter" } ], width: 180, sort: "text" },
+          { id: "end_time", header: [ "Конец", { content: "textFilter" } ], width: 180, sort: "text" },
+          { id: "run_time", header: [ "run_time", { content: "textFilter" } ], width: 180, sort: "text" },
           {
-            id: "start_time", header: [ "start_time", { content: "textFilter" } ], width: 180, sort: "date",
-            format: webix.Date.dateToStr("%Y-%m-%d %H:%i:%s"),
+            id: "run", header: "Запуск", width: 80,
+            template: "<a href='/app_dev.php/admin/code_lottery_run/#promo#/#id#' target='_blank'>Запуск</a>",
           },
           {
-            id: "end_time", header: [ "end_time", { content: "textFilter" } ], width: 180, sort: "date",
-            format: webix.Date.dateToStr("%Y-%m-%d %H:%i:%s"),
-          },
-          {
-            id: "run_time", header: [ "run_time", { content: "textFilter" } ], width: 180, sort: "date",
-            format: webix.Date.dateToStr("%Y-%m-%d %H:%i:%s"),
-          },
-          {
-            id: "run", header: "run", width: 80,
-            template: "<a href='/app_dev.php/admin/code_lottery_run/#promo#/#id#' target='_blank'>run</a>",
-          },
-          {
-            id: "commit", header: "commit", width: 80,
-            template: "<a href='/app_dev.php/admin/code_lottery_commit/#promo#/#id#' target='_blank'>commit</a>",
+            id: "commit", header: "Коммит", width: 80,
+            template: "<a href='/app_dev.php/admin/code_lottery_commit/#promo#/#id#' target='_blank'>Коммит</a>",
           },
         ],
         data: codes,
-        // autoheight: true,
         scrollAlignY: true,
-        // scrollY:false,
-        // scrollX:false,
-        // autowidth: true,
       });
       webix.event(window, "resize", function () {
         grid.adjust();
