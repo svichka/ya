@@ -339,6 +339,9 @@
         background-size: 100px !important;
         background-position-x: right;
     }
+    .static-prize-text br {
+        display: none;
+    }
     .static-prize-title-av {
         display: inline-block;
         width: 200px;
@@ -633,6 +636,7 @@
 		border-radius: 29px;
 		height: auto;
 	    padding: 6px 5px;
+	    font-size: 0;
 	}
 
 	.static-prize-title {
@@ -659,7 +663,8 @@
 		padding-right: 10px;
 	}
 	.static-prize-img.static-prize-img-r {
-		background-size: 155px !important;
+		background-size: 99px !important;
+		background-position-x: right;
 	}
 	.form-block input , .form-block select {
 		width: 100%;
