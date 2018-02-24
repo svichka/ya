@@ -331,6 +331,25 @@
     }
 }
 @media (max-width:767px){
+    .static-prize-img.static-prize-img-r {
+        display: inline-block;
+        width: 120px;
+        vertical-align: middle;
+        height: 107px;
+        background-size: 100px !important;
+        background-position-x: right;
+    }
+    .static-prize-title-av {
+        display: inline-block;
+        width: 200px;
+        vertical-align: middle;
+    }
+    .static-prize-text {
+        font-size: 14px;
+    }
+    .static-prize-text {
+        margin-top: 13px;
+    }
     .modal-reg-form .checkbox-title {
         margin-left: 0;
         margin-right: 7px;
@@ -605,13 +624,15 @@
 		height: auto;
 	}
 	.static-prize-blocks {
-		width: 280px;
-		margin: 40px auto 0;
-	}
+        width: 100%;
+        margin: 40px auto 0;
+        max-width: 420px;
+    }
 
 	.static-prize {
 		border-radius: 29px;
 		height: auto;
+	    padding: 6px 5px;
 	}
 
 	.static-prize-title {
