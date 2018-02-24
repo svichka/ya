@@ -123,7 +123,7 @@
         $i++;
         if ($lottery->getStartTime() < new \DateTime())
         {
-          $weeks[$i] = ['start' => $lottery->getStartTime(), 'end' => $lottery->getEndTime(), 'id' => $lottery->getId()];
+          $weeks[$i] = ['start' => $lottery->getStartTime(), 'end' => $lottery->getEndTime(), 'id'=>$lottery->getId()];
         }
       }
       sort($weeks, SORT_DESC);
@@ -135,7 +135,7 @@
         /***
          * @var $tmp_winners \AppBundle\Entity\Winner[]
          */
-        $tmp_winners = $this->getDoctrine()->getRepository('AppBundle:Winner')->findByBetween($week['start'], $week['end']);
+        $tmp_winners = $this->getDoctrine()->getRepository('AppBundle:Winner')->findBy(['lottery_id'=>$week['id']]);
         $tmp_weeks[$i] = $week;
         foreach ($tmp_winners as $tmp_winner)
         {
@@ -145,10 +145,10 @@
           }
           $winners[$i][] = [
             'lottery_id' => $tmp_winner->getLotteryId(),
-            'fio'        => $tmp_winner->getPromocodeParticipantFio(),
-            'email'      => $tmp_winner->getPromocodeParticipantEmail(),
-            'prize'      => $tmp_winner->getPrize(),
-            'date'       => $tmp_winner->getWinDate(),
+            'fio'   => $tmp_winner->getPromocodeParticipantFio(),
+            'email' => $tmp_winner->getPromocodeParticipantEmail(),
+            'prize' => $tmp_winner->getPrize(),
+            'date'  => $tmp_winner->getWinDate(),
           ];
           
         }
