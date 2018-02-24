@@ -347,6 +347,13 @@
         width: 200px;
         vertical-align: middle;
     }
+    .static-prize-row {
+        display: inline-block;
+        width: 33%;
+        height: auto;
+        vertical-align: top;
+        margin-bottom: 0;
+    }
     .static-prize-text {
         font-size: 14px;
     }
@@ -649,11 +656,15 @@
 	}
 
 	.static-prize-price {
-		font-size: 17px;
+		font-size: 15px;
+        text-align: center;
 	}
-
+    .static-prize-post-price {
+        text-align :center;
+    }
 	.static-prize-row img.img-yr {
 		width: 82px;
+		margin-top: 0;
 	}
 	.adventure-title {
 		font-size: 24px;
