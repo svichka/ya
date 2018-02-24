@@ -339,6 +339,12 @@
         background-size: 100px !important;
         background-position-x: right;
     }
+    .prize-img.prize-img-3 {
+        background-position: -9px center;
+    }
+    .prize-img.prize-img-2 {
+        background-position: 13px center;
+    }
     .img-p-l img {
         margin-top: -18px;
     }
