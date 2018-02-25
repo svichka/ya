@@ -114,7 +114,7 @@
   </script>
   {% if errors %}
     <script>
-      var errors = '{{ join(errors,', ') }}';
+      var errors = '{{ errors|join(', ') }}';
 
       eE('Signup', 'SentForm', 'Unsuccess_Signup', '-', errors);
     </script>

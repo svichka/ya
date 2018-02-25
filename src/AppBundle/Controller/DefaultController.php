@@ -262,6 +262,9 @@
           }
           catch (ApiFailedException $e)
           {
+            $this->get('logger')->error("ApiFailedException");
+            $this->get('logger')->error(print_r($e->getFields()));
+            $this->get('logger')->error($e->getCode());
             throw new NotCorrectDataException("Ошибка связи с бандлом");
           }
           $this->addFlash('registration', 'ok');
