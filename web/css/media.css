@@ -331,6 +331,44 @@
     }
 }
 @media (max-width:767px){
+    .week-table .week-row:first-child .week-cell {
+        width: 50%;
+        word-spacing: 240px;
+    }
+    .week-row .week-cell:nth-child(1) {
+        float: right;
+    }
+    .week-cell {
+        padding: 3px 0;
+    }
+    .week-row .week-cell:nth-child(2) {
+        float: left;
+    }
+    .week-cell img {
+        max-width:  75px;
+    }
+    .week-table .week-row:first-child {
+        background-repeat: no-repeat;
+        -webkit-background-size: auto;
+        background-size: 93% 1px;
+        background-position: center bottom;
+        background-image: url(../images/line-y.png);
+        padding-top:  0;
+        padding-bottom: 5px;
+    }
+    .week-toggle-block {
+        padding-top: 5px;
+    }
+    .week-row:after {
+        background-image: url(../images/line-y.png);
+        background-repeat:  no-repeat;
+        background-size: 93% 1px;
+        background-position:  center;
+    }
+    .week-row {
+        padding-bottom: 5px;
+    }
+
     .static-prize-img.static-prize-img-r {
         display: inline-block;
         width: 120px;
@@ -747,9 +785,6 @@
 	.week-item-current{
 		padding: 9px 0 0;
 	}
-	.week-table .week-row:first-child {
-		display: none;
-	}
 
 	.week-row {
 		display: block;
@@ -768,7 +803,6 @@
 
 	.week-row:after {
 		bottom: 0;
-		background-size: contain;
 	}
 	.js-week-table-scroll {
 		height: auto;
