@@ -810,11 +810,21 @@
 	}
 	.week-row .week-cell.move-xs {
 		position: absolute;
-		top: 7px;
+		top: 0;
 		left: 0;
 		width: 100%;
 		text-align: center;
 	}
+	.week-item.winners-p-block .week-row {
+        padding-top: 29px;
+    }
+    .week-item.winners-p-block .week-row .week-cell:nth-child(1), .week-item.winners-p-block .week-row .week-cell:nth-child(2) {
+        float: none;
+        width: 50%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding: 7px 6px;
+    }
 	.week-item {
 		padding-left: 0;
 	}
