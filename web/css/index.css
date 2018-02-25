@@ -647,7 +647,7 @@ h1.static-title.static-title-lg {
     vertical-align: middle;
 }
 .week-cell img {
-    max-width: 115px;
+    max-width: 100px;
 }
 .week-row:after {
     content: '';
