@@ -799,7 +799,6 @@
 
 	.week-row:after {
 		bottom: 0;
-		background-size: contain;
 	}
 	.js-week-table-scroll {
 		height: auto;
