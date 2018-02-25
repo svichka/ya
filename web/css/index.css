@@ -720,13 +720,13 @@ h1.static-title.static-title-lg {
 .table-get-link span {
     position: absolute;
     background: #115713;
-    font-size: 19px;
+    font-size: 15px;
     padding: 6px 13px;
     left: 0;
     z-index: 10;
     box-shadow: 0px 0px 2px 0px #e8c61e;
     border-radius: 7px;
-    bottom: -45px;
+    top: 104%;
     display: none;
 }
 .modal-content {
