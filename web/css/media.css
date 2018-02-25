@@ -331,6 +331,10 @@
     }
 }
 @media (max-width:767px){
+    .week-table .week-row:first-child .week-cell {
+        width: 50%;
+        word-spacing: 240px;
+    }
     .week-row .week-cell:nth-child(1) {
         float: right;
     }
