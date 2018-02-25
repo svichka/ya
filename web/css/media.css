@@ -188,7 +188,7 @@
 	.form-block {
 		margin-bottom: 13px;
 	}
-	.page-bg {
+	.page-bg , .page-bg.page-bg-faq {
 		padding-top: 15px;
 		padding-left: 290px;
 		padding-bottom: 35px;
