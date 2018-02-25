@@ -166,6 +166,7 @@
       
       return $this->render('AppBundle:Default:winners.html.twig', [
         'winners' => $winners,
+        'current' => --$i,
       ]);
     }
   }

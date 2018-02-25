@@ -25,14 +25,20 @@
           <div class="week-title js-week-title">
             <div class="week-toggler">+</div>
             <div class="row">
-              <div class="col-sm-12">Неделя {{ i }}</div>
+              <div class="col-sm-12">
+                {% if current == value['id'] %}
+                  ТЕКУЩАЯ НЕДЕЛЯ
+                {% else %}
+                  Неделя {{ value['id'] }}
+                {% endif %}
+              </div>
               <div class="col-sm-12 text-right">
                 {% if dev %}
                   {{ value['week']['start']|date('d.m.Y H:i:s') }}
                   - {{ value['week']['end']|date('d.m.Y H:i:s') }}
                 {% else %}
-                {{ value['week']['start']|date('d.m.Y') }}
-                - {{ value['week']['end']|date('d.m.Y') }}
+                  {{ value['week']['start']|date('d.m.Y') }}
+                  - {{ value['week']['end']|date('d.m.Y') }}
                 {% endif %}
               </div>
             </div>
