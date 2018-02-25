@@ -18,6 +18,7 @@
   use Dalee\PEPUWSClientBundle\Controller\ParticipantApiController;
   use Dalee\PEPUWSClientBundle\Controller\PromocodeApiController;
   use Dalee\PEPUWSClientBundle\Controller\PromoLotteryApiController;
+  use Dalee\PEPUWSClientBundle\Entity\PromocodeApplication;
   use Dalee\PEPUWSClientBundle\Exception\ApiFailedException;
   use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
   use Symfony\Component\Console\Input\InputInterface;
@@ -124,20 +125,39 @@
           if (!$w)
           {
             $w = new Winner();
-            $w->setPromocodeId($promocode['id']);
-            $w->setLotteryId($lottery->getId());
-            $w->setPrize($lottery->getPrize());
-            $w->setWinDate($lottery->getStartTime());
-            $w->setPromocodeParticipantId($promocode['participant']['id']);
-            $w->setPromocodeParticipantCrmIdIlp($promocode['participant']['crm_id_ilp']);
-            $w->setPromocodeParticipantGuid($promocode['participant']['guid']);
-            $participant = $participantApi->getById($promocode['participant']['id'], ['firstname', 'lastname', 'email']);
-            $w->setPromocodeParticipantFio($participant->lastname . " " . $participant->firstname);
-            $w->setPromocodeParticipantEmail($participant->email);
-            $this->em->merge($w);
-            $this->em->flush();
           }
+          $w->setPromocodeId($promocode['id']);
+          $w->setLotteryId($lottery->getId());
+          $w->setPrize($lottery->getPrize());
+          $promocode_date = $this->getPromocodeDate($promocode['participant']['id'], $promocode['id']);
+          $w->setWinDate($promocode_date);
+          $w->setPromocodeParticipantId($promocode['participant']['id']);
+          $w->setPromocodeParticipantCrmIdIlp($promocode['participant']['crm_id_ilp']);
+          $w->setPromocodeParticipantGuid($promocode['participant']['guid']);
+          $participant = $participantApi->getById($promocode['participant']['id'], ['firstname', 'lastname', 'email']);
+          $w->setPromocodeParticipantFio($participant->lastname . " " . $participant->firstname);
+          $w->setPromocodeParticipantEmail($participant->email);
+          $this->em->merge($w);
+          $this->em->flush();
+//          }
         }
       }
+    }
+    
+    private function getPromocodeDate($participant_id, $promocode_id)
+    {
+      $promocode_applications = (new PromocodeApiController())->getApplicationsByParticipantId($participant_id);
+      /**
+       * @var $promocode_applications PromocodeApplication[]
+       */
+      foreach ($promocode_applications as $application)
+      {
+        if ($application->getId() == $promocode_id)
+        {
+          return new \DateTime($application->getValidationDate());
+        }
+      }
+      
+      return null;
     }
   }

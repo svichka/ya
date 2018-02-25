@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block body %}
+  {% set dev = ( app.environment == 'dev' ) %}
   <main class="main-content">
     <div class="page-bg page-bg-empty">
       <h1 class="static-title up">Победители</h1>
@@ -18,14 +19,22 @@
         </div>
         <input type="text" class='js-date date-input' name="date" placeholder="Выбрать дату" autocomplete="off">
       </div>
+
       {% for i,value in winners %}
         <div class="week-item up">
           <div class="week-title js-week-title">
             <div class="week-toggler">+</div>
             <div class="row">
               <div class="col-sm-12">Неделя {{ i }}</div>
-              <div class="col-sm-12 text-right">{{ weeks[i]['start']|date('d.m.Y') }}
-                - {{ weeks[i]['end']|date('d.m.Y') }}</div>
+              <div class="col-sm-12 text-right">
+                {% if dev %}
+                  {{ value['week']['start']|date('d.m.Y H:i:s') }}
+                  - {{ value['week']['end']|date('d.m.Y H:i:s') }}
+                {% else %}
+                {{ value['week']['start']|date('d.m.Y') }}
+                - {{ value['week']['end']|date('d.m.Y') }}
+                {% endif %}
+              </div>
             </div>
           </div>
           <div class="week-toggle-block js-toggle-table" style="display: none;">
@@ -38,7 +47,7 @@
                   <div class="week-cell">Партнер</div>
                   <div class="week-cell">Дата</div>
                 </div>
-                {% for winner in value %}
+                {% for winner in value['winners'] %}
                   <div class="week-row" data-l="{{ winner['lottery_id'] }}">
                     <div class="week-cell">{{ winner['fio'] }}</div>
                     <div class="week-cell">{{ winner['email'] }}</div>

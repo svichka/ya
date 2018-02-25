@@ -115,15 +115,21 @@
         ]);
       }
       
-      $lotteries = $this->getDoctrine()->getRepository('AppBundle:Lottery')->findBy(['prize' => 'certificate_lamoda']);
+      $lotteries = $this->getDoctrine()->getRepository('AppBundle:Lottery')->findAll(); // ['prize' => 'certificate_lamoda']
       $weeks = [];
-      $i = 0;
+      
       foreach ($lotteries as $lottery)
       {
-        $i++;
         if ($lottery->getStartTime() < new \DateTime())
         {
-          $weeks[$i] = ['start' => $lottery->getStartTime(), 'end' => $lottery->getEndTime(), 'id'=>$lottery->getId()];
+          if (!isset($weeks[$lottery->getWeekIndex()]))
+          {
+            $weeks[$lottery->getWeekIndex()] = ['start' => $lottery->getStartTime(), 'end' => $lottery->getEndTime(), 'id' => [$lottery->getId()]];
+          }
+          else
+          {
+            $weeks[$lottery->getWeekIndex()]['id'][] = $lottery->getId();
+          }
         }
       }
       sort($weeks, SORT_DESC);
@@ -131,32 +137,35 @@
       $tmp_weeks = [];
       foreach ($weeks as $week)
       {
-        $i++;
+        
         /***
          * @var $tmp_winners \AppBundle\Entity\Winner[]
          */
-        $tmp_winners = $this->getDoctrine()->getRepository('AppBundle:Winner')->findBy(['lottery_id'=>$week['id']]);
-        $tmp_weeks[$i] = $week;
-        foreach ($tmp_winners as $tmp_winner)
+        foreach ($week['id'] as $lottery_id)
         {
-          if (!isset($winners[$i]))
+          $tmp_winners = $this->getDoctrine()->getRepository('AppBundle:Winner')->findBy(['lottery_id' => $lottery_id]);
+//          $tmp_weeks[$i] = $week;
+          foreach ($tmp_winners as $tmp_winner)
           {
-            $winners[$i] = [];
+            if (!isset($winners[$i]))
+            {
+              $winners[$i] = ['id' => $i, 'week' => $week, 'winners' => []];
+            }
+            $winners[$i]['winners'][] = [
+              'lottery_id' => $tmp_winner->getLotteryId(),
+              'fio'        => $tmp_winner->getPromocodeParticipantFio(),
+              'email'      => $tmp_winner->getPromocodeParticipantEmail(),
+              'prize'      => $tmp_winner->getPrize(),
+              'date'       => $tmp_winner->getWinDate(),
+            ];
           }
-          $winners[$i][] = [
-            'lottery_id' => $tmp_winner->getLotteryId(),
-            'fio'   => $tmp_winner->getPromocodeParticipantFio(),
-            'email' => $tmp_winner->getPromocodeParticipantEmail(),
-            'prize' => $tmp_winner->getPrize(),
-            'date'  => $tmp_winner->getWinDate(),
-          ];
-          
         }
+        $i++;
       }
+      $winners = array_reverse($winners);
       
       return $this->render('AppBundle:Default:winners.html.twig', [
         'winners' => $winners,
-        'weeks'   => $tmp_weeks,
       ]);
     }
   }

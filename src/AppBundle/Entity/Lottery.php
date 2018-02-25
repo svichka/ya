@@ -81,7 +81,7 @@
     }
     
     /**
-     * @return mixed
+     * @return \DateTime
      */
     public function getStartTime()
     {
@@ -89,7 +89,7 @@
     }
     
     /**
-     * @param mixed $start_time
+     * @param \DateTime $start_time
      */
     public function setStartTime($start_time)
     {
@@ -105,7 +105,7 @@
     }
     
     /**
-     * @param mixed $end_time
+     * @param \DateTime $end_time
      */
     public function setEndTime($end_time)
     {
@@ -220,7 +220,7 @@
     {
       $this->prize = $prize;
     }
-  
+    
     /**
      * @return mixed
      */
@@ -228,12 +228,17 @@
     {
       return $this->balance_date;
     }
-  
+    
     /**
      * @param mixed $balance_date
      */
     public function setBalanceDate($balance_date)
     {
       $this->balance_date = $balance_date;
+    }
+    
+    public function getWeekIndex()
+    {
+      return $this->getStartTime()->format("Y-m-d_H:i:s") . "___" . $this->getEndTime()->format("Y-m-d_H:i:s");
     }
   }
