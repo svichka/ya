@@ -747,9 +747,6 @@
 	.week-item-current{
 		padding: 9px 0 0;
 	}
-	.week-table .week-row:first-child {
-		display: none;
-	}
 
 	.week-row {
 		display: block;
