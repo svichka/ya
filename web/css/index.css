@@ -570,6 +570,9 @@ h1.static-title.static-title-lg {
     text-align: center;
     margin-bottom: 60px;
 }
+.winners-p-block .week-cell {
+    width: 21%;
+}
 .seacrh-wrap label {
     font-family: 'Conv_agavalanchec-bold';
     font-size: 16px;
