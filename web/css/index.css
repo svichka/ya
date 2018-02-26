@@ -576,7 +576,7 @@ h1.static-title.static-title-lg {
     margin-right: 13px;
 }
 .seacrh-wrap input {
-    padding: 4px 8px 3px;
+    padding: 4px 34px 3px 8px;
     background-color: rgba(15, 25, 7, 0.61);
     border: 2px solid #c1c134;
     font-size: 16px;
