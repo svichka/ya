@@ -331,6 +331,9 @@
     }
 }
 @media (max-width:767px){
+    .file-input-wrap {
+        max-width: 100%;
+    }
     .week-table .week-row:first-child .week-cell {
         width: 50%;
         word-spacing: 240px;
