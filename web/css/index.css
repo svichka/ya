@@ -648,6 +648,17 @@ h1.static-title.static-title-lg {
     display: table-row;
     position: relative;
 }
+.week-row.week-row-empty {
+    position: relative;
+    height: 40px;
+    font-size: 14px !important;
+}
+
+.week-row.week-row-empty div {
+    position: absolute;
+    width: 100%;
+    padding: 10px 0;
+}
 .week-cell {
     display: table-cell;
     padding: 16px 0;
