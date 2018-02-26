@@ -23,7 +23,8 @@ $(function() {
             timepicker: false,
             format: 'd.m.Y',
             lang: 'ru',
-            closeOnDateSelect:true
+            closeOnDateSelect:true,
+            maxDate:0
         });
     }
     $('.js-week-title').click(function() {
