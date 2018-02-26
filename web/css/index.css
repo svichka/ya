@@ -440,6 +440,7 @@ h1.static-title.static-title-lg {
 .upload-line {
     text-align: right;
     margin: 0 0;
+    max-width: 50%;
 }
 
 .file-input-wrap {
@@ -451,6 +452,7 @@ h1.static-title.static-title-lg {
     background-repeat: no-repeat;
     background-position:  left center;
     background-size: 20px;
+    word-break: break-all;
 }
 
 .file-input-wrap span {
