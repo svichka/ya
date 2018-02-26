@@ -97,15 +97,18 @@
 	}
 
 	.static-prize {
-		height: 445px;
+		height: 400px;
 	}
 	.static-prize-title-av {
 		font-size: 22px;
 	}
 	.adventure-title {
-		font-size: 53px;
-		margin: 30px auto;
-	}
+        font-size: 38px;
+        margin: 0px auto 19px;
+    }
+    .static-prize-blocks {
+        margin-bottom: 16px;
+    }
 	.form-block textarea {
 		height: 200px;
 	}
