@@ -124,6 +124,7 @@ input:focus , input:active , select:focus , select:active , textarea:focus , tex
     padding-top: 26px;
     padding-bottom: 30px;
     display: table-cell;
+    background-size: cover;
 }
 .page-bg.page-bg-faq {
     padding-right: 110px;
