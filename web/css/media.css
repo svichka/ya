@@ -271,6 +271,9 @@
 	.prize-desc {
 		margin-top: 10px;
 	}
+	.prize-img.prize-img-3 + .prize-desc {
+        margin-top: 6px;
+    }
 	.header-menu {
 		text-align: right;
 		margin-top: 18px;
