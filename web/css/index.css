@@ -178,6 +178,9 @@ input:focus , input:active , select:focus , select:active , textarea:focus , tex
     text-align: center;
     margin-top: 25px;
 }
+.prize-img.prize-img-3 + .prize-desc {
+    margin-top: 21px;
+}
 .prize-desc img {
     width: 62%;
 }
