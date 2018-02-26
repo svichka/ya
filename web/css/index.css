@@ -934,7 +934,7 @@ button[disabled] {
 }
 @media screen and (min-width : 1200px){
     body.modal-open {
-        padding-right : 17px !important;
+        padding-right : 0 !important;
     }
 }
 @media screen and (min-width: 768px) { 
