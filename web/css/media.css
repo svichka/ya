@@ -749,6 +749,7 @@
 	}
 	.upload-line {
 		text-align: center;
+		max-width: 100%;
 	}
 	.media-checkbox.media-checkbox-middle {
 		text-align: center;
