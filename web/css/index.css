@@ -125,6 +125,9 @@ input:focus , input:active , select:focus , select:active , textarea:focus , tex
     padding-bottom: 30px;
     display: table-cell;
 }
+.page-bg.page-bg-faq {
+    padding-right: 110px;
+}
 .page-bg:before {
     content: '';
     position: absolute;
@@ -647,7 +650,7 @@ h1.static-title.static-title-lg {
     vertical-align: middle;
 }
 .week-cell img {
-    max-width: 115px;
+    max-width: 100px;
 }
 .week-row:after {
     content: '';
