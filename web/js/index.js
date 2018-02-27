@@ -23,7 +23,8 @@ $(function() {
             timepicker: false,
             format: 'd.m.Y',
             lang: 'ru',
-            closeOnDateSelect:true
+            closeOnDateSelect:true,
+            maxDate:0
         });
     }
     $('.js-week-title').click(function() {
@@ -53,8 +54,9 @@ $(function() {
         var el  = $(this).closest('.faq-item').find('.faq-body');
         el.toggle();
         $('.faq-body').not(el).hide();
-        $(".js-faq-wrapper").scrollbar("resize");
-        $(".js-faq-wrapper").scrollbar("scroll", 10000000);
+        //$(".js-faq-wrapper").scrollbar("resize");
+        //var t = $('.faq-title').length - $('.faq-title').index($(this));
+        //if (t < 4) $(".js-faq-wrapper").scrollbar("scroll", 1000000);
     })
 
 

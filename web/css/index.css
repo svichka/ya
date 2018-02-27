@@ -124,6 +124,7 @@ input:focus , input:active , select:focus , select:active , textarea:focus , tex
     padding-top: 26px;
     padding-bottom: 30px;
     display: table-cell;
+    background-size: cover;
 }
 .page-bg.page-bg-faq {
     padding-right: 110px;
@@ -176,6 +177,9 @@ input:focus , input:active , select:focus , select:active , textarea:focus , tex
 .prize-desc {
     text-align: center;
     margin-top: 25px;
+}
+.prize-img.prize-img-3 + .prize-desc {
+    margin-top: 21px;
 }
 .prize-desc img {
     width: 62%;
@@ -440,7 +444,6 @@ h1.static-title.static-title-lg {
 .upload-line {
     text-align: right;
     margin: 0 0;
-    max-width: 50%;
 }
 
 .file-input-wrap {
@@ -453,6 +456,7 @@ h1.static-title.static-title-lg {
     background-position:  left center;
     background-size: 20px;
     word-break: break-all;
+    max-width: 50%;
 }
 
 .file-input-wrap span {
@@ -566,13 +570,16 @@ h1.static-title.static-title-lg {
     text-align: center;
     margin-bottom: 60px;
 }
+.winners-p-block .week-cell {
+    width: 21%;
+}
 .seacrh-wrap label {
     font-family: 'Conv_agavalanchec-bold';
     font-size: 16px;
     margin-right: 13px;
 }
 .seacrh-wrap input {
-    padding: 4px 8px 3px;
+    padding: 4px 34px 3px 8px;
     background-color: rgba(15, 25, 7, 0.61);
     border: 2px solid #c1c134;
     font-size: 16px;
@@ -643,6 +650,17 @@ h1.static-title.static-title-lg {
 .week-row {
     display: table-row;
     position: relative;
+}
+.week-row.week-row-empty {
+    position: relative;
+    height: 40px;
+    font-size: 14px !important;
+}
+
+.week-row.week-row-empty div {
+    position: absolute;
+    width: 100%;
+    padding: 10px 0;
 }
 .week-cell {
     display: table-cell;
@@ -930,7 +948,7 @@ button[disabled] {
 }
 @media screen and (min-width : 1200px){
     body.modal-open {
-        padding-right : 17px !important;
+        padding-right : 0 !important;
     }
 }
 @media screen and (min-width: 768px) { 

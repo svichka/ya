@@ -63,7 +63,7 @@
             </div>
           </div>
           <div class="week-toggle-block js-toggle-table" {% if first != 1 %}style="display: none;"{% endif %}>
-            <div class="js-week-table-scroll">
+            <div class="js-week-table-scrolll">
               <div class="week-table">
                 <div class="week-row">
                   <div class="week-cell hidden-xs">Номер кода</div>
@@ -100,13 +100,8 @@
                     </div>
                   </div>
                 {% else %}
-                  <div class="week-row">
-                    <div style="display: block;
-    margin: auto;
-    width: 100%;
-    position: absolute;
-    margin-top: 15px;">Нет промокодов
-                    </div>
+                  <div class="week-row week-row-empty">
+                    <div>Нет промокодов</div>
                   </div>
                 {% endfor %}
               </div>

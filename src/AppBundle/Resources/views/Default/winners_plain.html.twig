@@ -16,13 +16,13 @@
             <input type="hidden" name="date" value="{{ date }}">
           </form>
         </div>
-        <input type="text" class='js-date date-input' value="{{ date }}" name="date" placeholder="Выбрать дату">
+        <!--<input type="text" class='js-date date-input' value="{{ date }}" name="date" placeholder="Выбрать дату">-->
       </div>
       {% if winners|length==0 %}
         <div class="week-item up">
           <div class="week-title js-week-title">
             <div class="row">
-              <div class="col-xs-24" style="text-align: center;padding: 10px 0 0 0;">Нет победителей</div>
+              <div class="col-xs-24" style="text-align: center;">Нет победителей</div>
             </div>
           </div>
         </div>
