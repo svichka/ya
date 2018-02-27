@@ -168,6 +168,7 @@
 	}
 	.form-block input , .form-block select {
 		font-size: 14px;
+		line-height: 16px;
 	}
 	.page-bg.page-bg-empty.content-center {
 		padding: 40px;
