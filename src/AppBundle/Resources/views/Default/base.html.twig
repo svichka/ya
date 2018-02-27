@@ -682,7 +682,7 @@ Place this snippet between the <head> and </head> tags on every page of your sit
         beforeSubmit: function (formData, jqForm, options) {
           var queryString = $.param(formData);
           console.log(queryString);
-
+          $('#send_code').prop('disabled', true);
           // Любая попытка регистрации промо-кода
           gtag('event', 'conversion', {
             'allow_custom_scripts': true,
@@ -693,6 +693,7 @@ Place this snippet between the <head> and </head> tags on every page of your sit
           return true;
         },
         success: function (responseText, statusText, xhr, $form) {
+          $('#send_code').prop('disabled', false);
           console.log('status: ' + statusText + '\n\nresponseText: \n' + responseText);
           if (responseText.status === 200) {
             eL('PromoCode', 'ValidPromoCode', $('input[name=code]').val());
