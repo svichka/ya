@@ -228,6 +228,10 @@
     .modal-dialog {
         margin-top : 45px;
     }
+    .winners-p-block .week-cell {
+        word-break: break-word;
+        padding: 9px 12px;
+    }
     .faq-item {
         margin-bottom: 11px;
     }
