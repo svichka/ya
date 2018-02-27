@@ -173,7 +173,10 @@
           {
             throw new NotCorrectDataException('Введите емейл');
           }
-          
+          if ($formData->ismale == '')
+          {
+            throw new NotCorrectDataException("Не указан пол");
+          }
           if ($form->get('password')->getData() != $form->get('confirm_password')->getData())
           {
             throw new NotCorrectDataException('Confirm password does not match the password');

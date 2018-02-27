@@ -39,6 +39,7 @@
         ->add('ismale', ChoiceType::class, [
           'expanded'    => true,
           'multiple'    => false,
+          'required'    => true,
           'placeholder' => 'Пол',
           'label'       => 'Пол*',
           'choices'     => [
@@ -46,8 +47,8 @@
             'Y' => "М",
           ],
         ])
-        ->add('isageagreed', CheckboxType::class, ['required' => false, 'value' => 'Y', 'label' => 'Я подтверждаю, что мне исполнилось 18 лет на момент участия в Акции', 'attr' => ['class' => 'form__checkbox']])
-        ->add('ispdagreed', CheckboxType::class, ['required' => false, 'value' => 'Y', 'label' => 'Я согласен с правилами Акции и пользовательским
+        ->add('isageagreed', CheckboxType::class, ['required' => true , 'value' => 'Y', 'label' => 'Я подтверждаю, что мне исполнилось 18 лет на момент участия в Акции', 'attr' => ['class' => 'form__checkbox']])
+        ->add('ispdagreed', CheckboxType::class, ['required' => true, 'value' => 'Y', 'label' => 'Я согласен с правилами Акции и пользовательским
 соглашением, а также на обработку моих данных', 'attr' => ['class' => 'form__checkbox']]);
       
       $builder->addEventListener(FormEvents::PRE_SET_DATA, [$this, 'callbackGeoFields']);
