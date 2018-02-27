@@ -718,7 +718,7 @@ h1.static-title.static-title-lg {
     display: inline-block;
 }
 .personal-info-wrap {
-    margin-bottom: 36px;
+    margin-bottom: 17px;
 }
 .code-upload-wrap {
     margin-top: 31px;
@@ -950,6 +950,10 @@ button[disabled] {
 @media screen and (min-width : 1200px){
     body.modal-open {
         padding-right : 0 !important;
+    }
+    .code-upload-wrap {
+        margin-top: 17px;
+        margin-left: -25.8333333%;
     }
 }
 @media screen and (min-width: 768px) { 
