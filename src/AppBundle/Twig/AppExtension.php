@@ -32,21 +32,27 @@
       {
         case "dream":
           return "И участие в программе «Успеть за 24 часа»!";
+          
         case "certificate_lenina":
         case "moda_lenina_weekly":
           return "Сертификат 3000";
+          
         case "certificate_yves_rocher":
         case "moda_yves_rocher_weekly":
-          return "Сертификат 4000";
+          return "Сертификат 3000";
+          
         case "certificate_lamoda":
         case "moda_lamoda_weekly":
-          return "Сертификат 3000";
+          return "Сертификат 4000";
+          
         case "code_lenina":
         case "moda_lenina_guaranteed":
           return "Скидка 30%";
+          
         case "code_yves_rocher":
         case "moda_yves_rocher_guaranteed":
           return "Скидка 500р";
+          
         case "code_lamoda":
         case "moda_lamoda_guaranteed":
           return "Скидка 600р";
