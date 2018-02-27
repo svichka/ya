@@ -328,6 +328,7 @@
 //      $slugs = ["moda_dream"];
       $code = $request->request->get('code', $request->get('code', null));
       $code = str_replace("-", "", $code);
+      $code = str_replace(" ", "", $code);
       
       $guaranteed = $request->request->get('prize-guaranteed', $request->get('prize-guaranteed', null));
       $weekly = $request->request->get('prize-weekly', $request->get('prize-weekly', null));

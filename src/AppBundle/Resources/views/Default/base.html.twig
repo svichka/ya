@@ -28,6 +28,10 @@
         width: 100%;
         color: red;
       }
+
+      .code-code-code {
+        text-transform: uppercase;
+      }
     </style>
   {% endblock %}
   <script>
@@ -52,18 +56,28 @@ Place this snippet between the <head> and </head> tags on every page of your sit
   </script>
   <!-- End of global snippet: Please do not remove -->
   <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-TPF753F');</script>
+  <script>(function (w, d, s, l, i) {
+      w[ l ] = w[ l ] || [];
+      w[ l ].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js',
+      });
+      var f = d.getElementsByTagName(s)[ 0 ],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+      j.async = true;
+      j.src =
+        'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+      f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-TPF753F');</script>
   <!-- End Google Tag Manager -->
 
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TPF753F"
-                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<noscript>
+  <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TPF753F"
+          height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
 <!-- End Google Tag Manager (noscript) -->
 {% set route = app.request.attributes.get('_route') %}
 <div class="full-screen container-mp">
@@ -138,7 +152,8 @@ Place this snippet between the <head> and </head> tags on every page of your sit
   <footer class='page_footer text-center up'>
     <div class="page-footer-bg">
       <a href="{{ asset('files/rules.pdf') }}" class='up' onclick="eA('InteractionDoc','Rules')">Правила акции</a> |
-      <a href="{{ asset('files/privacy.pdf') }}" class='up' onclick="eA('InteractionDoc','Privacy')">Пользовательское соглашение</a>
+      <a href="{{ asset('files/privacy.pdf') }}" class='up' onclick="eA('InteractionDoc','Privacy')">Пользовательское
+        соглашение</a>
       <div class="">© ВСЕ ПРАВА ЗАЩИЩЕНЫ</div>
     </div>
   </footer>
@@ -172,17 +187,18 @@ Place this snippet between the <head> and </head> tags on every page of your sit
                   <div class="col-sm-8 prize-select-block">
                     <div class="img-choise-prize" style="background-image: url({{ asset('images/yr.png') }})"></div>
                     <span class='prize-select-wrapper'>
-                        <input type="radio" name="prize-guaranteed" id="prize-garant-yr" title="prize-garant-yr" disabled
+                        <input type="radio" name="prize-guaranteed" id="prize-garant-yr" title="prize-garant-yr"
+                               disabled
                                value="yr">
                         <img src="{{ asset('images/t.png') }}" alt="">
                         <img src="{{ asset('images/t1.png') }}" alt="">
-                    </span>  
+                    </span>
                   </div>
                   <div class="col-sm-8 prize-select-block">
                     <div class="img-choise-prize" style="background-image: url({{ asset('images/lamoda.png') }})"></div>
                     <span class='prize-select-wrapper'>
                         <input type="radio" name="prize-guaranteed" id="prize-garant-lamoda" title="prize-garant-lamoda"
-                           disabled value="lamoda">
+                               disabled value="lamoda">
                         <img src="{{ asset('images/t.png') }}" alt="">
                         <img src="{{ asset('images/t1.png') }}" alt="">
                     </span>
@@ -190,8 +206,9 @@ Place this snippet between the <head> and </head> tags on every page of your sit
                   <div class="col-sm-8 prize-select-block">
                     <div class="img-choise-prize" style="background-image: url({{ asset('images/ll.png') }})"></div>
                     <span class='prize-select-wrapper'>
-                        <input type="radio" name="prize-guaranteed" id="prize-garant-ll" title="prize-garant-ll" disabled
-                           value="ll">
+                        <input type="radio" name="prize-guaranteed" id="prize-garant-ll" title="prize-garant-ll"
+                               disabled
+                               value="ll">
                         <img src="{{ asset('images/t.png') }}" alt="">
                         <img src="{{ asset('images/t1.png') }}" alt="">
                     </span>
@@ -241,7 +258,8 @@ Place this snippet between the <head> and </head> tags on every page of your sit
                     <div class="col-sm-6"></div>
                     <div class="col-sm-7">
                       <div class="form-block">
-                        <input type="text" class='text-center modal-custum-input' name="code" placeholder="Введите код">
+                        <input type="text" class='text-center modal-custum-input code-code-code' name="code"
+                               placeholder="Введите код">
                       </div>
                     </div>
                     <div class="col-sm-1"></div>
@@ -691,7 +709,7 @@ Place this snippet between the <head> and </head> tags on every page of your sit
                   'allow_custom_scripts': true,
                   'send_to': 'DC-6274508/ya_ju0/ya_ju004+standard',
                 });
-                eL('SelectSuccess','PromoCodeValidDone','SelectLamodaDaily');
+                eL('SelectSuccess', 'PromoCodeValidDone', 'SelectLamodaDaily');
                 break;
               case '{{ asset('images/yr.png') }}':
                 // Успешный ввод кода – ИвРоше – ежедневный приз
@@ -699,7 +717,7 @@ Place this snippet between the <head> and </head> tags on every page of your sit
                   'allow_custom_scripts': true,
                   'send_to': 'DC-6274508/ya_ju0/ya_ju006+standard',
                 });
-                eL('SelectSuccess','PromoCodeValidDone','SelectRosheDaily');
+                eL('SelectSuccess', 'PromoCodeValidDone', 'SelectRosheDaily');
                 break;
               case '{{ asset('images/ll.png') }}':
                 // Успешный ввод кода – Лена Ленина – ежедневный приз
@@ -707,7 +725,7 @@ Place this snippet between the <head> and </head> tags on every page of your sit
                   'allow_custom_scripts': true,
                   'send_to': 'DC-6274508/ya_ju0/ya_ju008+standard',
                 });
-                eL('SelectSuccess','PromoCodeValidDone','SelectLenaLeninaDaily');
+                eL('SelectSuccess', 'PromoCodeValidDone', 'SelectLenaLeninaDaily');
                 break;
             }
 
@@ -719,7 +737,7 @@ Place this snippet between the <head> and </head> tags on every page of your sit
                   'allow_custom_scripts': true,
                   'send_to': 'DC-6274508/ya_ju0/ya_ju005+standard',
                 });
-                eL('SelectSuccess','PromoCodeValidDone','SelectLamodaWeekly');
+                eL('SelectSuccess', 'PromoCodeValidDone', 'SelectLamodaWeekly');
                 break;
               case '{{ asset('images/yr.png') }}':
                 // Успешный ввод кода – ИвРоше – еженедельный приз
@@ -727,7 +745,7 @@ Place this snippet between the <head> and </head> tags on every page of your sit
                   'allow_custom_scripts': true,
                   'send_to': 'DC-6274508/ya_ju0/ya_ju007+standard',
                 });
-                eL('SelectSuccess','PromoCodeValidDone','SelectRosheWeekly');
+                eL('SelectSuccess', 'PromoCodeValidDone', 'SelectRosheWeekly');
                 break;
               case '{{ asset('images/ll.png') }}':
                 // Успешный ввод кода – Лена Ленина – еженедельный приз
@@ -735,7 +753,7 @@ Place this snippet between the <head> and </head> tags on every page of your sit
                   'allow_custom_scripts': true,
                   'send_to': 'DC-6274508/ya_ju0/ya_ju009+standard',
                 });
-                eL('SelectSuccess','PromoCodeValidDone','SelectLenaLeninaWeekly');
+                eL('SelectSuccess', 'PromoCodeValidDone', 'SelectLenaLeninaWeekly');
                 break;
             }
             $('input[name=code]').val('');
@@ -783,7 +801,7 @@ Place this snippet between the <head> and </head> tags on every page of your sit
           'B': { pattern: /[a-zA-Z0-9]/ },
         },
       };
-      $('input[name=code]').mask("BBBB-BBBA", custom_options);
+      $('input[name=code]').mask("BBBB BBBA", custom_options);
       console.log('uploadModal');
       console.log(e.target.id);
       if (e.target.id === "uploadModal") {
