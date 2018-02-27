@@ -71,7 +71,7 @@
                   <div class="week-cell">Гарантированный приз</div>
                   <div class="week-cell">Еженедельный приз</div>
                 </div>
-                {% for promocode in promocodes[i]|reverse %}
+                {% for promocode in promocodes[i] %}
                   <div class="week-row">
                     <div class="week-cell">{{ promocode.code }}</div>
                     <div class="week-cell">{{ promocode.date|date('d.m.Y') }}</div>

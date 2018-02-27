@@ -269,9 +269,30 @@
             ];
           }
         }
+  
+        usort($all_promocodes["Неделя " . $i], [$this, "cmp_promocodes"]);
       }
       
       return ['weeks' => $tmp_weeks, 'promocodes' => $all_promocodes];
+    }
+  
+    /* Это статическая функция сравнения: */
+    /**
+     * @param $a
+     * @param $b
+     *
+     * @return int
+     */
+    static function cmp_promocodes($a, $b)
+    {
+      $al = $a['date'];
+      $bl = $b['date'];
+      if ($al == $bl)
+      {
+        return 0;
+      }
+    
+      return ($al < $bl) ? +1 : -1;
     }
     
     private function makeErrorsFromFields($fields)
