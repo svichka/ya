@@ -78,8 +78,9 @@
 	}
 
 	.static-prize-img.static-prize-img-s {
-		background-size: 119px;
-	}
+        background-size: 136px;
+        background-position: center;
+    }
 
 	.static-prize-row img {
 		width: 90px;
