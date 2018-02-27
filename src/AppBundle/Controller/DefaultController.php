@@ -263,7 +263,7 @@
           catch (ApiFailedException $e)
           {
             $this->get('logger')->error("ApiFailedException");
-            $this->get('logger')->error(print_r($e->getFields()));
+            $this->get('logger')->error(print_r($e->getFields(), true));
             $this->get('logger')->error($e->getCode());
             throw new NotCorrectDataException("Ошибка связи с бандлом");
           }
