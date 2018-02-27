@@ -55,8 +55,8 @@ $(function() {
         el.toggle();
         $('.faq-body').not(el).hide();
         //$(".js-faq-wrapper").scrollbar("resize");
-        if ($('.faq-title').length == $('.faq-title').index($(this))) {
-            $(".js-faq-wrapper").scrollbar("scroll", 1000000)
+        if (($('.faq-title').length -1 )== $('.faq-title').index($(this))) {
+            $(".js-faq-wrapper").scrollbar("scroll", 1000000);            
         }
     })
 
