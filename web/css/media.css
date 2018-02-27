@@ -353,6 +353,12 @@
     .file-input-wrap {
         max-width: 100%;
     }
+    .img-p-l +div + div.col-lg-6.col-sm-8 .static-prize-post-price {
+        width: 60px;
+        text-align: left;
+        margin: 0 auto;
+        font-size: 9px;
+    }
     .static-prize-row img {
         width: 65px;
         margin-bottom: 6px;
