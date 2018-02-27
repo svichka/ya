@@ -169,6 +169,10 @@
 //          {
 //            throw new NotCorrectDataException('Success recaptcha');
 //          }
+          if (!$this->validateEmail($formData->email, "Введите емейл"))
+          {
+            throw new NotCorrectDataException('Введите емейл');
+          }
           
           if ($form->get('password')->getData() != $form->get('confirm_password')->getData())
           {
@@ -315,19 +319,18 @@
       $this->valid = true;
       
       $formData->email = $registration_form['email'];
-      
-      $emailConstraint = new EmailConstraint();
-      $emailConstraint->message = 'Введите емейл';
-      
-      $errors = $this->get('validator')->validateValue(
-        $formData->email,
-        $emailConstraint
-      );
-      if (count($errors) > 0)
-      {
-        $this->errors[] = $errors;
-        $this->valid = false;
-      }
+      $this->validateEmail($formData->email, "Введите емейл");
+//      $emailConstraint = new EmailConstraint();
+//      $emailConstraint->message = 'Введите емейл';
+//      $errors = $this->get('validator')->validateValue(
+//        $formData->email,
+//        $emailConstraint
+//      );
+//      if (count($errors) > 0)
+//      {
+//        $this->errors[] = $errors;
+//        $this->valid = false;
+//      }
       $formData->firstname = $registration_form['firstname'];
       $this->validate($formData->firstname, "Введите имя");
       $formData->lastname = $registration_form['lastname'];
@@ -417,6 +420,34 @@
         $this->errors[] = $err;
         $this->valid = false;
       }
+    }
+    
+    /**
+     * @Route("/te/{email}/{err}/", name="te_page")
+     */
+    public function validateEmail($email, $err)
+    {
+      $this->get('logger')->debug("Email: $email");
+      $r = '/^(?!(?:(?:\"?\[ -~]\"?)|(?:\"?[^\\"]\"?)){255,})(?!(?:(?:\"?\[ -~]\"?)|(?:\"?[^\\"]\"?)){65,}@)(?:(?:[!#-\'*+-\/-9=?^-~]+)|(?:\"(?:[-\b\v\f-!#-[]-]|(?:\[ -]))*\"))(?:\.(?:(?:[!#-\'*+-\/-9=?^-~]+)|(?:\"(?:[-\b\v\f-!#-[]-]|(?:\[ -]))*\")))*@(?:(?:(?!.*[^.]{64,})(?:(?:(?:xn--)?[a-z0-9]+(?:-[a-z0-9]+)*\.){1,126}){1,}(?:(?:[a-z][a-z0-9]*)|(?:(?:xn--)[a-z0-9]+))(?:-[a-z0-9]+)*)|(?:\[(?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){7})|(?:(?!(?:.*[a-f0-9][:\]]){7,})(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?::(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?)))|(?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){5}:)|(?:(?!(?:.*[a-f0-9]:){5,})(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,3})?::(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,3}:)?)))?(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))(?:\.(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))){3}))\]))$/iD';
+      if (filter_var($email, FILTER_VALIDATE_EMAIL))
+      {
+        if (preg_match($r, $email) === false)
+        {
+          $this->get('logger')->debug("Email: FALSE");
+          $this->errors[] = $err;
+          $this->valid = false;
+          
+          return false;
+        }
+        else
+        {
+          $this->get('logger')->debug("Email: MATCH");
+          
+          return true;
+        }
+      }
+      
+      return false;
     }
     
     private function getErrorMessages(\Symfony\Component\Form\Form $form)

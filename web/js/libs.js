@@ -1,7 +1,7 @@
 function Ru(obj) {
   if (obj.value.search(/[^а-яё\-]/ig) >= 0) {
     $(obj).parent().find('.form__text-error').text("Только кирилица");
-  }else {
+  } else {
     $(obj).parent().find('.form__text-error').text("");
   }
   obj.value = obj.value.replace(/[^а-яё\-]/ig, '');
@@ -10,7 +10,7 @@ function Ru(obj) {
 function Pass(obj) {
   if (obj.value.search(/[^a-zA-Z1-90]/ig) >= 0) {
     $(obj).parent().find('.form__text-error').text("Только латиница и числа");
-  }else {
+  } else {
     $(obj).parent().find('.form__text-error').text("");
   }
   obj.value = obj.value.replace(/[^a-zA-Z1-90]/ig, '');
@@ -26,4 +26,11 @@ function _calculateAge(birthday) { // birthday is a date
   var ageDifMs = Date.now() - birthday.getTime();
   var ageDate = new Date(ageDifMs); // miliseconds from epoch
   return Math.abs(ageDate.getUTCFullYear() - 1970);
+}
+
+function ValidateEmail(mail) {
+  if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
+    return true;
+  }
+  return false;
 }
