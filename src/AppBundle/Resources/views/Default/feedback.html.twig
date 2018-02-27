@@ -45,6 +45,26 @@
             </div>
           </div>
         </div>
+        {% if(is_granted('ROLE_USER')) %}
+        <div class="row">
+        	<div class="col-sm-12 media-checkbox">
+        		<div class="media-checkbox">
+        			{{ form_row(form.agree) }}
+        		</div>
+        	</div>
+        	<div class="col-sm-12">
+        		<div class="upload-line form-block">
+        			<div class="file-input-wrap js-file-wrapper">
+        				{{ form_widget(form.file, { 'id': 'file', 'attr': {'class': 'js-file-input'}}) }}
+        
+        				<span class="js-file-input-value">прикрепите файл</span>
+        				<sup>*</sup>
+        			</div>
+        			<div style="font-size: 10px;"><sup>*</sup>Формат - jpg, размер - до 3МБ</div>
+        		</div>
+        	</div>
+        </div>
+        {% else %}
         <div class="upload-line form-block">
           <div class="file-input-wrap js-file-wrapper">
             {{ form_widget(form.file, { 'id': 'file', 'attr': {'class': 'js-file-input'}}) }}
@@ -64,6 +84,8 @@
             {{ form_row(form.agree) }}
           </div>
         </div>
+        {% endif %}
+        
         <div class="form-btn text-center">
           <button class='gradient-btn'>Отправить</button>
         </div>
