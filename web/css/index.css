@@ -534,7 +534,8 @@ h1.static-title.static-title-lg {
     height: 2px;
 }
 .static-prize-img.static-prize-img-s {
-    background-size: 183px;
+    background-size: 180px;
+    background-position: center -6px;
 }
 .static-prize-price span {
     color: #fff;
