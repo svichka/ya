@@ -353,6 +353,13 @@
     .file-input-wrap {
         max-width: 100%;
     }
+    .static-prize-row img {
+        width: 65px;
+        margin-bottom: 6px;
+    }
+    .static-prize-title-av, .static-prize-title-av * {
+        line-height: 21px;
+    }
     .week-table .week-row:first-child .week-cell {
         width: 50%;
         word-spacing: 240px;
@@ -395,7 +402,7 @@
         display: inline-block;
         width: 120px;
         vertical-align: middle;
-        height: 107px;
+        height: 78px;
         background-size: 100px !important;
         background-position-x: right;
     }
@@ -424,7 +431,9 @@
         margin-bottom: 0;
     }
     .static-prize-text {
-        font-size: 14px;
+        margin-top: 6px;
+        padding-top: 1px;
+        font-size: 12px;
     }
     .static-prize-text {
         margin-top: 13px;
@@ -704,7 +713,7 @@
 	}
 	.static-prize-blocks {
         width: 100%;
-        margin: 40px auto 0;
+        margin: 20px auto 0;
         max-width: 420px;
     }
 
@@ -720,7 +729,7 @@
 	}
 
 	.static-prize-img {
-        height: 12px;
+        height: 3px;
         background-size: 0 !important;
     }
 
@@ -743,9 +752,12 @@
 		padding-right: 10px;
 	}
 	.static-prize-img.static-prize-img-r {
-		background-size: 99px !important;
-		background-position-x: right;
-	}
+        background-size: 90px !important;
+        background-position: right top;
+    }
+    .static-prize-text:before {
+        height: 1px;
+    }
 	.form-block input , .form-block select {
 		width: 100%;
 		border-radius: 9px;
