@@ -18,15 +18,7 @@ $(function() {
             'padding-right': '0'
         });
     }) 
-    if ($.fn.datetimepicker) {
-        $('.js-date').datetimepicker({
-            timepicker: false,
-            format: 'd.m.Y',
-            lang: 'ru',
-            closeOnDateSelect:true,
-            maxDate:0
-        });
-    }
+
     $('.js-week-title').click(function() {
         $(this).next('.js-toggle-table').toggle().find('.js-week-table-scroll').scrollbar("resize");;
         var toggler = $(this).find('.week-toggler');        

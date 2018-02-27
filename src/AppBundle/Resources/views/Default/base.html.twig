@@ -613,6 +613,16 @@ Place this snippet between the <head> and </head> tags on every page of your sit
   <script src="{{ asset('js/js.cookie-2.2.0.min.js') }}"></script>
   <script src="{{ asset('js/libs.js') }}?{{ content_version }}"></script>
   <script>
+    $('.js-date').datetimepicker({
+      timepicker: false,
+      format: 'd.m.Y',
+      lang: 'ru',
+      maxDate: '{{ "now"|date_modify("-18 year")|date("Y/m/d") }}',
+      defaultDate: '{{ "now"|date_modify("-18 year")|date("Y/m/d") }}',
+      closeOnDateSelect: true,
+    });
+  </script>
+  <script>
     // Depend of JQuery
     function gaSend(options) {
       var defaults = {
