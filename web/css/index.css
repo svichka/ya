@@ -617,7 +617,7 @@ h1.static-title.static-title-lg {
 .date-input:-ms-input-placeholder      {font-family: 'Conv_agavalanchec'; text-transform: none; font-size: 16px; color: #0d2007; font-weight: bold;}
 .date-input::-ms-input-placeholder      {font-family: 'Conv_agavalanchec'; text-transform: none; font-size: 16px; color: #0d2007; font-weight: bold;}
 .week-item * {
-    font-family: 'Conv_agavalanchec-bold';
+    font-family: 'Conv_agavalanchec-bold' , sans-serif;
 }
 .week-title {
     position: relative;
