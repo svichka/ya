@@ -18,6 +18,7 @@
         new \Twig_SimpleFilter('prize_image', [$this, 'prizeImageFilter']),
         new \Twig_SimpleFilter('agpf', [$this, 'prizeAGImageFilter']),
         new \Twig_SimpleFilter('awpf', [$this, 'prizeAWImageFilter']),
+        new \Twig_SimpleFilter('public_email', [$this, 'emailFilter']),
       ];
     }
     
@@ -32,32 +33,32 @@
       {
         case "dream":
           return "И участие в программе «Успеть за 24 часа»!";
-          
+        
         case "certificate_lenina":
         case "moda_lenina_weekly":
           return "Сертификат 3000";
-          
+        
         case "certificate_yves_rocher":
         case "moda_yves_rocher_weekly":
           return "Сертификат 3000";
-          
+        
         case "certificate_lamoda":
         case "moda_lamoda_weekly":
           return "Сертификат 4000";
-          
+        
         case "code_lenina":
         case "moda_lenina_guaranteed":
           return "Скидка 30%";
-          
+        
         case "code_yves_rocher":
         case "moda_yves_rocher_guaranteed":
           return "Скидка 500р";
-          
+        
         case "code_lamoda":
         case "moda_lamoda_guaranteed":
           return "Скидка 600р";
       }
-  
+      
       return $prize;
     }
     
@@ -83,7 +84,7 @@
       
       return $prize;
     }
-  
+    
     public function prizeAGImageFilter($prize)
     {
       switch ($prize)
@@ -95,10 +96,10 @@
         case "lamoda":
           return "Ламода: Скидка 600р";
       }
-    
+      
       return $prize;
     }
-  
+    
     public function prizeAWImageFilter($prize)
     {
       switch ($prize)
@@ -110,7 +111,30 @@
         case "lamoda":
           return "Ламода: Сертификат 3000Р";
       }
-    
+      
       return $prize;
+    }
+    
+    public function emailFilter($email)
+    {
+      $pos = strpos($email, '@');
+      if ($pos === false)
+      {
+        return $email;
+      }
+      if ($pos > 3)
+      {
+        $t = "";
+        for ($i = 3; $i <= $pos; $i++)
+        {
+          $t .= "*";
+        }
+        
+        return substr($email, 0, 2) . $t . substr($email, $pos);
+      }
+      else
+      {
+        return substr($email, 0, 1) . "*" . substr($email, $pos);
+      }
     }
   }

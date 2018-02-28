@@ -56,7 +56,7 @@
                 {% for winner in value['winners'] %}
                   <div class="week-row" data-l="{{ winner['lottery_id'] }}">
                     <div class="week-cell">{{ winner['fio'] }}</div>
-                    <div class="week-cell">{{ winner['email'] }}</div>
+                    <div class="week-cell">{{ winner['email']|public_email }}</div>
                     <div class="week-cell">{{ winner['prize']|prize|raw }} ₽</div>
                     <div class="week-cell">
                       <img src={{ asset('images/' ~ winner['prize']|prize_image) }} alt="{{ winner['prize'] }}">
