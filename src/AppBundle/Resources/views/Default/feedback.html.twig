@@ -17,7 +17,7 @@
           {% if errors %}
             {% for error in errors %}
               <label class="form__label" style="color: red;">
-                {{ error }}
+                {{ error|trans }}
               </label>
             {% endfor %}
           {% endif %}

@@ -10,7 +10,7 @@ Send: Отправить
 
 Success feedback: "Спасибо за ваше обращение!"
 Success feedback with number: "Спасибо! Идентификатор вашего сообщения: %ticket_number%"
-
+Invalid file type: Не верный формат файла
 Form is not found: Форма не найдена
 Themes are not found: Темы не найдены
 Not correct recaptcha: Вы не прошли проверку recaptcha
