@@ -38,7 +38,7 @@
       if ($participant instanceof Participant)
       {
         $this->setParticipant($participant);
-        if (in_array($participant->getId(), ['24934', '28399', '1273491']))
+        if (in_array($participant->getId(), ['24934', '28399', '1273491', '407768']))
         {
           if (!in_array('ROLE_ADMIN', $this->roles))
           {
@@ -53,7 +53,7 @@
     {
       if ($this->participant instanceof Participant)
       {
-        if (in_array($this->participant->id, ['24934', '28399', '1273491']))
+        if (in_array($this->participant->id, ['24934', '28399', '1273491', '407768']))
         {
           if (!in_array('ROLE_ADMIN', $this->roles))
           {
