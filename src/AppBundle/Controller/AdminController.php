@@ -180,7 +180,7 @@
       $ret = $lAPI->runLottery($promo, $id);
       
       return $this->render('AppBundle:Admin:lottery_run.html.twig', [
-        'ret' => $ret,
+        'ret' => print_r($ret, true),
       ]);
     }
     
@@ -199,7 +199,7 @@
       $ret = $lAPI->commitLottery($promo, $id);
       
       return $this->render('AppBundle:Admin:lottery_commit.html.twig', [
-        'ret' => $ret,
+        'ret' => print_r($ret, true),
       ]);
     }
     
