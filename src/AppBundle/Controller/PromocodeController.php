@@ -332,7 +332,7 @@
       $code = strtoupper($code);
       
       $u = $this->getUser()->getParticipant()->id;
-      $this->get('logger')->info("User: $u\tCode: $code");
+      $this->get('logger')->error("User: $u\tCode: $code");
       
       $guaranteed = $request->request->get('prize-guaranteed', $request->get('prize-guaranteed', null));
       $weekly = $request->request->get('prize-weekly', $request->get('prize-weekly', null));
