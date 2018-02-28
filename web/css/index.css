@@ -308,6 +308,7 @@ input:focus , input:active , select:focus , select:active , textarea:focus , tex
     border: 1px solid #c5c53c;
     font-size: 16px;
     border-radius: 4px;
+    cursor: pointer;
 }
 .xdsoft_datepicker * {
     color: #000;
@@ -324,6 +325,7 @@ input:focus , input:active , select:focus , select:active , textarea:focus , tex
     background: rgba(15, 25, 7, 0.61);
     border: 1px solid #c5c53c;
     padding: 7px 10px;
+    cursor: pointer;
 }
 .checkbox-wrap input {
     opacity: 0;
@@ -463,6 +465,9 @@ h1.static-title.static-title-lg {
     font-family: 'Conv_agavalanchec-bold';
     text-transform: uppercase;
     font-size: 18px;
+        cursor: pointer;
+    z-index: 99;
+    position: relative;
 }
 
 .file-input-wrap input {
