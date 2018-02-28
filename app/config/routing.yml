@@ -6,5 +6,5 @@
 app:
     resource: '@AppBundle/Controller/'
     type: annotation
-    schemes:  [https, http]
+    schemes:  ['%httpProtocol%']
 

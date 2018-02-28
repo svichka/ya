@@ -90,7 +90,7 @@
     {
       
       $data = [];
-      if (!$this->get('security.context')->isGranted('ROLE_USER'))
+      if (!$this->get('security.authorization_checker')->isGranted('ROLE_USER'))
       {
         $data[] = "Not logged in";
       }

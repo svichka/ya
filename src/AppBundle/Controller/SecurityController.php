@@ -16,9 +16,23 @@
      */
     public function loginAction(Request $request)
     {
+      $recaptcha = $this->container->get('app.recaptcha');
+      if (!$recaptcha->isSuccess($request))
+      {
+        $this->get('logger')->error('recaptcha error');
+        $error = ['messageKey' => 'Каптча не заполнена', 'messageData' => []];
+        
+        return $this->render('AppBundle:Default:login.html.twig', [
+          'last_username' => $request->request->get('_username'),
+          'error'         => $error,
+          'code'          => '',
+        ]);
+      }
+      
       $authenticationUtils = $this->get('security.authentication_utils');
       $error = $authenticationUtils->getLastAuthenticationError();
       $lastUsername = $authenticationUtils->getLastUsername();
+      
       
       $user = $this->getUser();
       if ($user)
@@ -79,7 +93,7 @@
             
             return $this->redirectToRoute('personal_page');
           }
-          $this->container->get('security.context')->setToken(null);
+          $this->container->get('security.token_storage')->setToken(null);
         }
       }
       $restore = $request->get("code", false);
@@ -140,7 +154,7 @@
             $url = $this->generateUrl('activation_request_page', ['login' => $user->getUsername()]);
             $error = ['messageKey' => "Емейл не активирован, <a href='$url' style='display: block;font-family: IntroBookItalic, sans-serif;color: #FFF;text-decoration: underline;font-size: 14px;'>запросить ссылку активации</a>", 'messageData' => []];
           }
-          $this->container->get('security.context')->setToken(null);
+          $this->container->get('security.token_storage')->setToken(null);
         }
       }
       else
@@ -162,7 +176,7 @@
      */
     public function logoutAction(Request $request)
     {
-      $this->container->get('security.context')->setToken(null);
+      $this->container->get('security.token_storage')->setToken(null);
       
       return $this->redirectToRoute('index_page');
     }
