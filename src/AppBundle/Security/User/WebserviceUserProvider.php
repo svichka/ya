@@ -24,7 +24,7 @@
      */
     protected $logger;
     private $recaptcha;
-  
+    
     public function loadUserByUsername($username)
     {
       $this->logger->info("Login");
@@ -44,7 +44,7 @@
         return new WebserviceUser($username, '', '', ['ROLE_USER']);
       }
       $this->logger->info("Login by Password");
-      
+
 //      if (!$this->recaptcha->isSuccess($request))
 //      {
 //        $this->logger->error('recaptcha error');
