@@ -13,7 +13,7 @@
           <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
           <div class="form-block">
             {% if error %}
-              <label for="">{{ error.messageKey|trans(error.messageData) }}</label>
+              <label for="" style="color:red">{{ error.messageKey|trans(error.messageData) }}</label>
             {% endif %}
           </div>
           <div class="form-block">
