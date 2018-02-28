@@ -1,3 +1,8 @@
+span.js-code:after {
+    content: 'Подробная инструкция по использованию промокода отправлена вам на почту';
+    display: block;
+    font-size: 11px;
+}
 @media (max-width:1430px){
 	.header-logo img {
 		width: 216px;
