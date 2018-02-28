@@ -16,24 +16,21 @@
      */
     public function loginAction(Request $request)
     {
-      $recaptcha = $this->container->get('app.recaptcha');
-      if (!$recaptcha->isSuccess($request))
-      {
-        $this->get('logger')->error('recaptcha error');
-        $error = ['messageKey' => 'Каптча не заполнена', 'messageData' => []];
-        
-        return $this->render('AppBundle:Default:login.html.twig', [
-          'last_username' => $request->request->get('_username'),
-          'error'         => $error,
-          'code'          => '',
-        ]);
-      }
+      $this->get('logger')->error($request->get('_username'));
+      $this->get('logger')->error($request->get('g-recaptcha-response'));
       
       $authenticationUtils = $this->get('security.authentication_utils');
       $error = $authenticationUtils->getLastAuthenticationError();
       $lastUsername = $authenticationUtils->getLastUsername();
-      
-      
+
+//      $recaptcha = $this->container->get('app.recaptcha');
+//      if (!$recaptcha->isSuccess($request))
+//      {
+//        $this->get('logger')->error('recaptcha error');
+//        $error = ['messageKey' => 'Каптча не заполнена', 'messageData' => []];
+//      }
+//      else
+//      {
       $user = $this->getUser();
       if ($user)
       {
@@ -70,13 +67,13 @@
             }
             catch (\Exception $e)
             {
-            
+              
             }
           }
           else
           {
             $this->addFlash('login', 'ok');
-  
+            
             $u = $this->getDoctrine()->getRepository('AppBundle:User')->find($user->getParticipant()->id);
             if ($u == null)
             {
@@ -96,6 +93,7 @@
           $this->container->get('security.token_storage')->setToken(null);
         }
       }
+//      }
       $restore = $request->get("code", false);
       
       return $this->render('AppBundle:Default:login.html.twig', [

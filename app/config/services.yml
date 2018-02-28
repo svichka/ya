@@ -6,7 +6,7 @@ parameters:
 services:
     app.webservice_user_provider:
         class: AppBundle\Security\User\WebserviceUserProvider
-        arguments: [@monolog.logger]
+        arguments: ['@monolog.logger', '@app.recaptcha']
     app.recaptcha:
         class: AppBundle\Service\RecaptchaService
         arguments: ['@service_container']

@@ -2,7 +2,9 @@
   
   namespace AppBundle\Security\User;
   
+  use AppBundle\Exception\RecaptchaException;
   use AppBundle\Security\User\WebserviceUser;
+  use AppBundle\Service\RecaptchaService;
   use Dalee\PEPUWSClientBundle\Controller\ParticipantApiController;
   use Dalee\PEPUWSClientBundle\Exception\NotCorrectDataException;
   use Dalee\PEPUWSClientBundle\Exception\UserIsNotActiveException;
@@ -21,7 +23,8 @@
      * @var \Psr\Log\LoggerInterface
      */
     protected $logger;
-    
+    private $recaptcha;
+  
     public function loadUserByUsername($username)
     {
       $this->logger->info("Login");
@@ -41,6 +44,14 @@
         return new WebserviceUser($username, '', '', ['ROLE_USER']);
       }
       $this->logger->info("Login by Password");
+      
+//      if (!$this->recaptcha->isSuccess($request))
+//      {
+//        $this->logger->error('recaptcha error');
+//        $error = ['messageKey' => 'Каптча не заполнена', 'messageData' => []];
+//
+//        throw new RecaptchaException();
+//      }
       $participantApi = new ParticipantApiController();
       try
       {
@@ -93,9 +104,10 @@
       return new WebserviceUser($participant->getEmail(), $password, '', ['ROLE_USER'], $participant);
     }
     
-    public function __construct(LoggerInterface $logger)
+    public function __construct(LoggerInterface $logger, RecaptchaService $recaptcha)
     {
       $this->logger = $logger;
+      $this->recaptcha = $recaptcha;
     }
     
     public function refreshUser(UserInterface $user)
