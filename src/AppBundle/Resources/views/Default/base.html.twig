@@ -27,6 +27,8 @@
         display: inline-block;
         width: 100%;
         color: red;
+        font-size: 12pt;
+        padding-bottom: .2em;
       }
 
       .code-code-code {
@@ -151,8 +153,8 @@ Place this snippet between the <head> and </head> tags on every page of your sit
   {% block body %}{% endblock %}
   <footer class='page_footer text-center up'>
     <div class="page-footer-bg">
-      <a href="{{ asset('files/rules.pdf') }}" class='up' onclick="eA('InteractionDoc','Rules')">Правила акции</a> |
-      <a href="{{ asset('files/privacy.pdf') }}" class='up' onclick="eA('InteractionDoc','Privacy')">Пользовательское
+      <a href="{{ asset('files/rules.pdf') }}" class='up' onclick="eA('InteractionDoc','Rules')" target="_blank">Правила акции</a> |
+      <a href="{{ asset('files/privacy.pdf') }}" class='up' onclick="eA('InteractionDoc','Privacy')" target="_blank">Пользовательское
         соглашение</a>
       <div class="">© ВСЕ ПРАВА ЗАЩИЩЕНЫ</div>
     </div>
