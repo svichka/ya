@@ -745,12 +745,13 @@ h1.static-title.static-title-lg {
     background: #115713;
     font-size: 15px;
     padding: 6px 13px;
-    left: 0;
+    left: 50%;
     z-index: 10;
     box-shadow: 0px 0px 2px 0px #e8c61e;
     border-radius: 7px;
-    top: 104%;
+    top: 128%;
     display: none;
+    margin-left: -50px;
 }
 .modal-content {
     background: #0c2608;
