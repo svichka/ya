@@ -17,6 +17,20 @@
   class AdminController extends Base
   {
     /**
+     * @Route("/admin", name="admin_index")
+     * @param Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @throws HttpException
+     */
+    public function indexAction(Request $request)
+    {
+      $this->checkAccess();
+      
+      return $this->render('AppBundle:Admin:index.html.twig');
+    }
+    
+    /**
      * @Route("/admin/codes_all", name="admin_codes_all")
      * @param Request $request
      *
@@ -209,9 +223,9 @@
       {
         throw new HttpException(403, "Доступ запрещён");
       }
-//      if (!in_array('ROLE_ADMIN', $this->getUser()->getRoles()))
-//      {
-//        throw new HttpException(403, "Доступ запрещён");
-//      }
+      if (!in_array('ROLE_ADMIN', $this->getUser()->getRoles()))
+      {
+        throw new HttpException(403, "Доступ запрещён");
+      }
     }
   }
