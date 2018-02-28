@@ -345,6 +345,10 @@
     
     public function getRegion($guid)
     {
+      if ($guid == null)
+      {
+        return 'Регион не задан';
+      }
       $region = $this->getDoctrine()->getRepository('AppBundle:Region')->find($guid);
       
       return $region != null ? $region->getName() : 'Регион не задан';
@@ -352,6 +356,10 @@
     
     public function getCity($guid)
     {
+      if ($guid == null)
+      {
+        return 'Регион не задан';
+      }
       $city = $this->getDoctrine()->getRepository('AppBundle:City')->find($guid);
       
       return $city != null ? $city->getName() : 'Город не задан';
