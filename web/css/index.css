@@ -261,7 +261,7 @@ input:focus , input:active , select:focus , select:active , textarea:focus , tex
 }
 .faq-body {
     font-family: 'Conv_agavalanchec-bold';
-    font-size: 13px;
+    font-size: 15px;
     background: #040e0363;
     padding: 10px 25px;
     border: 1px solid #5e8238;
