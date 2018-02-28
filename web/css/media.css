@@ -154,7 +154,7 @@
 		font-size: 16px;
 	}
 
-	.static-prize-title-av {
+	.static-prize-title-av , .static-prize-title-av *{
 		font-size: 20px;
 	}
 
@@ -213,7 +213,7 @@
 	.header-menu li {
 		margin: 0 18px;
 	}
-	.static-prize-title-av {
+	.static-prize-title-av , .static-prize-title-av *{
 		font-size: 19px;
 	}
 	.media-checkbox .checkbox-title {
@@ -301,7 +301,7 @@
 		width: 97%;
 		height: 413px;
 	}
-	.static-prize-title-av {
+	.static-prize-title-av , .static-prize-title-av *{
         font-size: 17px;
     }
     .static-prize-price {
