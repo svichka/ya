@@ -196,14 +196,15 @@
       $this->checkAccess();
       $lAPI = new PromoLotteryApiController();
       
-      $ret = $lAPI->runLottery($promo, $id);
+      $ret = $lAPI->commitLottery($promo, $id);
       
       return $this->render('AppBundle:Admin:lottery_commit.html.twig', [
         'ret' => $ret,
       ]);
     }
-  
-    private function checkAccess() {
+    
+    private function checkAccess()
+    {
       if ($this->getUser() == null)
       {
         throw new HttpException(403, "Доступ запрещён");
