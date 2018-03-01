@@ -4,10 +4,40 @@
 {% set action =  banned_listener.getAction() %}
 {% set content_version = banned_listener.getAssetsVersion() %}
 {% set lottery_date = banned_listener.getLotteryDate() %}
+
+{% set page_description = "Рекламная акция «Мода - это «Я»" %}
+{% set page_name = "Мода это Я" %}
+{% set page_image =app.request.scheme ~'://' ~ app.request.httpHost ~ asset('images/logo.png') %}
+{% set page_url = url('index_page') %}
 <html lang="ru">
 <head>
   <meta charset="UTF-8"/>
   <title>{% block title %}{% endblock %}</title>
+  <meta name="description" content="{{ page_description }}" />
+
+  <!-- Schema.org markup for Google+ -->
+  <meta itemprop="name" content="{{ page_name }}">
+  <meta itemprop="description" content="{{ page_description }}">
+  <meta itemprop="image" content="{{ page_image }}">
+
+  <!-- Twitter Card data -->
+  <meta name="twitter:card" content="summary_large_image">
+  {#<meta name="twitter:site" content="@publisher_handle">#}
+  <meta name="twitter:title" content="{{ block('title') }}">
+  <meta name="twitter:description" content="{{ page_description }}">
+  {#<meta name="twitter:creator" content="@author_handle">#}
+  <!-- Twitter summary card with large image must be at least 280x150px -->
+  <meta name="twitter:image:src" content="{{ page_image }}">
+
+  <!-- Open Graph data -->
+  <meta property="og:locale" content="ru_RU"/>
+  <meta property="og:title" content="{{ block('title') }}" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="{{ page_url }}" />
+  <meta property="og:image" content="{{ page_image }}" />
+  <meta property="og:description" content="{{ page_description }}" />
+  <meta property="og:site_name" content="{{ page_name }}" />
+
   <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
   <meta name="viewport" content="width=device-width">
   {% block stylesheets %}
