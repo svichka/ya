@@ -325,6 +325,7 @@
     public function promocodeRegisterAction(Request $request)
     {
       $response = ['status' => 200];
+      $ch = new CodeHistory();
 //      $slugs = ["moda_dream"];
       $code = $request->request->get('code', $request->get('code', null));
       $code = str_replace("-", "", $code);
@@ -375,7 +376,7 @@
         return new JsonResponse($response);
       }
       
-      $ch = new CodeHistory();
+      
       $ch->setUser($this->getUser()->getParticipant()->id);
       $ch->setCode($code);
       $ch->setActivated(new \DateTime());
