@@ -13,9 +13,9 @@
 <head>
   <meta charset="UTF-8"/>
   <title>{% block title %}{% endblock %}</title>
-  <meta name="description" content="{{ page_description }}" />
-  <meta name="yandex-verification" content="b7d41817cc7ff644" />
-  <meta name="google-site-verification" content="9YEsJfys_y8MfYGGgfZeqQ1So08CkZuCLcWaEaK2J3M" />
+  <meta name="description" content="{{ page_description }}"/>
+  <meta name="yandex-verification" content="b7d41817cc7ff644"/>
+  <meta name="google-site-verification" content="9YEsJfys_y8MfYGGgfZeqQ1So08CkZuCLcWaEaK2J3M"/>
   <!-- Schema.org markup for Google+ -->
   <meta itemprop="name" content="{{ page_name }}">
   <meta itemprop="description" content="{{ page_description }}">
@@ -32,12 +32,12 @@
 
   <!-- Open Graph data -->
   <meta property="og:locale" content="ru_RU"/>
-  <meta property="og:title" content="{{ block('title') }}" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="{{ page_url }}" />
-  <meta property="og:image" content="{{ page_image }}" />
-  <meta property="og:description" content="{{ page_description }}" />
-  <meta property="og:site_name" content="{{ page_name }}" />
+  <meta property="og:title" content="{{ block('title') }}"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="{{ page_url }}"/>
+  <meta property="og:image" content="{{ page_image }}"/>
+  <meta property="og:description" content="{{ page_description }}"/>
+  <meta property="og:site_name" content="{{ page_name }}"/>
 
   <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
   <meta name="viewport" content="width=device-width">
@@ -184,7 +184,8 @@ Place this snippet between the <head> and </head> tags on every page of your sit
   {% block body %}{% endblock %}
   <footer class='page_footer text-center up'>
     <div class="page-footer-bg">
-      <a href="{{ asset('files/rules.pdf') }}" class='up' onclick="eA('InteractionDoc','Rules')" target="_blank">Правила акции</a> |
+      <a href="{{ asset('files/rules.pdf') }}" class='up' onclick="eA('InteractionDoc','Rules')" target="_blank">Правила
+        акции</a> |
       <a href="{{ asset('files/privacy.pdf') }}" class='up' onclick="eA('InteractionDoc','Privacy')" target="_blank">Пользовательское
         соглашение</a>
       <div class="">© ВСЕ ПРАВА ЗАЩИЩЕНЫ</div>
@@ -343,15 +344,17 @@ Place this snippet between the <head> and </head> tags on every page of your sit
       </div>
     </div>
 
-    <div class="modal fade" id="lenina" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+    <div class="modal fade" id="lenina" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                  aria-hidden="true">×</span></button>
           </div>
           <div class="modal-body">
             <div class="modal-static">
-              Уточняй наличие Студии <br> в твоем городе в <a href="{{ asset('files/rules.pdf') }}" target="_blank">Правилах Акции</a>
+              Уточняй наличие Студии <br> в твоем городе в <a href="{{ asset('files/rules.pdf') }}" target="_blank">Правилах
+                Акции</a>
             </div>
           </div>
         </div>
@@ -861,13 +864,51 @@ Place this snippet between the <head> and </head> tags on every page of your sit
 
   <script>
     $(document).on('shown.bs.modal', function (e) {
-      var custom_options = {
-        translation: {
-          'A': { pattern: /[a-zA-Z0-9]/, optional: true },
-          'B': { pattern: /[a-zA-Z0-9]/ },
-        },
-      };
-      $('input[name=code]').mask("BBBB BBBA", custom_options);
+      $('.code-code-code').keydown(function (e) {
+        // console.log('keydown');
+        // console.log(e.keyCode || e.charCode);
+        if (e.keyCode < 31) {
+          return;
+        }
+        e.preventDefault();
+      });
+      $('.code-code-code').keypress(function (e) {
+        // console.log('keydown');
+        // console.log(e.keyCode || e.charCode);
+        if (e.keyCode < 31) {
+          return;
+        }
+        e.preventDefault();
+      });
+      $('.code-code-code').keyup(function (e) {
+        // console.log(e.keyCode || e.charCode);
+        if (e.keyCode < 31) {
+          return;
+        }
+        e.preventDefault();
+        var val = $('.code-code-code').val();
+        val = val + String.fromCharCode(e.keyCode || e.charCode);
+        val = val.trim();
+        if (val.length === 4) {
+          val = val.substr(0, 4) + " " + val.substr(4);
+        } else if (val.length === 5) {
+          val = val.substr(0, 4) + " " + val.substr(4);
+        } else if (val.length > 5) {
+          val = val.substr(0, 4) + " " + val.substr(5);
+        }
+        if (val.length > 9) {
+          val = val.substr(0, 9);
+        }
+        $('.code-code-code').val(val);
+      });
+
+      // var custom_options = {
+      //   translation: {
+      //     'A': { pattern: /[a-zA-Z0-9]/, optional: true },
+      //     'B': { pattern: /[a-zA-Z0-9]/ },
+      //   },
+      // };
+      // $('input[name=code]').mask("BBBB BBBA", custom_options);
       console.log('uploadModal');
       console.log(e.target.id);
       if (e.target.id === "uploadModal") {
@@ -902,10 +943,10 @@ Place this snippet between the <head> and </head> tags on every page of your sit
     </script>
     {% elseif label == 'firstlogin' %}
     <!--
-Event snippet for Ya_juice // Все посетители сайта on https://promo.ya-juice.ru/: Please do not remove.
-Place this snippet on pages with events you’re tracking.
-Creation date: 02/02/2018
--->
+    Event snippet for Ya_juice // Все посетители сайта on https://promo.ya-juice.ru/: Please do not remove.
+    Place this snippet on pages with events you’re tracking.
+    Creation date: 02/02/2018
+    -->
     <script>
       gtag('event', 'conversion', {
         'allow_custom_scripts': true,
@@ -925,10 +966,10 @@ Creation date: 02/02/2018
     </script>
 
     <!--
-    Event snippet for Ya_juice // Успешная авторизация on https://promo.ya-juice.ru/: Please do not remove.
-    Place this snippet on pages with events you’re tracking.
-    Creation date: 02/01/2018
-    -->
+        Event snippet for Ya_juice // Успешная авторизация on https://promo.ya-juice.ru/: Please do not remove.
+        Place this snippet on pages with events you’re tracking.
+        Creation date: 02/01/2018
+        -->
     <script>
       gtag('event', 'conversion', {
         'allow_custom_scripts': true,
@@ -959,10 +1000,10 @@ Creation date: 02/02/2018
 
 
     <!--
-Event snippet for Ya_juice // Успешная регистрация on https://promo.ya-juice.ru/: Please do not remove.
-Place this snippet on pages with events you’re tracking.
-Creation date: 02/01/2018
--->
+    Event snippet for Ya_juice // Успешная регистрация on https://promo.ya-juice.ru/: Please do not remove.
+    Place this snippet on pages with events you’re tracking.
+    Creation date: 02/01/2018
+    -->
     <script>
       gtag('event', 'conversion', {
         'allow_custom_scripts': true,
