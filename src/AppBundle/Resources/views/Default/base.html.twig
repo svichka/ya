@@ -5,8 +5,8 @@
 {% set content_version = banned_listener.getAssetsVersion() %}
 {% set lottery_date = banned_listener.getLotteryDate() %}
 
-{% set page_description = "Рекламная акция «Мода - это «Я»" %}
-{% set page_name = "Мода это Я" %}
+{% set page_description = "Купи сок Я, регистрируй коды, выиграй шопинг в Милане со стилистом на 200 000 ₽!" %}
+{% set page_name = "Выиграй 200 000 ₽ на шопинг в Милане от бренда Я" %}
 {% set page_image =app.request.scheme ~'://' ~ app.request.httpHost ~ asset('images/logo.png') %}
 {% set page_url = url('index_page') %}
 <html lang="ru">
@@ -336,6 +336,21 @@ Place this snippet between the <head> and </head> tags on every page of your sit
                 состоится {{ lottery_date }}
               </p>
 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="lenina" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+          </div>
+          <div class="modal-body">
+            <div class="modal-static">
+              Уточняй наличие Студии <br> в твоем городе в <a href="{{ asset('files/rules.pdf') }}" target="_blank">Правилах Акции</a>
             </div>
           </div>
         </div>
