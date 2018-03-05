@@ -18,6 +18,9 @@
       background: #495528 !important;
       border-color: #495528 !important;
     }
+    .prize-name{
+      font-size: 12.5pt;
+    }
   </style>
 {% endblock %}
 
@@ -55,8 +58,9 @@
           <div class="week-title js-week-title">
             <div class="week-toggler">{% if first == 1 %}-{% else %}+{% endif %}</div>
             <div class="row">
-              <div
-                  class="col-sm-12 {% if first == 1 %}week-item-current{% endif %}">{% if first == 1 %}Текущая неделя{% else %}{{ i }}{% endif %}</div>
+              <div class="col-sm-12 {% if first == 1 %}week-item-current{% endif %}">
+                {% if first == 1 %}Текущая неделя{% else %}{{ i }}{% endif %}
+              </div>
               <div class="col-sm-12 text-right">
                 {% if first != 1 %}({{ week['start']|date('d.m.Y') }} - {{ week['end']|date('d.m.Y') }}){% endif %}
               </div>
@@ -77,7 +81,7 @@
                     <div class="week-cell">{{ promocode.date|date('d.m.Y') }}</div>
                     <div class="week-cell">
                       {% if promocode.prizes['guaranteed']['slug'] != '' %}
-                        {#<span>{{ promocode.prizes['guaranteed']['slug']|prize }}</span><br>#}
+                        <span class="prize-name">{{ promocode.prizes['guaranteed']['slug']|prize }}</span><br>
                         <img src="{{ promocode.prizes['guaranteed']['url'] }}"
                              alt="{{ promocode.prizes['guaranteed']['slug'] }}">
                         <a href="" class='table-get-link js-get-code'
@@ -91,7 +95,7 @@
                     </div>
                     <div class="week-cell">
                       {% if promocode.prizes['weekly']['slug'] != '' %}
-                        {#<span>{{ promocode.prizes['weekly']['slug']|prize }}</span><br>#}
+                        <span class="prize-name">{{ promocode.prizes['weekly']['slug']|prize }}</span><br>
                         <img src="{{ promocode.prizes['weekly']['url'] }}"
                              alt="{{ promocode.prizes['weekly']['slug'] }}">
                       {% else %}
