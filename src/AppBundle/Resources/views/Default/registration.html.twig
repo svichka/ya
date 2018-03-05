@@ -80,6 +80,19 @@
   {{ parent() }}
   <script>
     $(function () {
+      $('form#registration_form input[type=radio]').change(function () {
+        fG(this);
+      });
+      $('form#registration_form input[type=checkbox]').change(function () {
+        fG(this);
+      });
+      $('form#registration_form select').change(function () {
+        fG(this);
+      });
+    });
+  </script>
+  <script>
+    $(function () {
       $('form#registration_form').submit(function () {
         if (!validateEmail($('#registration_form_email').val())) {
           $('.online-error').css('display', 'inline-block');
