@@ -237,7 +237,7 @@ Place this snippet between the <head> and </head> tags on every page of your sit
                   </div>
                   <div class="col-sm-8 prize-select-block">
                     <div class="img-choise-prize" style="background-image: url({{ asset('images/ll.png') }})"></div>
-                    <span class='prize-select-wrapper'>
+                    <span class='prize-select-wrapper show-lelnina-pp'>
                         <input type="radio" name="prize-guaranteed" id="prize-garant-ll" title="prize-garant-ll"
                                disabled
                                value="ll">
@@ -276,7 +276,7 @@ Place this snippet between the <head> and </head> tags on every page of your sit
                   </div>
                   <div class="col-sm-8 prize-select-block">
                     <div class="img-choise-prize" style="background-image: url({{ asset('images/ll.png') }})"></div>
-                    <span class='prize-select-wrapper'>
+                    <span class='prize-select-wrapper show-lelnina-pp'>
                         <input type="radio" name="prize-weekly" value="ll" title="prize-week-ll">
                         <img src="{{ asset('images/t.png') }}" alt="">
                         <img src="{{ asset('images/t1.png') }}" alt="">
@@ -851,7 +851,14 @@ Place this snippet between the <head> and </head> tags on every page of your sit
   <script src="{{ asset('js/index.js') }}?{{ content_version }}"></script>
 
   <script>
+    $(function () {
+      $('.show-lelnina-pp').click(function () {
+        $('#lenina').modal();
+      });
+    });
+  </script>
 
+  <script>
     $(document).on('shown.bs.modal', function (e) {
       var custom_options = {
         translation: {
