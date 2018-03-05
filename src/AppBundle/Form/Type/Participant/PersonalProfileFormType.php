@@ -17,7 +17,7 @@ class PersonalProfileFormType extends ParticipantFieldsFormType
 	public function buildForm(FormBuilderInterface $builder, array $options)
 	{
 		$builder
-			->add('email', EmailType::class, ['disabled' => true])
+			->add('email', EmailType::class, ['label'=>"Email",'disabled' => true])
 			->add('mobilephone', TextType::class)
       ->add('firstname', TextType::class, ['label' => "Имя*", 'disabled' => true, 'attr' => ["placeholder" => "Имя", 'onkeyup' => 'Ru(this)']])// ,"onkeyup"=>"Ru(this);"
       ->add('lastname', TextType::class, ['label' => "Фамилия*", 'disabled' => true, 'attr' => ["placeholder" => "Фамилия", 'onkeyup' => 'Ru(this)']])// ,"onkeyup"=>"Ru(this);"

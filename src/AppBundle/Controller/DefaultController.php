@@ -165,10 +165,7 @@
           {
             throw new NotCorrectDataException('Not correct recaptcha');
           }
-//          else
-//          {
-//            throw new NotCorrectDataException('Success recaptcha');
-//          }
+          
           if (!$this->validateEmail($formData->email, "Введите емейл"))
           {
             throw new NotCorrectDataException('Введите емейл');
@@ -217,7 +214,6 @@
             throw new NotCorrectDataException("Введите верную дату рождения");
           }
           
-          
           $age = \DateTime::createFromFormat('d.m.Y', $formData->birthdate)
             ->diff(new \DateTime('now'))
             ->y;
@@ -234,6 +230,16 @@
           if ($formData->isageagreed == "N")
           {
             throw new NotCorrectDataException("Подтвердите возраст");
+          }
+          
+          if ($formData->regionguid == "")
+          {
+            throw new NotCorrectDataException("Выберите регион");
+          }
+          
+          if ($formData->cityguid == "")
+          {
+            throw new NotCorrectDataException("Выберите город");
           }
           
           $city = $this->getDoctrine()->getRepository('AppBundle:City')->findOneBy(['guid' => $formData->cityguid]);
@@ -272,7 +278,20 @@
             $this->get('logger')->error("ApiFailedException");
             $this->get('logger')->error(print_r($e->getFields(), true));
             $this->get('logger')->error($e->getCode());
-            throw new NotCorrectDataException("Ошибка связи с бандлом");
+            $fields = $e->getFields();
+            if ($fields)
+            {
+              $this->makeErrorsFromFields($fields);
+              
+              return $this->render('AppBundle:Default:registration.html.twig', [
+                'errors' => $this->errors,
+                'form'   => $form->createView(),
+              ]);
+            }
+            else
+            {
+              throw new NotCorrectDataException("Ошибка связи с бандлом");
+            }
           }
           $this->addFlash('registration', 'ok');
           
