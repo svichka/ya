@@ -81,10 +81,11 @@
   <script>
     $(function () {
       $('form#registration_form').submit(function () {
-        if(!validateEmail($('#registration_form_email').val()))
-        $('.online-error').css('display', 'inline-block');
-        $('.online-error').text('Некорректно заполнено поле: Email');
-        return false;
+        if (!validateEmail($('#registration_form_email').val())) {
+          $('.online-error').css('display', 'inline-block');
+          $('.online-error').text('Некорректно заполнено поле: Email');
+          return false;
+        }
       });
     });
     $(function () {
