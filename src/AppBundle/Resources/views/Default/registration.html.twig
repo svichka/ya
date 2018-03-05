@@ -12,15 +12,17 @@
       <h1 class="static-title up">Регистрация</h1>
       <div class="reg-form">
         {{ form_start(form) }}
+        <label style="display:none; margin-bottom: 15px; padding: 15px; text-align:center; color: red;"
+               class="online-error"></label>
         {% if errors is defined %}
-            {% for error in errors %}
-              <label style="margin-bottom: 15px; padding: 15px; text-align:center; color: red;">{{ error|trans }}</label>
-            {% endfor %}
+          {% for error in errors %}
+            <label style="margin-bottom: 15px; padding: 15px; text-align:center; color: red;">{{ error|trans }}</label>
+          {% endfor %}
         {% endif %}
         <div class="row">
           <div class="col-sm-12">
             <div class="form-block">
-              
+
             </div>
           </div>
         </div>
@@ -77,6 +79,14 @@
 {% block javascripts %}
   {{ parent() }}
   <script>
+    $(function () {
+      $('form#registration_form').submit(function () {
+        if(!validateEmail($('#registration_form_email').val()))
+        $('.online-error').css('display', 'inline-block');
+        $('.online-error').text('Некорректно заполнено поле: Email');
+        return false;
+      });
+    });
     $(function () {
       eA('Signup', 'OpenSignup');
     });
