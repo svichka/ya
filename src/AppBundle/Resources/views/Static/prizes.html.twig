@@ -3,120 +3,181 @@
 {% block title %}Призы{% endblock %}
 
 {% block body %}
-<main class="main-content">
-	<div class="page-bg page-bg-empty">
-		<h2 class="static-title visible-xs up">Призы</h2>
-		<h1 class='adventure-title'>Выигрывай модные призы!</h1>
-		<div class="text-center visible-xs">
-			<a href="" class="button-purple" data-toggle="modal" data-target="{{ action }}">Зарегистрировать код</a>
-		</div>
-		<div class="static-prize-blocks">
-			<div class="row">
-				<div class="col-sm-8 col-xs-24 col-sm-push-16">
-					<div class="static-prize static-prize-middle">
-						<div class="static-prize-title up">Главный приз</div>
-						<div class="static-prize-title-av">
-							Шопинг в Милане <br> на 200 000 Р <nobr>с А. Роговым!</nobr>
-						</div>
-						<div class="static-prize-img static-prize-img-r"
-						style="background-image: url({{ asset('images/prize3.png') }})"></div>
-						<div class="static-prize-text">
-							И участие в программе <br> «Успеть за 24 часа»!
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-8 col-xs-24 col-sm-pull-8">
-					<div class="static-prize">
-						<div class="static-prize-title up">Гарантированно</div>
-						<div class="static-prize-img" style="background-image: url({{ asset('images/gift_desk_ya.png') }})"></div>
-						<div class="static-prize-row row">
-							<div class="col-sm-12">
-								<img src="{{ asset('images/lamoda.png') }}" alt="">
-							</div>
-							<div class="col-lg-6 col-sm-4"></div>
-							<div class="col-lg-6 col-sm-8">
-								<div class="static-prize-price">600 ₽</div>
-								<div class="static-prize-post-price">от 3000 ₽</div>
-							</div>
-						</div>
-						<div class="static-prize-row row">
-							<div class="col-sm-12">
-								<img src="{{ asset('images/yr.png') }}" class="img-yr img-m15" alt="">
-							</div>
-							<div class="col-lg-6 col-sm-4"></div>
-							<div class="col-lg-6 col-sm-8">
-								<div class="static-prize-price">500 ₽</div>
-								<div class="static-prize-post-price">от 3000 ₽</div>
-							</div>
-						</div>
-						<div class="static-prize-row row">
-							<div class="col-sm-12 img-p-l">
-								<img src="{{ asset('images/ll.png') }}" class="img-m15" alt="">
-							</div>
-							<div class="col-lg-6 col-sm-4"></div>
-							<div class="col-lg-6 col-sm-8">
-								<div class="static-prize-price">30%</div>
-								<div class="static-prize-post-price">на все виды маникюра</div>
-							</div>
-						</div>
-						<div class="static-prize-text">
-							Скидка у одного <br>
-							из партнеров
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-8 col-xs-24 col-sm-pull-8">
-					<div class="static-prize static-prize-middle">
-						<div class="static-prize-title up">Еженедельно</div>
-						<div class="static-prize-img static-prize-img-s"
-						style="background-image: url({{ asset('images/Sert_desktop.png') }})"></div>
-						<div class="static-prize-row row">
-							<div class="col-sm-11">
-								<img src="{{ asset('images/lamoda.png') }}" alt="">
-							</div>
-							<div class="col-sm-1"></div>
-							<div class="col-sm-12">
-								<div class="static-prize-price nowrap">4000 ₽ - <span>6 шт</span></div>
-							</div>
-						</div>
-						<div class="static-prize-row row">
-							<div class="col-sm-11">
-								<img src="{{ asset('images/yr.png') }}" class="img-yr" alt="">
-							</div>
-							<div class="col-sm-1"></div>
-							<div class="col-sm-12">
-								<div class="static-prize-price nowrap">3000 ₽ - <span>6 шт</span></div>
-							</div>
-						</div>
-						<div class="static-prize-row row">
-							<div class="col-sm-11 img-p-l">
-								<img src="{{ asset('images/ll.png') }}" alt="">
-							</div>
-							<div class="col-sm-1"></div>
-							<div class="col-sm-12">
-								<div class="static-prize-price nowrap">3000 ₽ - <span>6 шт</span></div>
-							</div>
-						</div>
-						<div class="static-prize-text">
-							Розыгрыш <br>
-							сертификатов
-						</div>
-					</div>
-				</div>
+  <main class="main-content">
+    <div class="page-bg page-bg-empty">
+      <h2 class="static-title visible-xs up">Призы</h2>
+      <h1 class='adventure-title'>Выигрывай модные призы!</h1>
+      <div class="text-center visible-xs">
+        <a href="" class="button-purple" data-toggle="modal" data-target="{{ action }}">Зарегистрировать код</a>
+      </div>
+      <div class="static-prize-blocks">
+        <div class="row">
+          <div class="col-sm-8 col-xs-24 col-sm-push-16">
+            <div class="static-prize static-prize-middle">
+              <div class="static-prize-title up">Главный приз</div>
+              <div class="static-prize-title-av">
+                <img src="{{ asset('images/Priztext.desktop.png') }}" alt="Шопинг в Милане на 200 000 Р с А. Роговым!"
+                     class="hidden-md-up" style="width: 100%">
+                <img src="{{ asset('images/Priztext.tablet.png') }}" alt="Шопинг в Милане на 200 000 Р с А. Роговым!"
+                     class="hidden-sm-up">
+                <img src="{{ asset('images/Priztext.mob.png') }}" alt="Шопинг в Милане на 200 000 Р с А. Роговым!"
+                     class="hidden-xs-up">
+              </div>
+              <div class="static-prize-img static-prize-img-r"
+                   style="background-image: url({{ asset('images/prize3.png') }})"></div>
+              <div class="static-prize-text">
+                И участие в программе <br> «Успеть за 24 часа»!
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-8 col-xs-24 col-sm-pull-8">
+            <div class="static-prize">
+              <div class="static-prize-title up">Гарантированно</div>
+              <div class="static-prize-img" style="background-image: url({{ asset('images/gift_desk_ya.png') }})"></div>
+              <div class="static-prize-row row">
+                <div class="col-sm-12">
+                  <img src="{{ asset('images/lamoda.png') }}" alt="">
+                </div>
+                <div class="col-lg-6 col-sm-4"></div>
+                <div class="col-lg-6 col-sm-8">
+                  <div class="static-prize-price">600 ₽</div>
+                  <div class="static-prize-post-price">от 3000 ₽</div>
+                </div>
+              </div>
+              <div class="static-prize-row row">
+                <div class="col-sm-12">
+                  <img src="{{ asset('images/yr.png') }}" class="img-yr img-m15" alt="">
+                </div>
+                <div class="col-lg-6 col-sm-4"></div>
+                <div class="col-lg-6 col-sm-8">
+                  <div class="static-prize-price">500 ₽</div>
+                  <div class="static-prize-post-price">от 3000 ₽</div>
+                </div>
+              </div>
+              <div class="static-prize-row row">
+                <div class="col-sm-12 img-p-l">
+                  <img src="{{ asset('images/ll.png') }}" class="img-m15" alt="">
+                </div>
+                <div class="col-lg-6 col-sm-4"></div>
+                <div class="col-lg-6 col-sm-8">
+                  <div class="static-prize-price">30%</div>
+                  <div class="static-prize-post-price">на все виды маникюра</div>
+                </div>
+              </div>
+              <div class="static-prize-text">
+                Скидка у одного <br>
+                из партнеров
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-8 col-xs-24 col-sm-pull-8">
+            <div class="static-prize static-prize-middle">
+              <div class="static-prize-title up">Еженедельно</div>
+              <div class="static-prize-img static-prize-img-s"
+                   style="background-image: url({{ asset('images/Sert_desktop.png') }})"></div>
+              <div class="static-prize-row row">
+                <div class="col-sm-11">
+                  <img src="{{ asset('images/lamoda.png') }}" alt="">
+                </div>
+                <div class="col-sm-1"></div>
+                <div class="col-sm-12">
+                  <div class="static-prize-price nowrap">4000 ₽ - <span>6 шт</span></div>
+                </div>
+              </div>
+              <div class="static-prize-row row">
+                <div class="col-sm-11">
+                  <img src="{{ asset('images/yr.png') }}" class="img-yr" alt="">
+                </div>
+                <div class="col-sm-1"></div>
+                <div class="col-sm-12">
+                  <div class="static-prize-price nowrap">3000 ₽ - <span>6 шт</span></div>
+                </div>
+              </div>
+              <div class="static-prize-row row">
+                <div class="col-sm-11 img-p-l">
+                  <img src="{{ asset('images/ll.png') }}" alt="">
+                </div>
+                <div class="col-sm-1"></div>
+                <div class="col-sm-12">
+                  <div class="static-prize-price nowrap">3000 ₽ - <span>6 шт</span></div>
+                </div>
+              </div>
+              <div class="static-prize-text">
+                Розыгрыш <br>
+                сертификатов
+              </div>
+            </div>
+          </div>
 
-			</div>
-		</div>
-		<div class="text-center hidden-xs">
-			<a href="" class="button-purple" data-toggle="modal" data-target="{{ action }}">Зарегистрировать код</a>
-		</div>
-	</div>
-</main>
+        </div>
+      </div>
+      <div class="text-center hidden-xs">
+        <a href="" class="button-purple" data-toggle="modal" data-target="{{ action }}">Зарегистрировать код</a>
+      </div>
+    </div>
+  </main>
 {% endblock %}
 
 {% block stylesheets %}
-{{ parent() }}
+  {{ parent() }}
+  <style>
+    canvas, img {
+      image-rendering: optimizeQuality;
+      image-rendering: -moz-crisp-edges;
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: optimize-contrast;
+      -ms-interpolation-mode: nearest-neighbor;
+    }
+    .hidden-md-up {
+      display: block;
+      margin: auto;
+      padding-left: 1em;
+      padding-right: 1em;
+      max-width: 100%;
+    }
+
+    .hidden-sm-up {
+      display: none;
+      margin: auto;
+      max-width: 100%;
+    }
+
+    .hidden-xs-up {
+      display: none;
+      margin: auto;
+      max-width: 100%;
+    }
+
+    @media (max-width: 860px) {
+      .hidden-md-up {
+        display: none;
+      }
+
+      .hidden-sm-up {
+        display: block;
+      }
+
+      .hidden-xs-up {
+        display: none;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .hidden-md-up {
+        display: none;
+      }
+
+      .hidden-sm-up {
+        display: none;
+      }
+
+      .hidden-xs-up {
+        display: block;
+      }
+    }
+  </style>
 {% endblock %}
 
 {% block javascripts %}
-{{ parent() }}
+  {{ parent() }}
 {% endblock %}

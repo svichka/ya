@@ -36,17 +36,17 @@
                   <div class="week-cell">E-Mail</div>
                   <div class="week-cell">Результат</div>
                   <div class="week-cell">Партнер</div>
-                  <div class="week-cell">Дата</div>
+                  {#<div class="week-cell">Дата</div>#}
                 </div>
                 {% for winner in winners %}
                   <div class="week-row" data-l="{{ winner['lottery_id'] }}">
                     <div class="week-cell">{{ winner['fio'] }}</div>
                     <div class="week-cell">{{ winner['email']|public_email }}</div>
                     <div class="week-cell">{{ winner['prize']|prize|raw }}</div>
-                    <div class="week-cell">
+                    <div class="week-cell ">
                       <img src={{ asset('images/' ~ winner['prize']|prize_image) }} alt="{{ winner['prize'] }}">
                     </div>
-                    <div class="week-cell move-xs">{{ winner['date']|date('d.m.Y') }}</div>
+                    {#<div class="week-cell move-xs">{{ winner['date']|date('d.m.Y') }}</div>#}
                   </div>
                 {% endfor %}
               </div>
