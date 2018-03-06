@@ -25,7 +25,7 @@
           <div class="week-title js-week-title">
             <div class="week-toggler">+</div>
             <div class="row">
-              <div class="col-md-12 col-sm-10">
+              <div class="col-md-12 col-sm-10" data-c="{{ current }}" data-id="{{ value['id'] }}">
                 {% if current == value['id'] %}
                   ТЕКУЩАЯ НЕДЕЛЯ
                 {% else %}
