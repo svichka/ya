@@ -149,7 +149,7 @@
           {
             if (!isset($winners[$i]))
             {
-              $winners[$i] = ['id' => $i, 'week' => $week, 'winners' => []];
+              $winners[$i] = ['id' => $i+1, 'week' => $week, 'winners' => []];
             }
             $winners[$i]['winners'][] = [
               'lottery_id' => $tmp_winner->getLotteryId(),
