@@ -89,7 +89,16 @@
       $('form#registration_form select').change(function () {
         fG(this);
       });
+      $( window ).unload(function() {
+        var options = {
+          event: 'FillingFields',
+          eventCategory: 'Fields',
+          eventAction: 'Leave',
+        };
+        gaSend(options);
+      });
     });
+
   </script>
   <script>
     $(function () {
