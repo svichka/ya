@@ -697,7 +697,7 @@ Place this snippet between the <head> and </head> tags on every page of your sit
       };
       gaSend(options);
     }
-    
+
     function eA(category, action) {
       gaSend({ eventCategory: category, eventAction: action });
     }
@@ -751,8 +751,10 @@ Place this snippet between the <head> and </head> tags on every page of your sit
     $(function () {
       $('#upload_form').ajaxForm({
         beforeSubmit: function (formData, jqForm, options) {
+
           var queryString = $.param(formData);
           console.log(queryString);
+          // console.log("beforeSubmit");
           $('#send_code').prop('disabled', true);
           // Любая попытка регистрации промо-кода
           gtag('event', 'conversion', {
@@ -764,6 +766,7 @@ Place this snippet between the <head> and </head> tags on every page of your sit
           return true;
         },
         success: function (responseText, statusText, xhr, $form) {
+          console.log("success");
           $('#send_code').prop('disabled', false);
           console.log('status: ' + statusText + '\n\nresponseText: \n' + responseText);
           if (responseText.status === 200) {
@@ -774,6 +777,7 @@ Place this snippet between the <head> and </head> tags on every page of your sit
               'allow_custom_scripts': true,
               'send_to': 'DC-6274508/ya_ju0/ya_ju001+standard',
             });
+
             switch (responseText.garanted) {
               case '{{ asset('images/lamoda.png') }}':
                 // Успешный ввод кода – ЛаМода – ежедневный приз
@@ -919,7 +923,6 @@ Place this snippet between the <head> and </head> tags on every page of your sit
       //   },
       // };
       // $('input[name=code]').mask("BBBB BBBA", custom_options);
-      console.log('uploadModal');
       console.log(e.target.id);
       if (e.target.id === "uploadModal") {
         $('input[name=code]').val('');

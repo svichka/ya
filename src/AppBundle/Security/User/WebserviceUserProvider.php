@@ -2,14 +2,15 @@
   
   namespace AppBundle\Security\User;
   
-  use AppBundle\Exception\RecaptchaException;
+
+  use AppBundle\Exception\RException;
   use AppBundle\Security\User\WebserviceUser;
   use AppBundle\Service\RecaptchaService;
   use Dalee\PEPUWSClientBundle\Controller\ParticipantApiController;
   use Dalee\PEPUWSClientBundle\Exception\NotCorrectDataException;
   use Dalee\PEPUWSClientBundle\Exception\UserIsNotActiveException;
   use Psr\Log\LoggerInterface;
-  use Symfony\Component\Security\Acl\Exception\Exception;
+  
   use Symfony\Component\Security\Core\User\UserProviderInterface;
   use Symfony\Component\Security\Core\User\UserInterface;
   use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
@@ -24,7 +25,12 @@
      */
     protected $logger;
     private $recaptcha;
-    
+  
+    /**
+     * @param string $username
+     *
+     * @return \AppBundle\Security\User\WebserviceUser|\Symfony\Component\Security\Core\User\UserInterface
+     */
     public function loadUserByUsername($username)
     {
       $this->logger->info("Login");
@@ -45,13 +51,20 @@
       }
       $this->logger->info("Login by Password");
 
-//      if (!$this->recaptcha->isSuccess($request))
-//      {
-//        $this->logger->error('recaptcha error');
-//        $error = ['messageKey' => 'Каптча не заполнена', 'messageData' => []];
-//
-//        throw new RecaptchaException();
-//      }
+      if (!$this->recaptcha->isSuccess($request))
+      {
+        $this->logger->error('recaptcha error');
+        $error = ['messageKey' => 'Каптча не заполнена', 'messageData' => []];
+        
+//        throw new UsernameNotFoundException();
+        if (session_status() == PHP_SESSION_NONE) {
+          session_start();
+        }
+        $_SESSION['error']='Каптча не заполнена';
+        session_commit();
+
+        throw new RException();
+      }
       $participantApi = new ParticipantApiController();
       try
       {

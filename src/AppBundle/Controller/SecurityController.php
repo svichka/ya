@@ -3,6 +3,8 @@
   namespace AppBundle\Controller;
   
   use AppBundle\Entity\User;
+  
+  use AppBundle\Exception\RException;
   use Dalee\PEPUWSClientBundle\Controller\ParticipantApiController;
   use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
   use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -20,17 +22,24 @@
       $this->get('logger')->error($request->get('g-recaptcha-response'));
       
       $authenticationUtils = $this->get('security.authentication_utils');
-      $error = $authenticationUtils->getLastAuthenticationError();
+      $e = null;
+      if (isset($_SESSION['error']))
+      {
+        $e = $_SESSION['error'];
+      }
+      if ($e == null)
+      {
+        $error = $authenticationUtils->getLastAuthenticationError();
+      }
+      else
+      {
+        unset($_SESSION['error']);
+        session_commit();
+        $error = new RException();
+      }
+      
       $lastUsername = $authenticationUtils->getLastUsername();
-
-//      $recaptcha = $this->container->get('app.recaptcha');
-//      if (!$recaptcha->isSuccess($request))
-//      {
-//        $this->get('logger')->error('recaptcha error');
-//        $error = ['messageKey' => 'Каптча не заполнена', 'messageData' => []];
-//      }
-//      else
-//      {
+      
       $user = $this->getUser();
       if ($user)
       {
