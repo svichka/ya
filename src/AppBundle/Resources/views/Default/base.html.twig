@@ -689,10 +689,45 @@ Place this snippet between the <head> and </head> tags on every page of your sit
     }
 
     function fG(e) {
-      console.log(e);
+      console.log(e.id);
+      var name = 'Fields';
+      switch (e.id) {
+        case 'registration_form_lastname':
+          name = 'Family';
+          break;
+        case 'registration_form_firstname':
+          name = 'Name';
+          break;
+        case 'registration_form_birthdate':
+          name = 'Birthday';
+          break;
+        case 'registration_form_email':
+          name = 'email';
+          break;
+        case 'registration_form_regionguid':
+          name = 'Region';
+          break;
+        case 'registration_form_cityguid':
+          name = 'City';
+          break;
+        case 'registration_form_ismale_0':
+        case 'registration_form_ismale_1':
+          name = 'Gender';
+          break;
+        case 'registration_form_password':
+        case 'registration_form_confirm_password':
+          name = 'Password';
+          break;
+        case 'registration_form_isageagreed':
+          name = 'Age';
+          break;
+        case 'registration_form_ispdagreed':
+          name = 'Terms';
+          break;
+      }
       var options = {
         event: 'FillingFields',
-        eventCategory: 'Fields',
+        eventCategory: name,
         eventAction: 'Filled',
       };
       gaSend(options);
