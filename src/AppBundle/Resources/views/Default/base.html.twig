@@ -689,40 +689,81 @@ Place this snippet between the <head> and </head> tags on every page of your sit
     }
 
     function fG(e) {
+      console.log('val', $(e).val());
       console.log(e.id);
       var name = 'Fields';
       switch (e.id) {
         case 'registration_form_lastname':
+          // Выход если короче 2 символов
+          if($(e).val().length<2){
+            return;
+          }
           name = 'Family';
           break;
         case 'registration_form_firstname':
+          // Выход если короче 2 символов
+          if($(e).val().length<2){
+            return;
+          }
           name = 'Name';
           break;
         case 'registration_form_birthdate':
+          // Если меньше 18 то не отправляем
+          if(_calculateAge(moment($(e).val()).toDate())<18){
+            return;
+          }
           name = 'Birthday';
           break;
         case 'registration_form_email':
+          // Выход если не емейл
+          if(!validateEmail($(e).val())){
+            return;
+          }
           name = 'email';
           break;
         case 'registration_form_regionguid':
+          // Выход если не выбран
+          if($(e).val().trim() === ''){
+            return;
+          }
           name = 'Region';
           break;
         case 'registration_form_cityguid':
+          // Выход если не выбран
+          if($(e).val().trim() === ''){
+            return;
+          }
           name = 'City';
           break;
         case 'registration_form_ismale_0':
         case 'registration_form_ismale_1':
           name = 'Gender';
+          // Выход если не заполнено
+          if (!$(e).prop("checked")) {
+            return;
+          }
           break;
         case 'registration_form_password':
         case 'registration_form_confirm_password':
+          // Выходим, если длинна меньше 6 или не совпадает повтор пароля
+          if ($(e).val().length < 6 || $('#registration_form_password').val() !== $('#registration_form_confirm_password').val()) {
+            return;
+          }
           name = 'Password';
           break;
         case 'registration_form_isageagreed':
           name = 'Age';
+          // Выход если не заполнено
+          if (!$(e).prop("checked")) {
+            return;
+          }
           break;
         case 'registration_form_ispdagreed':
           name = 'Terms';
+          // Выход если не заполнено
+          if (!$(e).prop("checked")) {
+            return;
+          }
           break;
       }
       var options = {
@@ -991,10 +1032,10 @@ Place this snippet between the <head> and </head> tags on every page of your sit
     </script>
     {% elseif label == 'firstlogin' %}
     <!--
-    Event snippet for Ya_juice // Все посетители сайта on https://promo.ya-juice.ru/: Please do not remove.
-    Place this snippet on pages with events you’re tracking.
-    Creation date: 02/02/2018
-    -->
+        Event snippet for Ya_juice // Все посетители сайта on https://promo.ya-juice.ru/: Please do not remove.
+        Place this snippet on pages with events you’re tracking.
+        Creation date: 02/02/2018
+        -->
     <script>
       gtag('event', 'conversion', {
         'allow_custom_scripts': true,
@@ -1014,10 +1055,10 @@ Place this snippet between the <head> and </head> tags on every page of your sit
     </script>
 
     <!--
-        Event snippet for Ya_juice // Успешная авторизация on https://promo.ya-juice.ru/: Please do not remove.
-        Place this snippet on pages with events you’re tracking.
-        Creation date: 02/01/2018
-        -->
+            Event snippet for Ya_juice // Успешная авторизация on https://promo.ya-juice.ru/: Please do not remove.
+            Place this snippet on pages with events you’re tracking.
+            Creation date: 02/01/2018
+            -->
     <script>
       gtag('event', 'conversion', {
         'allow_custom_scripts': true,
@@ -1048,10 +1089,10 @@ Place this snippet between the <head> and </head> tags on every page of your sit
 
 
     <!--
-    Event snippet for Ya_juice // Успешная регистрация on https://promo.ya-juice.ru/: Please do not remove.
-    Place this snippet on pages with events you’re tracking.
-    Creation date: 02/01/2018
-    -->
+        Event snippet for Ya_juice // Успешная регистрация on https://promo.ya-juice.ru/: Please do not remove.
+        Place this snippet on pages with events you’re tracking.
+        Creation date: 02/01/2018
+        -->
     <script>
       gtag('event', 'conversion', {
         'allow_custom_scripts': true,
