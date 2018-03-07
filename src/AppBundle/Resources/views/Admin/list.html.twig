@@ -6,7 +6,7 @@
 
   <main role="main" class="container">
     {#<div class="jumbotron">#}
-      <h1>{{ block('title') }}</h1>
+      <h1>{{ block('title') }} <a href="#" onclick="webix.toExcel($$('report'),{spans:true});">Скачать</a></h1>
     {#</div>#}
     <div id="webix"></div>
   </main>
@@ -30,6 +30,7 @@
       grid = webix.ui({
         container: "webix",
         view: "datatable",
+        id: 'report'
         // autoConfig:true,
         columns: [
           // { id: "id", header: [ "id", { content: "textFilter" } ], css: "rank", width: 100 },
@@ -41,7 +42,7 @@
             width: 200,
             sort: "text",
           },
-          { id: "status", header: [ "Статус", { content: "textFilter" } ], width: 100, sort: "int" },
+          { id: "status", header: [ "Статус", { content: "selectFilter" } ], width: 100, sort: "int" },
         ],
         data: codes,
         // autoheight: true,
