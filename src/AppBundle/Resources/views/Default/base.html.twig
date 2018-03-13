@@ -983,9 +983,31 @@ Place this snippet between the <head> and </head> tags on every page of your sit
         }
         e.preventDefault();
       });
+      $('input').on('textInput', function (e) {
+        var keyCode = e.originalEvent.data.charCodeAt(0);
+        console.log("textInput " + String.fromCharCode(keyCode));
+        // keyCode is ASCII of character entered.
+
+        val = val + String.fromCharCode(keyCode);
+        val = val.trim();
+        if (val.length === 4) {
+          val = val.substr(0, 4) + " " + val.substr(4);
+        } else if (val.length === 5) {
+          val = val.substr(0, 4) + " " + val.substr(4);
+        } else if (val.length > 5) {
+          val = val.substr(0, 4) + " " + val.substr(5);
+        }
+        if (val.length > 9) {
+          val = val.substr(0, 9);
+        }
+        $('.code-code-code').val(val);
+      });
       $('.code-code-code').keyup(function (e) {
         // console.log(e.keyCode || e.charCode);
         if (e.keyCode < 31) {
+          return;
+        }
+        if (e.keyCode === 229) {
           return;
         }
         e.preventDefault();
@@ -995,7 +1017,7 @@ Place this snippet between the <head> and </head> tags on every page of your sit
         // console.log("charCode " + e.charCode);
         // console.log("char " + e.char);
         // console.log("code " + e.code);
-        console.log("String " +String.fromCharCode(e.keyCode));
+        console.log("String " + String.fromCharCode(e.keyCode));
         val = val + String.fromCharCode(e.keyCode);
         val = val.trim();
         if (val.length === 4) {
