@@ -985,16 +985,9 @@ Place this snippet between the <head> and </head> tags on every page of your sit
       });
 
       $('.code-code-code').keyup(function (e) {
-        // console.log(e.keyCode || e.charCode);
-        if (
-          (e.keyCode < 48 && e.keyCode > 57) &&
-          (e.keyCode < 96 && e.keyCode > 105)
-          // some more checking like arrows, delete, backspace, etc.
-          && e.keyCode === 229 // Check for the 'placeholder keyCode'
-        ) {
+        if (e.keyCode < 31 || e.keyCode === 229) {
           return;
         }
-
 
         e.preventDefault();
         var val = $('.code-code-code').val();
