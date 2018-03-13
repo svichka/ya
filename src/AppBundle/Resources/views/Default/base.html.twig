@@ -990,8 +990,10 @@ Place this snippet between the <head> and </head> tags on every page of your sit
         }
         e.preventDefault();
         var val = $('.code-code-code').val();
+        console.log("which " + e.which);
         if (e.keyCode !== 229) {
           console.log("keyCode " + e.keyCode);
+
           // console.log("key " + e.key);
           // console.log("charCode " + e.charCode);
           // console.log("char " + e.char);
