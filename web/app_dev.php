@@ -5,6 +5,9 @@
   use Symfony\Component\HttpFoundation\Request;
   use Symfony\Component\Debug\Debug;
   
+  header('Access-Control-Allow-Origin: *');
+  header('Access-Control-Allow-Headers: *');
+  
   if (isset($_SERVER['HTTP_CLIENT_IP'])
     || isset($_SERVER['HTTP_X_FORWARDED_FOR'])
     || !(in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1', '5.228.5.133'], true) || PHP_SAPI === 'cli-server')

@@ -120,7 +120,6 @@
      */
     public function loginJsonAction(Request $request)
     {
-      
       $authenticationUtils = $this->get('security.authentication_utils');
       $error = $authenticationUtils->getLastAuthenticationError();
       $lastUsername = $authenticationUtils->getLastUsername();
