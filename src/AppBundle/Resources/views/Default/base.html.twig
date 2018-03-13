@@ -985,19 +985,20 @@ Place this snippet between the <head> and </head> tags on every page of your sit
       });
 
       $('.code-code-code').keyup(function (e) {
-        if (e.keyCode < 31 || e.keyCode === 229) {
+        if (e.keyCode < 31) {
           return;
         }
-
         e.preventDefault();
         var val = $('.code-code-code').val();
-        console.log("keyCode " + e.keyCode);
-        // console.log("key " + e.key);
-        // console.log("charCode " + e.charCode);
-        // console.log("char " + e.char);
-        // console.log("code " + e.code);
-        console.log("String " + String.fromCharCode(e.keyCode));
-        val = val + String.fromCharCode(e.keyCode);
+        if (e.keyCode !== 229) {
+          console.log("keyCode " + e.keyCode);
+          // console.log("key " + e.key);
+          // console.log("charCode " + e.charCode);
+          // console.log("char " + e.char);
+          // console.log("code " + e.code);
+          console.log("String " + String.fromCharCode(e.keyCode));
+          val = val + String.fromCharCode(e.keyCode);
+        }
         val = val.trim();
         if (val.length === 4) {
           val = val.substr(0, 4) + " " + val.substr(4);
