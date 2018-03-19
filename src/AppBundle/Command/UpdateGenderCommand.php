@@ -66,13 +66,16 @@
         {
           $participant = $api->getById($user->getId(), ['ismale']);
           $firstname = mb_strtolower($participant->getFirstname());
-          if (mb_substr($firstname, mb_strlen($firstname) - 1) == 'а' || mb_substr($firstname, mb_strlen($firstname) - 1) == 'я' || $firstname == 'любовь')
+          if (mb_strlen($firstname) > 1)
           {
-            $this->setZ($user, $participant, $output);
-          }
-          else
-          {
-            $this->setM($user, $participant, $output);
+            if (mb_substr($firstname, mb_strlen($firstname) - 1) == 'а' || mb_substr($firstname, mb_strlen($firstname) - 1) == 'я' || $firstname == 'любовь')
+            {
+              $this->setZ($user, $participant, $output);
+            }
+            else
+            {
+              $this->setM($user, $participant, $output);
+            }
           }
           $output->writeln([
             'OK ' . $user->getId(),
@@ -123,6 +126,8 @@
         if (empty($participant->getIsmale()))
         {
           $user->setProcessedGender(1);
+          $user->setFirstname($participant->getFirstname());
+          $user->setGender($gender);
           $em->merge($user);
           $em->flush();
           
@@ -137,6 +142,8 @@
           if ($participant->getIsmale() == 'N')
           {
             $user->setProcessedGender(1);
+            $user->setFirstname($participant->getFirstname());
+            $user->setGender($gender);
             $em->merge($user);
             $em->flush();
           }
@@ -145,6 +152,8 @@
             $api = new ParticipantApiController();
             $api->update($participant->id, ['ismale', $gender]);
             $user->setProcessedGender(1);
+            $user->setFirstname($participant->getFirstname());
+            $user->setGender($gender);
             $em->merge($user);
             $em->flush();
           }
@@ -156,6 +165,8 @@
         else
         {
           $user->setProcessedGender(1);
+          $user->setFirstname($participant->getFirstname());
+          $user->setGender($gender);
           $em->merge($user);
           $em->flush();
           $output->writeln([

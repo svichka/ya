@@ -40,6 +40,14 @@
      */
     private $remember;
     /**
+     * @ORM\Column(type="string",options={"default"=""})
+     */
+    private $firstname;
+    /**
+     * @ORM\Column(type="string",options={"default"="-"})
+     */
+    private $gender;
+    /**
      * @ORM\Column(type="integer")
      */
     private $mobile_filled;
@@ -172,5 +180,37 @@
     public function setProcessedGender($processed_gender)
     {
       $this->processed_gender = $processed_gender;
+    }
+  
+    /**
+     * @return mixed
+     */
+    public function getGender()
+    {
+      return $this->gender;
+    }
+  
+    /**
+     * @param mixed $gender
+     */
+    public function setGender($gender)
+    {
+      $this->gender = $gender;
+    }
+  
+    /**
+     * @return mixed
+     */
+    public function getFirstname()
+    {
+      return $this->firstname;
+    }
+  
+    /**
+     * @param mixed $firstname
+     */
+    public function setFirstname($firstname)
+    {
+      $this->firstname = $firstname;
     }
   }
