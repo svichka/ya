@@ -64,7 +64,7 @@
       {
         try
         {
-          $participant = $api->getById($user->getId());
+          $participant = $api->getById($user->getId(),['ismale']);
           $firstname = mb_strtolower($participant->getFirstname());
           if (mb_substr($firstname, mb_strlen($firstname) - 1) == 'а' || mb_substr($firstname, mb_strlen($firstname) - 1) == 'я' || $firstname == 'любовь')
           {
