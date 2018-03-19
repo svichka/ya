@@ -68,18 +68,20 @@
           $firstname = mb_strtolower($participant->getFirstname());
           if (mb_substr($firstname, mb_strlen($firstname) - 1) == 'а' || mb_substr($firstname, mb_strlen($firstname) - 1) == 'я' || $firstname == 'любовь')
           {
-            $this->setZ($user, $participant);
+            $this->setZ($user, $participant, $output);
           }
           else
           {
-            $this->setM($user, $participant);
+            $this->setM($user, $participant, $output);
           }
           $output->writeln([
-            'OK ' . $user->getId()
+            'OK ' . $user->getId(),
           ]);
-        }catch (\Exception $e){
+        }
+        catch (\Exception $e)
+        {
           $output->writeln([
-            'Err ' . $user->getId()
+            'Err ' . $user->getId(),
           ]);
         }
       }
@@ -92,18 +94,18 @@
      * @param $user        \AppBundle\Entity\User
      * @param $participant \Dalee\PEPUWSClientBundle\Entity\Participant
      */
-    private function setM($user, $participant)
+    private function setM($user, $participant, $output)
     {
-      $this->setG($user, $participant, 'Y');
+      $this->setG($user, $participant, 'Y', $output);
     }
     
     /**
      * @param $user        \AppBundle\Entity\User
      * @param $participant \Dalee\PEPUWSClientBundle\Entity\Participant
      */
-    private function setZ($user, $participant)
+    private function setZ($user, $participant, $output)
     {
-      $this->setG($user, $participant, 'N');
+      $this->setG($user, $participant, 'N', $output);
     }
     
     /**
@@ -111,7 +113,7 @@
      * @param $participant \Dalee\PEPUWSClientBundle\Entity\Participant
      * @param $gender      string
      */
-    private function setG($user, $participant, $gender)
+    private function setG($user, $participant, $gender, $output)
     {
       $em = $this->getContainer()->get('doctrine')->getManager();
       if (empty($participant->getIsmale()))
@@ -120,15 +122,31 @@
         $em->merge($user);
         $em->flush();
         
+        $output->writeln([
+          '- ' . $user->getId(),
+        ]);
+        
         return;
       }
-      if($gender == "N")
+      if ($gender == "N")
       {
         $api = new ParticipantApiController();
         $api->update($participant->id, ['ismale', $gender]);
         $user->setProcessedGender(1);
         $em->merge($user);
         $em->flush();
+        $output->writeln([
+          'N ' . $user->getId(),
+        ]);
+      }
+      else
+      {
+        $user->setProcessedGender(1);
+        $em->merge($user);
+        $em->flush();
+        $output->writeln([
+          'M ' . $user->getId(),
+        ]);
       }
     }
   }
