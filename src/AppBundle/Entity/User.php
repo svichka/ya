@@ -32,6 +32,10 @@
      */
     private $agree;
     /**
+     * @ORM\Column(type="integer",options={"default"=0})
+     */
+    private $processed_gender;
+    /**
      * @ORM\Column(type="string")
      */
     private $remember;
@@ -86,6 +90,7 @@
       $this->remember = "";
       $this->mobile_filled = 0;
       $this->mobile_activated = 0;
+      $this->processed_gender = 0;
     }
     
     /**
@@ -151,5 +156,21 @@
     public function setUpdated($updated)
     {
       $this->updated = $updated;
+    }
+  
+    /**
+     * @return mixed
+     */
+    public function getProcessedGender()
+    {
+      return $this->processed_gender;
+    }
+  
+    /**
+     * @param mixed $processed_gender
+     */
+    public function setProcessedGender($processed_gender)
+    {
+      $this->processed_gender = $processed_gender;
     }
   }

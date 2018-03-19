@@ -8,9 +8,11 @@
   
   namespace AppBundle\Controller;
   
+  use Dalee\PEPUWSClientBundle\Controller\ParticipantApiController;
   use Dalee\PEPUWSClientBundle\Controller\PromoLotteryApiController;
   use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
   use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+  use Symfony\Component\HttpFoundation\JsonResponse;
   use Symfony\Component\HttpFoundation\Request;
   use Symfony\Component\HttpKernel\Exception\HttpException;
   
@@ -227,5 +229,43 @@
       {
         throw new HttpException(403, "Доступ запрещён");
       }
+    }
+    
+    /**
+     * @Route("/admin/user_gender", name="admin_user_gender")
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function userGenderAction(Request $request)
+    {
+      $api = new ParticipantApiController();
+      if ($request->isMethod('POST'))
+      {
+        
+        $id = $request->request->get('id');
+        $gender = $request->request->get('gender');
+        if ($gender !== '-')
+        {
+          $api->update($id, ['ismale' => $gender]);
+        }
+        
+        $user = $this->getDoctrine()->getRepository('AppBundle:User')->findOneBy(['id' => $id]);
+        $user->setProcessedGender(1);
+        $this->getDoctrine()->getManager()->merge($user);
+        $this->getDoctrine()->getManager()->flush();
+        
+        return new JsonResponse(['status' => 200]);
+      }
+      $users = $this->getDoctrine()->getRepository('AppBundle:User')->findBy(['processed_gender' => 0], null, 100);
+      /**
+       * @var $tmp \Dalee\PEPUWSClientBundle\Entity\Participant[]
+       */
+      $tmp = [];
+      foreach ($users as $user)
+      {
+        $tmp[] = $api->getById($user->getId());
+      }
+      
+      return $this->render('AppBundle:Admin:user_gender.html.twig', ['users' => $tmp]);
     }
   }

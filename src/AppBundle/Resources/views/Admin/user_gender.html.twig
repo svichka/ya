@@ -1,0 +1,85 @@
+{% extends 'AppBundle:Admin:base_admin.html.twig' %}
+
+{% block title %}Половые работы{% endblock %}
+
+{% block body %}
+  <table>
+    <thead>
+    <th width="10%">Id</th>
+    <th width="40%">Имя</th>
+    <th width="40%">Фамилия</th>
+    <th width="10%">Пол</th>
+    </thead>
+    <tbody>
+    {% for user in users %}
+      <tr data-id="{{ user.getid }}">
+        <td>{{ user.getid }}</td>
+        <td>{{ user.getfirstname }}</td>
+        <td>{{ user.getlastname }}</td>
+        <td>
+          {{ user.getismale }}
+          <a href="#" class="male" data-id="{{ user.getid }}">М</a>
+          <a href="#" class="female" data-id="{{ user.getid }}">Ж</a>
+          <a href="#" class="nemale" data-id="{{ user.getid }}">-</a>
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  <style>
+    a.female, a.male, a.nemale {
+      border: 1px solid;
+      padding: 0.3em;
+      line-height: 1.3em;
+      min-width: 2em;
+      margin: .1em 0;
+      display: inline-block;
+    }
+  </style>
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  <script>
+    $('.male').click(function (e)
+    {
+      e.preventDefault();
+      e.stopPropagation();
+      var id = $(this).data('id');
+      changeGender(id, 'Y');
+    });
+    $('.female').click(function (e)
+    {
+      e.preventDefault();
+      e.stopPropagation();
+      var id = $(this).data('id');
+
+      changeGender(id, 'N');
+    });
+    $('.nemale').click(function (e)
+    {
+      e.preventDefault();
+      e.stopPropagation();
+      var id = $(this).data('id');
+
+      changeGender(id, '-');
+    });
+
+    function changeGender(id, s)
+    {
+      $.ajax({
+        url: '{{ path('admin_user_gender') }}',
+        method: 'post',
+        data: { id: id, gender: s, ajax: true },
+        success: function (e)
+        {
+          $('tr[data-id=' + id + ']').remove();
+        },
+      });
+    }
+  </script>
+{% endblock %}
