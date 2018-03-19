@@ -80,8 +80,10 @@
         }
         catch (\Exception $e)
         {
+          
           $output->writeln([
             'Err ' . $user->getId(),
+            $e->getMessage()
           ]);
         }
       }
