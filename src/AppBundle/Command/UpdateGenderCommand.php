@@ -117,37 +117,46 @@
      */
     private function setG($user, $participant, $gender, $output)
     {
-      $em = $this->getContainer()->get('doctrine')->getManager();
-      if (empty($participant->getIsmale()))
+      try
       {
-        $user->setProcessedGender(1);
-        $em->merge($user);
-        $em->flush();
-        
+        $em = $this->getContainer()->get('doctrine')->getManager();
+        if (empty($participant->getIsmale()))
+        {
+          $user->setProcessedGender(1);
+          $em->merge($user);
+          $em->flush();
+    
+          $output->writeln([
+            '- ' . $user->getId(),
+          ]);
+    
+          return;
+        }
+        if ($gender == "N")
+        {
+          $api = new ParticipantApiController();
+          $api->update($participant->id, ['ismale', $gender]);
+          $user->setProcessedGender(1);
+          $em->merge($user);
+          $em->flush();
+          $output->writeln([
+            'N ' . $user->getId(),
+          ]);
+        }
+        else
+        {
+          $user->setProcessedGender(1);
+          $em->merge($user);
+          $em->flush();
+          $output->writeln([
+            'M ' . $user->getId(),
+          ]);
+        }
+      }catch (\Exception $e){
         $output->writeln([
-          '- ' . $user->getId(),
-        ]);
-        
-        return;
-      }
-      if ($gender == "N")
-      {
-        $api = new ParticipantApiController();
-        $api->update($participant->id, ['ismale', $gender]);
-        $user->setProcessedGender(1);
-        $em->merge($user);
-        $em->flush();
-        $output->writeln([
-          'N ' . $user->getId(),
-        ]);
-      }
-      else
-      {
-        $user->setProcessedGender(1);
-        $em->merge($user);
-        $em->flush();
-        $output->writeln([
-          'M ' . $user->getId(),
+          'Err2 ' . $e->getMessage(),
+          'Err2 ' . $user->getId(),
+          'Err2 ' . $gender,
         ]);
       }
     }
