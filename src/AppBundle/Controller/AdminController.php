@@ -253,10 +253,19 @@
         $user->setProcessedGender(1);
         $this->getDoctrine()->getManager()->merge($user);
         $this->getDoctrine()->getManager()->flush();
+        $users = $this->getDoctrine()->getRepository('AppBundle:User')->findBy(['processed_gender' => 0], null, 1);
+        /**
+         * @var $tmp \Dalee\PEPUWSClientBundle\Entity\Participant[]
+         */
+        $tmp = [];
+        foreach ($users as $user)
+        {
+          $tmp[] = $api->getById($user->getId());
+        }
         
         return new JsonResponse(['status' => 200]);
       }
-      $users = $this->getDoctrine()->getRepository('AppBundle:User')->findBy(['processed_gender' => 0], null, 100);
+      $users = $this->getDoctrine()->getRepository('AppBundle:User')->findBy(['processed_gender' => 0], null, 1);
       /**
        * @var $tmp \Dalee\PEPUWSClientBundle\Entity\Participant[]
        */

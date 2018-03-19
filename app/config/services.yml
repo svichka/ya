@@ -33,6 +33,11 @@ services:
         arguments: ["update-winners"]
         tags:
             - { name: console.command }
+    app.command.update_gender:
+        class: AppBundle\Command\UpdateGenderCommand
+        arguments: ["update-gender"]
+        tags:
+            - { name: console.command }
     app.twig_extension:
         class: AppBundle\Twig\AppExtension
         public: false
