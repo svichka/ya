@@ -40,6 +40,11 @@
         },
         function($value)
         {
+          if ($value === 'Y' || $value === 'N')
+          {
+            return $value;
+          }
+          
           return ($value) ? 'Y' : 'N';
         }
       );
