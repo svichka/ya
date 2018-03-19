@@ -62,15 +62,25 @@
       
       foreach ($users as $user)
       {
-        $participant = $api->getById($user->getId());
-        $firstname = mb_strtolower($participant->getFirstname());
-        if (mb_substr($firstname, mb_strlen($firstname) - 1) == 'а' || mb_substr($firstname, mb_strlen($firstname) - 1) == 'я' || $firstname == 'любовь')
+        try
         {
-          $this->setZ($user, $participant);
-        }
-        else
-        {
-          $this->setM($user, $participant);
+          $participant = $api->getById($user->getId());
+          $firstname = mb_strtolower($participant->getFirstname());
+          if (mb_substr($firstname, mb_strlen($firstname) - 1) == 'а' || mb_substr($firstname, mb_strlen($firstname) - 1) == 'я' || $firstname == 'любовь')
+          {
+            $this->setZ($user, $participant);
+          }
+          else
+          {
+            $this->setM($user, $participant);
+          }
+          $output->writeln([
+            'OK ' . $user->getId()
+          ]);
+        }catch (\Exception $e){
+          $output->writeln([
+            'Err ' . $user->getId()
+          ]);
         }
       }
       
