@@ -64,7 +64,7 @@
       {
         try
         {
-          $participant = $api->getById($user->getId(),['ismale']);
+          $participant = $api->getById($user->getId(), ['ismale']);
           $firstname = mb_strtolower($participant->getFirstname());
           if (mb_substr($firstname, mb_strlen($firstname) - 1) == 'а' || mb_substr($firstname, mb_strlen($firstname) - 1) == 'я' || $firstname == 'любовь')
           {
@@ -83,7 +83,7 @@
           
           $output->writeln([
             'Err ' . $user->getId(),
-            $e->getMessage()
+            $e->getMessage(),
           ]);
         }
       }
@@ -125,20 +125,30 @@
           $user->setProcessedGender(1);
           $em->merge($user);
           $em->flush();
-    
+          
           $output->writeln([
             '- ' . $user->getId(),
           ]);
-    
+          
           return;
         }
         if ($gender == "N")
         {
-          $api = new ParticipantApiController();
-          $api->update($participant->id, ['ismale', $gender]);
-          $user->setProcessedGender(1);
-          $em->merge($user);
-          $em->flush();
+          if ($participant->getIsmale() == 'N')
+          {
+            $user->setProcessedGender(1);
+            $em->merge($user);
+            $em->flush();
+          }
+          else
+          {
+            $api = new ParticipantApiController();
+            $api->update($participant->id, ['ismale', $gender]);
+            $user->setProcessedGender(1);
+            $em->merge($user);
+            $em->flush();
+          }
+          
           $output->writeln([
             'N ' . $user->getId(),
           ]);
@@ -152,7 +162,9 @@
             'M ' . $user->getId(),
           ]);
         }
-      }catch (\Exception $e){
+      }
+      catch (\Exception $e)
+      {
         $output->writeln([
           'Err2 ' . $e->getMessage(),
           'Err2 ' . $user->getId(),
