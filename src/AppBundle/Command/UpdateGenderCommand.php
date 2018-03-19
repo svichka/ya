@@ -56,29 +56,35 @@
        * @var $users \AppBundle\Entity\User[]
        */
       $users = $doctrine->getRepository('AppBundle:User')->findBy(['processed_gender' => 0]);
+      $em = $doctrine->getManager();
       /**
        * @var $tmp \Dalee\PEPUWSClientBundle\Entity\Participant[]
        */
-      
+      $i =0;
       foreach ($users as $user)
       {
+        $i++;
         try
         {
           $participant = $api->getById($user->getId(), ['ismale']);
           $firstname = mb_strtolower($participant->getFirstname());
-          if (mb_strlen($firstname) > 1)
-          {
-            if (mb_substr($firstname, mb_strlen($firstname) - 1) == 'а' || mb_substr($firstname, mb_strlen($firstname) - 1) == 'я' || $firstname == 'любовь')
-            {
-              $this->setZ($user, $participant, $output);
-            }
-            else
-            {
-              $this->setM($user, $participant, $output);
-            }
-          }
+          $user->setFirstname($firstname);
+          $user->setGender($participant->getIsmale());
+          $em->merge($user);
+          $em->flush();
+//          if (mb_strlen($firstname) > 1)
+//          {
+//            if (mb_substr($firstname, mb_strlen($firstname) - 1) == 'а' || mb_substr($firstname, mb_strlen($firstname) - 1) == 'я' || $firstname == 'любовь')
+//            {
+//              $this->setZ($user, $participant, $output);
+//            }
+//            else
+//            {
+//              $this->setM($user, $participant, $output);
+//            }
+//          }
           $output->writeln([
-            'OK ' . $user->getId(),
+            "OK $i" . $user->getId() ,
           ]);
         }
         catch (\Exception $e)
