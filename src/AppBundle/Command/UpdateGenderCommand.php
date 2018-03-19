@@ -84,7 +84,7 @@
 //            }
 //          }
           $output->writeln([
-            "OK $i" . $user->getId() ,
+            "OK $i "  . $user->getId() ,
           ]);
         }
         catch (\Exception $e)
