@@ -52,39 +52,229 @@
       
       $api = new ParticipantApiController();
       $doctrine = $this->getContainer()->get('doctrine');
+      $names = [
+'Polina',
+'Zulina',
+'агния',
+'аена',
+'азалия',
+'азиза',
+'аида',
+'Айгуль',
+'айзада',
+'албина',
+'алевтина',
+'александра',
+'александровна',
+'алексанра',
+'алёна',
+'алеся',
+'алина',
+'Алиса',
+'алия',
+'алла',
+'Алмагуль',
+'альбина',
+'альвина',
+'амина',
+'анасасия',
+'анастасия',
+'ангелина',
+'андриана',
+'Анель',
+'анжела',
+'анжелика',
+'анна',
+'антонина',
+'анюта',
+'аня',
+'арина',
+'Аришенька',
+'Арпинэ',
+'Асель',
+'асия',
+'аяна',
+'божена',
+'валентина',
+'валерия',
+'варвара',
+'василина',
+'василиса',
+'венера',
+'вера',
+'вероника',
+'вика',
+'Виктори',
+'виктория',
+'виолета',
+'виолетта',
+'влада',
+'владилена',
+'галина',
+'Гузель',
+'Гульназ',
+'гульсина',
+'дарина',
+'дарья',
+'даша',
+'дементьева',
+'диана',
+'дина',
+'динара',
+'евгения',
+'евдокия',
+'екатерина',
+'елена',
+'елизавета',
+'жанара',
+'жанна',
+'заира',
+'залина',
+'замира',
+'зулина',
+'илона',
+'иляна',
+'ина',
+'индира',
+'инна',
+'иотса',
+'ира',
+'ирена',
+'ирина',
+'ирма',
+'карина',
+'катерина',
+'катя',
+'киселева',
+'клавдия',
+'кристина',
+'кричтина',
+'крюкова',
+'ксения',
+'лана',
+'лариса',
+'лейла',
+'леня',
+'лиана',
+'лидия',
+'лилия',
+'любовь',
+'людмила',
+'люция',
+'мадина',
+'мазина',
+'майя',
+'маргарита',
+'марина',
+'мария',
+'маша',
+'милана',
+'милена',
+'надежда',
+'надиа',
+'наиля',
+'настя',
+'наталия',
+'наталья',
+'наташа',
+'нестана',
+'николаевна',
+'нина',
+'нурмагомедова',
+'озода',
+'оксана',
+'олеся',
+'ольга',
+'оля',
+'полина',
+'равиля',
+'раиса',
+'раксана',
+'ралина',
+'Регина',
+'резеда',
+'рита',
+'роза',
+'руфия',
+'рухшона',
+'сабина',
+'саманта',
+'самира',
+'света',
+'светлаа',
+'светлана',
+'силана',
+'ситора',
+'соника',
+'соня',
+'софия',
+'софья',
+'старшова',
+'тайра',
+'тамара',
+'танзиля',
+'таня',
+'татьяга',
+'татьяна',
+'тафинтцева',
+'тома',
+'ульяна',
+'фанзиля',
+'фания',
+'фаузия',
+'Феруза',
+'чайка',
+'шишкина',
+'шувалова',
+'элеонора',
+'элина',
+'элла',
+'эльвина',
+'эльвира',
+'эльза',
+'эльмира',
+'юлечка',
+'юлиана',
+'юлия',
+'юля',
+'яна',
+'янина',
+'янна',
+      ];
       /**
        * @var $users \AppBundle\Entity\User[]
        */
-      $users = $doctrine->getRepository('AppBundle:User')->findBy(['processed_gender' => 0]);
+      $users = $doctrine->getRepository('AppBundle:User')->findBy(['firstname' => $names, 'processed_gender' => 0]);
       $em = $doctrine->getManager();
       /**
        * @var $tmp \Dalee\PEPUWSClientBundle\Entity\Participant[]
        */
-      $i =0;
+      $i = 0;
       foreach ($users as $user)
       {
         $i++;
         try
         {
           $participant = $api->getById($user->getId(), ['ismale']);
-          $firstname = mb_strtolower($participant->getFirstname());
-          $user->setFirstname($firstname);
-          $user->setGender($participant->getIsmale());
-          $em->merge($user);
-          $em->flush();
-//          if (mb_strlen($firstname) > 1)
-//          {
-//            if (mb_substr($firstname, mb_strlen($firstname) - 1) == 'а' || mb_substr($firstname, mb_strlen($firstname) - 1) == 'я' || $firstname == 'любовь')
-//            {
-//              $this->setZ($user, $participant, $output);
-//            }
-//            else
-//            {
-//              $this->setM($user, $participant, $output);
-//            }
-//          }
+          if ($participant->getIsmale() === 'Y')
+          {
+            $api->update($user->getId(), ['ismale' => 'N']);
+            $user->setProcessedGender(1);
+            $em->merge($user);
+            $em->flush();
+            $output->writeln([
+              "+ ",
+            ]);
+          }else{
+            $user->setProcessedGender(1);
+            $em->merge($user);
+            $em->flush();
+            $output->writeln([
+              "- ",
+            ]);
+          }
           $output->writeln([
-            "OK $i "  . $user->getId() ,
+            "OK $i " . $user->getId(),
           ]);
         }
         catch (\Exception $e)
@@ -99,94 +289,5 @@
       
       
       $output->writeln('Whoa!');
-    }
-    
-    /**
-     * @param $user        \AppBundle\Entity\User
-     * @param $participant \Dalee\PEPUWSClientBundle\Entity\Participant
-     */
-    private function setM($user, $participant, $output)
-    {
-      $this->setG($user, $participant, 'Y', $output);
-    }
-    
-    /**
-     * @param $user        \AppBundle\Entity\User
-     * @param $participant \Dalee\PEPUWSClientBundle\Entity\Participant
-     */
-    private function setZ($user, $participant, $output)
-    {
-      $this->setG($user, $participant, 'N', $output);
-    }
-    
-    /**
-     * @param $user        \AppBundle\Entity\User
-     * @param $participant \Dalee\PEPUWSClientBundle\Entity\Participant
-     * @param $gender      string
-     */
-    private function setG($user, $participant, $gender, $output)
-    {
-      try
-      {
-        $em = $this->getContainer()->get('doctrine')->getManager();
-        if (empty($participant->getIsmale()))
-        {
-          $user->setProcessedGender(1);
-          $user->setFirstname($participant->getFirstname());
-          $user->setGender($gender);
-          $em->merge($user);
-          $em->flush();
-          
-          $output->writeln([
-            '- ' . $user->getId(),
-          ]);
-          
-          return;
-        }
-        if ($gender == "N")
-        {
-          if ($participant->getIsmale() == 'N')
-          {
-            $user->setProcessedGender(1);
-            $user->setFirstname($participant->getFirstname());
-            $user->setGender($gender);
-            $em->merge($user);
-            $em->flush();
-          }
-          else
-          {
-            $api = new ParticipantApiController();
-            $api->update($participant->id, ['ismale', $gender]);
-            $user->setProcessedGender(1);
-            $user->setFirstname($participant->getFirstname());
-            $user->setGender($gender);
-            $em->merge($user);
-            $em->flush();
-          }
-          
-          $output->writeln([
-            'N ' . $user->getId(),
-          ]);
-        }
-        else
-        {
-          $user->setProcessedGender(1);
-          $user->setFirstname($participant->getFirstname());
-          $user->setGender($gender);
-          $em->merge($user);
-          $em->flush();
-          $output->writeln([
-            'M ' . $user->getId(),
-          ]);
-        }
-      }
-      catch (\Exception $e)
-      {
-        $output->writeln([
-          'Err2 ' . $e->getMessage(),
-          'Err2 ' . $user->getId(),
-          'Err2 ' . $gender,
-        ]);
-      }
     }
   }
