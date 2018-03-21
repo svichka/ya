@@ -989,13 +989,23 @@
 
     <script>
       window.attached = false;
+      $(document).on('show.bs.modal', function (e) {
+        if (e.target.id === 'uploadModal') {
+          $('.code-code-code').val('');
+        }
+      });
       $(document).on('shown.bs.modal', function (e) {
+        console.log('shown.bs.modal', e.target.id);
         if (e.target.id !== 'uploadModal') {
+          console.log('not uploadModal');
           return;
         }
+        console.log('uploadModal');
         if (window.attached) {
+          console.log('Already attached');
           return;
         }
+        console.log('Attach');
         window.attached = true;
         $('.code-code-code').keydown(function (e) {
           // console.log('keydown');
@@ -1005,77 +1015,77 @@
           }
           e.preventDefault();
         });
-      }
-      $('.code-code-code').keypress(function (e) {
-        // console.log('keydown');
-        // console.log(e.keyCode || e.charCode);
-        if (e.keyCode < 31) {
-          return;
-        }
-        e.preventDefault();
-      });
 
-      $('.code-code-code').keyup(function (e) {
-        if (e.keyCode < 31) {
-          return;
-        }
-        e.preventDefault();
-        var val = $('.code-code-code').val();
-        console.log("which " + e.which);
-        if (e.keyCode !== 229) {
-          console.log("keyCode " + e.keyCode);
-
-          // console.log("key " + e.key);
-          // console.log("charCode " + e.charCode);
-          // console.log("char " + e.char);
-          // console.log("code " + e.code);
-          console.log("String " + String.fromCharCode(e.keyCode));
-          val = val + String.fromCharCode(e.keyCode);
-        }
-        val = val.trim();
-        if (val.length === 4) {
-          val = val.substr(0, 4) + " " + val.substr(4);
-        } else if (val.length === 5) {
-          val = val.substr(0, 4) + " " + val.substr(4);
-        } else if (val.length > 5) {
-          val = val.substr(0, 4) + " " + val.substr(5);
-        }
-        if (val.length > 9) {
-          val = val.substr(0, 9);
-        }
-        $('.code-code-code').val(val);
-      });
-
-      // var custom_options = {
-      //   translation: {
-      //     'A': { pattern: /[a-zA-Z0-9]/, optional: true },
-      //     'B': { pattern: /[a-zA-Z0-9]/ },
-      //   },
-      // };
-      // $('input[name=code]').mask("BBBB BBBA", custom_options);
-      console.log(e.target.id);
-      if (e.target.id === "uploadModal") {
-        $('input[name=code]').val('');
-        $('input[name=prize-guaranteed]').prop('disabled', true);
-        $('input[name=prize-guaranteed]').attr('checked', false);
-        $('input[name=prize-weekly]').attr('checked', false);
-        $.ajax({
-          url: '{{ path('check_prizes') }}', success: function (json) {
-            console.log(json);
-            if (json.lamoda === 1) {
-              $('#prize-garant-lamoda').prop('disabled', false);
-            }
-            if (json.yr === 1) {
-              $('#prize-garant-yr').prop('disabled', false);
-            }
-            if (json.ll === 1) {
-              $('#prize-garant-ll').prop('disabled', false);
-            }
-
-            $('#send_code').prop('disabled', false);
-          },
+        $('.code-code-code').keypress(function (e) {
+          // console.log('keydown');
+          // console.log(e.keyCode || e.charCode);
+          if (e.keyCode < 31) {
+            return;
+          }
+          e.preventDefault();
         });
-      }
+
+        $('.code-code-code').keyup(function (e) {
+          if (e.keyCode < 31) {
+            return;
+          }
+          e.preventDefault();
+          var val = $('.code-code-code').val();
+          console.log("which " + e.which);
+          if (e.keyCode !== 229) {
+            console.log("keyCode " + e.keyCode);
+
+            // console.log("key " + e.key);
+            // console.log("charCode " + e.charCode);
+            // console.log("char " + e.char);
+            // console.log("code " + e.code);
+            console.log("String " + String.fromCharCode(e.keyCode));
+            val = val + String.fromCharCode(e.keyCode);
+          }
+          val = val.trim();
+          if (val.length === 4) {
+            val = val.substr(0, 4) + " " + val.substr(4);
+          } else if (val.length === 5) {
+            val = val.substr(0, 4) + " " + val.substr(4);
+          } else if (val.length > 5) {
+            val = val.substr(0, 4) + " " + val.substr(5);
+          }
+          if (val.length > 9) {
+            val = val.substr(0, 9);
+          }
+          $('.code-code-code').val(val);
+        });
+
+        // var custom_options = {
+        //   translation: {
+        //     'A': { pattern: /[a-zA-Z0-9]/, optional: true },
+        //     'B': { pattern: /[a-zA-Z0-9]/ },
+        //   },
+        // };
+        // $('input[name=code]').mask("BBBB BBBA", custom_options);
+        console.log(e.target.id);
+        if (e.target.id === "uploadModal") {
+          $('input[name=code]').val('');
+          $('input[name=prize-guaranteed]').prop('disabled', true);
+          $('input[name=prize-guaranteed]').attr('checked', false);
+          $('input[name=prize-weekly]').attr('checked', false);
+          $.ajax({
+            url: '{{ path('check_prizes') }}', success: function (json) {
+              console.log(json);
+              if (json.lamoda === 1) {
+                $('#prize-garant-lamoda').prop('disabled', false);
+              }
+              if (json.yr === 1) {
+                $('#prize-garant-yr').prop('disabled', false);
+              }
+              if (json.ll === 1) {
+                $('#prize-garant-ll').prop('disabled', false);
+              }
+
+              $('#send_code').prop('disabled', false);
+            },
+          });
+        }
       })
     </script>
 {% endblock %}
