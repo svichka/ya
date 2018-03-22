@@ -40,14 +40,6 @@
      */
     private $remember;
     /**
-     * @ORM\Column(type="string",options={"default"=""})
-     */
-    private $firstname;
-    /**
-     * @ORM\Column(type="string",options={"default"="-"})
-     */
-    private $gender;
-    /**
      * @ORM\Column(type="integer")
      */
     private $mobile_filled;
