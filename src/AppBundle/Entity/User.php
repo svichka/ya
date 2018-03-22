@@ -32,10 +32,6 @@
      */
     private $agree;
     /**
-     * @ORM\Column(type="integer",options={"default"=0})
-     */
-    private $processed_gender;
-    /**
      * @ORM\Column(type="string")
      */
     private $remember;
@@ -156,53 +152,5 @@
     public function setUpdated($updated)
     {
       $this->updated = $updated;
-    }
-  
-    /**
-     * @return mixed
-     */
-    public function getProcessedGender()
-    {
-      return $this->processed_gender;
-    }
-  
-    /**
-     * @param mixed $processed_gender
-     */
-    public function setProcessedGender($processed_gender)
-    {
-      $this->processed_gender = $processed_gender;
-    }
-  
-    /**
-     * @return mixed
-     */
-    public function getGender()
-    {
-      return $this->gender;
-    }
-  
-    /**
-     * @param mixed $gender
-     */
-    public function setGender($gender)
-    {
-      $this->gender = $gender;
-    }
-  
-    /**
-     * @return mixed
-     */
-    public function getFirstname()
-    {
-      return $this->firstname;
-    }
-  
-    /**
-     * @param mixed $firstname
-     */
-    public function setFirstname($firstname)
-    {
-      $this->firstname = $firstname;
     }
   }
