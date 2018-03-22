@@ -783,25 +783,23 @@
             break;
         }
 
-        dataLayer.push({});
-
-        var optionsGA = {
-          event: 'pageview',
-          eventCategory: '/virtual/' + name,
-          url: "https://promo.ya-juice.ru/registration/virtual/" + name
-        };
-
-        gaSend(optionsGA);
+        // var optionsGA = {
+        //   event: 'pageview',
+        //   eventCategory: '/virtual/' + name,
+        //   url: "https://promo.ya-juice.ru/registration/virtual/" + name
+        // };
+        //
+        // gaSend(optionsGA);
+        //
+        // var options = {
+        //   event: 'FillingFields',
+        //   eventCategory: name,
+        //   eventAction: 'Filled',
+        // };
+        // console.log('fG', options);
+        // gaSend(options);
 
         var options = {
-          event: 'FillingFields',
-          eventCategory: name,
-          eventAction: 'Filled',
-        };
-        console.log('fG', options);
-        gaSend(options);
-
-        options = {
           event: name
         };
         console.log('fG2', options);
