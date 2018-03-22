@@ -783,6 +783,8 @@
             break;
         }
 
+        dataLayer.push({});
+
         var optionsGA = {
           event: 'pageview',
           eventCategory: '/virtual/' + name,
@@ -797,6 +799,12 @@
           eventAction: 'Filled',
         };
         console.log('fG', options);
+        gaSend(options);
+
+        options = {
+          event: name
+        };
+        console.log('fG2', options);
         gaSend(options);
       }
 
