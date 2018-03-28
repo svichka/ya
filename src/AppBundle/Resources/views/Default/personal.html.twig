@@ -84,11 +84,11 @@
                         <span class="prize-name">{{ promocode.prizes['guaranteed']['slug']|prize }}</span><br>
                         <img src="{{ promocode.prizes['guaranteed']['url'] }}"
                              alt="{{ promocode.prizes['guaranteed']['slug'] }}">
-                        <a href="" class='table-get-link js-get-code'
+                        <div class='table-get-link js-get-code'
                            data-slug="{{ promocode.prizes['guaranteed']['slug'] }}">
                           Получить
                           <span class='js-code'>{{ promocode.prizes['guaranteed']['code'] }}</span>
-                        </a>
+                        </div>
                       {% else %}
                         --
                       {% endif %}
