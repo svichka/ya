@@ -134,12 +134,16 @@
           $w->setPromocodeParticipantId($promocode['participant']['id']);
           $w->setPromocodeParticipantCrmIdIlp($promocode['participant']['crm_id_ilp']);
           $w->setPromocodeParticipantGuid($promocode['participant']['guid']);
-          $participant = $participantApi->getById($promocode['participant']['id'], ['firstname', 'lastname', 'email']);
-          $w->setPromocodeParticipantFio($participant->lastname . " " . $participant->firstname);
-          $w->setPromocodeParticipantEmail($participant->email);
-          $this->em->merge($w);
-          $this->em->flush();
-//          }
+          try
+          {
+              $participant = $participantApi->getById($promocode['participant']['id'], ['firstname', 'lastname', 'email']);
+              $w->setPromocodeParticipantFio($participant->lastname . " " . $participant->firstname);
+              $w->setPromocodeParticipantEmail($participant->email);
+              $this->em->merge($w);
+              $this->em->flush();
+          }catch (\Exception $e){
+              continue;
+          }
         }
       }
     }
