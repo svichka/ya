@@ -17,6 +17,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
 //            new Wrewolf\Bundle\MinifierBundle\WrewolfMinifierBundle(),
+            new Gregwar\CaptchaBundle\GregwarCaptchaBundle(),
             new AppBundle\AppBundle(),
             new Dalee\PEPUWSClientBundle\DaleePEPUWSClientBundle(),
         );

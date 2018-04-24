@@ -84,3 +84,4 @@ assetic:
 
 #wrewolf_minifier:
 #    enable_listener: true
+gregwar_captcha: ~

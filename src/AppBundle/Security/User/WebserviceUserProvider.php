@@ -51,20 +51,20 @@
       }
       $this->logger->info("Login by Password");
 
-      if (!$this->recaptcha->isSuccess($request))
-      {
-        $this->logger->error('recaptcha error');
-        $error = ['messageKey' => 'Каптча не заполнена', 'messageData' => []];
-        
-//        throw new UsernameNotFoundException();
-        if (session_status() == PHP_SESSION_NONE) {
-          session_start();
-        }
-        $_SESSION['error']='Каптча не заполнена';
-        session_commit();
-
-        throw new RException();
-      }
+//      if (!$this->recaptcha->isSuccess($request))
+//      {
+//        $this->logger->error('recaptcha error');
+//        $error = ['messageKey' => 'Каптча не заполнена', 'messageData' => []];
+//
+////        throw new UsernameNotFoundException();
+//        if (session_status() == PHP_SESSION_NONE) {
+//          session_start();
+//        }
+//        $_SESSION['error']='Каптча не заполнена';
+//        session_commit();
+//
+//        throw new RException();
+//      }
       $participantApi = new ParticipantApiController();
       try
       {
@@ -117,10 +117,9 @@
       return new WebserviceUser($participant->getEmail(), $password, '', ['ROLE_USER'], $participant);
     }
     
-    public function __construct(LoggerInterface $logger, RecaptchaService $recaptcha)
+    public function __construct(LoggerInterface $logger)
     {
       $this->logger = $logger;
-      $this->recaptcha = $recaptcha;
     }
     
     public function refreshUser(UserInterface $user)

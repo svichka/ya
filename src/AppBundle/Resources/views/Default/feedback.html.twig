@@ -3,148 +3,158 @@
 {% trans_default_domain "feedback" %}
 
 {% block title %}
-  Обратная связь
+    Обратная связь
 {% endblock %}
 
 {% block body %}
-  <main class="main-content">
-    <div class="page-bg page-bg-feedback">
-      <h1 class="static-title up">Обратная связь</h1>
-      <div class="reg-form">
-        {% form_theme form 'AppBundle:Forms:form_div_layout.html.twig' %}
-        {{ form_start(form) }}
-        <div class="row">
-          {% if errors %}
-            {% for error in errors %}
-              <label class="form__label" style="color: red;">
-                {{ error|trans }}
-              </label>
-            {% endfor %}
-          {% endif %}
-        </div>
-        <div class="row">
-          <div class="col-sm-11">
-            <div class="form-block">
-              <label for="">Ваш E-Mail</label>
-              {{ form_widget(form.email, {'attr': {'class': 'fw'}}) }}
+    <main class="main-content">
+        <div class="page-bg page-bg-feedback">
+            <h1 class="static-title up">Обратная связь</h1>
+            <div class="reg-form">
+                {% form_theme form 'AppBundle:Forms:form_div_layout.html.twig' %}
+                {{ form_start(form) }}
+                <div class="row">
+                    {% if errors %}
+                        {% for error in errors %}
+                            <label class="form__label" style="color: red;">
+                                {{ error|trans }}
+                            </label>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="row">
+                    <div class="col-sm-11">
+                        <div class="form-block">
+                            <label for="">Ваш E-Mail</label>
+                            {{ form_widget(form.email, {'attr': {'class': 'fw'}}) }}
+                        </div>
+                    </div>
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-11">
+                        <div class="form-block">
+                            <label for="">Тема сообщения</label>
+                            {{ form_widget(form.theme_id, {'attr': {'class': 'fw'}}) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-24">
+                        <div class="form-block">
+                            <label for="">Текст сообщения</label>
+                            {{ form_widget(form.message) }}
+                        </div>
+                    </div>
+                </div>
+                {% if(is_granted('ROLE_USER')) %}
+                    <div class="row">
+                        <div class="col-sm-12 media-checkbox">
+                            <div class="media-checkbox">
+                                {{ form_row(form.agree) }}
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="upload-line form-block">
+                                <div class="file-input-wrap js-file-wrapper">
+                                    {{ form_widget(form.file, { 'id': 'file', 'attr': {'class': 'js-file-input'}}) }}
+
+                                    <span class="js-file-input-value">прикрепите файл</span>
+                                    <sup>*</sup>
+                                </div>
+                                <div style="font-size: 10px;"><sup>*</sup>Формат - jpg, размер - до 3МБ</div>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="upload-line form-block">
+                        <div class="file-input-wrap js-file-wrapper">
+                            {{ form_widget(form.file, { 'id': 'file', 'attr': {'class': 'js-file-input'}}) }}
+                            <span class='js-file-input-value'>прикрепите файл</span>
+                            <sup>*</sup>
+                        </div>
+                        <div style="font-size: 10px;"><sup>*</sup>Формат - jpg, размер - до 3МБ</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-11 text-right">
+                            <div class="captcha-wrap">
+                                {{ form_row(form.recaptcha) }}
+                            </div>
+                        </div>
+                        <div class="col-xs-1"></div>
+                        <div class="col-sm-12 media-checkbox media-checkbox-middle">
+                            {{ form_row(form.agree) }}
+                        </div>
+                    </div>
+                {% endif %}
+
+                <div class="form-btn text-center">
+                    <button class='gradient-btn'>Отправить</button>
+                </div>
+                {{ form_end(form) }}
             </div>
-          </div>
-          <div class="col-sm-2"></div>
-          <div class="col-sm-11">
-            <div class="form-block">
-              <label for="">Тема сообщения</label>
-              {{ form_widget(form.theme_id, {'attr': {'class': 'fw'}}) }}
-            </div>
-          </div>
         </div>
-        <div class="row">
-          <div class="col-xs-24">
-            <div class="form-block">
-              <label for="">Текст сообщения</label>
-              {{ form_widget(form.message) }}
-            </div>
-          </div>
-        </div>
-        {% if(is_granted('ROLE_USER')) %}
-        <div class="row">
-        	<div class="col-sm-12 media-checkbox">
-        		<div class="media-checkbox">
-        			{{ form_row(form.agree) }}
-        		</div>
-        	</div>
-        	<div class="col-sm-12">
-        		<div class="upload-line form-block">
-        			<div class="file-input-wrap js-file-wrapper">
-        				{{ form_widget(form.file, { 'id': 'file', 'attr': {'class': 'js-file-input'}}) }}
-        
-        				<span class="js-file-input-value">прикрепите файл</span>
-        				<sup>*</sup>
-        			</div>
-        			<div style="font-size: 10px;"><sup>*</sup>Формат - jpg, размер - до 3МБ</div>
-        		</div>
-        	</div>
-        </div>
-        {% else %}
-        <div class="upload-line form-block">
-          <div class="file-input-wrap js-file-wrapper">
-            {{ form_widget(form.file, { 'id': 'file', 'attr': {'class': 'js-file-input'}}) }}
-            <span class='js-file-input-value'>прикрепите файл</span>
-            <sup>*</sup>
-          </div>
-          <div style="font-size: 10px;"><sup>*</sup>Формат - jpg, размер - до 3МБ</div>
-        </div>
-        <div class="row">
-          <div class="col-sm-11 text-right">
-            <div class="captcha-wrap">
-              {{ form_row(form.recaptcha) }}
-            </div>
-          </div>
-          <div class="col-xs-1"></div>
-          <div class="col-sm-12 media-checkbox media-checkbox-middle">
-            {{ form_row(form.agree) }}
-          </div>
-        </div>
-        {% endif %}
-        
-        <div class="form-btn text-center">
-          <button class='gradient-btn'>Отправить</button>
-        </div>
-        {{ form_end(form) }}
-      </div>
-    </div>
-  </main>
+    </main>
 {% endblock %}
 
 {% block javascripts %}
-  {{ parent() }}
-  <script>
-    document.addEventListener('feedback_error', function (e) {
-      showErrorMessage("Ошибка отправки сообщения");
-    }, false);
-    document.addEventListener('ok', function (e) {
-      // Успешная отправка формы обратной связи
-      gtag('event', 'conversion', {
-        'allow_custom_scripts': true,
-        'send_to': 'DC-6274508/ya_ju0/ya_ju003+standard'
-      });
-      eL('Feedback','SentForm',	'{{ theme_id }}');
-      $('#feedback').modal();
-    }, false);
+    {{ parent() }}
+    <script>
+      document.addEventListener('feedback_error', function (e) {
+        showErrorMessage("Ошибка отправки сообщения");
+      }, false);
+      document.addEventListener('ok', function (e) {
+        // Успешная отправка формы обратной связи
+        gtag('event', 'conversion', {
+          'allow_custom_scripts': true,
+          'send_to': 'DC-6274508/ya_ju0/ya_ju003+standard',
+        });
+        eL('Feedback', 'SentForm', '{{ theme_id }}');
+        $('#feedback').modal();
+      }, false);
 
-    function ValidateSize(file) {
-      var FileSize = file.files[ 0 ].size / 1024 / 1024; // in MB
-      if (FileSize > 3) {
-        showErrorMessage('Превышен допустимый размер файла в 3 Мб.<br>' +
-          ' Попробуйте загрузить файл другого размера.');
-        $(file).val(''); //for clearing with Jquery
+      function ValidateSize(file) {
+        var FileSize = file.files[ 0 ].size / 1024 / 1024; // in MB
+        if (FileSize > 3) {
+          showErrorMessage('Превышен допустимый размер файла в 3 Мб.<br>' +
+            ' Попробуйте загрузить файл другого размера.');
+          $(file).val(''); //for clearing with Jquery
+        }
       }
-    }
-  </script>
+    </script>
 {% endblock %}
 
 {% block modals %}
-  {{ parent() }}
-  <!-- Modal -->
-  <div class="modal fade" id="feedback" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                aria-hidden="true">&times;</span></button>
+    {{ parent() }}
+    <!-- Modal -->
+    <div class="modal fade" id="feedback" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-static">
+                        <p>
+                            Уважаемый участник! <br><br>
+                            Ваш вопрос отправлен Оператору&nbsp;Акции. <br>
+                            Мы вернемся к Вам с ответом <br>
+                            в течение 24 часов.
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="modal-body">
-          <div class="modal-static">
-            <p>
-              Уважаемый участник! <br><br>
-              Ваш вопрос отправлен Оператору&nbsp;Акции. <br>
-              Мы вернемся к Вам с ответом <br>
-              в течение 24 часов.
-            </p>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
-  <!--Modals End-->
+    <!--Modals End-->
 
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        #not_authorized_user_form_recaptcha {
+            width: 131px;
+            margin-left: 1em;
+        }
+    </style>
 {% endblock %}

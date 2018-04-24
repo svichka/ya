@@ -160,11 +160,11 @@
         $participantApi = new ParticipantApiController();
         try
         {
-          $recaptcha = $this->container->get('app.recaptcha');
-          if (!$recaptcha->isSuccess($request))
-          {
-            throw new NotCorrectDataException('Not correct recaptcha');
-          }
+//          $recaptcha = $this->container->get('app.recaptcha');
+//          if (!$recaptcha->isSuccess($request))
+//          {
+//            throw new NotCorrectDataException('Not correct recaptcha');
+//          }
           
           if (!$this->validateEmail($formData->email, "Введите емейл"))
           {

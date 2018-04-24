@@ -3,154 +3,161 @@
 {% trans_default_domain "personal" %}
 
 {% block title %}
-  Регистрация
+    Регистрация
 {% endblock %}
 {% form_theme form 'AppBundle:Forms:form_div_layout.html.twig' %}
 {% block body %}
-  <main class="main-content">
-    <div class="page-bg page-bg-reg">
-      <h1 class="static-title up">Регистрация</h1>
-      <div class="reg-form">
-        {{ form_start(form) }}
-        <label style="display:none; margin-bottom: 15px; padding: 15px; text-align:center; color: red;"
-               class="online-error"></label>
-        {% if errors is defined %}
-          {% for error in errors %}
-            <label style="margin-bottom: 15px; padding: 15px; text-align:center; color: red;">{{ error|trans }}</label>
-          {% endfor %}
-        {% endif %}
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="form-block">
+    <main class="main-content">
+        <div class="page-bg page-bg-reg">
+            <h1 class="static-title up">Регистрация</h1>
+            <div class="reg-form">
+                {{ form_start(form) }}
+                <label style="display:none; margin-bottom: 15px; padding: 15px; text-align:center; color: red;"
+                       class="online-error"></label>
+                {% if errors is defined %}
+                    {% for error in errors %}
+                        <label
+                            style="margin-bottom: 15px; padding: 15px; text-align:center; color: red;">{{ error|trans }}</label>
+                    {% endfor %}
+                {% endif %}
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-block">
 
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        {{ form_row(form.lastname) }}
+                        {{ form_row(form.firstname) }}
+                        {{ form_row(form.birthdate) }}
+                        {{ form_row(form.email) }}
+                    </div>
+                    <div class="col-sm-12">
+                        {{ form_row(form.regionguid) }}
+                        {{ form_row(form.cityguid) }}
+                        {{ form_row(form.ismale) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        {{ form_row(form.password) }}
+                    </div>
+                    <div class="col-sm-12">
+                        {{ form_row(form.confirm_password) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-11">
+                        <div class="form-block">
+                            {{ form_row(form.isageagreed) }}
+                            {{ form_row(form.ispdagreed) }}
+                        </div>
+                    </div>
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-12">
+                        {{ form_row(form.recaptcha) }}
+                    </div>
+                </div>
+                <div class="form-btn text-center">
+                    <button class='gradient-btn'>Зарегистрироваться</button>
+                </div>
+                {{ form_end(form) }}
             </div>
-          </div>
         </div>
-        <div class="row">
-          <div class="col-sm-12">
-            {{ form_row(form.lastname) }}
-            {{ form_row(form.firstname) }}
-            {{ form_row(form.birthdate) }}
-            {{ form_row(form.email) }}
-          </div>
-          <div class="col-sm-12">
-            {{ form_row(form.regionguid) }}
-            {{ form_row(form.cityguid) }}
-            {{ form_row(form.ismale) }}
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-12">
-            {{ form_row(form.password) }}
-          </div>
-          <div class="col-sm-12">
-            {{ form_row(form.confirm_password) }}
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-11">
-            <div class="form-block">
-              {{ form_row(form.isageagreed) }}
-              {{ form_row(form.ispdagreed) }}
-            </div>
-          </div>
-          <div class="col-sm-1"></div>
-          <div class="col-sm-12">
-            {{ form_row(form.recaptcha) }}
-          </div>
-        </div>
-        <div class="form-btn text-center">
-          <button class='gradient-btn'>Зарегистрироваться</button>
-        </div>
-        {{ form_end(form) }}
-      </div>
-    </div>
-  </main>
+    </main>
 {% endblock %}
 
 {% block stylesheets %}
-  {{ parent() }}
+    {{ parent() }}
+    <style>
+        #registration_form_recaptcha {
+            width: 131px;
+            margin-left: 1em;
+        }
+    </style>
 {% endblock %}
 
 {% block modals %}
-  {{ parent() }}
+    {{ parent() }}
 {% endblock %}
 
 {% block javascripts %}
-  {{ parent() }}
-  <script>
-    $(function () {
-      $('form#registration_form input[type=radio]').change(function () {
-        fG(this);
+    {{ parent() }}
+    <script>
+      $(function () {
+        $('form#registration_form input[type=radio]').change(function () {
+          fG(this);
+        });
+        $('form#registration_form input[type=checkbox]').change(function () {
+          fG(this);
+        });
+        $('form#registration_form select').change(function () {
+          fG(this);
+        });
+        $(window).unload(function () {
+          var options = {
+            event: 'FillingFields',
+            eventCategory: 'Fields',
+            eventAction: 'Leave',
+          };
+          gaSend(options);
+        });
       });
-      $('form#registration_form input[type=checkbox]').change(function () {
-        fG(this);
-      });
-      $('form#registration_form select').change(function () {
-        fG(this);
-      });
-      $( window ).unload(function() {
-        var options = {
-          event: 'FillingFields',
-          eventCategory: 'Fields',
-          eventAction: 'Leave',
-        };
-        gaSend(options);
-      });
-    });
 
-  </script>
-  <script>
-    $(function () {
-      $('form#registration_form').submit(function () {
-        if (!validateEmail($('#registration_form_email').val())) {
-          $('.online-error').css('display', 'inline-block');
-          $('.online-error').text('Некорректно заполнено поле: Email');
-          return false;
+    </script>
+    <script>
+      $(function () {
+        $('form#registration_form').submit(function () {
+          if (!validateEmail($('#registration_form_email').val())) {
+            $('.online-error').css('display', 'inline-block');
+            $('.online-error').text('Некорректно заполнено поле: Email');
+            return false;
+          }
+        });
+      });
+      $(function () {
+        eA('Signup', 'OpenSignup');
+      });
+      $(function () {
+        regions = {{ banned_listener.regions()|json_encode|raw }};
+        select = $("select#registration_form_regionguid");
+        selectC = $("select#registration_form_cityguid");
+
+        select.on('change', function () {
+          selectC.html('');
+          selectC.attr('disabled', 'disabled');
+          selectC.append('<option value="">Зарузка...</option>');
+          var data = { region: select.val() };
+          loadCities(data);
+        });
+
+        function loadCities(data) {
+          $.ajax({
+            url: '{{ path('cities_json') }}',
+            type: 'post',
+            data: data,
+            success: function (json) {
+              var s;
+              selectC.html('');
+              selectC.append('<option value="">Выберите город</option>');
+              for (var key in json) {
+                if (json.hasOwnProperty(key)) {
+                  selectC.append('<option value="' + json[ key ] + '">' + key + '</option>');
+                }
+              }
+              selectC.removeAttr('disabled', 'disabled');
+            },
+          });
         }
       });
-    });
-    $(function () {
-      eA('Signup', 'OpenSignup');
-    });
-    $(function () {
-      regions = {{ banned_listener.regions()|json_encode|raw }};
-      select = $("select#registration_form_regionguid");
-      selectC = $("select#registration_form_cityguid");
-
-      select.on('change', function () {
-        selectC.html('');
-        selectC.attr('disabled', 'disabled');
-        selectC.append('<option value="">Зарузка...</option>');
-        var data = { region: select.val() };
-        loadCities(data);
-      });
-
-      function loadCities(data) {
-        $.ajax({
-          url: '{{ path('cities_json') }}',
-          type: 'post',
-          data: data,
-          success: function (json) {
-            var s;
-            selectC.html('');
-            selectC.append('<option value="">Выберите город</option>');
-            for (var key in json) {
-              if (json.hasOwnProperty(key)) {
-                selectC.append('<option value="' + json[ key ] + '">' + key + '</option>');
-              }
-            }
-            selectC.removeAttr('disabled', 'disabled');
-          },
-        });
-      }
-    });
-  </script>
-  {% if errors %}
-    <script>
-      var errors = '{{ errors|join(', ') }}';
-
-      eE('Signup', 'SentForm', 'Unsuccess_Signup', '-', errors);
     </script>
-  {% endif %}
+    {% if errors %}
+        <script>
+          var errors = '{{ errors|join(', ') }}';
+
+          eE('Signup', 'SentForm', 'Unsuccess_Signup', '-', errors);
+        </script>
+    {% endif %}
 {% endblock %}
