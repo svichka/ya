@@ -42,20 +42,7 @@ class SecurityController extends Base
         }
 
         $lastUsername = $authenticationUtils->getLastUsername();
-        $form = $this->createForm(LoginForm::class, new Login());
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid())
-        {
-        }
-        else
-        {
-            return $this->render('AppBundle:Default:login.html.twig', [
-                'last_username' => $lastUsername,
-                'error'         => $error,
-                'code'          => '',
-                'form'          => $form->createView(),
-            ]);
-        }
+
         $user = $this->getUser();
         if ($user)
         {
@@ -126,7 +113,6 @@ class SecurityController extends Base
             'last_username' => $lastUsername,
             'error'         => $error,
             'code'          => $restore,
-            'form'          => $form->createView(),
         ]);
     }
 
