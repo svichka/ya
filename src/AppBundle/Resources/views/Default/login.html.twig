@@ -26,6 +26,7 @@
                 </div>
                 <div class="form-block">
                     {{ form_errors(form) }}
+                    {{ form_errors(form.recaptcha) }}
                     {{ form_widget(form.recaptcha) }}
                 </div>
                 <div class="media-checkbox media-checkbox-sm">

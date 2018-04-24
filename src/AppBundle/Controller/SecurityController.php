@@ -45,10 +45,13 @@ class SecurityController extends Base
         $form = $this->createForm(LoginForm::class, new Login());
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid())
-        {}else{
+        {
+        }
+        else
+        {
             return $this->render('AppBundle:Default:login.html.twig', [
                 'last_username' => $lastUsername,
-                'error'         => $error,
+                'error'         => 'Ошибка заполнения каптчи',
                 'code'          => '',
                 'form'          => $form->createView(),
             ]);
@@ -117,7 +120,6 @@ class SecurityController extends Base
         }
 //      }
         $restore = $request->get("code", false);
-
 
 
         return $this->render('AppBundle:Default:login.html.twig', [
