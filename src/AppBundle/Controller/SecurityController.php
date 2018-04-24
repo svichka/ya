@@ -51,7 +51,7 @@ class SecurityController extends Base
         {
             return $this->render('AppBundle:Default:login.html.twig', [
                 'last_username' => $lastUsername,
-                'error'         => 'Ошибка заполнения каптчи',
+                'error'         => $error,
                 'code'          => '',
                 'form'          => $form->createView(),
             ]);
