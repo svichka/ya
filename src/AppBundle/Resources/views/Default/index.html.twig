@@ -3,51 +3,55 @@
 {% block title %}
 Выиграй 200 000 ₽ на шопинг в Милане от бренда Я
 {% endblock %}
-
+{% form_theme form 'AppBundle:Forms:form_div_layout.html.twig' %}
 {% block body %}
-  <main class="main-content">
-    <div class="page-bg">
-      <div class="top-text">
-					<img src="{{ asset('images/text1.png') }}" class="hidden-xs" alt="">
-					<img src="{{ asset('images/text2.png') }}" class="visible-xs" alt="">
-				</div>
-      <div class="mp-button">
-        <a href="" class="button-purple" data-toggle="modal"  data-target="{{ action }}">Зарегистрировать код</a>
-      </div>
-      <div class="prizes-row">
-        <div class="row">
-          <div class="col-sm-8">
-            <div class="prize-item">
-              <div class="prize-img prize-img-1" style="background-image: url({{ asset('images/prize1.png') }})"></div>
-              <div class="prize-desc">
-                <img src="{{ asset('images/prt1.png') }}" class="hidden-xs" alt="">
-                <img src="{{ asset('images/prt1-xs.png') }}" class="visible-xs" alt="">
-              </div>
+    <main class="main-content">
+        <div class="container">
+            <h1 class="static-title up">Подписка</h1>
+            <div class="reg-form">
+                {{ form_start(form) }}
+                <label style="display:none; margin-bottom: 15px; padding: 15px; text-align:center; color: red;"
+                       class="online-error"></label>
+                {% if errors is defined %}
+                    {% for error in errors %}
+                        <label
+                                style="margin-bottom: 15px; padding: 15px; text-align:center; color: red;">{{ error|trans }}</label>
+                    {% endfor %}
+                {% endif %}
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-block">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        {{ form_row(form.email) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-11">
+                        <div class="form-block">
+                            {{ form_row(form.isageagreed) }}
+                            {{ form_row(form.ispdagreed) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        {{ form_row(form.recaptcha) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <button class='btn'>Отправить</button>
+                    </div>
+                </div>
+                {{ form_end(form) }}
             </div>
-          </div>
-          <div class="col-sm-8">
-            <div class="prize-item prize-item-arrows">
-              <div class="prize-img prize-img-2" style="background-image: url({{ asset('images/prize2.png') }})"></div>
-              <div class="prize-desc">
-                <img src="{{ asset('images/prt2.png') }}" class="hidden-xs" alt="">
-                <img src="{{ asset('images/prt2-xs.png') }}" class="visible-xs" alt="">
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-8">
-            <div class="prize-item">
-              <div class="prize-img prize-img-3" style="background-image: url({{ asset('images/prize3.png') }})"></div>
-              <div class="prize-desc">
-                <img src="{{ asset('images/prt3.png') }}" class="hidden-xs" alt="">
-                <img src="{{ asset('images/prt3-xs.png') }}" class="visible-xs" alt="">
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
-    </div>
-  </main>
-  
+    </main>
 {% endblock %}
 
 {% block stylesheets %}

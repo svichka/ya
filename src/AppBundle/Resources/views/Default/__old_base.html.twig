@@ -1,0 +1,1229 @@
+{#{% minifyhtml %}#}
+<!DOCTYPE html>
+{% set show = app.request.query.get("show") %}
+{% set action =  banned_listener.getAction() %}
+{% set content_version = banned_listener.getAssetsVersion() %}
+{% set lottery_date = banned_listener.getLotteryDate() %}
+
+{% set page_description = "Купи сок Я, регистрируй коды, выиграй шопинг в Милане со стилистом на 200 000 ₽!" %}
+{% set page_name = "Выиграй 200 000 ₽ на шопинг в Милане от бренда Я" %}
+{% set page_image =app.request.scheme ~'://' ~ app.request.httpHost ~ asset('apple-touch-icon.png') %}
+{% set page_url = url('index_page') %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8"/>
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="description" content="{{ page_description }}"/>
+    <meta name="yandex-verification" content="b7d41817cc7ff644"/>
+    <meta name="google-site-verification" content="9YEsJfys_y8MfYGGgfZeqQ1So08CkZuCLcWaEaK2J3M"/>
+    <!-- Schema.org markup for Google+ -->
+    <meta itemprop="name" content="{{ page_name }}">
+    <meta itemprop="description" content="{{ page_description }}">
+    <meta itemprop="image" content="{{ page_image }}">
+
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" content="summary_large_image">
+    {#<meta name="twitter:site" content="@publisher_handle">#}
+    <meta name="twitter:title" content="{{ block('title') }}">
+    <meta name="twitter:description" content="{{ page_description }}">
+    {#<meta name="twitter:creator" content="@author_handle">#}
+    <!-- Twitter summary card with large image must be at least 280x150px -->
+    <meta name="twitter:image:src" content="{{ page_image }}">
+
+    <!-- Open Graph data -->
+    <meta property="og:locale" content="ru_RU"/>
+    <meta property="og:title" content="{{ block('title') }}"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="{{ page_url }}"/>
+    <meta property="og:image" content="{{ page_image }}"/>
+    <meta property="og:description" content="{{ page_description }}"/>
+    <meta property="og:site_name" content="{{ page_name }}"/>
+
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+    <meta name="viewport" content="width=device-width">
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ apm_css }}"/>
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/owl.carousel.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/jquery.datetimepicker.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/scroll.css') }}">
+
+        <link rel="stylesheet" href="{{ asset('css/fonts.css') }}?{{ content_version }}">
+        <link rel="stylesheet" href="{{ asset('css/index.css') }}?{{ content_version }}">
+        <link rel="stylesheet" href="{{ asset('css/media.css') }}?{{ content_version }}">
+        <style>
+            span.reg-code-error-fuel {
+                text-align: center;
+                display: inline-block;
+                width: 100%;
+                color: red;
+                font-size: 12pt;
+                padding-bottom: .2em;
+            }
+
+            .code-code-code {
+                text-transform: uppercase;
+            }
+        </style>
+    {% endblock %}
+    <script>
+      window.show = '{{ show }}';
+    </script>
+    <!--
+  Start of global snippet: Please do not remove
+  Place this snippet between the <head> and </head> tags on every page of your site.
+  -->
+    <!-- Global site tag (gtag.js) - DoubleClick -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=DC-6274508"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+        console.log('gtag', arguments);
+        dataLayer.push(arguments);
+      }
+
+      gtag('js', new Date());
+
+      gtag('config', 'DC-6274508');
+    </script>
+    <!-- End of global snippet: Please do not remove -->
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+        w[ l ] = w[ l ] || [];
+        w[ l ].push({
+          'gtm.start':
+            new Date().getTime(), event: 'gtm.js',
+        });
+        var f = d.getElementsByTagName(s)[ 0 ],
+          j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-TPF753F');</script>
+    <!-- End Google Tag Manager -->
+
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TPF753F"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
+{% set route = app.request.attributes.get('_route') %}
+<div class="full-screen container-mp">
+    <header class="page_header">
+        <div class="row header-bg">
+            <div class="col-xs-20 col-sm-5">
+                <div class="header-logo">
+                    <a href="{{ path('index_page') }}">
+                        <img src="{{ asset('images/logo.png') }}" alt="">
+                    </a>
+                </div>
+            </div>
+            <div class="col-xs-4 col-sm-19">
+                <div class="mobile-menu js-menu-toggler visible-xs">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div class="header-menu-wrap">
+                    <ul class="up header-menu">
+                        {% if(is_granted('ROLE_USER')) %}
+                            <li class="auth visible-xs {{ route == 'personal_page' ? 'active' }}"
+                                style="background-image : url({{ asset('images/user-i.png') }})">
+                                <a href="{{ path('personal_page') }}">Личный кабинет</a>
+                            </li>
+                        {% endif %}
+                        <li class="visible-xs {{ route == 'index_page' ? 'active' }}"
+                            style="background-image : url({{ asset('images/house-i.png') }})">
+                            <a class="{{ route == 'index_page' ? 'active' }}" href="{{ path('index_page') }}"
+                               onclick="eA('About','VisitAbout')">Главная</a>
+                        </li>
+                        <li class="{{ route == 'prizes_page' ? 'active' }}"
+                            style="background-image : url({{ asset('images/gift-i.png') }})">
+                            <a class="{{ route == 'prizes_page' ? 'active' }}" href="{{ path('prizes_page') }}"
+                               onclick="eA('Prizes','VisitPrizes')">Призы</a>
+                        </li>
+                        <li class="{{ route == 'winnners_page' ? 'active' }}"
+                            style="background-image : url({{ asset('images/star-i.png') }})">
+                            <a class="{{ route == 'winnners_page' ? 'active' }}" href="{{ path('winnners_page') }}"
+                               onclick="eA('Winners','VisitWinners')">Победители</a>
+                        </li>
+                        <li class="ask {{ route == 'faq_page' ? 'active' }}"
+                            style="background-image : url({{ asset('images/ask-i.png') }})">
+                            <a class="{{ route == 'faq_page' ? 'active' }}" href="{{ path('faq_page') }}"
+                               onclick="eA('FAQ','VisitFAQ')">Вопрос-ответ</a>
+                        </li>
+                        <li class="mail {{ route == 'feedback_page' ? 'active' }}"
+                            style="background-image : url({{ asset('images/mail-i.png') }})">
+                            <a class="{{ route == 'feedback_page' ? 'active' }}" href="{{ path('feedback_page') }}"
+                               onclick="eA('Feedback','VisitFeedback')">Обратная связь</a>
+                        </li>
+                        {% if(is_granted('ROLE_USER')) %}
+                            <li class="auth {{ route == 'personal_page' ? 'active' }}"
+                                style="background-image : url({{ asset('images/exit-i.png') }})">
+                                <a href="{{ path('personal_page') }}" class="hidden-xs">
+                                    <img src="{{ asset('images/user.png') }}" alt="">
+                                </a>
+                                <a href="{{ path('logout') }}">Выход</a>
+                            </li>
+                        {% else %}
+                            <li class="{{ route == 'login' ? 'active' }}"
+                                style="background-image : url({{ asset('images/user-i.png') }})">
+                                <a href="{{ path('login') }}">Вход</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    {% block body %}{% endblock %}
+    <footer class='page_footer text-center up'>
+        <div class="page-footer-bg">
+            <a href="{{ asset('files/rules.pdf') }}" class='up' onclick="eA('InteractionDoc','Rules')" target="_blank">Правила
+                акции</a> |
+            <a href="{{ asset('files/privacy.pdf') }}" class='up' onclick="eA('InteractionDoc','Privacy')"
+               target="_blank">Пользовательское
+                соглашение</a>
+            <div class="">© ВСЕ ПРАВА ЗАЩИЩЕНЫ</div>
+        </div>
+    </footer>
+</div>
+
+{% block modals %}
+    <!--Modals-->
+    {% if action == "#uploadModal" %}
+        <!-- Modal -->
+        <div class="modal fade modal-reg-form" id="uploadModal" tabindex="-1" role="dialog"
+             aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title up" id="myModalLabel">
+                            Регистрация кода
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{{ path('promocode_register') }}" method="post" id="upload_form">
+                            <span class="reg-code-error-fuel"></span>
+                            <div class="modal-pre-title up">
+                                Получи гарантированный приз
+                            </div>
+                            <div class="modal-post-title">
+                                Выберите скидку:
+                            </div>
+                            <div class="prize-select-row">
+                                <div class="row">
+                                    <div class="col-sm-8 prize-select-block">
+                                        <div class="img-choise-prize"
+                                             style="background-image: url({{ asset('images/yr.png') }})"></div>
+                                        <span class='prize-select-wrapper'>
+                        <input type="radio" name="prize-guaranteed" id="prize-garant-yr" title="prize-garant-yr"
+                               disabled
+                               value="yr">
+                        <img src="{{ asset('images/t.png') }}" alt="">
+                        <img src="{{ asset('images/t1.png') }}" alt="">
+                    </span>
+                                    </div>
+                                    <div class="col-sm-8 prize-select-block">
+                                        <div class="img-choise-prize"
+                                             style="background-image: url({{ asset('images/lamoda.png') }})"></div>
+                                        <span class='prize-select-wrapper'>
+                        <input type="radio" name="prize-guaranteed" id="prize-garant-lamoda" title="prize-garant-lamoda"
+                               disabled value="lamoda">
+                        <img src="{{ asset('images/t.png') }}" alt="">
+                        <img src="{{ asset('images/t1.png') }}" alt="">
+                    </span>
+                                    </div>
+                                    <div class="col-sm-8 prize-select-block">
+                                        <div class="img-choise-prize"
+                                             style="background-image: url({{ asset('images/ll.png') }})"></div>
+                                        <span class='prize-select-wrapper show-lelnina-pp'>
+                        <input type="radio" name="prize-guaranteed" id="prize-garant-ll" title="prize-garant-ll"
+                               disabled
+                               value="ll">
+                        <img src="{{ asset('images/t.png') }}" alt="">
+                        <img src="{{ asset('images/t1.png') }}" alt="">
+                    </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-hr text-center">
+                                <img src="{{ asset('images/hr.png') }}" alt="">
+                            </div>
+                            <div class="modal-pre-title up">
+                                УЧАСТВУЙ В ЕЖЕНЕДЕЛЬНОМ РОЗЫГРЫШЕ
+                            </div>
+                            <div class="modal-post-title">
+                                Выберите сертификат:
+                            </div>
+                            <div class="prize-select-row">
+                                <div class="row">
+                                    <div class="col-sm-8 prize-select-block">
+                                        <div class="img-choise-prize"
+                                             style="background-image: url({{ asset('images/yr.png') }})"></div>
+                                        <span class='prize-select-wrapper'>
+                        <input type="radio" name="prize-weekly" value="yr" title="prize-week-yr">
+                        <img src="{{ asset('images/t.png') }}" alt="">
+                        <img src="{{ asset('images/t1.png') }}" alt="">
+                    </span>
+                                    </div>
+                                    <div class="col-sm-8 prize-select-block">
+                                        <div class="img-choise-prize"
+                                             style="background-image: url({{ asset('images/lamoda.png') }})"></div>
+                                        <span class='prize-select-wrapper'>
+                        <input type="radio" name="prize-weekly" value="lamoda" title="prize-week-lamoda">
+                        <img src="{{ asset('images/t.png') }}" alt="">
+                        <img src="{{ asset('images/t1.png') }}" alt="">
+                    </span>
+                                    </div>
+                                    <div class="col-sm-8 prize-select-block">
+                                        <div class="img-choise-prize"
+                                             style="background-image: url({{ asset('images/ll.png') }})"></div>
+                                        <span class='prize-select-wrapper show-lelnina-pp'>
+                        <input type="radio" name="prize-weekly" value="ll" title="prize-week-ll">
+                        <img src="{{ asset('images/t.png') }}" alt="">
+                        <img src="{{ asset('images/t1.png') }}" alt="">
+                    </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mf-row">
+                                <form action="" class="modal-reg-form">
+                                    <div class="row">
+                                        <div class="col-sm-6"></div>
+                                        <div class="col-sm-7">
+                                            <div class="form-block">
+                                                <input type="text" class='text-center modal-custum-input code-code-code'
+                                                       name="code"
+                                                       placeholder="Введите код">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-1"></div>
+                                        <div class="col-sm-10 col-xs-text-center">
+                                            <button class="gradient-btn xxs-button" id="send_code" disabled="">ОК
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal мы с Тамарой ходим парой -->
+        <div class="modal fade" id="completeRegCode" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title up" id="myModalLabel">
+                            Код успешно принят!
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-static">
+                            <p>
+                                Поздравляем, Вы получаете <br>
+                                гарантированный приз — код на скидку <br>
+                                в интернет-магазине
+                                <img src="{{ asset('images/lamoda.png') }}"
+                                     class="modal-single-img modal-prise-garanted" alt="">
+                                Также Ваш код будет участвовать <br>
+                                в розыгрыше еженедельного <br>
+                                приза – сертификат
+                                <img src="{{ asset('images/lamoda.png') }}" class="modal-single-img  modal-prise-main"
+                                     alt="">
+                                и в розыгрыше главного приза <br><br>
+
+                                Розыгрыш еженедельного приза <br>
+                                состоится {{ lottery_date }}
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="lenina" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">×</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-static">
+                            Уточняй наличие Студии <br> в твоем городе в <a href="{{ asset('files/rules.pdf') }}"
+                                                                            target="_blank">Правилах
+                                Акции</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    {% if action == "#eolModal" %}
+        <!-- Modal -->
+        <div class="modal fade" id="eolModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title up" id="myModalLabel">
+                            Уважаемый участник!
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-static">
+                            <p>Акция завершена!</p>
+                            <p>
+                                Выдача призов осуществляется <br>
+                                до 31 августа 2018 г. <br>
+                                Информацию по получению призов <br>
+                                Вы можете узнать в <a href="{{ path('personal_page') }}">Личном кабинете</a><br> 
+                                или направив запрос в <a href="{{ path('feedback_page') }}">Обратную связь.</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    {% if action == "#earlyModal" %}
+        <!-- Modal -->
+        <div class="modal fade" id="earlyModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title up" id="myModalLabel">
+                            Уважаемый участник!
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-static">
+                            <p>Акция еще не началась!</p>
+                            <p>
+                                Ваш первый код Вы сумеете загрузить <br> уже 01 марта 2018. <br>
+                                С правилами акции можете <br>
+                                ознакомиться перейдя по <a href="{{ asset('files/rules.pdf') }}">ссылке</a>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    {% if action == "#agreeModal" %}{% endif %}
+
+    <!-- Modal -->
+    <div class="modal fade" id="ageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title up" id="myModalLabel">
+                        Уважаемый участник!
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-static">
+                        Согласно правилам, принять участие в Акции могут только лица, достигшие 18 лет.
+                        <br>
+                        <br>
+                        <a href="{{ asset('files/rules.pdf') }}" target="_blank">Правила Акции</a>
+                    </div>
+                    <div class="form-btn text-center">
+                        <button class="gradient-btn xxs-button" data-dismiss="modal">ОК</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if action == "#overflowModal" %}
+        <!-- Modal -->
+        <div class="modal fade" id="overflowModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title up" id="myModalLabel">
+                            Уважаемый участник!
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-static">
+                            <p>
+                                далее TOO_MANY_INVALID_PROMOCODES
+                                далее TOO_MANY_INVALID_RECEIPTS
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    {% if action == "#speedModal" %}
+        <div class="modal fade" id="speedModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">×</span></button>
+                        <h4 class="modal-title up" id="myModalLabel">
+                            Уважаемый участник!
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-static">
+                            <p>
+                                Далее
+                                TOO_MANY_PROMOCODES_PER_MINUTE
+                                TOO_MANY_RECEIPTS_PER_MINUTE
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    {% if action == "#speed1Modal" %}
+        <div class="modal fade" id="speed1Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">×</span></button>
+                        <h4 class="modal-title up" id="myModalLabel">
+                            Уважаемый участник!
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-static">
+                            <p>
+                                Вы заблокированы на 3 часа в связи с подозрительной активностью и вводом более 15 кодов
+                                в минуту.
+                                <br>
+                                <br>
+                                <a href="{{ asset('files/rules.pdf') }}" target="_blank">Правила Акции</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    {% if action == "#countModal" %}
+        <!-- Modal -->
+        <div class="modal fade" id="countModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title up" id="myModalLabel">
+                            Уважаемый участник!
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-static">
+                            <p>
+                                Согласно Правилам Акции <br>
+                                Вы не можете зарегистрировать <br>
+                                более 100 кодов <br>
+                                за весь период акции. 
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    {% if action == "#banModal" %}
+        <!-- Modal -->
+        <div class="modal fade" id="banModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title up" id="myModalLabel">
+                            Уважаемый участник!
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-static">
+                            <p>
+                                Согласно Правилам Акции <br>
+                                Вы не можете зарегистрировать <br>
+                                более 100 кодов <br>
+                                за весь период акции. 
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    <!-- Modal -->
+    <div class="modal fade" id="exists" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title up" id="myModalLabel">
+                        Уважаемый участник!
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-static">
+                        <p>
+                            Введенные Вами данные уже <br> существуют.
+                        </p>
+                        <p>
+                            Если Вы участвовали в других акциях <br> группы Компании <a href="https://pepsico.ru/">PepsiCo
+                                Россия</a>,
+                            то <br> можете использовать прежний логин и <br>пароль для <a href="{{ path('login') }}">авторизации</a>
+                            на сайт. <br>
+                            Если необходимо восстановить пароль, <br> воспользуйтесь формой <br> 
+                            <a href="{{ path('login',{'show':'recover'}) }}">восстановления пароля</a>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="success" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title up" id="myModalLabel">
+                        Уважаемый участник!
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-static">
+                        Вы успешно зарегистрировались. <br>
+                        Для подтверждения адреса <br>
+                        электронной почты на указанный Вами <br>
+                        e-mail отправлено письмо.
+                        <p class="modal-xs-text">
+                            *Если письмо не пришло – проверьте папку «Спам» <br> или напишите в <a
+                                href="{{ path('feedback_page') }}">обратную связь</a>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+<!--Modals end-->
+
+<!-- Modal Отдельно, должна перекрывать отстальные модалки -->
+<div class="modal fade" id="modalMessage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document" style="z-index: 10000;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title up" id="modalMessage-header">
+
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="modal-static" id="modalMessage-text">
+
+                </div>
+                <div class="form-btn text-center">
+                    <button class="gradient-btn xxs-button" data-dismiss="modal">ОК</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block javascripts %}
+    <script src="{{ asset('js/jquery-2.2.1.min.js') }}"></script>
+    <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
+    <script src='{{ asset('js/jquery.slimscroll.min.js') }}'></script>
+    <script src="{{ asset('js/jquery.datetimepicker.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.mask.js') }}"></script>
+    <script src="{{ asset('js/jquery.form.min.js') }}"></script>
+    <script src="{{ asset('js/moment.js') }}"></script>
+    <script src="{{ asset('js/moment-with-locales.js') }}"></script>
+    <script src="{{ asset('js/js.cookie-2.2.0.min.js') }}"></script>
+    <script src="{{ asset('js/libs.js') }}?{{ content_version }}"></script>
+    <script>
+      $('.js-date').datetimepicker({
+        timepicker: false,
+        format: 'd.m.Y',
+        lang: 'ru',
+        maxDate: '{{ "now"|date_modify("-18 year")|date("Y/m/d") }}',
+        defaultDate: '{{ "now"|date_modify("-18 year")|date("Y/m/d") }}',
+        closeOnDateSelect: true,
+      });
+    </script>
+    <script>
+      // Depend of JQuery
+      function gaSend(options) {
+        var defaults = {
+          event: 'GAEvent',
+          eventCategory: null,
+          eventAction: null,
+          eventLabel: null,
+          eventContext: null,
+          errorCode: null,
+        };
+        var gaParams = $.extend({}, defaults, options || {});
+        console.log('gaSend', gaParams);
+        dataLayer.push(gaParams);
+      }
+
+      function fG(e) {
+        console.log('val', $(e).val());
+        console.log(e.id);
+        var name = 'Fields';
+        switch (e.id) {
+          case 'registration_form_lastname':
+            // Выход если короче 2 символов
+            if ($(e).val().length < 2) {
+              return;
+            }
+            name = 'Family';
+            break;
+          case 'registration_form_firstname':
+            // Выход если короче 2 символов
+            if ($(e).val().length < 2) {
+              return;
+            }
+            name = 'Name';
+            break;
+          case 'registration_form_birthdate':
+            // Если меньше 18 то не отправляем
+            if (_calculateAge(moment($(e).val()).toDate()) < 18) {
+              return;
+            }
+            name = 'Birthday';
+            break;
+          case 'registration_form_email':
+            // Выход если не емейл
+            if (!validateEmail($(e).val())) {
+              return;
+            }
+            name = 'email';
+            break;
+          case 'registration_form_regionguid':
+            // Выход если не выбран
+            if ($(e).val().trim() === '') {
+              return;
+            }
+            name = 'Region';
+            break;
+          case 'registration_form_cityguid':
+            // Выход если не выбран
+            if ($(e).val().trim() === '') {
+              return;
+            }
+            name = 'City';
+            break;
+          case 'registration_form_ismale_0':
+          case 'registration_form_ismale_1':
+            name = 'Gender';
+            // Выход если не заполнено
+            if (!$(e).prop("checked")) {
+              return;
+            }
+            break;
+          case 'registration_form_password':
+          case 'registration_form_confirm_password':
+            // Выходим, если длинна меньше 6 или не совпадает повтор пароля
+            if ($(e).val().length < 6 || $('#registration_form_password').val() !== $('#registration_form_confirm_password').val()) {
+              return;
+            }
+            name = 'Password';
+            break;
+          case 'registration_form_isageagreed':
+            name = 'Age';
+            // Выход если не заполнено
+            if (!$(e).prop("checked")) {
+              return;
+            }
+            break;
+          case 'registration_form_ispdagreed':
+            name = 'Terms';
+            // Выход если не заполнено
+            if (!$(e).prop("checked")) {
+              return;
+            }
+            break;
+        }
+
+        // var optionsGA = {
+        //   event: 'pageview',
+        //   eventCategory: '/virtual/' + name,
+        //   url: "https://promo.ya-juice.ru/registration/virtual/" + name
+        // };
+        //
+        // gaSend(optionsGA);
+        //
+        // var options = {
+        //   event: 'FillingFields',
+        //   eventCategory: name,
+        //   eventAction: 'Filled',
+        // };
+        // console.log('fG', options);
+        // gaSend(options);
+
+        var options = {
+          event: name
+        };
+        console.log('fG2', options);
+        gaSend(options);
+      }
+
+      function eA(category, action) {
+        console.log('eA', { eventCategory: category, eventAction: action });
+        gaSend({ eventCategory: category, eventAction: action });
+      }
+
+      function eL(category, action, label) {
+        console.log('eL', { eventCategory: category, eventAction: action, eventLabel: label });
+        gaSend({ eventCategory: category, eventAction: action, eventLabel: label });
+      }
+
+      function eC(category, action, label, context) {
+        console.log('eC', { eventCategory: category, eventAction: action, eventLabel: label, eventContext: context });
+        gaSend({ eventCategory: category, eventAction: action, eventLabel: label, eventContext: context });
+      }
+
+      function eE(category, action, label, context, code) {
+        console.log('eE', {
+          eventCategory: category,
+          eventAction: action,
+          eventLabel: label,
+          eventContext: context,
+          errorCode: code,
+        });
+        gaSend({
+          eventCategory: category,
+          eventAction: action,
+          eventLabel: label,
+          eventContext: context,
+          errorCode: code,
+        });
+      }
+    </script>
+    <script>
+      function showErrorMessage(text) {
+        console.log("Error", text);
+        $('#modalMessage-header').html("Ошибка");
+        $('#modalMessage-text').html(text);
+        $('#modalMessage').modal('show');
+      }
+
+      function showMessage(text) {
+        showMessage2(text, "")
+      }
+
+      function showMessage2(header, text) {
+        console.log("Message", text, header);
+        $('#modalMessage-header').html(header);
+        $('#modalMessage-text').html(text);
+        $('#modalMessage').modal('show');
+      }
+    </script>
+    {% if action == "#authModal" %}
+    <script>
+      $('.button-purple').click(function () {
+        window.location = '{{ path('login') }}';
+      });
+    </script>
+    {% endif %}
+    {% if action == "#uploadModal" %}
+    <script>
+      $(function () {
+        $('#upload_form').ajaxForm({
+          beforeSubmit: function (formData, jqForm, options) {
+
+            var queryString = $.param(formData);
+            console.log(queryString);
+            // console.log("beforeSubmit");
+            $('#send_code').prop('disabled', true);
+            // Любая попытка регистрации промо-кода
+            gtag('event', 'conversion', {
+              'allow_custom_scripts': true,
+              'send_to': 'DC-6274508/ya_ju0/ya_ju000+standard',
+            });
+
+            eA('PromoCode', 'InputPromoCode');
+            return true;
+          },
+          success: function (responseText, statusText, xhr, $form) {
+            console.log("success");
+            $('#send_code').prop('disabled', false);
+            console.log('status: ' + statusText + '\n\nresponseText: \n' + responseText);
+            if (responseText.status === 200) {
+              eL('PromoCode', 'ValidPromoCode', $('input[name=code]').val());
+
+              // Успешная регистрация валидного промо-кода
+              gtag('event', 'conversion', {
+                'allow_custom_scripts': true,
+                'send_to': 'DC-6274508/ya_ju0/ya_ju001+standard',
+              });
+
+              switch (responseText.garanted) {
+                case '{{ asset('images/lamoda.png') }}':
+                  // Успешный ввод кода – ЛаМода – ежедневный приз
+                  gtag('event', 'conversion', {
+                    'allow_custom_scripts': true,
+                    'send_to': 'DC-6274508/ya_ju0/ya_ju004+standard',
+                  });
+                  eL('SelectSuccess', 'PromoCodeValidDone', 'SelectLamodaDaily');
+                  break;
+                case '{{ asset('images/yr.png') }}':
+                  // Успешный ввод кода – ИвРоше – ежедневный приз
+                  gtag('event', 'conversion', {
+                    'allow_custom_scripts': true,
+                    'send_to': 'DC-6274508/ya_ju0/ya_ju006+standard',
+                  });
+                  eL('SelectSuccess', 'PromoCodeValidDone', 'SelectRosheDaily');
+                  break;
+                case '{{ asset('images/ll.png') }}':
+                  // Успешный ввод кода – Лена Ленина – ежедневный приз
+                  gtag('event', 'conversion', {
+                    'allow_custom_scripts': true,
+                    'send_to': 'DC-6274508/ya_ju0/ya_ju008+standard',
+                  });
+                  eL('SelectSuccess', 'PromoCodeValidDone', 'SelectLenaLeninaDaily');
+                  break;
+              }
+
+              switch (responseText.main) {
+                case '{{ asset('images/lamoda.png') }}':
+                  // Успешный ввод кода – ЛаМода – еженедельный приз
+                  gtag
+                  ('event', 'conversion', {
+                    'allow_custom_scripts': true,
+                    'send_to': 'DC-6274508/ya_ju0/ya_ju005+standard',
+                  });
+                  eL('SelectSuccess', 'PromoCodeValidDone', 'SelectLamodaWeekly');
+                  break;
+                case '{{ asset('images/yr.png') }}':
+                  // Успешный ввод кода – ИвРоше – еженедельный приз
+                  gtag('event', 'conversion', {
+                    'allow_custom_scripts': true,
+                    'send_to': 'DC-6274508/ya_ju0/ya_ju007+standard',
+                  });
+                  eL('SelectSuccess', 'PromoCodeValidDone', 'SelectRosheWeekly');
+                  break;
+                case '{{ asset('images/ll.png') }}':
+                  // Успешный ввод кода – Лена Ленина – еженедельный приз
+                  gtag('event', 'conversion', {
+                    'allow_custom_scripts': true,
+                    'send_to': 'DC-6274508/ya_ju0/ya_ju009+standard',
+                  });
+                  eL('SelectSuccess', 'PromoCodeValidDone', 'SelectLenaLeninaWeekly');
+                  break;
+              }
+              $('input[name=code]').val('');
+              var completeModal = $('#completeRegCode');
+              completeModal.find('.modal-prise-garanted').attr('src', responseText.garanted);
+              completeModal.find('.modal-prise-main').attr('src', responseText.main);
+              $('#uploadModal').modal('hide');
+              completeModal.modal();
+
+            } else {
+              // Ошибка при регистрации невалидного промо-кода
+              gtag('event', 'conversion', {
+                'allow_custom_scripts': true,
+                'send_to': 'DC-6274508/ya_ju0/ya_ju002+standard',
+              });
+              eL('PromoCode', 'InvalidPromoCode', $('input[name=code]').val());
+              $('span.reg-code-error-fuel').text(responseText.error)
+              return false;
+            }
+          },
+          type: 'post',
+          dataType: 'json',
+          clearForm: false,
+          resetForm: false,
+        });
+      });
+    </script>
+    {% endif %}
+
+    {% if action == "#updateModal" %}
+    <script>
+      $('.button-purple').click(function () {
+        window.location = '{{ path('personal_page',{show: 'updateModal'}) }}';
+      });
+    </script>
+    {% endif %}
+    <script src="{{ asset('js/index.js') }}?{{ content_version }}"></script>
+
+    <script>
+      $(function () {
+        $('.show-lelnina-pp').click(function () {
+          $('#lenina').modal();
+        });
+      });
+    </script>
+
+    <script>
+      window.attached = false;
+      $(document).on('show.bs.modal', function (e) {
+        if (e.target.id === 'uploadModal') {
+          $('.code-code-code').val('');
+        }
+      });
+      $(document).on('shown.bs.modal', function (e) {
+        console.log('shown.bs.modal', e.target.id);
+        if (e.target.id !== 'uploadModal') {
+          console.log('not uploadModal');
+          return;
+        }
+        console.log('uploadModal');
+        if (window.attached) {
+          console.log('Already attached');
+          return;
+        }
+        console.log('Attach');
+        window.attached = true;
+        $('.code-code-code').keydown(function (e) {
+          // console.log('keydown');
+          // console.log(e.keyCode || e.charCode);
+          if (e.keyCode < 31) {
+            return;
+          }
+          e.preventDefault();
+        });
+
+        $('.code-code-code').keypress(function (e) {
+          // console.log('keydown');
+          // console.log(e.keyCode || e.charCode);
+          if (e.keyCode < 31) {
+            return;
+          }
+          e.preventDefault();
+        });
+
+        $('.code-code-code').keyup(function (e) {
+          if (e.keyCode < 31) {
+            return;
+          }
+          e.preventDefault();
+          var val = $('.code-code-code').val();
+          console.log("which " + e.which);
+          if (e.keyCode !== 229) {
+            console.log("keyCode " + e.keyCode);
+
+            // console.log("key " + e.key);
+            // console.log("charCode " + e.charCode);
+            // console.log("char " + e.char);
+            // console.log("code " + e.code);
+            console.log("String " + String.fromCharCode(e.keyCode));
+            val = val + String.fromCharCode(e.keyCode);
+          }
+          val = val.trim();
+          if (val.length === 4) {
+            val = val.substr(0, 4) + " " + val.substr(4);
+          } else if (val.length === 5) {
+            val = val.substr(0, 4) + " " + val.substr(4);
+          } else if (val.length > 5) {
+            val = val.substr(0, 4) + " " + val.substr(5);
+          }
+          if (val.length > 9) {
+            val = val.substr(0, 9);
+          }
+          $('.code-code-code').val(val);
+        });
+
+        // var custom_options = {
+        //   translation: {
+        //     'A': { pattern: /[a-zA-Z0-9]/, optional: true },
+        //     'B': { pattern: /[a-zA-Z0-9]/ },
+        //   },
+        // };
+        // $('input[name=code]').mask("BBBB BBBA", custom_options);
+        console.log(e.target.id);
+        if (e.target.id === "uploadModal") {
+          $('input[name=code]').val('');
+          $('input[name=prize-guaranteed]').prop('disabled', true);
+          $('input[name=prize-guaranteed]').attr('checked', false);
+          $('input[name=prize-weekly]').attr('checked', false);
+          $.ajax({
+            url: '{{ path('check_prizes') }}', success: function (json) {
+              console.log(json);
+              if (json.lamoda === 1) {
+                $('#prize-garant-lamoda').prop('disabled', false);
+              }
+              if (json.yr === 1) {
+                $('#prize-garant-yr').prop('disabled', false);
+              }
+              if (json.ll === 1) {
+                $('#prize-garant-ll').prop('disabled', false);
+              }
+
+              $('#send_code').prop('disabled', false);
+            },
+          });
+        }
+      })
+    </script>
+{% endblock %}
+{% for label, messages in app.session.flashbag.all %}
+    {% if label == 'ageModal' or label == 'age' %}
+        <script>
+          $('#ageModal').modal();
+        </script>
+        {% elseif label == 'firstlogin' %}
+        <!--
+                    Event snippet for Ya_juice // Все посетители сайта on https://promo.ya-juice.ru/: Please do not remove.
+                    Place this snippet on pages with events you’re tracking.
+                    Creation date: 02/02/2018
+                    -->
+        <script>
+          gtag('event', 'conversion', {
+            'allow_custom_scripts': true,
+            'send_to': 'DC-6274508/ya_ju0/ya_ju00a+standard',
+          });
+        </script>
+        <noscript>
+            <img
+                src="https://ad.doubleclick.net/ddm/activity/src=6274508;type=ya_ju0;cat=ya_ju00a;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;ord=1?"
+                width="1" height="1" alt=""/>
+        </noscript>
+        <!-- End of event snippet: Please do not remove -->
+
+        {% elseif label == 'login' %}
+        <script>
+          eC('SignIn', 'SentForm', 'Success_SignIn', 'OptionSignIn');
+        </script>
+
+        <!--
+                        Event snippet for Ya_juice // Успешная авторизация on https://promo.ya-juice.ru/: Please do not remove.
+                        Place this snippet on pages with events you’re tracking.
+                        Creation date: 02/01/2018
+                        -->
+        <script>
+          gtag('event', 'conversion', {
+            'allow_custom_scripts': true,
+            'send_to': 'DC-6274508/ya_ju0/ya_ju00+standard',
+          });
+        </script>
+        <noscript>
+            <img
+                src="https://ad.doubleclick.net/ddm/activity/src=6274508;type=ya_ju0;cat=ya_ju00;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;ord=1?"
+                width="1" height="1" alt=""/>
+        </noscript>
+        <!-- End of event snippet: Please do not remove -->
+        {% elseif label == 'feedback' %}
+        <script>
+            {% for message in messages %}
+            console.log('{{ message }}');
+            document.dispatchEvent(new Event('{{ message }}'));
+            {% endfor %}
+        </script>
+
+        {% elseif label == 'registration' %}
+        <script>
+          $('#success').modal();
+        </script>
+        <script>
+          eC('Signup', 'SentForm', 'Success_Signup', 'OptionSingup');
+          var options = {
+            event: 'Signup'
+          };
+          console.log('fG2', options);
+          gaSend(options);
+        </script>
+
+
+        <!--
+                    Event snippet for Ya_juice // Успешная регистрация on https://promo.ya-juice.ru/: Please do not remove.
+                    Place this snippet on pages with events you’re tracking.
+                    Creation date: 02/01/2018
+                    -->
+        <script>
+          gtag('event', 'conversion', {
+            'allow_custom_scripts': true,
+            'send_to': 'DC-6274508/ya_ju0/ya_ju0+standard',
+          });
+        </script>
+        <noscript>
+            <img
+                src="https://ad.doubleclick.net/ddm/activity/src=6274508;type=ya_ju0;cat=ya_ju0;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;ord=1?"
+                width="1" height="1" alt=""/>
+        </noscript>
+        <!-- End of event snippet: Please do not remove -->
+        {% elseif label == 'exists' %}
+        <script>
+          $('#exists').modal();
+          eE('Signup', 'SentForm', 'Unsuccess_Signup', 'email', 'Participant with this email/phone/social account is already registered');
+        </script>
+    {% else %}
+
+    {% endif %}
+{% endfor %}
+<script>
+  $(function () {
+    switch (show) {
+      case 'age':
+      case 'ageModal':
+        $('#ageModal').modal();
+        break;
+      case 'recover':
+        $('#recover').modal();
+        break;
+      case 'updateModal':
+        $('#regModal').modal();
+        break;
+    }
+  });
+</script>
+
+<script type="text/javascript" id="widget_chatbox">
+  odinodinid = 'ISXCVZXCAQ';
+  (function (odinodinid) {
+    function async_load() {
+      var s = document.createElement('script');
+      s.type = 'text/javascript';
+      s.async = true;
+      s.src = 'https://widget.firstline.chat/sokya/embed.js?' + Math.random();
+      var embedder = document.getElementById('widget_chatbox');
+      embedder.parentNode.insertBefore(s, embedder)
+    };window.odinodin = {};
+    window.odinodin.settings = {};
+    window.odinodin.id = odinodinid;
+    window.odinodin.autoStart = 0;
+    window.attachEvent ? window.attachEvent('onload', async_load) : window.addEventListener('load', async_load, false)
+  })(odinodinid)
+</script>
+</body>
+</html>
+{#{% endminifyhtml %}#}

@@ -5,6 +5,7 @@
   use AppBundle\Entity\LogUpload;
   use AppBundle\Entity\Receipt;
   use AppBundle\Entity\User;
+  use AppBundle\Form\Type\Participant\SubscribeFormType;
   use Dalee\PEPUWSClientBundle\Controller\CrmReceiptsController;
   use Dalee\PEPUWSClientBundle\Controller\GeoApiController;
   use Dalee\PEPUWSClientBundle\Controller\LedgerApiController;
@@ -128,11 +129,67 @@
      */
     public function indexAction(Request $request)
     {
-      return $this->render('AppBundle:Default:index.html.twig', [
-      ]);
+        $form = $this->createForm(SubscribeFormType::class, ['attr' => ['id' => "registration_form", 'class' => 'form', "autocomplete" => "off"]]);
+        $email = 'dfgdfg@sdfgdfgsdfg.com';
+        $participantApi = new HiddenApiController();
+        $participantApi->upsertEmail($email);
+        $participantApi = new ParticipantApiController();
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $formData = $form->getData();
+            $this->get('logger')->info(print_r($formData, true));
+            try {
+              $recaptcha = $this->container->get('app.recaptcha');
+                if (!$recaptcha->isSuccess($request))
+                {
+                    throw new NotCorrectDataException('Вы не ввели CAPTCHA-код');
+                }
+                if (!$this->validateEmail($formData['email'], "Введите емейл")) {
+                    throw new NotCorrectDataException('Введите емейл');
+                }
+                if ($formData['isageagreed'] == "N") {
+                    throw new NotCorrectDataException("Подтвердите возраст");
+                }
+                if ($formData['ispdagreed'] == "Y")
+                {
+                    $formData['isrulesagreed'] = "Y";
+                    $formData['ismailingagreed'] = "Y";
+                }
+                else
+                {
+                    $formData['isrulesagreed'] = "N";
+                    $formData['ismailingagreed'] = "N";
+                    throw new NotCorrectDataException("Согласитесь с условиями");
+                }
+
+                $this->addFlash('registration', 'ok');
+                return $this->redirectToRoute('success_page');
+            }
+            catch (NotCorrectDataException $e)
+            {
+                $this->errors[] = $e->getMessage();
+                $fields = $e->getFields();
+                if ($fields)
+                {
+                    $this->makeErrorsFromFields($fields);
+                }
+            }
+        }
+
+        return $this->render('AppBundle:Default:index.html.twig', [
+            'errors' => $this->errors,
+            'form'   => $form->createView(),
+        ]);
     }
-    
-    /**
+      /**
+       * @Route("/success", name="success_page")
+       */
+    public function successAction()
+    {
+        return $this->render('AppBundle:Default:success.html.twig');
+    }
+
+      /**
      * @Route("/registration", name="registration_page")
      */
     public function registrationAction(Request $request)

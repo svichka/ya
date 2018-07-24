@@ -1,0 +1,59 @@
+{% extends 'AppBundle:Default:base.html.twig' %}
+
+{% block title %}
+Выиграй 200 000 ₽ на шопинг в Милане от бренда Я
+{% endblock %}
+
+{% block body %}
+  <main class="main-content">
+    <div class="page-bg">
+      <div class="top-text">
+					<img src="{{ asset('images/text1.png') }}" class="hidden-xs" alt="">
+					<img src="{{ asset('images/text2.png') }}" class="visible-xs" alt="">
+				</div>
+      <div class="mp-button">
+        <a href="" class="button-purple" data-toggle="modal"  data-target="{{ action }}">Зарегистрировать код</a>
+      </div>
+      <div class="prizes-row">
+        <div class="row">
+          <div class="col-sm-8">
+            <div class="prize-item">
+              <div class="prize-img prize-img-1" style="background-image: url({{ asset('images/prize1.png') }})"></div>
+              <div class="prize-desc">
+                <img src="{{ asset('images/prt1.png') }}" class="hidden-xs" alt="">
+                <img src="{{ asset('images/prt1-xs.png') }}" class="visible-xs" alt="">
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <div class="prize-item prize-item-arrows">
+              <div class="prize-img prize-img-2" style="background-image: url({{ asset('images/prize2.png') }})"></div>
+              <div class="prize-desc">
+                <img src="{{ asset('images/prt2.png') }}" class="hidden-xs" alt="">
+                <img src="{{ asset('images/prt2-xs.png') }}" class="visible-xs" alt="">
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <div class="prize-item">
+              <div class="prize-img prize-img-3" style="background-image: url({{ asset('images/prize3.png') }})"></div>
+              <div class="prize-desc">
+                <img src="{{ asset('images/prt3.png') }}" class="hidden-xs" alt="">
+                <img src="{{ asset('images/prt3-xs.png') }}" class="visible-xs" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+{% endblock %}
+
+{% block stylesheets %}
+  {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+{% endblock %}
