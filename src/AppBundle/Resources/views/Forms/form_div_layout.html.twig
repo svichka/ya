@@ -8,27 +8,18 @@
 
 {%- block form_row -%}
   {% if block_prefixes.1 == 'recaptcha' %}
-    <div class="form-block">
-      <div class="captcha-wrap">
         <script src='https://www.google.com/recaptcha/api.js'></script>
-        <div class="g-recaptcha g-recaptcha__small" data-sitekey="{{ form.vars.value }}"></div>
-        <div class="form__text-error">
+        <div class="g-recaptcha" data-sitekey="{{ form.vars.value }}"></div>
+        <!--<div class="form__text-error">
           {{- form_errors(form) -}}
-        </div>
-      </div>
-    </div>
+        </div>-->
   {% elseif block_prefixes.1 == 'checkbox' %}
-    <div class="media-checkbox">
-      <div class="checkbox-wrap">
-        <input id="{{ form.vars.id }}" type="checkbox" name="{{ form.vars.full_name }}" value="{{ form.vars.value }}" {% if form.vars.checked is defined and form.vars.checked %} checked {% endif %}{% if form.vars.checked is defined and form.vars.checked %} checked {% endif %} {% if  form.vars.required %} required {% endif %}>
-        <span></span>
-      </div>
-      <div class="checkbox-title" for="{{ form.vars.id }}">
-        {{ form.vars.label }}
-      </div>
-      <div class="form__text-error">
+    <div class="form__checkbox__container">
+        <input id="{{ form.vars.id }}" type="checkbox" class="form__checkbox" name="{{ form.vars.full_name }}" value="{{ form.vars.value }}" {% if form.vars.checked is defined and form.vars.checked %} checked {% endif %}{% if form.vars.checked is defined and form.vars.checked %} checked {% endif %} {% if  form.vars.required %} required {% endif %}>
+        <label for="{{ form.vars.id }}" class="form__checkbox-text">{{ form.vars.label }}</label>
+      <!--<div class="form__text-error">
         {{- form_errors(form) -}}
-      </div>
+      </div>-->
     </div>
   {% elseif block_prefixes.1 == 'choice' and expanded == true %}
     {{- form_widget(form) -}}
@@ -42,17 +33,22 @@
 
     {#</div>#}
   {% else %}
-    <div class="form-block">
-      {% set classes = '' %}
-      {% if form.vars.attr['class'] is defined %}
-        {% set classes = form.vars.attr['class'] ~ ' ' ~ classes %}
-      {% endif %}
-      <label for="{{ form.vars.id }}">{{ form.vars.label }}</label>
-      {{- form_widget(form, { 'attr': {'class': classes} }) -}}
-      <div class="form__text-error">
-        {{- form_errors(form) -}}
+      <div class="form__field">
+        {% set classes = '' %}
+        {% if form.vars.attr['class'] is defined %}
+          {% set classes = form.vars.attr['class'] ~ ' ' ~ classes %}
+        {% endif %}
+        {% set focus = '' %}
+        {% if form.vars.value != '' %}
+            {% set focus = ' form__label_focus' %}
+        {% endif %}
+          {% if errors.email is defined %}
+              {% set classes = 'form__input_error' ~ classes %}
+              {% set error = errors.email %}
+          {% endif %}
+        <label for="{{ form.vars.id }}" class="form__label{{ focus }}">{{ form.vars.label }}</label>
+        {{- form_widget(form, { 'attr': {'class': classes} }) -}}
       </div>
-    </div>
   {% endif %}
 {%- endblock form_row -%}
 
@@ -67,8 +63,8 @@
       </div>
       <div class="checkbox-title">{{ child.vars.label|nl2br }}</div>
     {% endfor -%}
-    <div class="form__text-error">
+    <!--<div class="form__text-error">
       {{- form_errors(form) -}}
-    </div>
+    </div>-
   </div>
 {%- endblock choice_widget_expanded -%}

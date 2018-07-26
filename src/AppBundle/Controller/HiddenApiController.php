@@ -28,13 +28,13 @@ class HiddenApiController extends ClientApiController
         $this->init();
         $parameters = ["participant"=>['email'=>$email]];
         $this->callApi('/participants/upsert.json', 'post', $parameters);
-        var_dump($this->getStatusCode());
         switch ($this->getStatusCode()) {
             case 200:
+            case 201:
                 $responseArray = $this->getResponse();
                 $message = $responseArray['meta']['message'];
                 $this->logger->alert($message);
-                return '';
+                return true;
                 break;
 
             case 500:
@@ -55,7 +55,5 @@ class HiddenApiController extends ClientApiController
                 throw new ApiFailedException('Status code: '.$this->getStatusCode());
                 break;*/
         }
-        var_dump($this->getStatusCode());
-        var_dump($this->getResponse());
     }
 }

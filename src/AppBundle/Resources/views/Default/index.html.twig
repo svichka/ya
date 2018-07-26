@@ -5,50 +5,62 @@
 {% endblock %}
 {% form_theme form 'AppBundle:Forms:form_div_layout.html.twig' %}
 {% block body %}
-    <main class="main-content">
-        <div class="container">
-            <h1 class="static-title up">Подписка</h1>
-            <div class="reg-form">
-                {{ form_start(form) }}
-                <label style="display:none; margin-bottom: 15px; padding: 15px; text-align:center; color: red;"
-                       class="online-error"></label>
-                {% if errors is defined %}
-                    {% for error in errors %}
-                        <label
-                                style="margin-bottom: 15px; padding: 15px; text-align:center; color: red;">{{ error|trans }}</label>
-                    {% endfor %}
-                {% endif %}
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="form-block">
-
+    <main class="main stub__main" id="main">
+        <div class="stub__content"></div>
+        <div class="hidden">
+            <div class="popup popup_stub" id="stub">
+                <h2 class="popup__title">Уважаемый участник!</h2>
+                <div class="popup__wrap">
+                    <p class="popup__text popup__text_size_limit">Акция еще не началась! Свой первый код ты сможешь загрузить уже 03.09.2018.</p>
+                    <p class="popup__text popup__text_size_limit">
+                        Оставь свой e-mail 
+                        и узнавай первым о всех новостях акции!
+                    </p>
+                    <div class="popup__form-wrap">
+                        {{ form_start(form) }}
+                        <label style="display:none; margin-bottom: 15px; padding: 15px; text-align:center; color: red;font-size: 17px;"
+                               class="online-error"></label>
+                        {% if errors is defined %}
+                            {% for error in errors %}
+                                <label
+                                        style="margin-bottom: 15px; padding: 15px; text-align:center; color: red;">{{ error|trans }}</label>
+                            {% endfor %}
+                        {% endif %}
+                        <div class="form__row">
+                            <div class="form__box">
+                                {% set error = '' %}
+                                {{ form_row(form.email) }}
+                                {% if errors.email is defined %}
+                                    {% set error = errors.email %}
+                                {% endif %}
+                                <div class="form__text-error">
+                                    {{ error }}
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        {{ form_row(form.email) }}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-11">
-                        <div class="form-block">
-                            {{ form_row(form.isageagreed) }}
-                            {{ form_row(form.ispdagreed) }}
+                        <div class="form__row">
+                            <div class="form__box form__box_mb_none">
+                                {{ form_row(form.isageagreed) }}
+                            </div>
                         </div>
+                        <div class="form__row">
+                            <div class="form__box">
+                                {{ form_row(form.ispdagreed) }}
+                            </div>
+                        </div>
+                        <div class="form__row">
+                            <div class="form__box">
+                                {{ form_row(form.recaptcha) }}
+                            </div>
+                        </div>
+                        <div class="form__row">
+                            <div class="form__box form__box_button">
+                                <button class="button" type="submit"><span class="button__text">Отправить</span></button>
+                            </div>
+                        </div>
+                        {{ form_end(form) }}
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        {{ form_row(form.recaptcha) }}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <button class='btn'>Отправить</button>
-                    </div>
-                </div>
-                {{ form_end(form) }}
             </div>
         </div>
     </main>
@@ -59,5 +71,34 @@
 {% endblock %}
 
 {% block javascripts %}
+    <script>
+        var popupOptions = {
+            closeOnEsc: false,
+            closeOnOverlayClick: false,
+            popup: {
+                options:   {
+                    overlay: {
+                        css: {backgroundColor: '#fff', opacity: 0.65}
+                    }
+                }
+            }
+        }
+        window.onload = function() {
+            $('.form__input')
+                .on('focus', function(){
+                    $(this).prev().addClass('form__label_focus');
+                })
+                .on('focusout', function(){
+                    if(this.value === '') {
+                        $(this).prev().removeClass('form__label_focus');
+                    }
+                })
+                .on('input', function(){
+                    $(this).removeClass('form__input_error');
+                    $(this).closest('.form__box').find('.form__text-error').addClass('hidden');
+                })
+            $('#stub').arcticmodal(popupOptions);
+        };
+    </script>
   {{ parent() }}
 {% endblock %}

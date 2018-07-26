@@ -4,9 +4,67 @@
     Выиграй 200 000 ₽ на шопинг в Милане от бренда Я
 {% endblock %}
 {% block body %}
-    <main class="main-content">
-        <div class="container">
-            <h1 class="static-title up">Успех</h1>
+    <main class="main stub__main" id="main">
+        <div class="stub__content"></div>
+        <div class="hidden">
+            <div class="popup popup_stub" id="stub">
+                <h2 class="popup__title">Уважаемый участник!</h2>
+                <div class="popup__wrap">
+                    <p class="popup__text popup__text_size_limit">Акция еще не началась! Свой первый код ты сможешь загрузить уже 03.09.2018.</p>
+                    <p class="popup__text popup__text_size_limit">
+                        Оставь свой e-mail 
+                        и узнавай первым о всех новостях акции!
+                    </p>
+                    <div class="popup__form-wrap">
+                        <form class="form" action="#">
+                            <div class="form__row">
+                                <div class="form__box">
+                                    <div class="form__field">
+                                        <label class="form__label" for="email">E-mail</label>
+                                        <input class="form__input form__input_error" type="email" id="email">
+                                    </div>
+                                    <div class="form__text-error">E-mail введен не верно</div>
+                                </div>
+                            </div>
+                            <div class="form__row">
+                                <div class="form__box form__box_mb_none">
+                                    <div class="form__checkbox__container">
+                                        <input class="form__checkbox" type="checkbox" id="adulthood">
+                                        <label class="form__checkbox-text form__checkbox-text_error" for="adulthood">Подтверждаю, что мне исполнилось 18 лет на момент участия в Акции									</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form__row">
+                                <div class="form__box">
+                                    <div class="form__checkbox__container">
+                                        <input class="form__checkbox" type="checkbox" id="regulations">
+                                        <label class="form__checkbox-text" for="regulations"><span><span>Я согласен с </span><a class="form__link" href="#!">Правилами акции </a><span>и </span><a class="form__link" href="#!">Пользовательским соглашением</a></span></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form__row">
+                                <div class="form__box">
+                                    <div class="g-recaptcha" data-sitekey="6Lf-RS4UAAAAABK77fQwn0jagRJ_QXBNqy7FTHjb"></div></div>
+                            </div>
+                            <div class="form__row">
+                                <div class="form__box form__box_button">
+                                    <button class="button" type="submit"><span class="button__text">Отправить</span></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="popup popup_stub" id="stubSuccess">
+                <h2 class="popup__title">Уважаемый участник!</h2>
+                <div class="popup__wrap">
+                    <p class="popup__text popup__text_size_limit">Спасибо что ты с нами!</p>
+                    <p class="popup__text popup__text_size_limit">
+                        Мы оповестим тебя о всех новостях акции!
+
+                    </p>
+                </div>
+            </div>
         </div>
     </main>
 {% endblock %}
@@ -17,4 +75,20 @@
 
 {% block javascripts %}
     {{ parent() }}
+    <script>
+        var popupOptions = {
+            closeOnEsc: false,
+            closeOnOverlayClick: false,
+            popup: {
+                options:   {
+                    overlay: {
+                        css: {backgroundColor: '#fff', opacity: 0.65}
+                    }
+                }
+            }
+        }
+        window.onload = function() {
+            $('#stubSuccess').arcticmodal(popupOptions);
+        };
+    </script>
 {% endblock %}

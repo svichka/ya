@@ -20,7 +20,7 @@ class SubscribeFormType extends ParticipantFieldsFormType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email', EmailType::class, ['label' => "Email*", 'attr' => ["placeholder" => "email@email.com", 'onchange' => 'fG(this)']])
+            ->add('email', EmailType::class, ['label' => "E-mail", 'attr' => ['onchange' => 'fG(this)', 'class' => 'form__input']])
             ->add('isageagreed', CheckboxType::class, ['required' => true, 'value' => 'Y', 'label' => 'Я подтверждаю, что мне исполнилось 18 лет на момент участия в Акции', 'attr' => ['class' => 'form__checkbox', 'onchange' => 'fG(this)']])
             ->add('ispdagreed', CheckboxType::class, ['required' => true, 'value' => 'Y', 'label' => 'Я согласен с правилами Акции и пользовательским
 соглашением, а также на обработку моих данных', 'attr' => ['class' => 'form__checkbox', 'onchange' => 'fG(this)']]);

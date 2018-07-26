@@ -129,11 +129,7 @@
      */
     public function indexAction(Request $request)
     {
-        $form = $this->createForm(SubscribeFormType::class, ['attr' => ['id' => "registration_form", 'class' => 'form', "autocomplete" => "off"]]);
-        $email = 'dfgdfg@sdfgdfgsdfg.com';
-        $participantApi = new HiddenApiController();
-        $participantApi->upsertEmail($email);
-        $participantApi = new ParticipantApiController();
+        $form = $this->createForm(SubscribeFormType::class, [], ['attr' => ['id' => "registration_form", 'class' => 'form', "autocomplete" => "off"]]);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $formData = $form->getData();
@@ -142,12 +138,15 @@
               $recaptcha = $this->container->get('app.recaptcha');
                 if (!$recaptcha->isSuccess($request))
                 {
+                    $this->errors['recaptcha'] = "Вы не ввели CAPTCHA-код";
                     throw new NotCorrectDataException('Вы не ввели CAPTCHA-код');
                 }
                 if (!$this->validateEmail($formData['email'], "Введите емейл")) {
+
                     throw new NotCorrectDataException('Введите емейл');
                 }
                 if ($formData['isageagreed'] == "N") {
+                    $this->errors['isageagreed'] = "Подтвердите возраст";
                     throw new NotCorrectDataException("Подтвердите возраст");
                 }
                 if ($formData['ispdagreed'] == "Y")
@@ -159,15 +158,27 @@
                 {
                     $formData['isrulesagreed'] = "N";
                     $formData['ismailingagreed'] = "N";
+                    $this->errors['ispdagreed'] = "Согласитесь с условиями";
                     throw new NotCorrectDataException("Согласитесь с условиями");
                 }
 
-                $this->addFlash('registration', 'ok');
-                return $this->redirectToRoute('success_page');
+                $this->get('logger')->info("Our register OK");
+                try {
+                    $participantApi = new HiddenApiController();
+                    $status = $participantApi->upsertEmail($formData['email']);
+                    if($status) {
+                        return $this->redirectToRoute('success_page');
+                    }
+                    $this->errors['common'] = "Ошибка связи";
+                }
+                catch (\Exception $e)
+                {
+                    print_r($e);
+                }
             }
             catch (NotCorrectDataException $e)
             {
-                $this->errors[] = $e->getMessage();
+                //$this->errors[] = $e->getMessage();
                 $fields = $e->getFields();
                 if ($fields)
                 {
@@ -513,7 +524,7 @@
         if (preg_match($r, $email) === false)
         {
           $this->get('logger')->debug("Email: FALSE");
-          $this->errors[] = $err;
+          $this->errors['email'] = $err;
           $this->valid = false;
           
           return false;
@@ -525,7 +536,7 @@
           return true;
         }
       }
-      
+      $this->errors['email'] = $err;
       return false;
     }
     
@@ -1034,7 +1045,7 @@
         $field = str_replace('_', ' ', $field);
         $field = strtoupper(substr($field, 0, 1)) . substr($field, 1);
         $message .= $this->get('translator')->trans($field, [], 'personal');
-        $this->errors[] = $message;
+        $this->errors[$field] = $message;
       }
     }
     

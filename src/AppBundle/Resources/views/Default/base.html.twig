@@ -42,27 +42,28 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
     <meta name="viewport" content="width=device-width">
     {% block stylesheets %}
-    <link rel="stylesheet" href="{{ apm_css }}"/>
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/owl.carousel.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/jquery.datetimepicker.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/scroll.css') }}">
-
-    <!-- <link rel="stylesheet" href="{{ asset('css/fonts.css') }}?{{ content_version }}">
-    <link rel="stylesheet" href="{{ asset('css/index.css') }}?{{ content_version }}">
-    <link rel="stylesheet" href="{{ asset('css/media.css') }}?{{ content_version }}"> -->
+    <link rel="stylesheet" href="{{ asset('styles/main.css') }}">
     {% endblock %}
 </head>
 <body>
+<div class="page">
+    <div class="stub__header">
+        <div class="stub__logo"></div>
+    </div>
     {% block body %}{% endblock %}
     {% block javascripts %}
     <script src="{{ asset('js/jquery-2.2.1.min.js') }}"></script>
-    <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
-    <script src='{{ asset('js/jquery.slimscroll.min.js') }}'></script>
-    <script src="{{ asset('js/jquery.datetimepicker.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.arcticmodal-0.3.min.js') }}"></script>
     {% endblock %}
+    <footer class="footer stub__footer">
+        <div class="footer__content">
+            <div class="footer__row"><a class="footer__link" href="#!">Правила Акции</a><span class="footer__delimiter"> | </span><a class="footer__link" href="#!">Пользовательское соглашение</a></div>
+            <div class="footer__row">
+                <div class="footer__copyright">© ВСЕ ПРАВА ЗАЩИЩЕНЫ</div>
+            </div>
+        </div>
+    </footer>
+</div>
 </body>
 </html>
 {#{% endminifyhtml %}#}
